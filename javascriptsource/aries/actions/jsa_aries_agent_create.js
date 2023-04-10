@@ -10,6 +10,7 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import{Agent}from"@aries-framework/core"
+import * as AriesCore from"@aries-framework/core"
 import{agentDependencies}from"@aries-framework/react-native"
 import{KeyDerivationMethod}from'@aries-framework/core'
 import{DidCommMimeType}from'@aries-framework/core'
@@ -47,7 +48,7 @@ import support from"../support/entidad";
  * @param {string} defaultMediatorId
  * @param {boolean} clearDefaultMediator
  * @param {Big} mediatorPollingInterval
- * @param {"Aries.enum_aries_MediatorPickupStrategy.PickUpV1"|"Aries.enum_aries_MediatorPickupStrategy.PickUpV2"|"Aries.enum_aries_MediatorPickupStrategy.Implicit"} mediatorPickupStratery
+ * @param {"Aries.enum_aries_MediatorPickupStrategy.PickUpV1"|"Aries.enum_aries_MediatorPickupStrategy.PickUpV2"|"Aries.enum_aries_MediatorPickupStrategy.Implicit"} mediatorPickupStrategy
  * @param {Big} maximumMessagePickup
  * @param {boolean} useLegacyDidSovPrefix
  * @param {string} connectionImageUrl
@@ -55,7 +56,7 @@ import support from"../support/entidad";
  * @param {boolean} autoAcceptConnections
  * @returns {Promise.<Big>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, indyLedgers_id, indyLedgers_indyNamespace, indyLedgers_isProduction, indyLedgers_genesisPath, indyLedgers_genesisTransactions, indyLedgers_transactionAuthorAgreement_transactionAuthorAgreement, indyLedgers_transactionAuthorAgreement_version, indyLedgers_transactionAuthorAgreement_acceptanceMechanism, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStratery, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, indyLedgers_id, indyLedgers_indyNamespace, indyLedgers_isProduction, indyLedgers_genesisPath, indyLedgers_genesisTransactions, indyLedgers_transactionAuthorAgreement_transactionAuthorAgreement, indyLedgers_transactionAuthorAgreement_version, indyLedgers_transactionAuthorAgreement_acceptanceMechanism, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections) {
 	// BEGIN USER CODE
 	try{
 		//--------------------------------------------------------------------------------
@@ -88,7 +89,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(defaultMediatorId=="")defaultMediatorId=null;
 		if(clearDefaultMediator=="")clearDefaultMediator=null;
 		if(mediatorPollingInterval=="")mediatorPollingInterval=null;
-		if(mediatorPickupStratery=="")mediatorPickupStratery=null;
+		if(mediatorPickupStrategy=="")mediatorPickupStrategy=null;
 		if(maximumMessagePickup=="")maximumMessagePickup=null;
 		if(useLegacyDidSovPrefix=="")useLegacyDidSovPrefix=null;
 		if(connectionImageUrl=="")connectionImageUrl=null;
@@ -216,23 +217,23 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(mediationConnectionsInvitation==null);																								// optional
 		if(defaultMediatorId==null);																											// optional
 		if(clearDefaultMediator==null)clearDefaultMediator=false;																				// default
-		if(mediatorPollingInterval==null)/*mediatorPollingInterval=5000*/;																		// optional
-		if(mediatorPickupStratery==null);																										// optional
-		switch(mediatorPickupStratery){																											// -
+		if(mediatorPollingInterval==null)mediatorPollingInterval=5000;																		// optional
+		if(mediatorPickupStrategy==null);																										// optional
+		switch(mediatorPickupStrategy){																											// -
 			case"PickUpV1":																														// -
-				mediatorPickupStratery=MediatorPickupStrategy.PickUpV1;																			// -
+				mediatorPickupStrategy=MediatorPickupStrategy.PickUpV1;																			// -
 				break;																															// -
 			case"PickUpV2":																														// -
-				mediatorPickupStratery=MediatorPickupStrategy.PickUpV2;																			// -
+				mediatorPickupStrategy=MediatorPickupStrategy.PickUpV2;																			// -
 				break;																															// -
 			case"Implicit":																														// -
-				mediatorPickupStratery=MediatorPickupStrategy.Implicit;																			// -
+				mediatorPickupStrategy=MediatorPickupStrategy.Implicit;																			// -
 				break;																															// -
 			default:																															// -
-				//return Promise.reject("Invalid mediatorPickupStratery parameter");																// -
+				//return Promise.reject("Invalid mediatorPickupStrategy parameter");																// -
 				break;																															// -
 		}																																		// -
-		if(maximumMessagePickup==null);																											// optional
+		if(maximumMessagePickup==null)maximumMessagePickup=10;																											// optional
 		if(useLegacyDidSovPrefix==null)useLegacyDidSovPrefix=false;																				// default
 		if(connectionImageUrl==null);																											// optional
 		if(autoUpdateStorageOnStartup==null)autoUpdateStorageOnStartup=false;																	// optional
@@ -271,12 +272,12 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//useDidSovPrefixWhereAllowed ??? boolean
 		//useDidKeyInProtocols ??? boolean
 		if(mediatorPollingInterval!=null)config.mediatorPollingInterval=mediatorPollingInterval;
-		if(mediatorPickupStratery!=null)config.mediatorPickupStratery=mediatorPickupStratery;
+		if(mediatorPickupStrategy!=null)config.mediatorPickupStrategy=mediatorPickupStrategy;
 		if(maximumMessagePickup!=null)config.maximumMessagePickup=maximumMessagePickup;
 		if(useLegacyDidSovPrefix!=null&&useLegacyDidSovPrefix!=false)config.useLegacyDidSovPrefix=useLegacyDidSovPrefix;
 		if(connectionImageUrl!=null)config.connectionImageUrl=connectionImageUrl;
 		if(autoUpdateStorageOnStartup!=null&&autoUpdateStorageOnStartup!=false)config.autoUpdateStorageOnStartup=autoUpdateStorageOnStartup;
-		if(autoAcceptConnections!=null&&autoAcceptConnections!=true)config.autoAcceptConnections=autoAcceptConnections;		
+		if(autoAcceptConnections!=null&&autoAcceptConnections==true)config.autoAcceptConnections=autoAcceptConnections;		
 		if(connectToIndyLedgerOnStartup!=null)config.connectToIndyLedgerOnStartup=connectToIndyLedgerOnStartup;
 		if(logger!=null)config.logger=logger;
 		if(
@@ -305,11 +306,8 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			config.indyLedgers=[indyLedger];
 		}else{
 		}
-		//console.error(JSON.stringify(config,0,2))
 		//--------------------------------------------------------------------------------
 		//construct configuration parameter - end
-		//--------------------------------------------------------------------------------
-		//console.error(JSON.stringify(config,0,2));
 		//--------------------------------------------------------------------------------
 		//Note: The setLogger and setDefaultLogger methods have only been implemented in the Node.JS wrapper of the indy sdk. This won't work when importing from @aries-framework/react-native
 		//agentDependencies.indy.setDefaultLogger(loglevel);//todo

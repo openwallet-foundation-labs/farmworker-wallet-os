@@ -14,6 +14,15 @@ import support from "../support/entidad";
 
 /**
  * Shuts down all agents and removes from cache
+ * 
+ * Note: With soft reset of react native client there will remain background connections
+ * If in that case a new agent is initialized, the callbacks will not work
+ * 
+ * After about 5 minutes it might start working
+ * 
+ * Possible solution is still being investigated relating to getting access to lower level functionality to retrieve and shutdown all transports
+ * 
+ * https://github.com/hyperledger/aries-framework-javascript/blob/644e860a05f40166e26c497a2e8619c9a38df11d/packages/core/src/agent/Agent.ts#L205
  * @returns {Promise.<void>}
  */
 export async function jsa_aries_agents_shutdown() {

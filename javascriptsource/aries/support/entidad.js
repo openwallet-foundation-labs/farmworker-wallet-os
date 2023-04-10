@@ -42,7 +42,6 @@ function list(){
 function keys(){
 	return Object.keys(cache);
 }
-
 function remove(key){
 	if(typeof(cache[key])!="undefined"){
 		delete cache(key);
@@ -58,6 +57,27 @@ function clear(){
 	return true;
 }
 const support={
+	data:{
+		async create(options){
+			return new Promise((resolve,reject)=>{
+				try{
+					mx.data.create(
+						{
+							entity:options.entity,
+							callback:(obj)=>{
+								resolve(obj);
+							},
+							error:(e)=>{
+								reject(e);
+							}
+						}
+					);
+				}catch(e){
+					reject(e);
+				}
+			});
+		}
+	},
 	logging:{
 		ConsoleLogger:ConsoleLogger 
 	},

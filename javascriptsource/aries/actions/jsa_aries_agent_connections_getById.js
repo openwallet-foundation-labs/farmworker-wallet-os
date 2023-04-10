@@ -9,19 +9,33 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import support from"../support/entidad";
 // END EXTRA CODE
 
 /**
+ * getById(connectionId: string): Promise<ConnectionRecord>
+ * The connection record id
+ * 
+ * 
+ * Retrieve a connection record by id
+ * 
+ * @throws — {RecordNotFoundError} If no record is found
+ * 
+ * @return — The connection record
+ * 
  * @param {Big} agent_key
- * @returns {Promise.<void>}
+ * @param {string} connectionId
+ * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_connections_getById(agent_key) {
+export async function jsa_aries_agent_connections_getById(agent_key, connectionId) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");										//mandatory
+		if(connectionId==null)return Promise.reject("Invalid connectionId parameter");										//mandatory
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve();
+		let ret=await agent.connections.getById(connectionId);
+		return Promise.resolve(JSON.stringify(ret));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

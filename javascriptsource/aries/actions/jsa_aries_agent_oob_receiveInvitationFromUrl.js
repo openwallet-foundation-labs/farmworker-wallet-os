@@ -25,7 +25,7 @@ export async function jsa_aries_agent_oob_receiveInvitationFromUrl(agent_key, in
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		const{outOfBandRecord}=await agent.oob.receiveInvitationFromUrl(invitationUrl);
-		return Promise.resolve(JSON.stringify(outOfBandRecord));
+		return Promise.resolve(JSON.stringify(outOfBandRecord,0,2));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}
