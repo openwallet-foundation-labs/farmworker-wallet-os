@@ -316,6 +316,12 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			config,
 			dependencies:agentDependencies,
 		});
+		/*
+		//shutdown
+		await agent.inboundTransports[0].stop();
+		await agent.outboundTransports[0].stop();
+		await agent.wallet.close();
+		*/
 		return Promise.resolve(support.cache.put(agent));
 	}catch(e){
 		return Promise.reject(e.toString());

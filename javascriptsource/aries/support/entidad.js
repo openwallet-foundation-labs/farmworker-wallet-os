@@ -44,7 +44,8 @@ function keys(){
 }
 function remove(key){
 	if(typeof(cache[key])!="undefined"){
-		delete cache(key);
+		delete cache[key];
+		//cache[key]==null;//?handle for future shutdown operations lost?
 		return true;
 	}else{
 		return false;
