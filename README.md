@@ -5,7 +5,6 @@
 ![Preview](https://github.com/Entidad/entidad-aries-sdk-mendix/blob/main/img/preview.gif?raw=true)
 
 ## Quick start
----
 
 * Download Mendix 9.18.6
 * Open this project
