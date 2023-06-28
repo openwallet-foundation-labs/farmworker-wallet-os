@@ -20,6 +20,8 @@ export async function jsa_web_setItem(sharedPreferencesName, key, value) {
 	// BEGIN USER CODE
 	return new Promise(function(resolve,reject){
 		try{
+			sharedPreferencesName=sharedPreferencesName==null?"default":sharedPreferencesName;
+			if(key==null)return Promise.reject("Invalid key argument value");
 			let data=localStorage.getItem(sharedPreferencesName);
 			data=(data==null||data=='')?'{}':data;
 			data=JSON.parse(data);

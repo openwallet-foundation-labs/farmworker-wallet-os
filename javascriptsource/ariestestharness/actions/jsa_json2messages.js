@@ -27,7 +27,7 @@ export async function jsa_json2messages(json) {
 				obj.getAttributes().forEach((attr)=>{
 					let _attr=attr;
 					switch(_attr){
-						case"_id":
+						case"id_":
 							_attr="id";
 							break;
 						default:

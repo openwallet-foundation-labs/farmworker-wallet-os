@@ -13,11 +13,20 @@ import { Big } from "big.js";
 /**
  * Scrambles field values
  * @param {MxObject} obj
+ * @param {Big} minstrlen - optional, defaults to 4
+ * @param {Big} maxstrlen - optional, defaults to minstrlen
  * @returns {Promise.<void>}
  */
-export async function jsa_mxobj_scramble(obj) {
+export async function jsa_mxobj_scramble(obj, minstrlen, maxstrlen) {
 	// BEGIN USER CODE
 	try{
+		minstrlen=minstrlen==null?4:minstrlen.toNumber();
+		if(minstrlen<0)return Promise.reject("Argument minstrlen has invalid value");
+		maxstrlen=maxstrlen==null?minstrlen:maxstrlen.toNumber();
+		if(maxstrlen<0)
+			return Promise.reject("Argument maxstrlen has invalid value");
+		if(minstrlen>maxstrlen)
+			return Promise.reject("Invalid minstrlen maxstrlen combination");
 		//console.info(JSON.stringify(Object.keys(obj)));
 		//["_guid","_unavailable","metaData","jsonData","id"]
 		//console.info(JSON.stringify(Object.keys(obj.jsonData)));
@@ -59,9 +68,7 @@ export async function jsa_mxobj_scramble(obj) {
 			else{//string
 				let glyphs="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-*/ ";
 				let value="";
-				let minlength=4;
-				let maxlength=32;
-				let length=minlength+Math.floor(Math.random()*(maxlength-minlength));
+				let length=minstrlen+Math.floor(Math.random()*(maxstrlen-minstrlen));
 				for(let i=0;i<length;i++){
 					value=value+glyphs[Math.floor(Math.random()*glyphs.length)];
 				}

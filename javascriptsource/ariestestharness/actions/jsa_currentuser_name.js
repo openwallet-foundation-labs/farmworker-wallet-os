@@ -12,6 +12,8 @@ import { Big } from "big.js";
 // END EXTRA CODE
 
 /**
+ * Returns current user name
+ * Uses mendix javascrript api library call
  * @returns {Promise.<string>}
  */
 export async function jsa_currentuser_name() {

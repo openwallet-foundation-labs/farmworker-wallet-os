@@ -6,9 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "react-native-sensitive-info": "^5.5.8"
+    "json-query": "^2.2.2",
+    "react-native-sensitive-info": "^6.0.0-alpha.9"
   }
 }

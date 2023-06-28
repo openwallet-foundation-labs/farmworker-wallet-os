@@ -23,7 +23,10 @@ export async function jsa_android_isSensorAvailable() {
 			let available=await SInfo.isSensorAvailable();
 			resolve(available);
 		}catch(e){
-			reject(e.toString());
+			//11:17 2023/05/05
+			//reject(e.toString());
+			console.error("jsa_android_isSensorAvailable:error:"+e.toString())
+			resolve(false);
 		}
 	});
 	// END USER CODE

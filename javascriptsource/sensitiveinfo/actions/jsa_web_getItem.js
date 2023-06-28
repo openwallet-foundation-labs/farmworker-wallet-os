@@ -19,6 +19,7 @@ export async function jsa_web_getItem(sharedPreferencesName, key) {
 	// BEGIN USER CODE
 	return new Promise(function(resolve,reject){
 		try{
+			sharedPreferencesName=sharedPreferencesName==null?"default":sharedPreferencesName;
 			let data=localStorage.getItem(sharedPreferencesName);
 			data=JSON.parse((data==null||data=='')?'{}':data);
 			resolve(data[key]);

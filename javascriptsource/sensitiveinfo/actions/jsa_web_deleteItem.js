@@ -19,6 +19,7 @@ export async function jsa_web_deleteItem(sharedPreferencesName, key) {
 	// BEGIN USER CODE
 	return new Promise(function(resolve,reject){
 		try{
+			sharedPreferencesName=sharedPreferencesName==null?"default":sharedPreferencesName;
 			let data=JSON.parse(localStorage.getItem(sharedPreferencesName));
 			delete data[key];
 			localStorage.setItem(sharedPreferencesName,JSON.stringify(data));

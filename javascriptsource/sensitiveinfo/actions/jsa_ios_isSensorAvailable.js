@@ -21,6 +21,7 @@ export async function jsa_ios_isSensorAvailable() {
 	return new Promise(async(resolve,reject)=>{
 		try{
 			let available=await SInfo.isSensorAvailable();
+			
 			switch(typeof(available)){
 				case"boolean":
 					resolve(available);
@@ -28,12 +29,30 @@ export async function jsa_ios_isSensorAvailable() {
 				case"number":
 					resolve(available==1);
 					break;
+				case"string":
+					if(available=="Touch ID"){
+						console.info("jsa_ios_isSensorAvailable:info: Touch ID");
+						resolve(true);
+					} else if (available=="Face ID"){
+						console.info("jsa_ios_isSensorAvailable:info: Face ID");
+						resolve(true);
+					} else {
+						resolve(false);
+					}
+					
+					break;
 				default:
-					reject("Native function returned invalid type");
+					//11:17 2023/05/05
+					//reject("Native function returned invalid type");
+					console.error("jsa_ios_isSensorAvailable:error: Native function returned invalid type")
+					resolve(false);
 					break;
 			}
 		}catch(e){
-			reject(e.toString());
+			//11:17 2023/05/05
+			//reject(e.toString());
+			console.error("jsa_ios_isSensorAvailable:error: "+e.toString());
+			resolve(false);
 		}
 	});
 	// END USER CODE

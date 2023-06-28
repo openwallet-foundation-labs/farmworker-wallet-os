@@ -9,6 +9,182 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+const keywords=[
+	"abstract",
+	"assert",
+	"boolean",
+	"break",
+	"byte",
+	"case",
+	"catch",
+	"char",
+	"class",
+	"const",
+	"continue",
+	"default",
+	"do",
+	"double",
+	"else",
+	"enum",
+	"extends",
+	"false",
+	"final",
+	"finally",
+	"float",
+	"for",
+	"if",
+	"goto",
+	"implements",
+	"import",
+	"instanceof",
+	"int",
+	"interface",
+	"long",
+	"native",
+	"new",
+	"null",
+	"package",
+	"private",
+	"protected",
+	"public",
+	"return",
+	"short",
+	"static",
+	"strictfp",
+	"super",
+	"switch",
+	"synchronized",
+	"this",
+	"throw",
+	"throws",
+	"transient",
+	"true",
+	"try",
+	"void",
+	"volatile",
+	"while",
+	"currentUser",
+	"object",
+	"type",
+	"guid",
+	"id",
+	"submetaobjectname",
+	"createddate",
+	"changeddate",
+	"owner",
+	"changedby",
+	"empty",
+	"MendixObject",
+	"context",
+	"__filename__",
+	"con"
+];
+const special_chars=[
+	"@",
+	"!",
+	"#",
+	"%",
+	"^",
+	"+",
+	"-",
+	"*",
+	"/",
+	"$",
+	"&"
+];
+const special_chars_begin=[
+	"1",
+	"2",
+	"3",
+	"4",
+	"5",
+	"6",
+	"7",
+	"8",
+	"9",
+	"0",
+];
+const translate=(kwin,kwout)=>{
+	let omap={};
+	kwin.forEach((kin)=>{
+		let kin_=kin;
+		let mapped=false;
+		(special_chars).forEach((c)=>{
+			//kin_=kin_.replaceAll(c,"_");
+			//string.
+			kin_=kin_.split(c).join("_");
+		});
+		let iskw=false;
+		(keywords).forEach((s)=>{
+			if(kin_==s)iskw=true;
+		});
+		kwout.forEach((kout)=>{
+			let kout_=kout;
+			if(kin_==kout){
+				omap[kin]=kout;
+				mapped=true;
+			}
+			if(!mapped&&iskw){
+				if((kin_+"_")==kout){
+					omap[kin]=kout;
+				}else if(("_"+kin_)==kout){
+					omap[kin]=kout;
+				}
+			}
+			if(!mapped){
+				let kin2_=kin;
+				kin2_=kin2_.split("_").join("");
+				(special_chars).forEach((c)=>{
+					kin2_=kin2_.split(c).join("");
+				});
+				let kout2_=kout;
+				kout2_=kout_.split("_").join("");
+				(special_chars).forEach((c)=>{
+					kout2_=kout2_.split(c).join("");
+				});
+				if(kin2_==kout2_){
+					omap[kin]=kout;
+					mapped=true;
+				}
+			}
+		});
+	});
+	return(omap);
+};
+const untranslate=(kwin,kwout)=>{
+	let omap={};
+	kwin.forEach((kin)=>{
+		let mapped=false;
+		kwout.forEach((kout)=>{
+			if(kin==kout){
+				omap[kin]=kout;
+				mapped=true;
+			}
+		});
+		if(!mapped){
+			let kin_=kin;
+			kin_=kin_.split("_").join("");
+			(special_chars).forEach((c)=>{
+				kin_=kin_.split(c).join("");
+			});
+			kwout.forEach((kout)=>{
+				let kout_=kout;
+				kout_=kout_.split("_").join("");
+				(special_chars).forEach((c)=>{
+					kout_=kout_.split(c).join("");
+				});
+				if(kin_==kout_){
+					omap[kin]=kout;
+					mapped=true;
+				}
+			});
+		}
+		if(!mapped){
+			omap[kin]=kin;
+		}
+	});
+	return(omap);
+};
 // END EXTRA CODE
 
 /**
@@ -23,43 +199,65 @@ export async function jsa_json2mxobj(json, output) {
 	// BEGIN USER CODE
 	try{
 		json=JSON.parse(json);
-		output.getAttributes().forEach((attr)=>{
-			if(typeof(json[attr])=="undefined"){
-				return;
-			}
-			else if(output.isReadonlyAttr(attr)){
-				return;
-			}
-			else if(output.isBoolean(attr)){
-				output.set(attr,json[attr]);
-			}
-			else if(output.isDate(attr)){
-				output.set(attr,new Date(json[attr]));
-			}
-			else if(output.isEnum(attr)){
-				output.set(attr,json[attr]);
-			}
-			else if(output.isLocalizedDate(attr)){
-				output.set(attr,new Date(json[attr]));
-			}
-			else if(output.isNumeric(attr)){
-				output.set(attr,new Big(json[attr]));
-			}
-			else if(output.isObjectReference(attr)){
-				output.set(attr,json[attr]);
-			}
-			else if(output.isObjectReferenceSet(attr)){
-				output.set(attr,json[attr]);
-			}
-			else if(output.isPassword(attr)){
-				output.set(attr,json[attr]);
-			}
-			else if(output.isReference(attr)){
-			}
-			else{//string
-				output.set(attr,json[attr]);
-			}
-		});
+		//--------------------------------------
+		//version 12:00 2023/06/13 - beg
+		//--------------------------------------
+		try{
+			let kin=Object.keys(json);
+			let kout=output.getAttributes();
+			let mapping=translate(kin,kout);
+			Object.keys(mapping).forEach((k)=>{
+				try{
+					let attr=mapping[k];
+					let attr_=k;
+					if(output.isReadonlyAttr(attr)){
+						return;
+					}
+					else if(output.isBoolean(attr)){
+						output.set(attr,json[attr_]);
+					}
+					else if(output.isDate(attr)){
+						output.set(attr,new Date(json[attr_]));
+					}
+					else if(output.isEnum(attr)){
+						output.set(attr,json[attr_]);
+					}
+					else if(output.isLocalizedDate(attr)){
+						output.set(attr,new Date(json[attr_]));
+					}
+					else if(output.isNumeric(attr)){
+						output.set(attr,new Big(json[attr_]));
+					}
+					else if(output.isPassword(attr)){
+						output.set(attr,json[attr_]);
+					}
+					else if(output.isReference(attr)){
+						//output.set(attr,json[attr_]);
+					}
+					else if(output.isObjectReference(attr)){
+						//output.set(attr,json[attr_]);
+					}
+					else if(output.isObjectReferenceSet(attr)){
+						//output.set(attr,json[attr_]);
+					}
+					/*
+					else if(attr.split(".").length>1){
+						//alternate reference attribute check
+					}
+					*/
+					else{//string
+						output.set(attr,typeof(json[attr_])=="object"?JSON.stringify(json[attr_]):json[attr_]);
+					}
+				}catch(e){
+					console.error(e.toString());
+				}
+			})
+		}catch(e){
+			console.error(e.toString());
+		}
+		//--------------------------------------
+		//version 12:00 2023/06/13 - end
+		//--------------------------------------
 		return Promise.resolve();
 	}catch(e){
 		return Promise.reject(e.toString());

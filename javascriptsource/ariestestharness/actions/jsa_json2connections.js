@@ -27,7 +27,7 @@ export async function jsa_json2connections(json) {
 				obj.getAttributes().forEach((attr)=>{
 					let _attr=attr;
 					switch(_attr){
-						case"_id":
+						case"id_":
 							_attr="id";
 							break;
 						default:
@@ -68,7 +68,7 @@ export async function jsa_json2connections(json) {
 					if(typeof(value)=="undefined")return;
 					switch(attr){
 						case"id":
-							attr="_id";
+							attr="id_";
 							break;
 						default:
 							break;
