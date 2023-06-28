@@ -3,7 +3,7 @@
 Mendix React Native AFJ agent
 
 
-![Preview](https://raw.githubusercontent.com/Entidad/entidad-aries-sdk-mendix/main/img/preview.gif)
+![Preview](https://github.com/Entidad/entidad-aries-sdk-mendix/blob/main/img/preview.gif?raw=true)
 
 ## Installation
 
