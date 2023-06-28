@@ -2,7 +2,7 @@
 
 [Mendix](https://www.mendix.com/) and [AFJ](https://aries.js.org/) Aries Javascript Agent
 
-![Preview](https://github.com/Entidad/entidad-aries-sdk-mendix/blob/main/img/preview.gif?raw=true)
+<img src="https://github.com/Entidad/entidad-aries-sdk-mendix/blob/main/img/preview.gif?raw=true" width="200" />
 
 ## Quick start
 
