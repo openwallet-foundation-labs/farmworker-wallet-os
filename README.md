@@ -6,11 +6,13 @@
 
 ## Quick start
 
-* Download Mendix 9.18.6
-* Open this project
+* Clone this project
 * Run `npm install` at `./javascriptsource/aries_sdk/` `./javascriptsource/sensitive_info` as well as  at `./javascriptsource/ariestestharness`
-* Create a custom build or download a release from [Entidad/mendix-native-template-ariesjs/releases](https://github.com/Entidad/mendix-native-template-ariesjs/releases)
-* Run the project
+* Download [Studio Pro 9.18.6](https://artifacts.rnd.mendix.com/modelers/Mendix-9.18.6.4600-Setup.exe)
+* Open `entidad-aries-sdk-mendix.mpr` from Studio Pro
+* Run the project from Studio Pro by clicking Run / Run Locally
+* Create a custom React Native application from [Entidad/mendix-native-template-ariesjs](https://github.com/Entidad/mendix-native-template-ariesjs) or download a pre-built APK from [Entidad/mendix-native-template-ariesjs/releases](https://github.com/Entidad/mendix-native-template-ariesjs/releases)
+* Install and run the application on your mobile device
 
 ## Contributing
 See [CONTRIBUTING.md](https://github.com/Entidad/entidad-aries-sdk-mendix/blob/main/CONTRIBUTING.md).
