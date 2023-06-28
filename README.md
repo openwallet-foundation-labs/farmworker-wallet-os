@@ -13,6 +13,7 @@
 * Run the project from Studio Pro by clicking Run / Run Locally
 * Create a custom React Native application from [Entidad/mendix-native-template-ariesjs](https://github.com/Entidad/mendix-native-template-ariesjs) or download a pre-built APK from [Entidad/mendix-native-template-ariesjs/releases](https://github.com/Entidad/mendix-native-template-ariesjs/releases)
 * Install and run the application on your mobile device
+* Log in using user name `user0` and password `1`
 
 ## Contributing
 See [CONTRIBUTING.md](https://github.com/Entidad/aries-sdk-mendix/blob/main/CONTRIBUTING.md).
