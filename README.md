@@ -1,7 +1,6 @@
 # Entidad Aries-SDK Mendix
 
-Mendix React Native AFJ agent
-
+React Native AFJ agent using [Mendix](https://www.mendix.com/) and [AFJ](https://aries.js.org/)
 
 ![Preview](https://github.com/Entidad/entidad-aries-sdk-mendix/blob/main/img/preview.gif?raw=true)
 
@@ -15,6 +14,7 @@ Mendix React Native AFJ agent
 * Run the project
 
 ## Contributing
----
 See [CONTRIBUTING.md](https://github.com/Entidad/entidad-aries-sdk-mendix/blob/main/CONTRIBUTING.md).
 
+## Raising problems/issues
+-   We encourage everyone to use [/isues](https://github.com/Entidad/entidad-aries-sdk-mendix/issues) in case of any problems.
