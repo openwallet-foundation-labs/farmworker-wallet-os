@@ -1,6 +1,6 @@
 # Entidad Aries-SDK Mendix
 
-React Native AFJ agent using [Mendix](https://www.mendix.com/) and [AFJ](https://aries.js.org/)
+[Mendix](https://www.mendix.com/) and [AFJ](https://aries.js.org/) Aries Javascript Agent
 
 ![Preview](https://github.com/Entidad/entidad-aries-sdk-mendix/blob/main/img/preview.gif?raw=true)
 
