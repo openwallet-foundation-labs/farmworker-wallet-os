@@ -6,9 +6,20 @@
 @mixin layout-atlas() {
     .layout-atlas {
         // Toggle button
-        .toggle-btn > img,
-        .toggle-btn > .glyphicon {
-            margin: 0;
+        .toggle-btn {
+            & > img,
+            & > .glyphicon,
+            & > .mx-icon-lined,
+            & > .mx-icon-filled {
+                margin: 0;
+            }
+        }
+        .toggle-btn > .mx-icon-lined {
+            font-family: "Atlas_Core$Atlas";
+        }
+
+        .toggle-btn > .mx-icon-filled {
+            font-family: "Atlas_Core$Atlas_Filled";
         }
 
         .mx-scrollcontainer-open {
@@ -32,7 +43,9 @@
             .mx-navigationtree .navbar-inner > ul > li > a {
                 padding: $spacing-medium;
 
-                .glyphicon {
+                .glyphicon,
+                .mx-icon-lined,
+                .mx-icon-filled {
                     margin-right: $spacing-small;
                 }
             }
@@ -53,7 +66,7 @@
         // Topbar
         .region-topbar {
             position: relative;
-            z-index: 2; // Show dropshadow
+            z-index: 60; // Show dropshadow
             min-height: $topbar-minimalheight;
             background-color: $navtopbar-bg;
 

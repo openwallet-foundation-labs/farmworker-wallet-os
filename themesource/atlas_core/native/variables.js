@@ -483,7 +483,8 @@ let floatingActionButton = {
         fontSize: font.sizeSmall
     },
     secondaryButtonCaptionContainer: {
-        backgroundColor: background.primary
+        backgroundColor: background.primary,
+        borderColor: background.primary
     }
 };
 floatingActionButton = merge(floatingActionButton, custom.floatingActionButton || {});
@@ -628,5 +629,131 @@ let slider = {
 };
 slider = merge(slider, custom.slider || {});
 //
+// Radio Buttons
+let radioButtons = {
+    labelTextStyle: {
+        color: font.colorTitle,
+        fontSize: font.sizeSmall,
+        lineHeight: font.lineHeightSmall,
+        marginBottom: spacing.small
+    },
+    radioButtonItemContainerStyle: {
+        marginBottom: spacing.small
+    },
+    radioButtonItemContainerDisabledStyle: {
+        opacity: 0.5
+    },
+    radioButtonItemContainerHorizontalStyle: {
+        marginEnd: spacing.small
+    },
+    circularButtonStyle: {
+        width: 16,
+        height: 16,
+        borderRadius: 8,
+        borderColor: border.color,
+        marginEnd: spacing.smaller
+    },
+    activeButtonStyle: {
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        backgroundColor: brand.primary
+    },
+    radioButtonItemTitleStyle: {
+        color: font.colorTitle,
+        fontSize: font.sizeSmall,
+        lineHeight: font.lineHeightSmall
+    },
+    validationMessage: {
+        color: brand.danger,
+        fontSize: font.sizeSmall
+    }
+};
+radioButtons = merge(radioButtons, custom.radioButtons || {});
+//
+// Background Gradient
+let backgroundGradient = {
+    container: {},
+    angle: 0,
+    opacity: 100
+};
+backgroundGradient = merge(backgroundGradient, custom.backgroundGradient || {});
+// column chart styles
+let columnChart = {
+    container: {},
+    errorMessage: {
+        fontFamily: font.family,
+        fontSize: font.sizeSmall,
+        fontWeight: font.weightNormal
+    },
+    chart: {},
+    grid: {
+        lineColor: border.color
+    },
+    xAxis: {
+        color: font.colorTitle,
+        fontFamily: font.family,
+        fontSize: font.sizeSmall,
+        fontWeight: font.weightNormal,
+        label: {
+            color: font.colorParagraph,
+            alignSelf: "center",
+            marginHorizontal: 0,
+            marginVertical: 8,
+            fontFamily: font.family,
+            fontSize: font.sizeSmall,
+            fontWeight: font.weightNormal
+        },
+        lineColor: border.color
+    },
+    yAxis: {
+        color: font.colorTitle,
+        fontFamily: font.family,
+        fontSize: font.sizeSmall,
+        fontWeight: font.weightNormal,
+        label: {
+            color: font.colorParagraph,
+            marginHorizontal: 0,
+            marginVertical: 8,
+            fontFamily: font.family,
+            fontSize: font.sizeSmall,
+            fontWeight: font.weightNormal
+        },
+        lineColor: border.color
+    },
+    columns: {
+        columnColorPalette: Object.entries(brand)
+            .reduce((accumulator, [key, value]) => (key.endsWith("Light") ? accumulator : [...accumulator, value]), [])
+            .join(";"),
+        columnsOffset: 20,
+        customColumnStyles: {
+            your_static_or_dynamic_attribute_value: {
+                column: {},
+                label: {}
+            }
+        }
+    },
+    legend: {
+        container: {
+            justifyContent: "flex-start",
+            marginHorizontal: 0,
+            marginVertical: spacing.small
+        },
+        item: {
+            padding: 0,
+            paddingRight: spacing.regular
+        },
+        indicator: {
+            marginRight: spacing.small
+        },
+        label: {
+            color: font.colorTitle,
+            fontFamily: font.family,
+            fontSize: font.sizeSmall,
+            fontWeight: font.weightNormal
+        }
+    }
+};
+columnChart = merge(columnChart, custom.columnChart || {});
 export * from "../../../theme/native/custom-variables";
-export { accordion, brand, backgroundDefaults, background, border, button, contrast, checkbox, fontDefaults, font, input, image, layoutGrid, listView, navigation, spacing, container, tabContainer, badge, floatingActionButton, introScreen, listViewSwipe, progressBar, progressCircle, slider, rating };
+export { accordion, brand, backgroundDefaults, background, border, button, contrast, checkbox, fontDefaults, font, input, image, layoutGrid, listView, navigation, spacing, container, tabContainer, badge, floatingActionButton, introScreen, listViewSwipe, progressBar, progressCircle, slider, rating, radioButtons, backgroundGradient, columnChart };

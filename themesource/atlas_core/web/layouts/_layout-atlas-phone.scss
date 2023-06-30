@@ -16,8 +16,12 @@
         }
 
         .region-sidebar {
-            .mx-navigationtree .navbar-inner > ul > li > a .glyphicon {
-                margin-right: $spacing-medium;
+            .mx-navigationtree .navbar-inner > ul > li > a {
+                .glyphicon,
+                .mx-icon-lined,
+                .mx-icon-filled {
+                    margin-right: $spacing-medium;
+                }
             }
         }
     }

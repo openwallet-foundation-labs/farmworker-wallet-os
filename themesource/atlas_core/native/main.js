@@ -72,6 +72,16 @@ import * as helpersTypography from "./core/helpers/typography";
 import * as widgetsVideoPlayer from "./core/widgets/videoplayer";
 import * as widgetsWebView from "./core/widgets/webview";
 import * as helperClasses from "./core/helpers/helperclasses";
+import * as radioButtons from "./core/widgets/radiobuttons";
+import * as helperRadioButtons from "./core/helpers/radiobuttons";
+import * as backgroundGradient from "./core/widgets/backgroundgradient";
+import * as helperBackgroundGradient from "./core/helpers/backgroundgradient";
+import * as widgetsColumnChart from "./core/widgets/columnchart";
+import * as helpersColumnChart from "./core/helpers/columnchart";
+import * as widgetsGallery from "./core/widgets/gallery";
+import * as helpersGallery from "./core/helpers/gallery";
+import * as widgetsGalleryTextFilter from "./core/widgets/gallerytextfilter";
+import * as helpersGalleryTextFilter from "./core/helpers/gallerytextfilter";
 //
 //
 // ================================= CUSTOM =================================\\
@@ -155,6 +165,20 @@ module.exports = [
     !exclusionVariables.excludeVideoPlayer ? widgetsVideoPlayer : {},
     !exclusionVariables.excludeWebView ? widgetsWebView : {},
     !exclusionVariables.excludeHelpers ? helperClasses : {},
+    !exclusionVariables.excludeRadioButtons ? radioButtons : {},
+    !exclusionVariables.excludeRadioButtons && !exclusionVariables.excludeRadioButtonsHelper ? helperRadioButtons : {},
+    !exclusionVariables.excludeBackgroundGradient ? backgroundGradient : {},
+    !exclusionVariables.excludeBackgroundGradient && !exclusionVariables.excludeBackgroundGradientHelper
+        ? helperBackgroundGradient
+        : {},
+    !exclusionVariables.excludeColumnChart ? widgetsColumnChart : {},
+    !exclusionVariables.excludeColumnChart && !exclusionVariables.excludeColumnChartHelper ? helpersColumnChart : {},
+    !exclusionVariables.excludeGallery ? widgetsGallery : {},
+    !exclusionVariables.excludeGallery && !exclusionVariables.excludeGalleryHelper ? helpersGallery : {},
+    !exclusionVariables.excludeGalleryTextFilter ? widgetsGalleryTextFilter : {},
+    !exclusionVariables.excludeGalleryTextFilter && !exclusionVariables.excludeGalleryTextFilterHelper
+        ? helpersGalleryTextFilter
+        : {},
     layout,
     page
 ].reduce((merged, object) => ({ ...merged, ...object }), {});
