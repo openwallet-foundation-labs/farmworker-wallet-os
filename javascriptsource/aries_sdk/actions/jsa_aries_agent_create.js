@@ -9,16 +9,41 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import{Agent}from"@aries-framework/core"
-import * as AriesCore from"@aries-framework/core"
-import{agentDependencies}from"@aries-framework/react-native"
-import{KeyDerivationMethod}from'@aries-framework/core'
-import{DidCommMimeType}from'@aries-framework/core'
-import{AutoAcceptCredential}from'@aries-framework/core'
-import{AutoAcceptProof}from'@aries-framework/core'
-import{MediatorPickupStrategy}from'@aries-framework/core'
-import{ConsoleLogger,LogLevel}from'@aries-framework/core'
-import support from"../support/entidad";
+import support from"../support/entidad";								// original
+import{KeyDerivationMethod}from'@aries-framework/core';					// original
+import{DidCommMimeType}from'@aries-framework/core';						// original
+import{AutoAcceptCredential}from'@aries-framework/core';				// original
+import{AutoAcceptProof}from'@aries-framework/core';						// original
+import{MediatorPickupStrategy}from'@aries-framework/core';				// original
+import{ConsoleLogger,LogLevel}from'@aries-framework/core';				// original
+import{Agent}from'@aries-framework/core';										//??
+import{IndySdkModule}from'@aries-framework/indy-sdk';							//??
+import indySdk from'indy-sdk-react-native';										//??
+import{IndyVdrModule}from'@aries-framework/indy-vdr';							//??
+import{indyVdr}from'@aries-framework/indy-vdr';									//??		
+import{agentDependencies}from'@aries-framework/react-native';					//??
+import{MediationRecipientModule}from'@aries-framework/core';					//??
+import{DidsModule}from'@aries-framework/core';									//??
+import{IndySdkIndyDidRegistrar}from'indy-sdk-react-native';						//??
+import{IndySdkSovDidResolver}from'@aries-framework/indy-sdk';					//??
+import{AnonCredsRsModule}from'@aries-framework/anoncreds-rs';					//??
+import{IndySdkAnonCredsRegistry}from'@aries-framework/indy-sdk'					//??
+import{anoncreds}from'@hyperledger/anoncreds-react-native';						//??
+import{AskarModule}from'@aries-framework/askar';								//??
+import{ConnectionsModule}from'@aries-framework/core';							//??
+import{AnonCredsModule}from'@aries-framework/anoncreds';						//??
+import{IndyVdrAnonCredsRegistry}from'@aries-framework/indy-vdr';				//??
+import{IndyVdrIndyDidResolver}from'@aries-framework/indy-vdr';					//??
+import{V1CredentialProtocol}from'@aries-framework/anoncreds';					//??
+import{V2CredentialProtocol}from'@aries-framework/core';						//??
+import{V1ProofProtocol}from'@aries-framework/anoncreds';						//??
+import{V2ProofProtocol}from'@aries-framework/core';								//??
+import{CredentialsModule}from'@aries-framework/core';							//??
+import{ProofsModule}from'@aries-framework/core';								//??
+import{LegacyIndyCredentialFormatService}from'@aries-framework/anoncreds';		//??
+import{LegacyIndyProofFormatService}from'@aries-framework/anoncreds';			//??
+import{AnonCredsProofFormatService}from'@aries-framework/anoncreds';			//??
+import{AnonCredsCredentialFormatService}from'@aries-framework/anoncreds';		//??
 // END EXTRA CODE
 
 /**
@@ -50,15 +75,16 @@ import support from"../support/entidad";
  * @param {boolean} autoUpdateStorageOnStartup
  * @param {boolean} autoAcceptConnections
  * @param {string} indyLedgers - optional json
+ * @param {boolean} useDidSovPrefixWhereAllowed
+ * @param {boolean} useDidKeyInProtocols
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols) {
 	// BEGIN USER CODE
 	try{
 		//--------------------------------------------------------------------------------
 		//Take care of empty strings - set to null
 		//--------------------------------------------------------------------------------
-		//'mediatorConnectionsInvite', 'clearDefaultMediator' and 'defaultMediatorId'
 		if(label=="")label=null;
 		if(walletConfig_id=="")walletConfig_id=null;
 		if(walletConfig_key=="")walletConfig_key=null;
@@ -227,6 +253,8 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		}else{
 			indyLedgers=[];
 		}
+		if(useDidSovPrefixWhereAllowed==null);
+		if(useDidKeyInProtocols==null);
 		//--------------------------------------------------------------------------------
 		//validate and prepare parameters - end
 		//--------------------------------------------------------------------------------
@@ -255,11 +283,8 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(autoAcceptCredentials!=null)config.autoAcceptCredentials=autoAcceptCredentials;
 		if(autoAcceptProofs!=null)config.autoAcceptProofs=autoAcceptProofs;
 		if(autoAcceptMediationRequests!=null)config.autoAcceptMediationRequests=autoAcceptMediationRequests;
-		if(mediationConnectionsInvitation!=null&&mediationConnectionsInvitation!="")config.mediatorConnectionsInvite=mediationConnectionsInvitation;
 		if(defaultMediatorId!=null&&defaultMediatorId!="")config.defaultMediatorId=defaultMediatorId;
 		if(clearDefaultMediator!=null&&clearDefaultMediator!=false)config.clearDefaultMediator=clearDefaultMediator;
-		//useDidSovPrefixWhereAllowed ??? boolean
-		//useDidKeyInProtocols ??? boolean
 		if(mediatorPollingInterval!=null)config.mediatorPollingInterval=mediatorPollingInterval;
 		if(mediatorPickupStrategy!=null)config.mediatorPickupStrategy=mediatorPickupStrategy;
 		if(maximumMessagePickup!=null)config.maximumMessagePickup=maximumMessagePickup;
@@ -269,24 +294,68 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(autoAcceptConnections!=null&&autoAcceptConnections==true)config.autoAcceptConnections=autoAcceptConnections;		
 		if(connectToIndyLedgerOnStartup!=null)config.connectToIndyLedgerOnStartup=connectToIndyLedgerOnStartup;
 		if(logger!=null)config.logger=logger;
-		if(
-			indyLedgers!=null
-		){
-			if(indyLedgers!=null){
-				config.indyLedgers=indyLedgers;
-			}else{
-			}
-		}else{
-		}
-		//--------------------------------------------------------------------------------
-		//construct configuration parameter - end
-		//--------------------------------------------------------------------------------
-		//Note: The setLogger and setDefaultLogger methods have only been implemented in the Node.JS wrapper of the indy sdk. This won't work when importing from @aries-framework/react-native
-		//agentDependencies.indy.setDefaultLogger(loglevel);//todo
-		//agentDependencies.indy.setLogger((level, target, message, modulePath, file, line) => {console.log('libindy said:', level, target, message, modulePath, file, line)})		
-		const agent=new Agent({
-			config,
-			dependencies:agentDependencies,
+		if(useDidSovPrefixWhereAllowed!=null)config.useDidSovPrefixWhereAllowed=useDidSovPrefixWhereAllowed;
+		if(useDidKeyInProtocols!=null)config.useDidKeyInProtocols=useDidKeyInProtocols;
+		//-----------------------------------------------------------------------------------
+  		const legacyIndyCredentialFormatService = new LegacyIndyCredentialFormatService()
+  		const legacyIndyProofFormatService = new LegacyIndyProofFormatService()
+  		const agent = new Agent({
+			config: config,
+			dependencies: agentDependencies,
+			modules: {
+				connections: new ConnectionsModule({
+					autoAcceptConnections:autoAcceptConnections
+				}),
+				//https://github.com/hyperledger/aries-framework-javascript/blob/38a0578011896cfcf217713d34f285cd381ad72c/demo/src/BaseAgent.ts#L11
+				credentials: new CredentialsModule({
+      				autoAcceptCredentials:autoAcceptCredential_,
+					credentialProtocols:[
+						new V1CredentialProtocol({
+							indyCredentialFormat:legacyIndyCredentialFormatService,
+						}),
+						new V2CredentialProtocol({
+							credentialFormats:[legacyIndyCredentialFormatService],
+						}),
+					],
+				}),
+				//https://github.com/hyperledger/aries-framework-javascript/blob/38a0578011896cfcf217713d34f285cd381ad72c/demo/src/BaseAgent.ts#L129
+				proofs: new ProofsModule({
+      				autoAcceptProofs: autoAcceptProofs,
+					proofProtocols: [
+						new V1ProofProtocol({
+							indyProofFormat: legacyIndyProofFormatService,
+						}),
+						new V2ProofProtocol({
+							proofFormats: [legacyIndyProofFormatService],
+						}),
+					],
+	  			}),
+				anoncreds:new AnonCredsModule({
+					registries:[
+						new IndySdkAnonCredsRegistry()
+					],
+				}),
+				indySdk:(indyLedgers!=null)?
+				(
+					new IndySdkModule({
+						indySdk,
+						networks:indyLedgers
+					})
+				):(
+					new IndySdkModule({
+						indySdk,
+					})
+				),
+				dids:new DidsModule({
+					resolvers:[
+						new IndySdkSovDidResolver()
+					],
+				}),
+				mediationRecipient:new MediationRecipientModule((mediationConnectionsInvitation!=null)?({
+					mediatorInvitationUrl:mediationConnectionsInvitation
+				}):({					
+				})),
+			},
 		});
 		return Promise.resolve(support.cache.put(agent,walletConfig_id));
 	}catch(e){

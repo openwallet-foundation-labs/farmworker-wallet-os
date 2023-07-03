@@ -74,8 +74,8 @@ export async function jsa_aries_agent_credentials_acceptOffer(agent_key, credent
 		if(autoAcceptCredential_!=null)options.autoAcceptCredential=autoAcceptCredential_;
 		if(credentialFormats!=null)options.credentialFormats=credentialFormats;
 		if(comment!=null)options.comment=comment;
-		console.warn("OFFER OPTIONS:");
-		console.warn(JSON.stringify(options));
+		//console.warn("OFFER OPTIONS:");
+		//console.warn(JSON.stringify(options));
 		//{"credentialRecordId":"012916b7-cc00-46b8-88ab-fbb9ded86ad7","autoAcceptCredential":"never"} 
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");

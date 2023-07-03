@@ -79,11 +79,23 @@ export async function jsa_aries_agent_proofs_acceptRequest(agent_key, proofRecor
 		if(comments==null)/*optional*/;
 		let options={};
 		if(proofRecordId!=null)options.proofRecordId=proofRecordId;
-		if(proofFormats!=null)options.proofFormats=proofFormats;
-		if(comments!=null)options.comments=comments;
+		//17:11 2023/06/30
+		//skip for now
+		//if(proofFormats!=null)options.proofFormats=proofFormats;
+		//17:11 2023/06/30
+		//skip for now
+		//if(comments!=null)options.comments=comments;
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		console.info(JSON.stringify(options,0,2)); 
+		//17:11 2023/06/30
+		//do like this
+		const requestedCredentials = await agent.proofs.selectCredentialsForRequest({
+			proofRecordId: proofRecordId,
+		});
+		//17:11 2023/06/30
+		//do like this
+		options.proofFormats=requestedCredentials.proofFormats;
 		return Promise.resolve(JSON.stringify(await agent.proofs.acceptRequest(options)));
 	}catch(e){
 		return Promise.reject(e.toString());
