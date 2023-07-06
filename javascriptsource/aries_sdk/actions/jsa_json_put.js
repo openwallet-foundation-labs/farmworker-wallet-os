@@ -29,7 +29,15 @@ export async function jsa_json_put(json, path, value) {
 				value[0]=="{"&&value[value.length-1]=="}"
 				||
 				value[0]=="["&&value[value.length-1]=="]"
-			)value=JSON.parse(value);
+			){
+				value=JSON.parse(value);
+			}else if(value=="true"){
+				value=true;
+			}else if(value=="false"){
+				value=false;
+			}else{
+				//todo:numerics
+			}
 		}catch(e){}
 		path_components.forEach((k,i)=>{
 			if(i==path_components.length-1){

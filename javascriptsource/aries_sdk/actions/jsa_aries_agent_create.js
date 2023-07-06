@@ -9,41 +9,62 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import support from"../support/entidad";								// original
-import{KeyDerivationMethod}from'@aries-framework/core';					// original
-import{DidCommMimeType}from'@aries-framework/core';						// original
-import{AutoAcceptCredential}from'@aries-framework/core';				// original
-import{AutoAcceptProof}from'@aries-framework/core';						// original
-import{MediatorPickupStrategy}from'@aries-framework/core';				// original
-import{ConsoleLogger,LogLevel}from'@aries-framework/core';				// original
-import{Agent}from'@aries-framework/core';										//??
-import{IndySdkModule}from'@aries-framework/indy-sdk';							//??
-import indySdk from'indy-sdk-react-native';										//??
-import{IndyVdrModule}from'@aries-framework/indy-vdr';							//??
-import{indyVdr}from'@aries-framework/indy-vdr';									//??		
-import{agentDependencies}from'@aries-framework/react-native';					//??
-import{MediationRecipientModule}from'@aries-framework/core';					//??
-import{DidsModule}from'@aries-framework/core';									//??
-import{IndySdkIndyDidRegistrar}from'indy-sdk-react-native';						//??
-import{IndySdkSovDidResolver}from'@aries-framework/indy-sdk';					//??
-import{AnonCredsRsModule}from'@aries-framework/anoncreds-rs';					//??
-import{IndySdkAnonCredsRegistry}from'@aries-framework/indy-sdk'					//??
-import{anoncreds}from'@hyperledger/anoncreds-react-native';						//??
-import{AskarModule}from'@aries-framework/askar';								//??
-import{ConnectionsModule}from'@aries-framework/core';							//??
-import{AnonCredsModule}from'@aries-framework/anoncreds';						//??
-import{IndyVdrAnonCredsRegistry}from'@aries-framework/indy-vdr';				//??
-import{IndyVdrIndyDidResolver}from'@aries-framework/indy-vdr';					//??
-import{V1CredentialProtocol}from'@aries-framework/anoncreds';					//??
-import{V2CredentialProtocol}from'@aries-framework/core';						//??
-import{V1ProofProtocol}from'@aries-framework/anoncreds';						//??
-import{V2ProofProtocol}from'@aries-framework/core';								//??
-import{CredentialsModule}from'@aries-framework/core';							//??
-import{ProofsModule}from'@aries-framework/core';								//??
-import{LegacyIndyCredentialFormatService}from'@aries-framework/anoncreds';		//??
-import{LegacyIndyProofFormatService}from'@aries-framework/anoncreds';			//??
-import{AnonCredsProofFormatService}from'@aries-framework/anoncreds';			//??
-import{AnonCredsCredentialFormatService}from'@aries-framework/anoncreds';		//??
+import support from"../support/entidad";										//original
+import{KeyDerivationMethod}from'@aries-framework/core';							//original
+import{DidCommMimeType}from'@aries-framework/core';								//original
+import{AutoAcceptCredential}from'@aries-framework/core';						//original
+import{AutoAcceptProof}from'@aries-framework/core';								//original
+import{MediatorPickupStrategy}from'@aries-framework/core';						//original
+import{ConsoleLogger,LogLevel}from'@aries-framework/core';						//original
+import{Agent}from'@aries-framework/core';										//14:50 2023/07/05
+import{IndySdkModule}from'@aries-framework/indy-sdk';							//14:50 2023/07/05
+import indySdk from'indy-sdk-react-native';										//14:50 2023/07/05
+import{IndyVdrModule}from'@aries-framework/indy-vdr';							//14:50 2023/07/05
+import{agentDependencies}from'@aries-framework/react-native';					//14:50 2023/07/05
+import{MediationRecipientModule}from'@aries-framework/core';					//14:50 2023/07/05
+import{DidsModule}from'@aries-framework/core';									//14:50 2023/07/05
+import{IndySdkIndyDidRegistrar}from'indy-sdk-react-native';						//14:50 2023/07/05
+import{IndySdkSovDidResolver}from'@aries-framework/indy-sdk';					//14:50 2023/07/05
+import{AnonCredsRsModule}from'@aries-framework/anoncreds-rs';					//14:50 2023/07/05
+import{IndySdkAnonCredsRegistry}from'@aries-framework/indy-sdk'					//14:50 2023/07/05
+import{anoncreds}from'@hyperledger/anoncreds-react-native';						//14:50 2023/07/05
+import{AskarModule}from'@aries-framework/askar';								//14:50 2023/07/05
+import{ConnectionsModule}from'@aries-framework/core';							//14:50 2023/07/05
+import{AnonCredsModule}from'@aries-framework/anoncreds';						//14:50 2023/07/05
+import{IndyVdrAnonCredsRegistry}from'@aries-framework/indy-vdr';				//14:50 2023/07/05
+import{IndyVdrIndyDidResolver}from'@aries-framework/indy-vdr';					//14:50 2023/07/05
+import{V1CredentialProtocol}from'@aries-framework/anoncreds';					//14:50 2023/07/05
+import{V2CredentialProtocol}from'@aries-framework/core';						//14:50 2023/07/05
+import{V1ProofProtocol}from'@aries-framework/anoncreds';						//14:50 2023/07/05
+import{V2ProofProtocol}from'@aries-framework/core';								//14:50 2023/07/05
+import{CredentialsModule}from'@aries-framework/core';							//14:50 2023/07/05
+import{ProofsModule}from'@aries-framework/core';								//14:50 2023/07/05
+import{LegacyIndyCredentialFormatService}from'@aries-framework/anoncreds';		//14:50 2023/07/05
+import{LegacyIndyProofFormatService}from'@aries-framework/anoncreds';			//14:50 2023/07/05
+import{AnonCredsProofFormatService}from'@aries-framework/anoncreds';			//14:50 2023/07/05
+import{AnonCredsCredentialFormatService}from'@aries-framework/anoncreds';		//14:50 2023/07/05
+//import{indyVdr}from'@aries-framework/indy-vdr';								//14:50 2023/07/05
+import{indyVdr}from'@hyperledger/indy-vdr-react-native'							//--new
+import{ariesAskar}from'@hyperledger/aries-askar-react-native'					//--new
+import{KeyDidRegistrar}from'@aries-framework/core';								//--new
+import{JwkDidRegistrar}from'@aries-framework/core';								//--new
+import{WebDidResolver}from'@aries-framework/core';								//--new
+import{KeyDidResolver}from'@aries-framework/core';								//--new
+import{JwkDidResolver}from'@aries-framework/core';								//--new
+//Can't find variable BigInt...
+//import{CheqdAnonCredsRegistry}from'@aries-framework/cheqd';						//--new
+//Can't find variable BigInt...
+//import{CheqdDidRegistrar}from'@aries-framework/cheqd';							//--new
+//Can't find variable BigInt...
+//import{CheqdDidResolver}from'@aries-framework/cheqd';							//--new
+//Can't find variable BigInt...
+//import{CheqdModule}from'@aries-framework/cheqd';								//--new
+//Can't find variable BigInt...
+//import{CheqdModuleConfig}from'@aries-framework/cheqd';							//--new
+//import bigInt from'big-integer'													//--new
+//https://github.com/facebook/react-native/issues/28492#issuecomment-824698934
+//if (typeof BigInt === 'undefined') global.BigInt = bigInt						//--new
+
 // END EXTRA CODE
 
 /**
@@ -77,9 +98,12 @@ import{AnonCredsCredentialFormatService}from'@aries-framework/anoncreds';		//??
  * @param {string} indyLedgers - optional json
  * @param {boolean} useDidSovPrefixWhereAllowed
  * @param {boolean} useDidKeyInProtocols
+ * @param {boolean} useModuleIndySdk
+ * @param {boolean} useModuleIndyVdr
+ * @param {boolean} useModuleAskar
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleIndySdk, useModuleIndyVdr, useModuleAskar) {
 	// BEGIN USER CODE
 	try{
 		//--------------------------------------------------------------------------------
@@ -297,65 +321,204 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(useDidSovPrefixWhereAllowed!=null)config.useDidSovPrefixWhereAllowed=useDidSovPrefixWhereAllowed;
 		if(useDidKeyInProtocols!=null)config.useDidKeyInProtocols=useDidKeyInProtocols;
 		//-----------------------------------------------------------------------------------
-  		const legacyIndyCredentialFormatService = new LegacyIndyCredentialFormatService()
-  		const legacyIndyProofFormatService = new LegacyIndyProofFormatService()
-  		const agent = new Agent({
-			config: config,
-			dependencies: agentDependencies,
-			modules: {
-				connections: new ConnectionsModule({
-					autoAcceptConnections:autoAcceptConnections
+		//14:50 2023/07/05
+  		const legacyIndyCredentialFormatService=new LegacyIndyCredentialFormatService()
+		//14:50 2023/07/05
+  		const legacyIndyProofFormatService=new LegacyIndyProofFormatService()
+		let agentModules={};
+		//14:50 2023/07/05
+		agentModules.connections=new ConnectionsModule({
+			autoAcceptConnections:autoAcceptConnections
+		});
+		let agentModules_credentials_credentialProtocols=[];
+		if(useModuleIndySdk){
+				agentModules_credentials_credentialProtocols.push(new V1CredentialProtocol({
+					indyCredentialFormat:legacyIndyCredentialFormatService,
+				}));
+				agentModules_credentials_credentialProtocols.push(new V2CredentialProtocol({
+					credentialFormats:[legacyIndyCredentialFormatService],
+				}));	
+		}
+		if(useModuleIndyVdr){
+				agentModules_credentials_credentialProtocols.push(new V1CredentialProtocol({
+					indyCredentialFormat:legacyIndyCredentialFormatService,
+				}));
+				agentModules_credentials_credentialProtocols.push(new V2CredentialProtocol({
+					credentialFormats:[legacyIndyCredentialFormatService,new AnonCredsCredentialFormatService()],
+				}));
+		}
+		//14:50 2023/07/05
+		//https://github.com/hyperledger/aries-framework-javascript/blob/38a0578011896cfcf217713d34f285cd381ad72c/demo/src/BaseAgent.ts#L11
+		//agentModules.credentials=new CredentialsModule({
+		//	autoAcceptCredentials:autoAcceptCredential_,
+		//	credentialProtocols:[
+		//		new V1CredentialProtocol({
+		//			indyCredentialFormat:legacyIndyCredentialFormatService,
+		//		}),
+		//		new V2CredentialProtocol({
+		//			credentialFormats:[legacyIndyCredentialFormatService],
+		//		}),
+		//	],
+		//});
+		//--new
+		//https://github.com/hyperledger/aries-framework-javascript/blob/6c2dda544bf5f5d3a972a778c389340da6df97c4/demo/src/BaseAgent.ts#L118
+		//agentModules.credentials=new CredentialsModule({
+		//	autoAcceptCredentials:autoAcceptCredential_,
+		//	credentialProtocols:[
+		//		new V1CredentialProtocol({
+		//			indyCredentialFormat:legacyIndyCredentialFormatService,
+		//		}),
+		//		new V2CredentialProtocol({
+		//			credentialFormats:[legacyIndyCredentialFormatService,new AnonCredsCredentialFormatService()],
+		//		}),
+		//	],
+		//}),
+		agentModules.credentials=new CredentialsModule({
+			autoAcceptCredentials:autoAcceptCredential_,
+			credentialProtocols:agentModules_credentials_credentialProtocols,
+		}),
+		//14:50 2023/07/05
+		//https://github.com/hyperledger/aries-framework-javascript/blob/38a0578011896cfcf217713d34f285cd381ad72c/demo/src/BaseAgent.ts#L129
+		//agentModules.proofs=new ProofsModule({
+		//	autoAcceptProofs:autoAcceptProofs,
+		//	proofProtocols:[
+		//		new V1ProofProtocol({
+		//			indyProofFormat:legacyIndyProofFormatService,
+		//		}),
+		//		new V2ProofProtocol({
+		//			proofFormats:[legacyIndyProofFormatService],
+		//		}),
+		//	],
+		//});
+		//--new
+		agentModules.proofs=new ProofsModule({
+			autoAcceptProofs:autoAcceptProofs,
+			proofProtocols:[
+				new V1ProofProtocol({
+					indyProofFormat:legacyIndyProofFormatService,
 				}),
-				//https://github.com/hyperledger/aries-framework-javascript/blob/38a0578011896cfcf217713d34f285cd381ad72c/demo/src/BaseAgent.ts#L11
-				credentials: new CredentialsModule({
-      				autoAcceptCredentials:autoAcceptCredential_,
-					credentialProtocols:[
-						new V1CredentialProtocol({
-							indyCredentialFormat:legacyIndyCredentialFormatService,
-						}),
-						new V2CredentialProtocol({
-							credentialFormats:[legacyIndyCredentialFormatService],
-						}),
-					],
+				new V2ProofProtocol({
+					proofFormats:[legacyIndyProofFormatService,new AnonCredsProofFormatService()],
 				}),
-				//https://github.com/hyperledger/aries-framework-javascript/blob/38a0578011896cfcf217713d34f285cd381ad72c/demo/src/BaseAgent.ts#L129
-				proofs: new ProofsModule({
-      				autoAcceptProofs: autoAcceptProofs,
-					proofProtocols: [
-						new V1ProofProtocol({
-							indyProofFormat: legacyIndyProofFormatService,
-						}),
-						new V2ProofProtocol({
-							proofFormats: [legacyIndyProofFormatService],
-						}),
-					],
-	  			}),
-				anoncreds:new AnonCredsModule({
-					registries:[
-						new IndySdkAnonCredsRegistry()
-					],
-				}),
-				indySdk:(indyLedgers!=null)?
-				(
-					new IndySdkModule({
-						indySdk,
-						networks:indyLedgers
-					})
-				):(
-					new IndySdkModule({
-						indySdk,
-					})
-				),
-				dids:new DidsModule({
-					resolvers:[
-						new IndySdkSovDidResolver()
-					],
-				}),
-				mediationRecipient:new MediationRecipientModule((mediationConnectionsInvitation!=null)?({
-					mediatorInvitationUrl:mediationConnectionsInvitation
-				}):({					
-				})),
-			},
+			],
+		});
+		let agentModules_anoncreds_registries=[];
+		if(useModuleIndySdk){
+			agentModules_anoncreds_registries.push(new IndySdkAnonCredsRegistry());
+		}
+		if(useModuleIndyVdr){
+			agentModules_anoncreds_registries.push(new IndyVdrAnonCredsRegistry());
+		}
+		//14:50 2023/07/05
+		//agentModules.anoncreds=new AnonCredsModule({
+		//	registries:[
+		//		new IndySdkAnonCredsRegistry()
+		//	],
+		//});
+		//--new
+		//https://github.com/hyperledger/aries-framework-javascript/blob/6c2dda544bf5f5d3a972a778c389340da6df97c4/demo/src/BaseAgent.ts#L140
+		//agentModules.anoncreds=new AnonCredsModule({
+		//	registries:[new IndyVdrAnonCredsRegistry(),new CheqdAnonCredsRegistry()],
+		//});
+		//--new
+		//entidad
+		//agentModules.anoncreds=new AnonCredsModule({
+		//	registries:[new IndyVdrAnonCredsRegistry()/*,new CheqdAnonCredsRegistry() redacted due to BigInt error / issue*/],
+		//});
+		agentModules.anoncreds=new AnonCredsModule({
+			registries:agentModules_anoncreds_registries
+		});		
+		//--new
+		//https://github.com/hyperledger/aries-framework-javascript/blob/6c2dda544bf5f5d3a972a778c389340da6df97c4/demo/src/BaseAgent.ts#L143
+		agentModules.anoncredsRs=new AnonCredsRsModule({
+			anoncreds,
+		});
+		//--new
+		//https://github.com/hyperledger/aries-framework-javascript/blob/6c2dda544bf5f5d3a972a778c389340da6df97c4/demo/src/BaseAgent.ts#L146C1-L149C8				
+		if(useModuleIndyVdr){	
+			agentModules.indyVdr=new IndyVdrModule({
+				indyVdr,
+				networks:indyLedgers==null?[]:indyLedgers,
+			});
+		}
+		//--new
+		//redacted due to BigInt error / issue
+		//agentModules.cheqd=new CheqdModule(
+		//	new CheqdModuleConfig({
+		//		networks:[
+		//			{
+		//				network:'testnet',
+		//				cosmosPayerSeed:'robust across amount corn curve panther opera wish toe ring bleak empower wreck party abstract glad average muffin picnic jar squeeze annual long aunt',
+		//			},
+		//		],
+		//	})
+		//);
+		//14:50 2023/07/05
+		//agentModules.indySdk=(indyLedgers!=null)?
+		//(
+		//	new IndySdkModule({
+		//		indySdk,
+		//		networks:indyLedgers
+		//	})
+		//):(
+		//	new IndySdkModule({
+		//		indySdk,
+		//	})
+		//);
+		//14:50 2023/07/05
+		//agentModules.dids=new DidsModule({
+		//	resolvers:[
+		//		new IndySdkSovDidResolver()
+		//	],
+		//});
+		//--new
+		//https://github.com/animo/paradym-wallet/blob/e74c67c297a2d47629b03c30d95d5371de31d55e/packages/agent/src/agent.ts#L34
+		//agentModules.dids=new DidsModule({
+		//	registrars:[new KeyDidRegistrar(),new JwkDidRegistrar()],
+		//	resolvers:[new WebDidResolver(),new KeyDidResolver(),new JwkDidResolver()],
+		//});
+		//--new
+		//https://github.com/hyperledger/aries-framework-javascript/blob/6c2dda544bf5f5d3a972a778c389340da6df97c4/demo/src/BaseAgent.ts#L165
+		//agentModules.dids=new DidsModule({
+		//	registrars:[new CheqdDidRegistrar()],
+		//	resolvers:[new IndyVdrIndyDidResolver(),new CheqdDidResolver()],
+		//});
+		//--new
+		//entidad version
+		let agentModules_dids_registrars=[
+			//new CheqdDidRegistrar(),
+			new KeyDidRegistrar(),
+			new JwkDidRegistrar()
+		];
+		let agentModules_dids_resolvers=[
+			//new CheqdDidResolver(),
+			new WebDidResolver(),
+			new KeyDidResolver(),
+			new JwkDidResolver()
+		];
+		if(useModuleIndyVdr){
+			agentModules_dids_resolvers.push(new IndyVdrIndyDidResolver())
+		}
+		agentModules.dids=new DidsModule({
+			registrars:agentModules_dids_registrars,
+			resolvers:agentModules_dids_resolvers,
+		});
+		//--new
+		if(useModuleAskar){
+			agentModules.askar=new AskarModule({
+				ariesAskar,
+			});
+		}
+		//14:50 2023/07/05
+		agentModules.mediationRecipient=new MediationRecipientModule((mediationConnectionsInvitation!=null)?({
+			mediatorInvitationUrl:mediationConnectionsInvitation
+		}):({}));
+		//---------------------------------------------------------
+  		const agent=new Agent({
+			config:config,
+			dependencies:agentDependencies,
+			//14:50 2023/07/05
+			modules:agentModules,
 		});
 		return Promise.resolve(support.cache.put(agent,walletConfig_id));
 	}catch(e){
