@@ -98,10 +98,12 @@ import{JwkDidResolver}from'@aries-framework/core';								//--new
  * @param {string} indyLedgers - optional json
  * @param {boolean} useDidSovPrefixWhereAllowed
  * @param {boolean} useDidKeyInProtocols
+ * @param {boolean} useModuleIndySdk
+ * @param {boolean} useModuleIndyVdr
  * @param {boolean} useModuleAskar
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleAskar) {
+export async function jsa_aries_agent_create_v001(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleIndySdk, useModuleIndyVdr, useModuleAskar) {
 	// BEGIN USER CODE
 	try{
 		//--------------------------------------------------------------------------------
@@ -321,100 +323,135 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//-----------------------------------------------------------------------------------
   		const legacyIndyCredentialFormatService=new LegacyIndyCredentialFormatService()
   		const legacyIndyProofFormatService=new LegacyIndyProofFormatService()
-		  console.info(">>>");
-		  console.info(!useModuleAskar);
-		  console.info(useModuleAskar);
-		  console.info(useModuleAskar);
-		  console.info("<<<");
-		//-----------------------------------------------------------------------------------
 		let agentModules={};
 		agentModules.connections=new ConnectionsModule({
 			autoAcceptConnections:autoAcceptConnections
 		});
-		//-----------------------------------------------------------------------------------
-		if(!useModuleAskar){
-			agentModules.credentials=new CredentialsModule({
-				autoAcceptCredentials:autoAcceptCredential_,
-				credentialProtocols:[
-					new V1CredentialProtocol({
-						indyCredentialFormat:legacyIndyCredentialFormatService,
-					}),
-					new V2CredentialProtocol({
-						credentialFormats:[
-							legacyIndyCredentialFormatService
-						],
-					})
-				],
-			});
-		}else if(useModuleAskar){
-			agentModules.credentials=new CredentialsModule({
-				autoAcceptCredentials:autoAcceptCredential_,
-				credentialProtocols:[
-					new V1CredentialProtocol({
-						indyCredentialFormat:legacyIndyCredentialFormatService,
-					}),
-					new V2CredentialProtocol({
-						credentialFormats:[
-							legacyIndyCredentialFormatService,
-							new AnonCredsCredentialFormatService()
-						],
-					})
-				],
-			});
+		let agentModules_credentials_credentialProtocols=[];
+		if(useModuleIndySdk){
+				agentModules_credentials_credentialProtocols.push(new V1CredentialProtocol({
+					indyCredentialFormat:legacyIndyCredentialFormatService,
+				}));
+				agentModules_credentials_credentialProtocols.push(new V2CredentialProtocol({
+					credentialFormats:[legacyIndyCredentialFormatService],
+				}));	
 		}
-		//-----------------------------------------------------------------------------------
-		if(!useModuleAskar){
-			agentModules.proofs=new ProofsModule({
-				autoAcceptProofs:autoAcceptProofs,
-				proofProtocols:[
-					new V1ProofProtocol({
-						indyProofFormat:legacyIndyProofFormatService,
-					}),
-					new V2ProofProtocol({
-						proofFormats:[legacyIndyProofFormatService],
-					}),
-				],
-			});
-		}else if(useModuleAskar){
-			agentModules.proofs=new ProofsModule({
-				autoAcceptProofs:autoAcceptProofs,
-				proofProtocols:[
-					new V1ProofProtocol({
-						indyProofFormat:legacyIndyProofFormatService,
-					}),
-					new V2ProofProtocol({
-						proofFormats:[legacyIndyProofFormatService,new AnonCredsProofFormatService()],
-					}),
-				],
-			});
+		if(useModuleIndyVdr){
+				agentModules_credentials_credentialProtocols.push(new V1CredentialProtocol({
+					indyCredentialFormat:legacyIndyCredentialFormatService,
+				}));
+				agentModules_credentials_credentialProtocols.push(new V2CredentialProtocol({
+					credentialFormats:[legacyIndyCredentialFormatService,new AnonCredsCredentialFormatService()],
+				}));
 		}
-		//-----------------------------------------------------------------------------------
-		if(!useModuleAskar){
-			agentModules.anoncreds=new AnonCredsModule({
-				registries:[new IndySdkAnonCredsRegistry()]
-			});
-		}else if(useModuleAskar){
-			agentModules.anoncreds=new AnonCredsModule({
-				registries:[new IndyVdrAnonCredsRegistry()]
-			});
+		agentModules.credentials=new CredentialsModule({
+			autoAcceptCredentials:autoAcceptCredential_,
+			credentialProtocols:agentModules_credentials_credentialProtocols,
+		}),
+		//14:50 2023/07/05
+		//https://github.com/hyperledger/aries-framework-javascript/blob/38a0578011896cfcf217713d34f285cd381ad72c/demo/src/BaseAgent.ts#L11
+		//agentModules.credentials=new CredentialsModule({
+		//	autoAcceptCredentials:autoAcceptCredential_,
+		//	credentialProtocols:[
+		//		new V1CredentialProtocol({
+		//			indyCredentialFormat:legacyIndyCredentialFormatService,
+		//		}),
+		//		new V2CredentialProtocol({
+		//			credentialFormats:[legacyIndyCredentialFormatService],
+		//		}),
+		//	],
+		//});
+		//--new
+		//https://github.com/hyperledger/aries-framework-javascript/blob/6c2dda544bf5f5d3a972a778c389340da6df97c4/demo/src/BaseAgent.ts#L118
+		//agentModules.credentials=new CredentialsModule({
+		//	autoAcceptCredentials:autoAcceptCredential_,
+		//	credentialProtocols:[
+		//		new V1CredentialProtocol({
+		//			indyCredentialFormat:legacyIndyCredentialFormatService,
+		//		}),
+		//		new V2CredentialProtocol({
+		//			credentialFormats:[legacyIndyCredentialFormatService,new AnonCredsCredentialFormatService()],
+		//		}),
+		//	],
+		//}),
+		//14:50 2023/07/05
+		//https://github.com/hyperledger/aries-framework-javascript/blob/38a0578011896cfcf217713d34f285cd381ad72c/demo/src/BaseAgent.ts#L129
+		//agentModules.proofs=new ProofsModule({
+		//	autoAcceptProofs:autoAcceptProofs,
+		//	proofProtocols:[
+		//		new V1ProofProtocol({
+		//			indyProofFormat:legacyIndyProofFormatService,
+		//		}),
+		//		new V2ProofProtocol({
+		//			proofFormats:[legacyIndyProofFormatService],
+		//		}),
+		//	],
+		//});
+		//--new
+		agentModules.proofs=new ProofsModule({
+			autoAcceptProofs:autoAcceptProofs,
+			proofProtocols:[
+				new V1ProofProtocol({
+					indyProofFormat:legacyIndyProofFormatService,
+				}),
+				new V2ProofProtocol({
+					proofFormats:[legacyIndyProofFormatService,new AnonCredsProofFormatService()],
+				}),
+			],
+		});
+		let agentModules_anoncreds_registries=[];
+		if(useModuleIndySdk){
+			agentModules_anoncreds_registries.push(new IndySdkAnonCredsRegistry());
 		}
-		//-----------------------------------------------------------------------------------
-		if(!useModuleAskar){
-		}else if(useModuleAskar){	
-			agentModules.anoncredsRs=new AnonCredsRsModule({
-				anoncreds,
-			});
+		if(useModuleIndyVdr){
+			agentModules_anoncreds_registries.push(new IndyVdrAnonCredsRegistry());
 		}
-		//-----------------------------------------------------------------------------------
-		if(!useModuleAskar){
-		}else if(useModuleAskar){
+		agentModules.anoncreds=new AnonCredsModule({
+			registries:agentModules_anoncreds_registries
+		});		
+		//14:50 2023/07/05
+		//agentModules.anoncreds=new AnonCredsModule({
+		//	registries:[
+		//		new IndySdkAnonCredsRegistry()
+		//	],
+		//});
+		//--new
+		//https://github.com/hyperledger/aries-framework-javascript/blob/6c2dda544bf5f5d3a972a778c389340da6df97c4/demo/src/BaseAgent.ts#L140
+		//agentModules.anoncreds=new AnonCredsModule({
+		//	registries:[new IndyVdrAnonCredsRegistry(),new CheqdAnonCredsRegistry()],
+		//});
+		//--new
+		//entidad
+		//agentModules.anoncreds=new AnonCredsModule({
+		//	registries:[new IndyVdrAnonCredsRegistry()/*,new CheqdAnonCredsRegistry() redacted due to BigInt error / issue*/],
+		//});
+		//--new
+		//https://github.com/hyperledger/aries-framework-javascript/blob/6c2dda544bf5f5d3a972a778c389340da6df97c4/demo/src/BaseAgent.ts#L143
+		agentModules.anoncredsRs=new AnonCredsRsModule({
+			anoncreds,
+		});
+		//--new
+		//https://github.com/hyperledger/aries-framework-javascript/blob/6c2dda544bf5f5d3a972a778c389340da6df97c4/demo/src/BaseAgent.ts#L146C1-L149C8				
+		if(useModuleIndyVdr){	
 			agentModules.indyVdr=new IndyVdrModule({
 				indyVdr,
 				networks:indyLedgers==null?[]:indyLedgers,
 			});
 		}
-		//-----------------------------------------------------------------------------------
-		if(!useModuleAskar){
+		//--new
+		//redacted due to BigInt error / issue
+		//agentModules.cheqd=new CheqdModule(
+		//	new CheqdModuleConfig({
+		//		networks:[
+		//			{
+		//				network:'testnet',
+		//				cosmosPayerSeed:'robust across amount corn curve panther opera wish toe ring bleak empower wreck party abstract glad average muffin picnic jar squeeze annual long aunt',
+		//			},
+		//		],
+		//	})
+		//);
+		//14:50 2023/07/05
+		if(useModuleIndySdk){
 			agentModules.indySdk=(indyLedgers!=null)?
 			(
 				new IndySdkModule({
@@ -426,38 +463,52 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 					indySdk,
 				})
 			);
-		}else if(useModuleAskar){			
 		}
-		//-----------------------------------------------------------------------------------
-		if(!useModuleAskar){
-			agentModules.dids=new DidsModule({
-				resolvers:[
-					new IndySdkSovDidResolver()
-				]
-			});
-		}else if(useModuleAskar){
-			agentModules.dids=new DidsModule({
-				registrars:[
-					//new CheqdDidRegistrar(),
-					new KeyDidRegistrar(),
-					new JwkDidRegistrar()
-				],
-				resolvers:[
-					//new CheqdDidResolver(),
-					new WebDidResolver(),
-					new KeyDidResolver(),
-					new JwkDidResolver(),
-					new IndyVdrIndyDidResolver()
-				]
-			});
+		//14:50 2023/07/05
+		//agentModules.dids=new DidsModule({
+		//	resolvers:[
+		//		new IndySdkSovDidResolver()
+		//	],
+		//});
+		//--new
+		//https://github.com/animo/paradym-wallet/blob/e74c67c297a2d47629b03c30d95d5371de31d55e/packages/agent/src/agent.ts#L34
+		//agentModules.dids=new DidsModule({
+		//	registrars:[new KeyDidRegistrar(),new JwkDidRegistrar()],
+		//	resolvers:[new WebDidResolver(),new KeyDidResolver(),new JwkDidResolver()],
+		//});
+		//--new
+		//https://github.com/hyperledger/aries-framework-javascript/blob/6c2dda544bf5f5d3a972a778c389340da6df97c4/demo/src/BaseAgent.ts#L165
+		//agentModules.dids=new DidsModule({
+		//	registrars:[new CheqdDidRegistrar()],
+		//	resolvers:[new IndyVdrIndyDidResolver(),new CheqdDidResolver()],
+		//});
+		//--new
+		//entidad version
+		let agentModules_dids_registrars=[
+			//new CheqdDidRegistrar(),
+			new KeyDidRegistrar(),
+			new JwkDidRegistrar()
+		];
+		let agentModules_dids_resolvers=[
+			//new CheqdDidResolver(),
+			new WebDidResolver(),
+			new KeyDidResolver(),
+			new JwkDidResolver()
+		];
+		if(useModuleIndyVdr){
+			agentModules_dids_resolvers.push(new IndyVdrIndyDidResolver())
 		}
-		//-----------------------------------------------------------------------------------
+		agentModules.dids=new DidsModule({
+			registrars:agentModules_dids_registrars,
+			resolvers:agentModules_dids_resolvers,
+		});
+		//--new
 		if(useModuleAskar){
 			agentModules.askar=new AskarModule({
 				ariesAskar,
 			});
 		}
-		//-----------------------------------------------------------------------------------
+		//14:50 2023/07/05
 		agentModules.mediationRecipient=new MediationRecipientModule((mediationConnectionsInvitation!=null)?({
 			mediatorInvitationUrl:mediationConnectionsInvitation
 		}):({}));
@@ -465,6 +516,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
   		const agent=new Agent({
 			config:config,
 			dependencies:agentDependencies,
+			//14:50 2023/07/05
 			modules:agentModules,
 		});
 		return Promise.resolve(support.cache.put(agent,walletConfig_id));
