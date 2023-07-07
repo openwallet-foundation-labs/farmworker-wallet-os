@@ -52,19 +52,19 @@ import{WebDidResolver}from'@aries-framework/core';								//--new
 import{KeyDidResolver}from'@aries-framework/core';								//--new
 import{JwkDidResolver}from'@aries-framework/core';								//--new
 //Can't find variable BigInt...
+//import{CheqdModule}from'@aries-framework/cheqd';								//--new
+//Can't find variable BigInt...
+//import{CheqdModuleConfig}from'@aries-framework/cheqd';							//--new
+//Can't find variable BigInt...
 //import{CheqdAnonCredsRegistry}from'@aries-framework/cheqd';						//--new
 //Can't find variable BigInt...
 //import{CheqdDidRegistrar}from'@aries-framework/cheqd';							//--new
 //Can't find variable BigInt...
 //import{CheqdDidResolver}from'@aries-framework/cheqd';							//--new
-//Can't find variable BigInt...
-//import{CheqdModule}from'@aries-framework/cheqd';								//--new
-//Can't find variable BigInt...
-//import{CheqdModuleConfig}from'@aries-framework/cheqd';							//--new
 //import bigInt from'big-integer'													//--new
 //https://github.com/facebook/react-native/issues/28492#issuecomment-824698934
 //if (typeof BigInt === 'undefined') global.BigInt = bigInt						//--new
-
+import { OpenId4VcClientModule } from '@aries-framework/openid4vc-client'
 // END EXTRA CODE
 
 /**
@@ -99,9 +99,10 @@ import{JwkDidResolver}from'@aries-framework/core';								//--new
  * @param {boolean} useDidSovPrefixWhereAllowed
  * @param {boolean} useDidKeyInProtocols
  * @param {boolean} useModuleAskar
+ * @param {boolean} useModuleOpenId4VC
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleAskar) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleAskar, useModuleOpenId4VC) {
 	// BEGIN USER CODE
 	try{
 		//--------------------------------------------------------------------------------
@@ -321,11 +322,6 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//-----------------------------------------------------------------------------------
   		const legacyIndyCredentialFormatService=new LegacyIndyCredentialFormatService()
   		const legacyIndyProofFormatService=new LegacyIndyProofFormatService()
-		  console.info(">>>");
-		  console.info(!useModuleAskar);
-		  console.info(useModuleAskar);
-		  console.info(useModuleAskar);
-		  console.info("<<<");
 		//-----------------------------------------------------------------------------------
 		let agentModules={};
 		agentModules.connections=new ConnectionsModule({
@@ -452,10 +448,31 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			});
 		}
 		//-----------------------------------------------------------------------------------
-		if(useModuleAskar){
+		if(!useModuleAskar){
+		}else if(useModuleAskar){
 			agentModules.askar=new AskarModule({
 				ariesAskar,
 			});
+		}
+		//-----------------------------------------------------------------------------------
+		if(!useModuleAskar){
+		}else if(useModuleAskar){
+			/*
+			agentModules.cheqd=new CheqdModule(
+				new CheqdModuleConfig({
+				networks: [
+						{
+							network: 'testnet',
+							cosmosPayerSeed:
+							'robust across amount corn curve panther opera wish toe ring bleak empower wreck party abstract glad average muffin picnic jar squeeze annual long aunt',
+						},
+					],
+				})
+			);
+			*/
+		}
+		if(useModuleOpenId4VC){
+			agentModules.openId4VcClient=new OpenId4VcClientModule();		
 		}
 		//-----------------------------------------------------------------------------------
 		agentModules.mediationRecipient=new MediationRecipientModule((mediationConnectionsInvitation!=null)?({

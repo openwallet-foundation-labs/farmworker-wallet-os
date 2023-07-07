@@ -117,6 +117,15 @@
     "@aries-framework/anoncreds" "0.4.0"
     "@aries-framework/core" "0.4.0"
 
+"@aries-framework/openid4vc-client@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.npmjs.org/@aries-framework/openid4vc-client/-/openid4vc-client-0.4.0.tgz"
+  integrity sha512-DxsJLnBXInlDsejIUehGh6jclt4Eh6xSG+ugE0U0xwZcQAVJxDYnC8+qFU1Dw1Os4F4g2rR5zfryYE1ZJ+PQcw==
+  dependencies:
+    "@aries-framework/core" "0.4.0"
+    "@sphereon/openid4vci-client" "^0.4.0"
+    "@stablelib/random" "^1.0.2"
+
 "@aries-framework/react-native@^0.4.0":
   version "0.4.0"
   resolved "https://registry.npmjs.org/@aries-framework/react-native/-/react-native-0.4.0.tgz"
@@ -2460,6 +2469,23 @@
   version "1.1.0"
   resolved "https://registry.npmjs.org/@sovpro/delimited-stream/-/delimited-stream-1.1.0.tgz"
   integrity sha512-kQpk267uxB19X3X2T1mvNMjyvIEonpNSHrMlK5ZaBU6aZxw7wPbpgKJOjHN3+/GPVpXgAV9soVT2oyHpLkLtyw==
+
+"@sphereon/openid4vci-client@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.npmjs.org/@sphereon/openid4vci-client/-/openid4vci-client-0.4.0.tgz"
+  integrity sha512-N9ytyV3DHAjBjd67jMowmBMmD9/4Sxkehsrpd1I9Hxg5TO1K+puUPsPXj8Zh4heIWSzT5xBsGTSqXdF0LlrDwQ==
+  dependencies:
+    "@sphereon/ssi-types" "^0.9.0"
+    cross-fetch "^3.1.5"
+    debug "^4.3.4"
+    uint8arrays "^3.1.1"
+
+"@sphereon/ssi-types@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.npmjs.org/@sphereon/ssi-types/-/ssi-types-0.9.0.tgz"
+  integrity sha512-umCr/syNcmvMMbQ+i/r/mwjI1Qw2aFPp9AwBTvTo1ailAVaaJjJGPkkVz1K9/2NZATNdDiQ3A8yGzdVJoKh9pA==
+  dependencies:
+    jwt-decode "^3.1.2"
 
 "@stablelib/aead@^1.0.1":
   version "1.0.1"
@@ -5512,6 +5538,11 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
+jwt-decode@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.npmjs.org/jwt-decode/-/jwt-decode-3.1.2.tgz"
+  integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
+
 kind-of@^3.0.2, kind-of@^3.0.3:
   version "3.2.2"
   resolved "https://registry.npmjs.org/kind-of/-/kind-of-3.2.2.tgz"
@@ -8203,7 +8234,7 @@ uglify-es@^3.1.9:
     commander "~2.13.0"
     source-map "~0.6.1"
 
-uint8arrays@^3.0.0:
+uint8arrays@^3.0.0, uint8arrays@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/uint8arrays/-/uint8arrays-3.1.1.tgz"
   integrity sha512-+QJa8QRnbdXVpHYjLoTpJIdCTiw9Ir62nocClWuXIq2JIh4Uta0cQsTSpFL678p2CN8B+XSApwcU+pQEqVpKWg==
