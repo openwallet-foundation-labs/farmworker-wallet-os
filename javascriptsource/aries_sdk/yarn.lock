@@ -95,20 +95,6 @@
     varint "^6.0.0"
     web-did-resolver "^2.0.21"
 
-"@aries-framework/indy-sdk@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@aries-framework/indy-sdk/-/indy-sdk-0.4.0.tgz"
-  integrity sha512-Z54+a7yxFrynGTgc0vYs0proh+4MnV1e0+1SSwFi+kbi11i9rIpLj8pBN5PN1569qYVtCzSaFz4q6BtvzAHLJw==
-  dependencies:
-    "@aries-framework/anoncreds" "0.4.0"
-    "@aries-framework/core" "0.4.0"
-    "@stablelib/ed25519" "^1.0.3"
-    "@types/indy-sdk" "1.16.26"
-    class-transformer "0.5.1"
-    class-validator "0.14.0"
-    rxjs "^7.2.0"
-    tsyringe "^4.7.0"
-
 "@aries-framework/indy-vdr@^0.4.0":
   version "0.4.0"
   resolved "https://registry.npmjs.org/@aries-framework/indy-vdr/-/indy-vdr-0.4.0.tgz"
@@ -2630,13 +2616,6 @@
   dependencies:
     buffer "^6.0.0"
 
-"@types/indy-sdk@1.16.26":
-  version "1.16.26"
-  resolved "https://registry.npmjs.org/@types/indy-sdk/-/indy-sdk-1.16.26.tgz"
-  integrity sha512-KlnjsVsX/7yTmyyIlHWcytlBHoQ1vPGeiLnLv5y1vDftL6OQ5V+hebfAr7d3roMEsjCTH3qKkklwGcj1qS90YA==
-  dependencies:
-    buffer "^6.0.0"
-
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.4"
   resolved "https://registry.npmjs.org/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.4.tgz"
@@ -3363,7 +3342,7 @@ buffer@^5.5.0:
     base64-js "^1.3.1"
     ieee754 "^1.1.13"
 
-buffer@^6.0.0, buffer@^6.0.2, buffer@^6.0.3:
+buffer@^6.0.0, buffer@^6.0.3:
   version "6.0.3"
   resolved "https://registry.npmjs.org/buffer/-/buffer-6.0.3.tgz"
   integrity sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==
@@ -4981,13 +4960,6 @@ indent-string@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/indent-string/-/indent-string-4.0.0.tgz"
   integrity sha512-EdDDZu4A2OyIK7Lr/2zG+w5jmbuk1DVBnEwREQvBzspBJkCEbRa8GxU1lghYcaGJCnRWibjDXlq779X1/y5xwg==
-
-indy-sdk-react-native@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.npmjs.org/indy-sdk-react-native/-/indy-sdk-react-native-0.3.1.tgz"
-  integrity sha512-BSG/9QHKL0hjAsARxB+PEtlZomntBkG2DsUvCTItETwTOT2ns49BeUjZUHdm2GSyHT5NcOmjyXivNEWWjDaRLw==
-  dependencies:
-    buffer "^6.0.2"
 
 infer-owner@^1.0.4:
   version "1.0.4"
@@ -7139,7 +7111,7 @@ react-native-url-polyfill@^1.3.0:
   dependencies:
     whatwg-url-without-unicode "8.0.0-3"
 
-react-native@*, react-native@^0.71.4, "react-native@>= 0.66.0", react-native@>=0.56, "react-native@>=0.59.0-rc.0 <1.0.x":
+react-native@*, react-native@^0.71.4, "react-native@>= 0.66.0", react-native@>=0.56:
   version "0.71.12"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.71.12.tgz"
   integrity sha512-1zDOTdalLepcVB8ZRIZpWlIGyyJISzAF4MIYSDdW7VDJtIRC7ybXsj/kSARF1zpGSg+LgAV8NMCZzGg598M7Iw==

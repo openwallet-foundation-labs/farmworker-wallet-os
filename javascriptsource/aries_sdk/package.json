@@ -15,7 +15,6 @@
     "@aries-framework/askar": "^0.4.0",
     "@aries-framework/cheqd": "^0.4.0",
     "@aries-framework/core": "^0.4.0",
-    "@aries-framework/indy-sdk": "^0.4.0",
     "@aries-framework/indy-vdr": "^0.4.0",
     "@aries-framework/openid4vc-client": "^0.4.0",
     "@aries-framework/react-native": "^0.4.0",
@@ -25,7 +24,6 @@
     "@hyperledger/indy-vdr-shared": "^0.1.0",
     "base-64": "^1.0.0",
     "big-integer": "^1.6.51",
-    "indy-sdk-react-native": "^0.3.1",
     "react-native-fs": "^2.20.0",
     "react-native-get-random-values": "^1.8.0"
   },

@@ -88,9 +88,6 @@ export async function jsa_aries_agent_oob_createInvitation(agent_key, domain, la
 		//  appendedAttachments?: Attachment[]
 		if(appendedAttachments!=null&&appendedAttachments!="")createInvitationConfig.appendedAttachments=appendedAttachments;
 		let outOfBandRecord=null;
-		console.info("XXXXXXXXXXX");
-		console.info(JSON.stringify(createInvitationConfig,0,2));
-		console.info("XXXXXXXXXXX");
 		if(Object.keys(createInvitationConfig).length==0){
 			outOfBandRecord=await agent.oob.createInvitation();
 		}else{
