@@ -10,6 +10,16 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import support from "../support/entidad";
+import {
+  ClaimFormat,
+  JwaSignatureAlgorithm,
+  Agent,
+  KeyType,
+  TypedArrayEncoder,
+  W3cCredentialRecord,
+  W3cCredentialsModule,
+  DidKey,
+} from '@aries-framework/core'
 //import { OpenId4VpClientService, OpenIdCredentialFormatProfile } from '@internal/openid4vc-client'
 // END EXTRA CODE
 
@@ -90,54 +100,91 @@ import support from "../support/entidad";
 export async function jsa_aries_agent_openId4VcClient_requestCredentialUsingPreAuthorizedCode(agent_key, issuerUri, verifyCredentialStatus, allowedCredentialFormats, allowedProofOfPossessionSignatureAlgorithms, proofOfPossessionVerificationMethodResolver) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");							//mandatory
-		if(domain==null)return Promise.reject("Invalid domain parameter");									//mandatory
-		if(label==null);/*return Promise.reject("Invalid label parameter");*/								//optional
-		if(alias==null);/*return Promise.reject("Invalid alias parameter");*/								//optional
-		if(imageUrl==null);/*return Promise.reject("Invalid imageUrl parameter");*/							//optional
-		if(goalCode==null);/*return Promise.reject("Invalid goalCode parameter");*/							//optional
-		if(goal==null);/*return Promise.reject("Invalid goal parameter");*/									//optional
-		if(handshake==null);/*return Promise.reject("Invalid handshake parameter");*/						//optional
-		if(handshakeProtocols==null);/*return Promise.reject("Invalid handshakeProtocols parameter");*/		//optional
-		if(messages==null);/*return Promise.reject("Invalid messages parameter");*/							//optional
-		if(multiUseInvitation==null);/*return Promise.reject("Invalid multiUseInvitation parameter");*/		//optional
-		if(autoAcceptConnection==null);/*return Promise.reject("Invalid autoAcceptConnection parameter");*/	//optional
-		if(routing==null);/*return Promise.reject("Invalid routing parameter");*/							//optional
-		if(appendedAttachments==null);/*return Promise.reject("Invalid appendedAttachments parameter");*/	//optional
+		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
+		if(issuerUri==null)return Promise.reject("Invalid issuerUri parameter");
+		if(verifyCredentialStatus==null)return Promise.reject("Invalid verifyCredentialStatus parameter");
+		if(allowedCredentialFormats==null);/*return Promise.reject("Invalid allowedCredentialFormats parameter");*/
+		if(allowedCredentialFormats!=null){
+			try{
+				allowedCredentialFormats=JSON.parse(allowedCredentialFormats);
+			}catch(e){
+				return Promise.reject("Argument allowedCredentialFormats is not a valid JSON value");
+			}
+			if(!Array.isArray(allowedCredentialFormats)){
+				return Promise.reject("Argument allowedCredentialFormats is not a valid JSON array");
+			}
+			let allowedCredentialFormats_=[];
+			for(let i=0;i<allowedCredentialFormats.length;i++){
+				switch(allowedCredentialFormats[i]){
+					case"HS256":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.HS256);
+						break;
+					case"HS384":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.HS384);
+						break;
+					case"HS512":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.HS512);
+						break;
+					case"RS256":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.RS256);
+						break;
+					case"RS384":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.RS384);
+						break;
+					case"RS512":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.RS512);
+						break;
+					case"ES256":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.ES256);
+						break;
+					case"ES384":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.ES384);
+						break;
+					case"ES512":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.ES512);
+						break;
+					case"PS256":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.PS256);
+						break;
+					case"PS384":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.PS384);
+						break;
+					case"PS512":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.PS512);
+						break;
+					case"EdDSA":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.EdDSA);
+						break;
+					case"none":
+						allowedCredentialFormats_.push(JwaSignatureAlgorithm.None);
+						break;
+					default:return Promise.reject("Invalid allowedCredentialFormats value");
+				}
+			}
+			allowedCredentialFormats=allowedCredentialFormats_;
+		}
+		if(allowedProofOfPossessionSignatureAlgorithms==null);/*return Promise.reject("Invalid allowedProofOfPossessionSignatureAlgorithms parameter");*/
+		if(proofOfPossessionVerificationMethodResolver==null)return Promise.reject("Invalid proofOfPossessionVerificationMethodResolver parameter");
+		try{
+			proofOfPossessionVerificationMethodResolver=JSON.parse(proofOfPossessionVerificationMethodResolver);
+		}catch(e){
+			return Promise.reject("Argument proofOfPossessionVerificationMethodResolver is not a valid JSON value");
+		}
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		let createInvitationConfig={};
-		if(label!=null&&label!="")createInvitationConfig.label=label;
-		if(alias!=null&&alias!="")createInvitationConfig.alias=alias;
-		if(imageUrl!=null&&imageUrl!="")createInvitationConfig.imageUrl=imageUrl;
-		if(goalCode!=null&&goalCode!="")createInvitationConfig.goalCode=goalCode;
-		//boolean
-		if(goal!=null&&goal!="")createInvitationConfig.goal=goal;
-		if(handshake==true/*false?*/)createInvitationConfig.handshake=handshake;
-		//  handshakeProtocols?: HandshakeProtocol[]
-		if(handshakeProtocols!=null||handshakeProtocols=="")createInvitationConfig.handshakeProtocols=handshakeProtocols;
-		//  messages?: AgentMessage[]
-		if(messages!=null&&messages!="")createInvitationConfig.messages=messages;
-		//boolean
-		if(multiUseInvitation==true/*false?*/)createInvitationConfig.multiUseInvitation=multiUseInvitation;
-		//boolean
-		if(autoAcceptConnection==true/*false?*/)createInvitationConfig.autoAcceptConnection=autoAcceptConnection;
-		//  routing?: Routing
-		if(routing!=null&&routing!="")createInvitationConfig.routing=routing;
-		//  appendedAttachments?: Attachment[]
-		if(appendedAttachments!=null&&appendedAttachments!="")createInvitationConfig.appendedAttachments=appendedAttachments;
-		let outOfBandRecord=null;
-		if(Object.keys(createInvitationConfig).length==0){
-			outOfBandRecord=await agent.oob.createInvitation();
-		}else{
-			outOfBandRecord=await agent.oob.createInvitation(createInvitationConfig);
-		}
-		//outOfBandRecord=await agent.oob.createInvitation();
-		let ret={
-			invitationUrl:outOfBandRecord.outOfBandInvitation.toUrl({domain:domain}),
-			outOfBandRecord,
-		};
-		return Promise.resolve(JSON.stringify(ret,0,2));
+		let options={};
+		if(issuerUri!=null)options.issuerUri=issuerUri;
+		if(verifyCredentialStatus!=null)options.verifyCredentialStatus=verifyCredentialStatus;
+		if(allowedCredentialFormats!=null)options.allowedCredentialFormats=allowedCredentialFormats;
+		if(allowedProofOfPossessionSignatureAlgorithms!=null)options.allowedProofOfPossessionSignatureAlgorithms=allowedProofOfPossessionSignatureAlgorithms;
+		if(proofOfPossessionVerificationMethodResolver!=null)options.proofOfPossessionVerificationMethodResolver=proofOfPossessionVerificationMethodResolver;
+		return Promise.resolve(JSON.stringify(await agent.modules.openId4VcClient.requestCredentialUsingPreAuthorizedCode(options)));
+		/*
+		TypeError: r.allowedProofOfPossessionSignatureAlgorithms.filter is not a function. (In 'r.allowedProofOfPossessionSignatureAlgorithms.filter(function(e){return o.includes(e)})', 'r.allowedProofOfPossessionSignatureAlgorithms.filter' is undefined)
+
+Nanoflow stack:
+ "Call JavaScript Action" in nanoflow "AriesTestHarness.nf_openid4vc_test"
+ */
 	}catch(e){
 		return Promise.reject(e.toString());
 	}
