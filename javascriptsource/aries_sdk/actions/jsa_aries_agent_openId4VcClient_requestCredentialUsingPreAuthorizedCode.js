@@ -116,47 +116,23 @@ export async function jsa_aries_agent_openId4VcClient_requestCredentialUsingPreA
 			let allowedCredentialFormats_=[];
 			for(let i=0;i<allowedCredentialFormats.length;i++){
 				switch(allowedCredentialFormats[i]){
-					case"HS256":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.HS256);
+  					case"Jwt":
+						allowedCredentialFormats_.push(ClaimFormat.Jwt);
 						break;
-					case"HS384":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.HS384);
+  					case"JwtVc":
+						allowedCredentialFormats_.push(ClaimFormat.JwtVc);
 						break;
-					case"HS512":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.HS512);
+  					case"JwtVp":
+						allowedCredentialFormats_.push(ClaimFormat.JwtVp);
 						break;
-					case"RS256":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.RS256);
+  					case"Ldp":
+						allowedCredentialFormats_.push(ClaimFormat.Ldp);
 						break;
-					case"RS384":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.RS384);
+  					case"LdpVc":
+						allowedCredentialFormats_.push(ClaimFormat.LdpVc);
 						break;
-					case"RS512":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.RS512);
-						break;
-					case"ES256":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.ES256);
-						break;
-					case"ES384":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.ES384);
-						break;
-					case"ES512":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.ES512);
-						break;
-					case"PS256":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.PS256);
-						break;
-					case"PS384":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.PS384);
-						break;
-					case"PS512":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.PS512);
-						break;
-					case"EdDSA":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.EdDSA);
-						break;
-					case"none":
-						allowedCredentialFormats_.push(JwaSignatureAlgorithm.None);
+  					case"LdpVp":
+						allowedCredentialFormats_.push(ClaimFormat.LdpVp);
 						break;
 					default:return Promise.reject("Invalid allowedCredentialFormats value");
 				}
@@ -164,7 +140,69 @@ export async function jsa_aries_agent_openId4VcClient_requestCredentialUsingPreA
 			allowedCredentialFormats=allowedCredentialFormats_;
 		}
 		if(allowedProofOfPossessionSignatureAlgorithms==null);/*return Promise.reject("Invalid allowedProofOfPossessionSignatureAlgorithms parameter");*/
+		if(allowedProofOfPossessionSignatureAlgorithms!=null){
+			try{
+				allowedProofOfPossessionSignatureAlgorithms=JSON.parse(allowedProofOfPossessionSignatureAlgorithms);
+			}catch(e){
+				return Promise.reject("Argument allowedProofOfPossessionSignatureAlgorithms is not a valid JSON value");
+			}
+			if(!Array.isArray(allowedProofOfPossessionSignatureAlgorithms)){
+				return Promise.reject("Argument allowedProofOfPossessionSignatureAlgorithms is not a valid JSON array");
+			}
+			let allowedProofOfPossessionSignatureAlgorithms_=[];
+			for(let i=0;i<allowedProofOfPossessionSignatureAlgorithms.length;i++){
+				switch(allowedProofOfPossessionSignatureAlgorithms[i]){
+					case"HS256":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.HS256);
+						break;
+					case"HS384":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.HS384);
+						break;
+					case"HS512":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.HS512);
+						break;
+					case"RS256":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.RS256);
+						break;
+					case"RS384":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.RS384);
+						break;
+					case"RS512":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.RS512);
+						break;
+					case"ES256":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.ES256);
+						break;
+					case"ES384":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.ES384);
+						break;
+					case"ES512":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.ES512);
+						break;
+					case"PS256":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.PS256);
+						break;
+					case"PS384":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.PS384);
+						break;
+					case"PS512":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.PS512);
+						break;
+					case"EdDSA":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.EdDSA);
+						break;
+					case"none":
+						allowedProofOfPossessionSignatureAlgorithms_.push(JwaSignatureAlgorithm.None);
+						break;
+					default:return Promise.reject("Invalid allowedProofOfPossessionSignatureAlgorithms value");
+				}
+			}
+			allowedProofOfPossessionSignatureAlgorithms=allowedProofOfPossessionSignatureAlgorithms_;
+		}
 		if(proofOfPossessionVerificationMethodResolver==null)return Promise.reject("Invalid proofOfPossessionVerificationMethodResolver parameter");
+
+
+
 		try{
 			proofOfPossessionVerificationMethodResolver=JSON.parse(proofOfPossessionVerificationMethodResolver);
 		}catch(e){
@@ -180,7 +218,12 @@ export async function jsa_aries_agent_openId4VcClient_requestCredentialUsingPreA
 		if(proofOfPossessionVerificationMethodResolver!=null)options.proofOfPossessionVerificationMethodResolver=proofOfPossessionVerificationMethodResolver;
 		return Promise.resolve(JSON.stringify(await agent.modules.openId4VcClient.requestCredentialUsingPreAuthorizedCode(options)));
 		/*
-		TypeError: r.allowedProofOfPossessionSignatureAlgorithms.filter is not a function. (In 'r.allowedProofOfPossessionSignatureAlgorithms.filter(function(e){return o.includes(e)})', 'r.allowedProofOfPossessionSignatureAlgorithms.filter' is undefined)
+TypeError: r.allowedProofOfPossessionSignatureAlgorithms.filter is not a function. (In 'r.allowedProofOfPossessionSignatureAlgorithms.filter(function(e){return o.includes(e)})', 'r.allowedProofOfPossessionSignatureAlgorithms.filter' is undefined)
+
+Nanoflow stack:
+ "Call JavaScript Action" in nanoflow "AriesTestHarness.nf_openid4vc_test"
+
+ TypeError: r.allowedProofOfPossessionSignatureAlgorithms.filter is not a function. (In 'r.allowedProofOfPossessionSignatureAlgorithms.filter(function(e){return o.includes(e)})', 'r.allowedProofOfPossessionSignatureAlgorithms.filter' is undefined)
 
 Nanoflow stack:
  "Call JavaScript Action" in nanoflow "AriesTestHarness.nf_openid4vc_test"
