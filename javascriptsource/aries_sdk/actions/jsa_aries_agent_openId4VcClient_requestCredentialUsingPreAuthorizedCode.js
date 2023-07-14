@@ -14,6 +14,8 @@ import support from "../support/entidad";
 // END EXTRA CODE
 
 /**
+ * https://github.com/hyperledger/aries-framework-javascript/tree/002be4f578729aed1c8ae337f3d2eeecce9e3725/packages/openid4vc-client
+ * 
  * https://github.com/hyperledger/aries-framework-javascript/blob/002be4f578729aed1c8ae337f3d2eeecce9e3725/packages/openid4vc-client/src/OpenId4VcClientApi.ts#L26
  * 
  * 

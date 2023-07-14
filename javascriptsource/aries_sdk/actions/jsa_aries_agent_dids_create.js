@@ -15,14 +15,19 @@ import {PeerDidNumAlgo,KeyType} /*{PeerDidNumAlgo}*/from"@aries-framework/core";
 // END EXTRA CODE
 
 /**
- * https://github.com/hyperledger/aries-framework-javascript/blob/main/packages/core/src/modules/dids/DidsApi.ts
- * https://github.com/hyperledger/aries-framework-javascript/blob/main/packages/core/src/modules/dids/types.ts
- * https://github.com/hyperledger/aries-framework-javascript/blob/7f37a6265dcc8310b78c14e59f38f1de19fed8c3/packages/core/src/modules/dids/types.ts
- * https://github.com/hyperledger/aries-framework-javascript/blob/c0e5339edfa32df92f23fb9c920796b4b59adf52/packages/core/src/modules/dids/methods/peer/__tests__/PeerDidRegistrar.test.ts
- * 
- *   public create<CreateOptions extends DidCreateOptions = DidCreateOptions>(
- *     options: CreateOptions
- *   ): Promise<DidCreateResult>
+ * export interface KeyDidCreateOptions extends DidCreateOptions {
+ *   method: 'key'
+ *   // For now we don't support creating a did:key with a did or did document
+ *   did?: never
+ *   didDocument?: never
+ *   options: {
+ *     keyType: KeyType
+ *   }
+ *   secret?: {
+ *     seed?: Buffer
+ *     privateKey?: Buffer
+ *   }
+ * }
  * 
  * export interface DidCreateOptions {
  *   method?: string
@@ -35,17 +40,15 @@ import {PeerDidNumAlgo,KeyType} /*{PeerDidNumAlgo}*/from"@aries-framework/core";
  * @param {"Aries_SDK.enum_aries_DidMethod.peer"|"Aries_SDK.enum_aries_DidMethod.key"|"Aries_SDK.enum_aries_DidMethod.sov"|"Aries_SDK.enum_aries_DidMethod.web"} method - optional
  * @param {string} did - optional
  * @param {"Aries_SDK.enum_aries_KeyType.Bls12381g1"|"Aries_SDK.enum_aries_KeyType.Bls12381g1g2"|"Aries_SDK.enum_aries_KeyType.Bls12381g2"|"Aries_SDK.enum_aries_KeyType.Ed25519"|"Aries_SDK.enum_aries_KeyType.X25519"} options_keyType - mandatory
- * @param {"Aries_SDK.enum_aries_PeerDidNumAlgo.GenesisDoc"|"Aries_SDK.enum_aries_PeerDidNumAlgo.InceptionKeyWithoutDoc"|"Aries_SDK.enum_aries_PeerDidNumAlgo.MultipleInceptionKeyWithoutDoc"} options_numAlgo - mandatory
  * @param {string} secret - optional
  * @param {string} didDocument - optional
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_dids_create(agent_key, method, did, options_keyType, options_numAlgo, secret, didDocument) {
+export async function jsa_aries_agent_dids_create(agent_key, method, did, options_keyType, secret, didDocument) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");										//mandatory
 		if(options_keyType==null)return Promise.reject("Invalid options_keyType parameter");							//mandatory
-		if(options_numAlgo==null)return Promise.reject("Invalid options_numAlgo parameter");							//mandatory
 		if(method==null)/*optional*/;
 		if(did==null)/*optional*/;
 		if(secret==null)/*optional*/;
@@ -67,13 +70,6 @@ export async function jsa_aries_agent_dids_create(agent_key, method, did, option
 			case"X25519":config.options.keyType=KeyType.X25519;break;
 			default:
 				return Promise.reject("Invalid options_keyType value");
-		}
-		switch(options_numAlgo){
-			case"GenesisDoc":config.options.numAlgo=PeerDidNumAlgo.GenesisDoc;break;
-			case"InceptionKeyWithoutDoc":config.options.numAlgo=PeerDidNumAlgo.InceptionKeyWithoutDoc;break;
-			case"MultipleInceptionKeyWithoutDoc":config.options.numAlgo=PeerDidNumAlgo.MultipleInceptionKeyWithoutDoc;break;
-			default:
-				return Promise.reject("Invalid options_numAlgo value");
 		}
 		if(secret!=null)config.secret=secret;
 		if(didDocument!=null)config.didDocument=didDocument;
