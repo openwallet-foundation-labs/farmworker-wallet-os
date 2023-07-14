@@ -14,10 +14,78 @@ import support from "../support/entidad";
 // END EXTRA CODE
 
 /**
+ * https://github.com/hyperledger/aries-framework-javascript/blob/002be4f578729aed1c8ae337f3d2eeecce9e3725/packages/openid4vc-client/src/OpenId4VcClientApi.ts#L26
+ * 
+ * 
+ *   public async requestCredentialUsingPreAuthorizedCode(
+ *     options: PreAuthCodeFlowOptions
+ *   ): Promise<W3cCredentialRecord[]> {
+ *     // set defaults
+ *     const verifyRevocationState = options.verifyCredentialStatus ?? true
+ * 
+ *     return this.openId4VcClientService.requestCredential(this.agentContext, {
+ *       ...options,
+ *       verifyCredentialStatus: verifyRevocationState,
+ *       flowType: AuthFlowType.PreAuthorizedCodeFlow,
+ *     })
+ *   }
+ * 
+ * 
+ * https://github.com/hyperledger/aries-framework-javascript/blob/002be4f578729aed1c8ae337f3d2eeecce9e3725/packages/openid4vc-client/src/OpenId4VcClientServiceOptions.ts#L14
+ * 
+ * 
+ * /////
+ *  // Options that are used for the pre-authorized code flow.
+ *  ///
+ * export interface PreAuthCodeFlowOptions {
+ *   issuerUri: string
+ *   verifyCredentialStatus: boolean
+ * 
+ *   /////
+ *    // A list of allowed credential formats in order of preference.
+ *    //
+ *    // If the issuer supports one of the allowed formats, that first format that is supported
+ *    // from the list will be used.
+ *    //
+ *    // If the issuer doesn't support any of the allowed formats, an error is thrown
+ *    // and the request is aborted.
+ *    ///
+ *   allowedCredentialFormats?: SupportedCredentialFormats[]
+ * 
+ *   /////
+ *    // A list of allowed proof of possession signature algorithms in order of preference.
+ *    //
+ *    // Note that the signature algorithms must be supported by the wallet implementation.
+ *    // Signature algorithms that are not supported by the wallet will be ignored.
+ *    //
+ *    // The proof of possession (pop) signature algorithm is used in the credential request
+ *    // to bind the credential to a did. In most cases the JWA signature algorithm
+ *    // that is used in the pop will determine the cryptographic suite that is used
+ *    // for signing the credential, but this not a requirement for the spec. E.g. if the
+ *    // pop uses EdDsa, the credential will most commonly also use EdDsa, or Ed25519Signature2018/2020.
+ *    ///
+ *   allowedProofOfPossessionSignatureAlgorithms?: JwaSignatureAlgorithm[]
+ * 
+ *   /////
+ *    // A function that should resolve a verification method based on the options passed.
+ *    // This method will be called once for each of the credentials that are included
+ *    // in the credential offer.
+ *    //
+ *    // Based on the credential format, JWA signature algorithm, verification method types
+ *    // and did methods, the resolver must return a verification method that will be used
+ *    // for the proof of possession signature.
+ *    ///
+ *   proofOfPossessionVerificationMethodResolver: ProofOfPossessionVerificationMethodResolver
+ * }
  * @param {string} agent_key
+ * @param {string} issuerUri - mandatory: string
+ * @param {boolean} verifyCredentialStatus - mandatory: boolean
+ * @param {string} allowedCredentialFormats - optional SupportedCredentialFormats[]
+ * @param {string} allowedProofOfPossessionSignatureAlgorithms - optional: JwaSignatureAlgorithm[]
+ * @param {string} proofOfPossessionVerificationMethodResolver - mandatory: ProofOfPossessionVerificationMethodResolver
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_openId4VcClient_requestCredentialUsingPreAuthorizedCode(agent_key) {
+export async function jsa_aries_agent_openId4VcClient_requestCredentialUsingPreAuthorizedCode(agent_key, issuerUri, verifyCredentialStatus, allowedCredentialFormats, allowedProofOfPossessionSignatureAlgorithms, proofOfPossessionVerificationMethodResolver) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");							//mandatory

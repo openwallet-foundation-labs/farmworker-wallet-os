@@ -14,10 +14,26 @@ import support from "../support/entidad";
 // END EXTRA CODE
 
 /**
+ * https://github.com/hyperledger/aries-framework-javascript/blob/002be4f578729aed1c8ae337f3d2eeecce9e3725/packages/openid4vc-client/src/OpenId4VcClientApi.ts#L26
+ * 
+ * public async generateAuthorizationUrl(options: GenerateAuthorizationUrlOptions)
+ * 
+ * https://github.com/hyperledger/aries-framework-javascript/blob/002be4f578729aed1c8ae337f3d2eeecce9e3725/packages/openid4vc-client/src/OpenId4VcClientServiceOptions.ts#L73
+ * 
+ * export interface GenerateAuthorizationUrlOptions {
+ *   initiationUri: string
+ *   clientId: string
+ *   redirectUri: string
+ *   scope?: string[]
+ * }
  * @param {string} agent_key
+ * @param {string} initiationUri - mandatory: string
+ * @param {string} clientId - mandatory: string
+ * @param {string} redirectUri - mandatory: string
+ * @param {string} scope - optional: string[]
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_openId4VcClient_generateAuthorizationUrl(agent_key) {
+export async function jsa_aries_agent_openId4VcClient_generateAuthorizationUrl(agent_key, initiationUri, clientId, redirectUri, scope) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");							//mandatory
