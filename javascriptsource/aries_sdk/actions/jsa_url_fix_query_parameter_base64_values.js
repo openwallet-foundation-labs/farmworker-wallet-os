@@ -27,15 +27,24 @@ if (!global.atob) { global.atob = decode }
 export async function jsa_url_fix_query_parameter_base64_values(url) {
 	// BEGIN USER CODE
 	try{
-		let chunks=[];
+		let chunks=[];		
 		url.split("?")[1].split("&").forEach((kv)=>{
-			let parts=[];
-			let k=kv.split("=")[0];
-			let v=kv.split("=")[1];
-			v.split("-").forEach((p)=>{
-				parts.push(atob(p));
-			});
 			try{
+				let parts=[];
+				let k=kv.split("=")[0];
+				//try{
+				//	k=decodeURIComponent(k);
+				//}catch(e){
+				//}
+				let v=kv.split("=")[1];
+				//let v=kv.substring(kv.indexOf("=")+1);
+				//try{
+				//	v=decodeURIComponent(v);
+				//}catch(e){
+				//}
+				v.split("-").forEach((p)=>{
+					parts.push(atob(p));
+				});
 				let part=parts.join("");
 				let json=JSON.parse(part);
 				let jsonbase64=btoa(JSON.stringify(json));
