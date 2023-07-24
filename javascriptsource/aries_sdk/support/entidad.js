@@ -1,29 +1,56 @@
+/*
+const support={
+	data:{
+		async create(options){
+			return new Promise((resolve,reject)=>{
+				try{
+					mx.data.create(
+						{
+							entity:options.entity,
+							callback:(obj)=>{
+								resolve(obj);
+							},
+							error:(e)=>{
+								reject(e);
+							}
+						}
+					);
+				}catch(e){
+					reject(e);
+				}
+			});
+		}
+	},
+};
+export default support;
+*/
+//--------------------------------------------------------------------------------
 import{Logger,LogLevel}from"@aries-framework/core";
-class ConsoleLogger/*implements Logger*/{
-	/*public*/logLevel:LogLevel
+class ConsoleLogger{
+	logLevel:LogLevel
 
-	/*public*/constructor(logLevel:LogLevel=LogLevel.off){
+	constructor(logLevel:LogLevel=LogLevel.off){
 		this.logLevel=logLevel
 	}
-	/*public*/test(message:string,data?:Record<string,any>):void{
+	test(message:string,data?:Record<string,any>):void{
 		console.info("afj:"+mx.session.getUserName()+": "+message,data)
 	}
-	/*public*/trace(message:string,data?:Record<string,any>):void{
+	trace(message:string,data?:Record<string,any>):void{
 		console.info("afj:"+mx.session.getUserName()+": "+message,data)
 	}
-	/*public*/debug(message:string,data?:Record<string,any>):void{
+	debug(message:string,data?:Record<string,any>):void{
 		console.info("afj:"+mx.session.getUserName()+": "+message,data)
 	}
-	/*public*/info(message:string,data?:Record<string,any>):void{
+	info(message:string,data?:Record<string,any>):void{
 		console.info("afj:"+mx.session.getUserName()+": "+message,data)
 	}
-	/*public*/warn(message:string,data?:Record<string,any>):void{
+	warn(message:string,data?:Record<string,any>):void{
 		console.warn("afj:"+mx.session.getUserName()+": "+message,data)
 	}
-	/*public*/error(message:string,data?:Record<string,any>):void{
+	error(message:string,data?:Record<string,any>):void{
 		console.error("afj:"+mx.session.getUserName()+": "+message,data)
 	}
-	/*public*/fatal(message:string,data?:Record<string,any>):void{
+	fatal(message:string,data?:Record<string,any>):void{
 		console.error("afj:"+mx.session.getUserName()+": "+message,data)
 	}
 }

@@ -22,7 +22,7 @@ export async function jsa_json2connections(json) {
 		let ret=[];
 		let connections=JSON.parse(json);
 		connections.forEach(async(connection)=>{
-				let obj=await support.data.create({entity:"AriesTestHarness.Connection"});
+				let obj=await support.data.create({entity:"Aries_SDK.Connection"});
 				ret.push(obj);
 				obj.getAttributes().forEach((attr)=>{
 					let _attr=attr;
@@ -61,8 +61,8 @@ export async function jsa_json2connections(json) {
 					}
 				});
 				let _=obj;
-				obj=await support.data.create({entity:"AriesTestHarness._tags"});
-				obj.set("AriesTestHarness._tags_Connection",_)
+				obj=await support.data.create({entity:"Aries_SDK._tags"});
+				obj.set("Aries_SDK._tags_Connection",_)
 				obj.getAttributes().forEach((attr)=>{
 					let value=connection[attr];
 					if(typeof(value)=="undefined")return;
@@ -100,8 +100,8 @@ export async function jsa_json2connections(json) {
 				});
 				_=obj;
 				connection.connectionTypes.forEach(async(connectionType)=>{
-					obj=await support.data.create({entity:"AriesTestHarness.connectionTypes"});
-					obj.set("AriesTestHarness.connectionTypes__tags",_)
+					obj=await support.data.create({entity:"Aries_SDK.connectionTypes"});
+					obj.set("Aries_SDK.connectionTypes__tags",_)
 					obj.set("value",connectionType);				
 				})
 			});

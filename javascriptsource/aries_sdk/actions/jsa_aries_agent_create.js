@@ -51,6 +51,8 @@ import{OpenId4VcClientModule}				from'@aries-framework/openid4vc-client';
 import{anoncreds}							from'@hyperledger/anoncreds-react-native';
 import{indyVdr}								from'@hyperledger/indy-vdr-react-native';
 import{ariesAskar}							from'@hyperledger/aries-askar-react-native';
+//import{QuestionAnswerModule}				from'@entidad/question-answer';
+import{QuestionAnswerModule}				from'@aries-framework/question-answer';
 // END EXTRA CODE
 
 /**
@@ -393,7 +395,9 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		agentModules.mediationRecipient=new MediationRecipientModule((mediationConnectionsInvitation!=null)?({
 			mediatorInvitationUrl:mediationConnectionsInvitation
 		}):({}));
-		//---------------------------------------------------------
+		//-----------------------------------------------------------------------------------
+		agentModules.questionAnswer=new QuestionAnswerModule();
+		//-----------------------------------------------------------------------------------
   		const agent=new Agent({
 			config:config,
 			dependencies:agentDependencies,
