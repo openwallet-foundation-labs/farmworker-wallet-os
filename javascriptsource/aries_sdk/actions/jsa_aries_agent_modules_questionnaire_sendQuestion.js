@@ -14,20 +14,25 @@ import support from "../support/entidad";
 
 /**
  * @param {string} agent_key
- * @param {string} questionAnswerRecordId
- * @param {string} response
+ * @param {string} connectionId
+ * @param {string} config - json
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_questionAnswer_sendAnswer_2(agent_key, questionAnswerRecordId, response) {
+export async function jsa_aries_agent_modules_questionnaire_sendQuestion(agent_key, connectionId, config) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
-		if(questionAnswerRecordId==null)return Promise.reject("Invalid questionAnswerRecordId parameter");
-		if(response==null)return Promise.reject("Invalid response parameter");
+		if(connectionId==null)return Promise.reject("Invalid connectionId parameter");
+		if(config==null)return Promise.reject("Invalid config parameter");
+		try{
+			config=JSON.parse(config);
+		}catch(e){
+			return Promise.reject("Invalid config parameter: failed to parse")
+		}
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		return Promise.resolve(JSON.stringify(
-			await agent.modules.questionAnswer.sendAnswer(questionAnswerRecordId,response)
+			await agent.modules.questionnaire.sendQuestion(connectionId,config)
 		));
 	}catch(e){
 		return Promise.reject(e.toString());

@@ -18,7 +18,7 @@ import support from "../support/entidad";
  * @param {string} config - json
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_fooBar_sendFoo(agent_key, connectionId, config) {
+export async function jsa_aries_agent_modules_questionAnswer_sendQuestion(agent_key, connectionId, config) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
