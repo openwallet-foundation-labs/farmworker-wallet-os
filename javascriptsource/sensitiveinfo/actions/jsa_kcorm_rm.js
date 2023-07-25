@@ -69,7 +69,6 @@ export async function jsa_kcorm_rm(key, input, idattr, idval) {
 				return Promise.reject("Cannot determine id");
 			}
 		}
-		console.info("Dropping "+[module_,entity_,uuid].join("."));
 		if(typeof(obj[module_][entity_][uuid])=="undefined")return Promise.resolve(true);//Promise.reject([module_,entity_,uuid].join(".")+" not found")
 		delete obj[module_][entity_][uuid];
 		//store in keychain
