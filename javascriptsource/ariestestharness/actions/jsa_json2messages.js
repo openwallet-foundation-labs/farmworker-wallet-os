@@ -22,7 +22,7 @@ export async function jsa_json2messages(json) {
 		let ret=[];
 		let connections=JSON.parse(json);
 		connections.forEach(async(connection)=>{
-				let obj=await support.data.create({entity:"AriesTestHarness.Message"});
+				let obj=await support.data.create({entity:"Aries_SDK.Message"});
 				ret.push(obj);
 				obj.getAttributes().forEach((attr)=>{
 					let _attr=attr;
