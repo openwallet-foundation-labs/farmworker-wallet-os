@@ -21,6 +21,7 @@ let _=null;
 export async function jsa_before_reload(callback) {
 	// BEGIN USER CODE
 	try{
+		//console.info(mx.session.getUserName()+":jsa_before_reload:start");
 		if(callback==null)return Promise.reject("Argument callback has invalid value.");
 		if(_==null)_=mx.reload;
 		mx.reload=()=>{
@@ -29,6 +30,7 @@ export async function jsa_before_reload(callback) {
 				}catch(e){}
 				_();
 		};
+		//console.info(mx.session.getUserName()+":jsa_before_reload:end");
 		return Promise.resolve();
 	}catch(e){
 		return Promise.reject(e.toString());

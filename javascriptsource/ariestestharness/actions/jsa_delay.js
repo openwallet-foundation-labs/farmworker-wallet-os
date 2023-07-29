@@ -19,7 +19,16 @@ export async function jsa_delay(ms) {
 	// BEGIN USER CODE
 	return new Promise((resolve,reject)=>{
 		try{
+			/*todo:countdown*/
+			let i=Math.floor(ms/1000);
+			console.info(mx.session.getUserName()+":jsa_delay:"+i);
+			i--;
+			let hdl=window.setInterval(()=>{
+				console.info(mx.session.getUserName()+":jsa_delay:"+i);
+				i--;
+			},1000);
 			window.setTimeout(()=>{
+				window.clearInterval(hdl);
 				resolve();
 			},ms.toNumber())
 		}catch(e){
