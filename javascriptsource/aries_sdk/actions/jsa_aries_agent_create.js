@@ -177,7 +177,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(logger==null)logger="DefaultLogger";																									// default
 		switch(logger){																															// -
 			case"Console":																														// -
-				logger=new support.logging.ConsoleLogger(loglevel);																				// -
+				logger=new support.logging.ConsoleLogger(loglevel,label);																				// -
 				break;																															// -
 			case"DefaultLogger":																												// -
 				logger=new ConsoleLogger(loglevel);																								// -

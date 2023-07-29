@@ -29,29 +29,30 @@ import{Logger,LogLevel}from"@aries-framework/core";
 class ConsoleLogger{
 	logLevel:LogLevel
 
-	constructor(logLevel:LogLevel=LogLevel.off){
+	constructor(logLevel:LogLevel=LogLevel.off,label){
 		this.logLevel=logLevel
+		this.label=label;
 	}
 	test(message:string,data?:Record<string,any>):void{
-		console.info("afj:"+mx.session.getUserName()+": "+message,data)
+		console.info("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 	trace(message:string,data?:Record<string,any>):void{
-		console.info("afj:"+mx.session.getUserName()+": "+message,data)
+		console.info("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 	debug(message:string,data?:Record<string,any>):void{
-		console.info("afj:"+mx.session.getUserName()+": "+message,data)
+		console.info("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 	info(message:string,data?:Record<string,any>):void{
-		console.info("afj:"+mx.session.getUserName()+": "+message,data)
+		console.info("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 	warn(message:string,data?:Record<string,any>):void{
-		console.warn("afj:"+mx.session.getUserName()+": "+message,data)
+		console.warn("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 	error(message:string,data?:Record<string,any>):void{
-		console.error("afj:"+mx.session.getUserName()+": "+message,data)
+		console.error("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 	fatal(message:string,data?:Record<string,any>):void{
-		console.error("afj:"+mx.session.getUserName()+": "+message,data)
+		console.error("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 }
 function uuid(){
