@@ -398,7 +398,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//-----------------------------------------------------------------------------------
 		agentModules.questionAnswer=new QuestionAnswerModule();
 		//-----------------------------------------------------------------------------------
-		//agentModules.questionnaire=new QuestionnaireModule();
+		agentModules.questionnaire=new QuestionnaireModule();
 		//-----------------------------------------------------------------------------------
   		const agent=new Agent({
 			config:config,

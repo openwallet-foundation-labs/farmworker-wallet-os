@@ -13,21 +13,18 @@ import support from "../support/entidad";
 // END EXTRA CODE
 
 /**
+ * Get all Questionnaire records
  * @param {string} agent_key
- * @param {string} questionnaireRecordId
- * @param {string} response
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_questionnaire_sendAnswer(agent_key, questionnaireRecordId, response) {
+export async function jsa_aries_agent_modules_questionnaire_getAll(agent_key) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
-		if(questionnaireRecordId==null)return Promise.reject("Invalid questionnaireRecordId parameter");
-		if(response==null)return Promise.reject("Invalid response parameter");
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		return Promise.resolve(JSON.stringify(
-			await agent.modules.questionnaire.sendAnswer(questionnaireRecordId,response)
+			await agent.modules.questionnaire.getAll()
 		));
 	}catch(e){
 		return Promise.reject(e.toString());
