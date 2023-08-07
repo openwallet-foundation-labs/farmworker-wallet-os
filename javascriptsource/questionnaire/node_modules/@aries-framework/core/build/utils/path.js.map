@@ -1,0 +1,1 @@
+{"version":3,"file":"path.js","sourceRoot":"","sources":["../../src/utils/path.ts"],"names":[],"mappings":";;;AAAA;;;;;GAKG;AACH,SAAgB,kBAAkB,CAAC,IAAY;IAC7C,OAAO,IAAI,CAAC,SAAS,CAAC,CAAC,EAAE,IAAI,CAAC,GAAG,CAAC,IAAI,CAAC,WAAW,CAAC,GAAG,CAAC,EAAE,IAAI,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,CAAC,CAAA;AACnF,CAAC;AAFD,gDAEC"}

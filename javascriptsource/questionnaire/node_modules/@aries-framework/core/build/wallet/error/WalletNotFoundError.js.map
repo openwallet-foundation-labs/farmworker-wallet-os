@@ -1,0 +1,1 @@
+{"version":3,"file":"WalletNotFoundError.js","sourceRoot":"","sources":["../../../src/wallet/error/WalletNotFoundError.ts"],"names":[],"mappings":";;;AAAA,+CAA2C;AAE3C,MAAa,mBAAoB,SAAQ,yBAAW;IAClD,YAAmB,OAAe,EAAE,EAAE,UAAU,EAAE,KAAK,EAAyC;QAC9F,KAAK,CAAC,GAAG,UAAU,KAAK,OAAO,EAAE,EAAE,EAAE,KAAK,EAAE,CAAC,CAAA;IAC/C,CAAC;CACF;AAJD,kDAIC"}
