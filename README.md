@@ -1,4 +1,4 @@
-# Aries-SDK-Mendix
+# FWOS Demo App
 
 [Mendix](https://www.mendix.com/) and [AFJ](https://aries.js.org/) Aries Javascript Agent
 
