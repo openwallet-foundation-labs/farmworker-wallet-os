@@ -24,13 +24,19 @@ export async function jsa_aries_agent_modules_questionnaire_sendQuestion(agent_k
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
 		if(connectionId==null)return Promise.reject("Invalid connectionId parameter");
 		if(config==null)return Promise.reject("Invalid config parameter");
+		console.info("0");
 		try{
+		console.info("1");
 			config=JSON.parse(config);
 		}catch(e){
+		console.info("2");
 			return Promise.reject("Invalid config parameter: failed to parse")
 		}
+		console.info("3");
 		let agent=support.cache.get(agent_key);
+		console.info("4");
 		if(agent==null)return Promise.reject("Agent not found in cache");
+		console.info("5");
 		return Promise.resolve(JSON.stringify(
 			await agent.modules.questionnaire.sendQuestion(connectionId,config)
 		));
