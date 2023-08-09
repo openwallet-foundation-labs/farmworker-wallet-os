@@ -75,6 +75,7 @@ export async function jsa_aries_agents_shutdown() {
 	*/
 	try{
 		let keys=support.cache.keys();
+		/*
 		for(const k of keys){
 			try{
 				let agent=support.cache.get(k);
@@ -86,8 +87,21 @@ export async function jsa_aries_agents_shutdown() {
 			}
 			support.cache.remove(k);
 		}
-		//return Promise.resolve();//original
-		return window.setTimeout(()=>{Promise.resolve();},1000);
+		*/
+		for(var i=0;i<keys.length;i++){
+			let k=keys[i];
+			try{
+				let agent=support.cache.get(k);
+				if(agent!=null){
+					await agent.shutdown();
+				}
+			}catch(e){
+				console.error(e.toString());
+			}
+			support.cache.remove(k);
+		}
+		return Promise.resolve();//original
+		//return window.setTimeout(()=>{Promise.resolve();},1000);
 	}catch(e){
 		return Promise.reject(e.toString());
 	}
