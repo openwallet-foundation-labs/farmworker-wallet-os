@@ -4,7 +4,7 @@
 
 <img src="https://github.com/Entidad/aries-sdk-mendix/blob/main/img/preview.gif?raw=true" width="100%" />
 
-## Quick start
+## Quick Start
 
 * Clone this project
 * Run `npm install` at `./javascriptsource/aries_sdk/` `./javascriptsource/sensitive_info` as well as  at `./javascriptsource/ariestestharness`
