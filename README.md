@@ -20,3 +20,4 @@ See [CONTRIBUTING.md](https://github.com/Entidad/aries-sdk-mendix/blob/main/CONT
 
 ## Raising problems/issues
 -   We encourage everyone to use [/isues](https://github.com/Entidad/aries-sdk-mendix/issues) in case of any problems.
+
