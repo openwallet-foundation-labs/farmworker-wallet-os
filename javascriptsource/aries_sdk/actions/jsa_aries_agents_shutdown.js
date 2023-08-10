@@ -27,67 +27,8 @@ import support from "../support/entidad";
  */
 export async function jsa_aries_agents_shutdown() {
 	// BEGIN USER CODE
-	/*
-	try{
-		//console.info("BEG");
-		let keys=support.cache.keys();
-		for(let i=0;i<keys.length;i++){
-			try{
-				let k=keys[i];
-				try{
-					let agent=support.cache.get(k);
-					if(agent!=null){
-						await agent.shutdown();
-					};
-				}catch(e){
-					console.error(e.toString());
-				}
-				support.cache.remove(k);
-			}catch(e){
-				console.error(e.toString());
-			}
-		}
-		//console.info("END");
-		return Promise.resolve();
-	}catch(e){
-		return Promise.reject(e.toString());
-	}
-	*/
-	/*
-	try{
-		console.info("BEG");
-		support.cache.keys().forEach(async(k)=>{
-			try{
-				let agent=support.cache.get(k);
-				if(agent!=null){
-					await agent.shutdown();
-				};
-			}catch(e){
-				console.error(e.toString());
-			}
-			support.cache.remove(k);
-		})
-		console.info("END");
-		return Promise.resolve();
-	}catch(e){
-		return Promise.reject(e.toString());
-	}
-	*/
 	try{
 		let keys=support.cache.keys();
-		/*
-		for(const k of keys){
-			try{
-				let agent=support.cache.get(k);
-				if(agent!=null){
-					await agent.shutdown();
-				}
-			}catch(e){
-				console.error(e.toString());
-			}
-			support.cache.remove(k);
-		}
-		*/
 		for(var i=0;i<keys.length;i++){
 			let k=keys[i];
 			try{
@@ -100,8 +41,7 @@ export async function jsa_aries_agents_shutdown() {
 			}
 			support.cache.remove(k);
 		}
-		return Promise.resolve();//original
-		//return window.setTimeout(()=>{Promise.resolve();},1000);
+		return Promise.resolve();
 	}catch(e){
 		return Promise.reject(e.toString());
 	}
