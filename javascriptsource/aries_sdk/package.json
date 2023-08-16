@@ -13,7 +13,6 @@
     "@aries-framework/anoncreds": "^0.4.0",
     "@aries-framework/anoncreds-rs": "^0.4.0",
     "@aries-framework/askar": "^0.4.0",
-    "@aries-framework/cheqd": "^0.4.0",
     "@aries-framework/core": "^0.4.0",
     "@aries-framework/indy-vdr": "^0.4.0",
     "@aries-framework/openid4vc-client": "^0.4.0",
