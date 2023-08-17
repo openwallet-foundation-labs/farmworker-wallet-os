@@ -311,6 +311,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
   		const legacyIndyProofFormatService=new LegacyIndyProofFormatService()
 		//-----------------------------------------------------------------------------------
 		let agentModules={};
+		//-----------------------------------------------------------------------------------
 		agentModules.connections=new ConnectionsModule({
 			autoAcceptConnections:autoAcceptConnections
 		});
