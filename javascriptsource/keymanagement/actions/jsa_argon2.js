@@ -10,13 +10,14 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import argon2 from 'react-native-argon2';
+import{mx_data_createAsync}from"../support/entidad";
 // END EXTRA CODE
 
 /**
  * @param {string} password - e.g. 'password'
  * @param {string} salt - e.g. '1234567891011121314151617181920212223242526272829303132333435363'
  * @param {string} options - optional json
- * @returns {Promise.<string>}
+ * @returns {Promise.<MxObject>}
  */
 export async function jsa_argon2(password, salt, options) {
 	// BEGIN USER CODE
@@ -31,9 +32,9 @@ export async function jsa_argon2(password, salt, options) {
 	}
 	const result=await argon2(password,salt,options);
 	const{rawHash,encodedHash}=result;
-	return Promise.resolve(JSON.stringify({
-		rawHash:rawHash,
-		encodedHash:encodedHash
-	},0,2));
+	let o=await mx_data_createAsync({entity:"KeyManagement.Argon2Result"});
+	o.set("rawHash",rawHash);
+	o.set("encodedHash",encodedHash);
+	return Promise.resolve(o);
 	// END USER CODE
 }
