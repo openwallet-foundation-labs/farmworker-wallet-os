@@ -5,8 +5,6 @@
 /.mendix-cache/
 /.classpath
 /.project
-/entidad-aries-sdk-mendix.mpr.bak
-/entidad-aries-sdk-mendix.mpr.lock
 /modeler-merge-marker
 /project-settings.user.json
 /javasource/*/proxies/
@@ -14,7 +12,5 @@
 /**/node_modules/
 !/javascriptsource/**/node_modules/
 /nativemobile/builds/
-/aries-sdk-mendix.mpr.bak
-/aries-sdk-mendix.mpr.lock
 /fwos-demo-app.mpr.bak
 /fwos-demo-app.mpr.lock
