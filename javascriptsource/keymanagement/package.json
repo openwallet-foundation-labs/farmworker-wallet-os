@@ -1,5 +1,5 @@
 {
-  "name": "sensitiveinfo",
+  "name": "keymanagement",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "json-query": "^2.2.2",
-    "package.json": "^2.0.1",
     "react-native-argon2": "^2.0.1",
     "react-native-sensitive-info": "^6.0.0-alpha.9"
   }
