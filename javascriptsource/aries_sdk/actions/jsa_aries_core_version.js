@@ -9,18 +9,19 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import {NativeModules} from 'react-native';
+import*as p					from'@aries-framework/core/package.json';
 // END EXTRA CODE
 
 /**
- * @param {string} path
- * @returns {Promise.<void>}
+ * Constructs a new Agent object based on configuration options given
+ * Caches constructed object in the running javascript context
+ * Returns a string value, the walletConfig id, that can be used to perform further operations on the constructed Agent object
+ * @returns {Promise.<string>}
  */
-export async function jsa_loadLibrary(path) {
+export async function jsa_aries_core_version() {
 	// BEGIN USER CODE
 	try{
-		await NativeModules.Loadlib.loadLibrary(path);
-		return Promise.resolve();
+		return Promise.resolve(p.version);
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

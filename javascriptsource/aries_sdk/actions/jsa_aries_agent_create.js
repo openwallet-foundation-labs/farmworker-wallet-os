@@ -198,6 +198,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				return Promise.reject("Invalid didCommMimeType parameter");																		// -
 				break;																															// -
 		}																																		// -
+		console.info("###4");
 		if(autoAcceptCredentials==null)autoAcceptCredentials="Never";																			// default
 		switch(autoAcceptCredentials){																											// -
 			case"Never":																														// -
@@ -213,6 +214,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				return Promise.reject("Invalid autoAcceptCredentials parameter");																// -
 				break;																															// -
 		}																																		// -
+		console.info("###5");
 		if(autoAcceptProofs==null)autoAcceptProofs="Never";																						// default
 		switch(autoAcceptProofs){																												// -
 			case"Never":																														// -

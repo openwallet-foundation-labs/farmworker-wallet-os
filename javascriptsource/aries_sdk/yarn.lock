@@ -10,45 +10,45 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@aries-framework/anoncreds-rs@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@aries-framework/anoncreds-rs/-/anoncreds-rs-0.4.0.tgz"
-  integrity sha512-9tMA4DwuyFg8qqLRBgTXfiA1jijYpAMosFP2CxUv8aGYwXV5xvMd4B/YbecuQh5NyvNZ9h7uR/JF3jIwkhrgxw==
+"@aries-framework/anoncreds-rs@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/@aries-framework/anoncreds-rs/-/anoncreds-rs-0.4.1.tgz"
+  integrity sha512-aacZV6Fm31Vzc9+nMltqNYHKMiBK9ZaiNhX9QTSEF5uBQOxA+BnJ9ZRfVPfGY3aLP7AkAbGeuE5pa/svNfP5dQ==
   dependencies:
-    "@aries-framework/anoncreds" "0.4.0"
-    "@aries-framework/core" "0.4.0"
+    "@aries-framework/anoncreds" "0.4.1"
+    "@aries-framework/core" "0.4.1"
     class-transformer "^0.5.1"
     class-validator "0.14.0"
     rxjs "^7.2.0"
     tsyringe "^4.7.0"
 
-"@aries-framework/anoncreds@^0.4.0", "@aries-framework/anoncreds@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@aries-framework/anoncreds/-/anoncreds-0.4.0.tgz"
-  integrity sha512-jzZVMXJoTutF5jrATYXHiavUi2APEUbvGiOA8EelP7cabVxCijoWh0DdTEBoGSUv9xuK26iSWVY0MmnAxD7l9g==
+"@aries-framework/anoncreds@^0.4.1", "@aries-framework/anoncreds@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/@aries-framework/anoncreds/-/anoncreds-0.4.1.tgz"
+  integrity sha512-aFlHAtCdL6BOS0Vq6YRSuInrTwp6gA8SVd0hcVAS8PwcLvFL3A2oS2FMh1TsY5ovnEjXbBanoZxbfPFXMa9YOQ==
   dependencies:
-    "@aries-framework/core" "0.4.0"
+    "@aries-framework/core" "0.4.1"
     bn.js "^5.2.1"
     class-transformer "0.5.1"
     class-validator "0.14.0"
     reflect-metadata "^0.1.13"
 
-"@aries-framework/askar@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@aries-framework/askar/-/askar-0.4.0.tgz"
-  integrity sha512-FQxT+NVUv/CSnlXY13Idilg7qA7xABEKOO2YGi5xUGiyruJDtqzQ6dWqGsa2odX3KE1baFFrNHgCC9I7N+++Jg==
+"@aries-framework/askar@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/@aries-framework/askar/-/askar-0.4.1.tgz"
+  integrity sha512-GGdo/P/1F15maLfFJuv/VbNY9eKHQLfJ8bZ1sTyFt7e8EqGInxNqoO/4tzJFFYze0dU71NgpPTAcmoh8gmcQ7A==
   dependencies:
-    "@aries-framework/core" "0.4.0"
+    "@aries-framework/core" "0.4.1"
     bn.js "^5.2.1"
     class-transformer "0.5.1"
     class-validator "0.14.0"
     rxjs "^7.2.0"
     tsyringe "^4.7.0"
 
-"@aries-framework/core@^0.4.0", "@aries-framework/core@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@aries-framework/core/-/core-0.4.0.tgz"
-  integrity sha512-Z/rTgpJMKTl9iQQd8GnNEV5wCZKdV+kkd+Y4e/KS+j+6yMOxrgaVGcAKlcFIPcHUc6l1iOetJFeVLSwftXW2Kg==
+"@aries-framework/core@^0.4.1", "@aries-framework/core@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/@aries-framework/core/-/core-0.4.1.tgz"
+  integrity sha512-5DV4Drbqjs1u0j06swMFtsVPyEwJJ9XB1h0XvHOfZKDrYKujVY0zkfpzDJrqKWw8I7B5L7K56XFKlRJ3jRCBNA==
   dependencies:
     "@digitalcredentials/jsonld" "^5.2.1"
     "@digitalcredentials/jsonld-signatures" "^9.3.1"
@@ -78,39 +78,39 @@
     varint "^6.0.0"
     web-did-resolver "^2.0.21"
 
-"@aries-framework/indy-vdr@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@aries-framework/indy-vdr/-/indy-vdr-0.4.0.tgz"
-  integrity sha512-0EshmjaNLLswDJnCHoFVAPZ68W+9KjKMA9aYi05vivdLCYlQDsvPSWOz4V2EB1DEosswqV1JTZOASUxfaIQQlg==
+"@aries-framework/indy-vdr@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/@aries-framework/indy-vdr/-/indy-vdr-0.4.1.tgz"
+  integrity sha512-qnWM0/8kZOw3j6Czci4sJULmfO5FVlTRmYQ9XKiJsaR9hqcQYs7fRbJdOdZG9NUfLxOnNd/0ZObCj8R7sz4WfQ==
   dependencies:
-    "@aries-framework/anoncreds" "0.4.0"
-    "@aries-framework/core" "0.4.0"
+    "@aries-framework/anoncreds" "0.4.1"
+    "@aries-framework/core" "0.4.1"
 
-"@aries-framework/openid4vc-client@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@aries-framework/openid4vc-client/-/openid4vc-client-0.4.0.tgz"
-  integrity sha512-DxsJLnBXInlDsejIUehGh6jclt4Eh6xSG+ugE0U0xwZcQAVJxDYnC8+qFU1Dw1Os4F4g2rR5zfryYE1ZJ+PQcw==
+"@aries-framework/openid4vc-client@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/@aries-framework/openid4vc-client/-/openid4vc-client-0.4.1.tgz"
+  integrity sha512-IsQc21FCdVd7tgrBBKseO6Qa2uEELtckqJxymyugSDe7U5ypUtLiFicoFAwPtMh4jUz77rHKhdmDbEAqggm9DQ==
   dependencies:
-    "@aries-framework/core" "0.4.0"
+    "@aries-framework/core" "0.4.1"
     "@sphereon/openid4vci-client" "^0.4.0"
     "@stablelib/random" "^1.0.2"
 
-"@aries-framework/question-answer@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@aries-framework/question-answer/-/question-answer-0.4.0.tgz"
-  integrity sha512-r2Lwuj+RI7jVK8hQppa9qJb98L6A+QdjLfUsp5pHzia86yuSTpz5TrkXgJFvNMgkyQjagMflrCU4LSf94NFd9w==
+"@aries-framework/question-answer@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/@aries-framework/question-answer/-/question-answer-0.4.1.tgz"
+  integrity sha512-6AZ2E5A1HVXQ2Ss2BZPxyMzncWTp6giCiGh2FURXNoHHXt46K6x1h8rDqNmNv4Hvp+/ciurG2CFlmL2sulFteg==
   dependencies:
-    "@aries-framework/core" "0.4.0"
+    "@aries-framework/core" "0.4.1"
     class-transformer "0.5.1"
     class-validator "0.14.0"
     rxjs "^7.2.0"
 
-"@aries-framework/react-native@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@aries-framework/react-native/-/react-native-0.4.0.tgz"
-  integrity sha512-lKCpM31eu9yu9/ZPJxxCH6zWw9RnSiFmBUHRQZltAWaIghkXkabEavwG+xykzNCnsPHIUKkJjUheqdeVsFkUiA==
+"@aries-framework/react-native@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/@aries-framework/react-native/-/react-native-0.4.1.tgz"
+  integrity sha512-ieKz6jA6bOadhibNXghzAZMC6/mu6c06eS4zx4Ubw3vtYg0izuqcEKfKSfLMRAymL2eYch7JsW5VO3OAzPShIw==
   dependencies:
-    "@aries-framework/core" "0.4.0"
+    "@aries-framework/core" "0.4.1"
     "@azure/core-asynciterator-polyfill" "^1.0.2"
     events "^3.3.0"
 
@@ -1346,9 +1346,9 @@
 
 "@entidad/questionnaire@git+http://github.com/entidad/aries-agent-module-questionnaire.git":
   version "0.0.1"
-  resolved "git+http://github.com/entidad/aries-agent-module-questionnaire.git#9193b63a1ee19b9d0e2a23207df47e6f854e7d6a"
+  resolved "git+http://github.com/entidad/aries-agent-module-questionnaire.git#17cd4c5e68b3c6c39262880268620c0aae598e53"
   dependencies:
-    "@aries-framework/core" "0.4.0"
+    "@aries-framework/core" "0.4.1"
     class-transformer "0.5.1"
     class-validator "0.14.0"
     node-fetch "^2.6.1"
@@ -5011,10 +5011,15 @@ libphonenumber-js@^1.10.14:
   resolved "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.10.40.tgz"
   integrity sha512-dWL0lV8Q+wr4XE4LxYG1Qr86kdfElCqXgGj9bm0HxOOGpvw4GEJeQxuiHyqCCXDxBctSQBfxM8HljiWf3INkMA==
 
-lightningcss-win32-x64-msvc@1.19.0:
+lightningcss-linux-x64-gnu@1.19.0:
   version "1.19.0"
-  resolved "https://registry.npmjs.org/lightningcss-win32-x64-msvc/-/lightningcss-win32-x64-msvc-1.19.0.tgz"
-  integrity sha512-C+VuUTeSUOAaBZZOPT7Etn/agx/MatzJzGRkeV+zEABmPuntv1zihncsi+AyGmjkkzq3wVedEy7h0/4S84mUtg==
+  resolved "https://registry.npmjs.org/lightningcss-linux-x64-gnu/-/lightningcss-linux-x64-gnu-1.19.0.tgz"
+  integrity sha512-0AFQKvVzXf9byrXUq9z0anMGLdZJS+XSDqidyijI5njIwj6MdbvX2UZK/c4FfNmeRa2N/8ngTffoIuOUit5eIQ==
+
+lightningcss-linux-x64-musl@1.19.0:
+  version "1.19.0"
+  resolved "https://registry.npmjs.org/lightningcss-linux-x64-musl/-/lightningcss-linux-x64-musl-1.19.0.tgz"
+  integrity sha512-SJoM8CLPt6ECCgSuWe+g0qo8dqQYVcPiW2s19dxkmSI5+Uu1GIRzyKA0b7QqmEXolA+oSJhQqCmJpzjY4CuZAg==
 
 lightningcss@~1.19.0:
   version "1.19.0"
@@ -7873,7 +7878,12 @@ ws@^6.2.2:
   dependencies:
     async-limiter "~1.0.0"
 
-ws@^7, ws@^7.5.1:
+ws@^7:
+  version "7.5.9"
+  resolved "https://registry.npmjs.org/ws/-/ws-7.5.9.tgz"
+  integrity sha512-F+P9Jil7UiSKSkppIiD94dN07AwvFixvLIj1Og1Rl9GGMuNipJnV9JzjD6XuqmAeiswGvUmNLjr5cFuXwNS77Q==
+
+ws@^7.5.1:
   version "7.5.9"
   resolved "https://registry.npmjs.org/ws/-/ws-7.5.9.tgz"
   integrity sha512-F+P9Jil7UiSKSkppIiD94dN07AwvFixvLIj1Og1Rl9GGMuNipJnV9JzjD6XuqmAeiswGvUmNLjr5cFuXwNS77Q==
