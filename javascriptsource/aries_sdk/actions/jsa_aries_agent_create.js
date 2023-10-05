@@ -87,9 +87,27 @@ import{QuestionnaireModule}					from'@entidad/questionnaire';
  * @param {boolean} useDidSovPrefixWhereAllowed
  * @param {boolean} useDidKeyInProtocols
  * @param {boolean} useModuleOpenId4VC
+ * @param {boolean} v1ProofProtocol
+ * @param {boolean} v2ProofProtocol
+ * @param {boolean} v1CredentialProtocol
+ * @param {boolean} v2CredentialProtocol
+ * @param {boolean} anoncreds
+ * @param {boolean} anoncredsRs
+ * @param {boolean} indyVdr
+ * @param {boolean} mediationRecipient
+ * @param {boolean} questionAnswer
+ * @param {boolean} questionnaire
+ * @param {boolean} cheqdDidRegistrar
+ * @param {boolean} keyDidRegistrar
+ * @param {boolean} jwkDidRegistrar
+ * @param {boolean} cheqdDidResolver
+ * @param {boolean} webDidResolver
+ * @param {boolean} keyDidResolver
+ * @param {boolean} jwkDidResolver
+ * @param {boolean} indyVdrIndyDidResolver
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, questionAnswer, questionnaire, cheqdDidRegistrar, keyDidRegistrar, jwkDidRegistrar, cheqdDidResolver, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver) {
 	// BEGIN USER CODE
 	try{
 		//--------------------------------------------------------------------------------
@@ -198,7 +216,6 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				return Promise.reject("Invalid didCommMimeType parameter");																		// -
 				break;																															// -
 		}																																		// -
-		console.info("###4");
 		if(autoAcceptCredentials==null)autoAcceptCredentials="Never";																			// default
 		switch(autoAcceptCredentials){																											// -
 			case"Never":																														// -
@@ -214,7 +231,6 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				return Promise.reject("Invalid autoAcceptCredentials parameter");																// -
 				break;																															// -
 		}																																		// -
-		console.info("###5");
 		if(autoAcceptProofs==null)autoAcceptProofs="Never";																						// default
 		switch(autoAcceptProofs){																												// -
 			case"Never":																														// -
@@ -318,59 +334,97 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			autoAcceptConnections:autoAcceptConnections
 		});
 		//-----------------------------------------------------------------------------------
-		agentModules.credentials=new CredentialsModule({
-			autoAcceptCredentials:autoAcceptCredential_,
-			credentialProtocols:[
+		let credentialProtocols=[]
+		if(v1CredentialProtocol){
+			credentialProtocols.push(
 				new V1CredentialProtocol({
 					indyCredentialFormat:legacyIndyCredentialFormatService,
-				}),
+				})
+			);
+		}
+		if(v2CredentialProtocol){
+			credentialProtocols.push(
 				new V2CredentialProtocol({
 					credentialFormats:[
 						legacyIndyCredentialFormatService,
 						new AnonCredsCredentialFormatService()
-					],
+					]
 				})
-			],
+			);
+		}
+		agentModules.credentials=new CredentialsModule({
+			autoAcceptCredentials:autoAcceptCredential_,
+			credentialProtocols:credentialProtocols
 		});
 		//-----------------------------------------------------------------------------------
-		agentModules.proofs=new ProofsModule({
-			autoAcceptProofs:autoAcceptProofs,
-			proofProtocols:[
+		let proofProtocols=[]
+		if(v1ProofProtocol){
+			proofProtocols.push(
 				new V1ProofProtocol({
 					indyProofFormat:legacyIndyProofFormatService,
-				}),
+				})
+			);
+		}
+		if(v2ProofProtocol){
+			proofProtocols.push(
 				new V2ProofProtocol({
 					proofFormats:[legacyIndyProofFormatService,new AnonCredsProofFormatService()],
-				}),
-			],
+				})
+			);
+		}
+		agentModules.proofs=new ProofsModule({
+			autoAcceptProofs:autoAcceptProofs,
+			proofProtocols:proofProtocols
 		});
 		//-----------------------------------------------------------------------------------
-		agentModules.anoncreds=new AnonCredsModule({
-			registries:[new IndyVdrAnonCredsRegistry()]
-		});
+		if(anoncreds){
+			agentModules.anoncreds=new AnonCredsModule({
+				registries:[new IndyVdrAnonCredsRegistry()]
+			});
+		}
 		//-----------------------------------------------------------------------------------
-		agentModules.anoncredsRs=new AnonCredsRsModule({
-			anoncreds,
-		});
+		if(anoncredsRs){
+			agentModules.anoncredsRs=new AnonCredsRsModule({
+				anoncreds,
+			});
+		}
 		//-----------------------------------------------------------------------------------
-		agentModules.indyVdr=new IndyVdrModule({
-			indyVdr,
-			networks:indyLedgers==null?[]:indyLedgers,
-		});
+		if(indyVdr){
+			agentModules.indyVdr=new IndyVdrModule({
+				indyVdr,
+				networks:indyLedgers==null?[]:indyLedgers,
+			});
+		}
 		//-----------------------------------------------------------------------------------
+		let dids_registrars=[];
+		if(cheqdDidRegistrar){
+			//dids_registrars.push(new CheqdDidRegistrar());
+		}
+		if(keyDidRegistrar){
+			dids_registrars.push(new KeyDidRegistrar());
+		}
+		if(jwkDidRegistrar){
+			dids_registrars.push(new JwkDidRegistrar());
+		}
+		let dids_resolvers=[];
+		if(cheqdDidResolver){			
+			//dids_resolvers.push(new CheqdDidResolver());
+		}
+		if(webDidResolver){
+			dids_resolvers.push(new WebDidResolver());
+		}
+		if(keyDidResolver){
+			dids_resolvers.push(new KeyDidResolver());
+		}
+		if(jwkDidResolver){
+			dids_resolvers.push(new JwkDidResolver());
+		}
+		if(indyVdrIndyDidResolver){
+			dids_resolvers.push(new IndyVdrIndyDidResolver());
+		}
 		agentModules.dids=new DidsModule({
-			registrars:[
-				//new CheqdDidRegistrar(),
-				new KeyDidRegistrar(),
-				new JwkDidRegistrar()
-			],
-			resolvers:[
-				//new CheqdDidResolver(),
-				new WebDidResolver(),
-				new KeyDidResolver(),
-				new JwkDidResolver(),
-				new IndyVdrIndyDidResolver()
-			]
+			registrars:dids_registrars,
+			resolvers:dids_resolvers
 		});
 		//-----------------------------------------------------------------------------------
 		agentModules.askar=new AskarModule({
@@ -395,13 +449,19 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			agentModules.openId4VcClient=new OpenId4VcClientModule();		
 		}
 		//-----------------------------------------------------------------------------------
-		agentModules.mediationRecipient=new MediationRecipientModule((mediationConnectionsInvitation!=null)?({
-			mediatorInvitationUrl:mediationConnectionsInvitation
-		}):({}));
+		if(mediationRecipient){
+			agentModules.mediationRecipient=new MediationRecipientModule((mediationConnectionsInvitation!=null)?({
+				mediatorInvitationUrl:mediationConnectionsInvitation
+			}):({}));
+		}
 		//-----------------------------------------------------------------------------------
-		agentModules.questionAnswer=new QuestionAnswerModule();
+		if(questionAnswer){
+			agentModules.questionAnswer=new QuestionAnswerModule();
+		}
 		//-----------------------------------------------------------------------------------
-		agentModules.questionnaire=new QuestionnaireModule();
+		if(questionnaire){
+			agentModules.questionnaire=new QuestionnaireModule();
+		}
 		//-----------------------------------------------------------------------------------
   		const agent=new Agent({
 			config:config,

@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import support from "../support/entidad";
 // END EXTRA CODE
 
 /**
@@ -21,6 +22,10 @@ import { Big } from "big.js";
  * @see — https://github.com/hyperledger/aries-rfcs/blob/560ffd23361f16a01e34ccb7dcc908ec28c5ddb1/features/0557-discover-features-v2/README.md
  * 
  * @returns — array containing all matching features (can be empty)
+ * 
+ * Example queries value:
+ * {"featureType":"protocol","match": "https://didcomm.org/didexchange/1.0/*"}
+ * 
  * @param {string} agent_key
  * @param {string} queries - json?
  * @returns {Promise.<string>}
@@ -37,7 +42,7 @@ export async function jsa_aries_agent_features_query(agent_key, queries) {
 		}
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(agent.features.query(queries)));
+		return Promise.resolve(JSON.stringify(agent.features.query(queries),0,2));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}
