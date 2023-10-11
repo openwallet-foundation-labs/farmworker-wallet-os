@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 /* global BigInt */
 import support 								from"../support/entidad";
-import "../shim2.js";
+//import "../shim2.js";
 //import crypto from "crypto";
 import{KeyDerivationMethod}					from'@aries-framework/core';
 import{DidCommMimeType}						from'@aries-framework/core';
