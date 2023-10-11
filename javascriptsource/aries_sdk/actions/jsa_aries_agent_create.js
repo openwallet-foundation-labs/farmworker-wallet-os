@@ -9,7 +9,10 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+/* global BigInt */
 import support 								from"../support/entidad";
+import "../shim2.js";
+//import crypto from "crypto";
 import{KeyDerivationMethod}					from'@aries-framework/core';
 import{DidCommMimeType}						from'@aries-framework/core';
 import{AutoAcceptCredential}				from'@aries-framework/core';
@@ -45,7 +48,7 @@ import{AskarModule}							from'@aries-framework/askar';
 //import{CheqdModule}						from'@aries-framework/cheqd';						//--new
 //import{CheqdModuleConfig}					from'@aries-framework/cheqd';						//--new
 //import{CheqdAnonCredsRegistry}			from'@aries-framework/cheqd';						//--new
-//import{CheqdDidRegistrar}					from'@aries-framework/cheqd';						//--new
+////import{CheqdDidRegistrar}					from'@aries-framework/cheqd';						//--new
 //import{CheqdDidResolver}					from'@aries-framework/cheqd';						//--new
 import{OpenId4VcClientModule}				from'@aries-framework/openid4vc-client';
 import{anoncreds}							from'@hyperledger/anoncreds-react-native';
@@ -392,11 +395,18 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(indyVdr){
 			agentModules.indyVdr=new IndyVdrModule({
 				indyVdr,
+				//compare with
+				//https://github.com/animo/paradym-wallet/blob/0eed5477ad704e851c52e1b7ccc68d92df31fd9f/packages/agent/src/agent.ts#L29
 				networks:indyLedgers==null?[]:indyLedgers,
 			});
 		}
 		//-----------------------------------------------------------------------------------
 		let dids_registrars=[];
+		/*
+		if(indySdkIndyDidRegistrar){
+			dids_registrars.push(new IndySdkIndyDidRegistrar());
+		}
+		*/
 		if(cheqdDidRegistrar){
 			//dids_registrars.push(new CheqdDidRegistrar());
 		}
@@ -407,9 +417,6 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			dids_registrars.push(new JwkDidRegistrar());
 		}
 		let dids_resolvers=[];
-		if(cheqdDidResolver){			
-			//dids_resolvers.push(new CheqdDidResolver());
-		}
 		if(webDidResolver){
 			dids_resolvers.push(new WebDidResolver());
 		}
@@ -426,6 +433,28 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			registrars:dids_registrars,
 			resolvers:dids_resolvers
 		});
+		/*
+		if(cheqdDidResolver){			
+			dids_resolvers.push(new CheqdDidResolver());
+		}
+		*/
+		/*
+		if(indySdkSovDidResolver){
+			dids_resolvers.push(new IndySdkSovDidResolver());
+		}
+		if(indySdkIndyDidResolver){
+			dids_resolvers.push(new IndySdkIndyDidResolver());
+		}
+		*/
+		/*
+		if(indyVdrSovDidResolver){
+			dids_resolvers.push(new IndyVdrSovDidResolver());
+		}
+		if(indyVdrIndyDidResolver){
+			dids_resolvers.push(new IndyVdrIndyDidResolver());
+		}
+		*/
+
 		//-----------------------------------------------------------------------------------
 		agentModules.askar=new AskarModule({
 			ariesAskar,
