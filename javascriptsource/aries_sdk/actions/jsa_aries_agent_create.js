@@ -42,13 +42,14 @@ import{AnonCredsModule}						from'@aries-framework/anoncreds';
 import{AnonCredsRsModule}					from'@aries-framework/anoncreds-rs';
 import{IndyVdrAnonCredsRegistry}			from'@aries-framework/indy-vdr';
 import{IndyVdrIndyDidResolver}				from'@aries-framework/indy-vdr';
+import{IndyVdrSovDidResolver}				from'@aries-framework/indy-vdr';
 import{IndyVdrModule}						from'@aries-framework/indy-vdr';
 import{agentDependencies}					from'@aries-framework/react-native';
 import{AskarModule}							from'@aries-framework/askar';
 import{CheqdModule}						from'@aries-framework/cheqd';						//--new
 import{CheqdModuleConfig}					from'@aries-framework/cheqd';						//--new
 import{CheqdAnonCredsRegistry}			from'@aries-framework/cheqd';						//--new
-////import{CheqdDidRegistrar}					from'@aries-framework/cheqd';						//--new
+import{CheqdDidRegistrar}					from'@aries-framework/cheqd';						//--new
 import{CheqdDidResolver}					from'@aries-framework/cheqd';						//--new
 import{OpenId4VcClientModule}				from'@aries-framework/openid4vc-client';
 import{anoncreds}							from'@hyperledger/anoncreds-react-native';
@@ -108,12 +109,13 @@ import{QuestionnaireModule}					from'@entidad/questionnaire';
  * @param {boolean} keyDidResolver
  * @param {boolean} jwkDidResolver
  * @param {boolean} indyVdrIndyDidResolver
+ * @param {boolean} indyVdrSovDidResolver
  * @param {boolean} cheqdEnabled
  * @param {"Aries_SDK.enum_CheqdNetwork.testnet"|"Aries_SDK.enum_CheqdNetwork.mainnet"} cheqdNetwork
  * @param {string} cheqdCosmoPlayerSeed
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, questionAnswer, questionnaire, cheqdDidRegistrar, keyDidRegistrar, jwkDidRegistrar, cheqdDidResolver, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, cheqdEnabled, cheqdNetwork, cheqdCosmoPlayerSeed) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, questionAnswer, questionnaire, cheqdDidRegistrar, keyDidRegistrar, jwkDidRegistrar, cheqdDidResolver, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, cheqdEnabled, cheqdNetwork, cheqdCosmoPlayerSeed) {
 	// BEGIN USER CODE
 	try{
 		//--------------------------------------------------------------------------------
@@ -385,7 +387,8 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//-----------------------------------------------------------------------------------
 		if(anoncreds){
 			agentModules.anoncreds=new AnonCredsModule({
-				registries:[new IndyVdrAnonCredsRegistry()]
+				//todo:add configurability or turn cheqd off based on main cheqd enabling parameter
+				registries:[new IndyVdrAnonCredsRegistry(),new CheqdAnonCredsRegistry()]
 			});
 		}
 		//-----------------------------------------------------------------------------------
@@ -410,15 +413,18 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			dids_registrars.push(new IndySdkIndyDidRegistrar());
 		}
 		*/
+		/* not in paradym wallet, skip for now
 		if(cheqdDidRegistrar){
-			//dids_registrars.push(new CheqdDidRegistrar());
+			dids_registrars.push(new CheqdDidRegistrar());
 		}
+		*/
 		if(keyDidRegistrar){
 			dids_registrars.push(new KeyDidRegistrar());
 		}
 		if(jwkDidRegistrar){
 			dids_registrars.push(new JwkDidRegistrar());
 		}
+		//-----------------------------------------------------------------------------------
 		let dids_resolvers=[];
 		if(webDidResolver){
 			dids_resolvers.push(new WebDidResolver());
@@ -429,18 +435,15 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(jwkDidResolver){
 			dids_resolvers.push(new JwkDidResolver());
 		}
+		if(cheqdDidResolver){
+			dids_resolvers.push(new CheqdDidResolver());
+		}
+		if(indyVdrSovDidResolver){
+			dids_resolvers.push(new IndyVdrSovDidResolver());
+		}
 		if(indyVdrIndyDidResolver){
 			dids_resolvers.push(new IndyVdrIndyDidResolver());
 		}
-		agentModules.dids=new DidsModule({
-			registrars:dids_registrars,
-			resolvers:dids_resolvers
-		});
-		if(cheqdDidResolver){			
-			dids_resolvers.push(new CheqdDidResolver());
-		}
-		/*
-		*/
 		/*
 		if(indySdkSovDidResolver){
 			dids_resolvers.push(new IndySdkSovDidResolver());
@@ -457,7 +460,10 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			dids_resolvers.push(new IndyVdrIndyDidResolver());
 		}
 		*/
-
+		agentModules.dids=new DidsModule({
+			registrars:dids_registrars,
+			resolvers:dids_resolvers
+		});
 		//-----------------------------------------------------------------------------------
 		agentModules.askar=new AskarModule({
 			ariesAskar,
