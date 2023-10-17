@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 /* global BigInt */
 import support 								from"../support/entidad";
-//import "../shim2.js";
+import "../shim2.js";
 //import crypto from "crypto";
 import{KeyDerivationMethod}					from'@aries-framework/core';
 import{DidCommMimeType}						from'@aries-framework/core';
@@ -45,11 +45,11 @@ import{IndyVdrIndyDidResolver}				from'@aries-framework/indy-vdr';
 import{IndyVdrModule}						from'@aries-framework/indy-vdr';
 import{agentDependencies}					from'@aries-framework/react-native';
 import{AskarModule}							from'@aries-framework/askar';
-//import{CheqdModule}						from'@aries-framework/cheqd';						//--new
-//import{CheqdModuleConfig}					from'@aries-framework/cheqd';						//--new
-//import{CheqdAnonCredsRegistry}			from'@aries-framework/cheqd';						//--new
+import{CheqdModule}						from'@aries-framework/cheqd';						//--new
+import{CheqdModuleConfig}					from'@aries-framework/cheqd';						//--new
+import{CheqdAnonCredsRegistry}			from'@aries-framework/cheqd';						//--new
 ////import{CheqdDidRegistrar}					from'@aries-framework/cheqd';						//--new
-//import{CheqdDidResolver}					from'@aries-framework/cheqd';						//--new
+import{CheqdDidResolver}					from'@aries-framework/cheqd';						//--new
 import{OpenId4VcClientModule}				from'@aries-framework/openid4vc-client';
 import{anoncreds}							from'@hyperledger/anoncreds-react-native';
 import{indyVdr}								from'@hyperledger/indy-vdr-react-native';
@@ -433,10 +433,10 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			registrars:dids_registrars,
 			resolvers:dids_resolvers
 		});
-		/*
 		if(cheqdDidResolver){			
 			dids_resolvers.push(new CheqdDidResolver());
 		}
+		/*
 		*/
 		/*
 		if(indySdkSovDidResolver){
@@ -460,7 +460,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			ariesAskar,
 		});
 		//-----------------------------------------------------------------------------------
-		/*
+		//todo:add configuration 
 		agentModules.cheqd=new CheqdModule(
 			new CheqdModuleConfig({
 			networks: [
@@ -472,6 +472,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				],
 			})
 		);
+		/*
 		*/
 		//-----------------------------------------------------------------------------------
 		if(useModuleOpenId4VC){
