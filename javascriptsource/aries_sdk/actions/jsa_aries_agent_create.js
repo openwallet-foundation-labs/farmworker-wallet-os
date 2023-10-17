@@ -108,9 +108,12 @@ import{QuestionnaireModule}					from'@entidad/questionnaire';
  * @param {boolean} keyDidResolver
  * @param {boolean} jwkDidResolver
  * @param {boolean} indyVdrIndyDidResolver
+ * @param {boolean} cheqdEnabled
+ * @param {"Aries_SDK.enum_CheqdNetwork.testnet"|"Aries_SDK.enum_CheqdNetwork.mainnet"} cheqdNetwork
+ * @param {string} cheqdCosmoPlayerSeed
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, questionAnswer, questionnaire, cheqdDidRegistrar, keyDidRegistrar, jwkDidRegistrar, cheqdDidResolver, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, questionAnswer, questionnaire, cheqdDidRegistrar, keyDidRegistrar, jwkDidRegistrar, cheqdDidResolver, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, cheqdEnabled, cheqdNetwork, cheqdCosmoPlayerSeed) {
 	// BEGIN USER CODE
 	try{
 		//--------------------------------------------------------------------------------
@@ -460,20 +463,22 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			ariesAskar,
 		});
 		//-----------------------------------------------------------------------------------
-		//todo:add configuration 
-		agentModules.cheqd=new CheqdModule(
-			new CheqdModuleConfig({
-			networks: [
-					{
-						network: 'testnet',
-						cosmosPayerSeed:
-						'robust across amount corn curve panther opera wish toe ring bleak empower wreck party abstract glad average muffin picnic jar squeeze annual long aunt',
-					},
-				],
-			})
-		);
-		/*
-		*/
+// * @param {"Aries_SDK.enum_CheqdNetwork.testnet"|"Aries_SDK.enum_CheqdNetwork.mainnet"} cheqdNetwork
+// * @param {string} cheqdCosmoPlayerSeed
+// * @returns {Promise.<string>}
+		//todo:add configuration
+		if(cheqdEnabled){
+			agentModules.cheqd=new CheqdModule(
+				new CheqdModuleConfig({
+				networks:[
+						{
+							network:cheqdNetwork,
+							cosmosPayerSeed:cheqdCosmoPlayerSeed
+						},
+					],
+				})
+			);
+		}
 		//-----------------------------------------------------------------------------------
 		if(useModuleOpenId4VC){
 			agentModules.openId4VcClient=new OpenId4VcClientModule();		
