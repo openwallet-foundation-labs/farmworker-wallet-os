@@ -344,6 +344,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//-----------------------------------------------------------------------------------
 		let credentialProtocols=[]
 		if(v1CredentialProtocol){
+			console.info("credentials:credentialProtocols:v1CredentialProtocol");
 			credentialProtocols.push(
 				new V1CredentialProtocol({
 					indyCredentialFormat:legacyIndyCredentialFormatService,
@@ -351,6 +352,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			);
 		}
 		if(v2CredentialProtocol){
+			console.info("credentials:credentialProtocols:v2CredentialProtocol");
 			credentialProtocols.push(
 				new V2CredentialProtocol({
 					credentialFormats:[
@@ -367,16 +369,21 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//-----------------------------------------------------------------------------------
 		let proofProtocols=[]
 		if(v1ProofProtocol){
+			console.info("credentials:proofProtocols:v1ProofProtocol");
 			proofProtocols.push(
 				new V1ProofProtocol({
-					indyProofFormat:legacyIndyProofFormatService,
+					indyProofFormat:new LegacyIndyProofFormatService()//legacyIndyProofFormatService,
 				})
 			);
 		}
 		if(v2ProofProtocol){
+			console.info("credentials:proofProtocols:v2ProofProtocol");
 			proofProtocols.push(
 				new V2ProofProtocol({
-					proofFormats:[legacyIndyProofFormatService,new AnonCredsProofFormatService()],
+					proofFormats:[
+						new LegacyIndyProofFormatService(),//legacyIndyProofFormatService,
+						new AnonCredsProofFormatService()
+					],
 				})
 			);
 		}
@@ -388,7 +395,10 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(anoncreds){
 			agentModules.anoncreds=new AnonCredsModule({
 				//todo:add configurability or turn cheqd off based on main cheqd enabling parameter
-				registries:[new IndyVdrAnonCredsRegistry(),new CheqdAnonCredsRegistry()]
+				registries:[
+					new IndyVdrAnonCredsRegistry(),
+					new CheqdAnonCredsRegistry()
+				]
 			});
 		}
 		//-----------------------------------------------------------------------------------
@@ -413,35 +423,44 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			dids_registrars.push(new IndySdkIndyDidRegistrar());
 		}
 		*/
-		/* not in paradym wallet, skip for now
+		/* not in paradym wallet, please disable in afj configuration screen
+		*/
 		if(cheqdDidRegistrar){
+			console.info("registrar:cheqdDidRegistrar");
 			dids_registrars.push(new CheqdDidRegistrar());
 		}
-		*/
 		if(keyDidRegistrar){
+			console.info("registrar:keyDidRegistrar");
 			dids_registrars.push(new KeyDidRegistrar());
 		}
 		if(jwkDidRegistrar){
+			console.info("registrar:jwkDidRegistrar");
 			dids_registrars.push(new JwkDidRegistrar());
 		}
 		//-----------------------------------------------------------------------------------
 		let dids_resolvers=[];
 		if(webDidResolver){
+			console.info("resolver:webDidResolver");
 			dids_resolvers.push(new WebDidResolver());
 		}
 		if(keyDidResolver){
+			console.info("resolver:keyDidResolver");
 			dids_resolvers.push(new KeyDidResolver());
 		}
 		if(jwkDidResolver){
+			console.info("resolver:jwkDidResolver");
 			dids_resolvers.push(new JwkDidResolver());
 		}
 		if(cheqdDidResolver){
+			console.info("resolver:cheqdDidResolver");
 			dids_resolvers.push(new CheqdDidResolver());
 		}
 		if(indyVdrSovDidResolver){
+			console.info("resolver:indyVdrSovDidResolver");
 			dids_resolvers.push(new IndyVdrSovDidResolver());
 		}
 		if(indyVdrIndyDidResolver){
+			console.info("resolver:indyVdrIndyDidResolver");
 			dids_resolvers.push(new IndyVdrIndyDidResolver());
 		}
 		/*
@@ -466,7 +485,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		});
 		//-----------------------------------------------------------------------------------
 		agentModules.askar=new AskarModule({
-			ariesAskar,
+			ariesAskar:ariesAskar
 		});
 		//-----------------------------------------------------------------------------------
 // * @param {"Aries_SDK.enum_CheqdNetwork.testnet"|"Aries_SDK.enum_CheqdNetwork.mainnet"} cheqdNetwork
@@ -487,12 +506,13 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		}
 		//-----------------------------------------------------------------------------------
 		if(useModuleOpenId4VC){
-			agentModules.openId4VcClient=new OpenId4VcClientModule();		
+			agentModules.openId4VcClient=new OpenId4VcClientModule();
 		}
 		//-----------------------------------------------------------------------------------
 		if(mediationRecipient){
 			agentModules.mediationRecipient=new MediationRecipientModule((mediationConnectionsInvitation!=null)?({
 				mediatorInvitationUrl:mediationConnectionsInvitation
+				//todo:        mediatorPickupStrategy: MediatorPickupStrategy.X,
 			}):({}));
 		}
 		//-----------------------------------------------------------------------------------
