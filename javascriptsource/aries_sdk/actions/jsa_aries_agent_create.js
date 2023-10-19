@@ -327,7 +327,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(useLegacyDidSovPrefix!=null&&useLegacyDidSovPrefix!=false)config.useLegacyDidSovPrefix=useLegacyDidSovPrefix;
 		if(connectionImageUrl!=null)config.connectionImageUrl=connectionImageUrl;
 		if(autoUpdateStorageOnStartup!=null&&autoUpdateStorageOnStartup!=false)config.autoUpdateStorageOnStartup=autoUpdateStorageOnStartup;
-		if(autoAcceptConnections!=null&&autoAcceptConnections==true)config.autoAcceptConnections=autoAcceptConnections;		
+		if(autoAcceptConnections!=null/*&&autoAcceptConnections==true*/)config.autoAcceptConnections=autoAcceptConnections;		
 		if(connectToIndyLedgerOnStartup!=null)config.connectToIndyLedgerOnStartup=connectToIndyLedgerOnStartup;
 		if(logger!=null)config.logger=logger;
 		if(useDidSovPrefixWhereAllowed!=null)config.useDidSovPrefixWhereAllowed=useDidSovPrefixWhereAllowed;
