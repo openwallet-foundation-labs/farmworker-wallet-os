@@ -9,7 +9,6 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-/* global BigInt */
 import support 								from"../support/entidad";
 import "../shim2.js";
 //import crypto from "crypto";
@@ -327,7 +326,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(useLegacyDidSovPrefix!=null&&useLegacyDidSovPrefix!=false)config.useLegacyDidSovPrefix=useLegacyDidSovPrefix;
 		if(connectionImageUrl!=null)config.connectionImageUrl=connectionImageUrl;
 		if(autoUpdateStorageOnStartup!=null&&autoUpdateStorageOnStartup!=false)config.autoUpdateStorageOnStartup=autoUpdateStorageOnStartup;
-		if(autoAcceptConnections!=null/*&&autoAcceptConnections==true*/)config.autoAcceptConnections=autoAcceptConnections;		
+		if(autoAcceptConnections!=null)config.autoAcceptConnections=autoAcceptConnections;		
 		if(connectToIndyLedgerOnStartup!=null)config.connectToIndyLedgerOnStartup=connectToIndyLedgerOnStartup;
 		if(logger!=null)config.logger=logger;
 		if(useDidSovPrefixWhereAllowed!=null)config.useDidSovPrefixWhereAllowed=useDidSovPrefixWhereAllowed;
@@ -418,13 +417,10 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		}
 		//-----------------------------------------------------------------------------------
 		let dids_registrars=[];
-		/*
-		if(indySdkIndyDidRegistrar){
-			dids_registrars.push(new IndySdkIndyDidRegistrar());
-		}
-		*/
-		/* not in paradym wallet, please disable in afj configuration screen
-		*/
+		//if(indySdkIndyDidRegistrar){
+		//	dids_registrars.push(new IndySdkIndyDidRegistrar());
+		//}
+		// not in paradym wallet, please disable in afj configuration screen
 		if(cheqdDidRegistrar){
 			console.info("registrar:cheqdDidRegistrar");
 			dids_registrars.push(new CheqdDidRegistrar());
@@ -463,22 +459,18 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			console.info("resolver:indyVdrIndyDidResolver");
 			dids_resolvers.push(new IndyVdrIndyDidResolver());
 		}
-		/*
-		if(indySdkSovDidResolver){
-			dids_resolvers.push(new IndySdkSovDidResolver());
-		}
-		if(indySdkIndyDidResolver){
-			dids_resolvers.push(new IndySdkIndyDidResolver());
-		}
-		*/
-		/*
-		if(indyVdrSovDidResolver){
-			dids_resolvers.push(new IndyVdrSovDidResolver());
-		}
-		if(indyVdrIndyDidResolver){
-			dids_resolvers.push(new IndyVdrIndyDidResolver());
-		}
-		*/
+		//if(indySdkSovDidResolver){
+		//	dids_resolvers.push(new IndySdkSovDidResolver());
+		//}
+		//if(indySdkIndyDidResolver){
+		//	dids_resolvers.push(new IndySdkIndyDidResolver());
+		//}
+		//if(indyVdrSovDidResolver){
+		//	dids_resolvers.push(new IndyVdrSovDidResolver());
+		//}
+		//if(indyVdrIndyDidResolver){
+		//	dids_resolvers.push(new IndyVdrIndyDidResolver());
+		//}
 		agentModules.dids=new DidsModule({
 			registrars:dids_registrars,
 			resolvers:dids_resolvers
@@ -529,6 +521,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			dependencies:agentDependencies,
 			modules:agentModules,
 		});
+		
 		return Promise.resolve(support.cache.put(agent,walletConfig_id));
 	}catch(e){
 		return Promise.reject(e.toString());
