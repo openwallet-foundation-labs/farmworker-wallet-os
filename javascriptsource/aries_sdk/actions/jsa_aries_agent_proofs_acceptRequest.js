@@ -77,6 +77,21 @@ export async function jsa_aries_agent_proofs_acceptRequest(agent_key, proofRecor
 			return Promise.reject("Argument proofFormats is not a valid JSON object");
 		}
 		if(comments==null)/*optional*/;
+		//options:
+		/*
+https://github.com/hyperledger/aries-framework-javascript/blob/b2ba7c7197139e780cbb95eed77dc0a2ad3b3210/packages/core/src/modules/proofs/ProofsApiOptions.ts#L95
+export interface AcceptProofRequestOptions<PPs extends ProofProtocol[] = ProofProtocol[]> extends BaseOptions {
+  proofRecordId: string
+  ///
+  // whether to enable return routing on the send presentation message. This value only
+  // has an effect for connectionless exchanges.
+  useReturnRoute?: boolean
+  proofFormats?: ProofFormatPayload<ProofFormatsFromProtocols<PPs>, 'acceptRequest'>
+  goalCode?: string
+  // @default true 
+  willConfirm?: boolean
+}
+		*/		
 		let options={};
 		if(proofRecordId!=null)options.proofRecordId=proofRecordId;
 		//17:11 2023/06/30
@@ -87,15 +102,17 @@ export async function jsa_aries_agent_proofs_acceptRequest(agent_key, proofRecor
 		//if(comments!=null)options.comments=comments;
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		console.info(JSON.stringify(options,0,2)); 
 		//17:11 2023/06/30
 		//do like this
-		const requestedCredentials = await agent.proofs.selectCredentialsForRequest({
-			proofRecordId: proofRecordId,
-		});
+		//const requestedCredentials = await agent.proofs.selectCredentialsForRequest({
+		//	proofRecordId: proofRecordId,
+		//});
 		//17:11 2023/06/30
 		//do like this
-		options.proofFormats=requestedCredentials.proofFormats;
+		//options.proofFormats=requestedCredentials.proofFormats;
+		//16:07 2023/10/23
+		//https://github.com/hyperledger/aries-framework-javascript/blob/b2ba7c7197139e780cbb95eed77dc0a2ad3b3210/demo/src/Alice.ts#L59
+		options.proofRecordId=proofRecordId;
 		return Promise.resolve(JSON.stringify(await agent.proofs.acceptRequest(options)));
 	}catch(e){
 		return Promise.reject(e.toString());
