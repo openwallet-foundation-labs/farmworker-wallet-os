@@ -16,9 +16,9 @@ import { Big } from "big.js";
  */
 export async function jsa_ishermes() {
 	// BEGIN USER CODE
-	try{
+	try {
 		return Promise.resolve(!!global.HermesInternal);
-	}catch(e){
+	} catch (e) {
 		return Promise.reject(e.toString());
 	}
 	// END USER CODE
