@@ -10,6 +10,8 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import support 								from"../support/entidad";
+import "../shim.js";
+//import crypto from "crypto";
 import{KeyDerivationMethod}					from'@aries-framework/core';
 import{DidCommMimeType}						from'@aries-framework/core';
 import{AutoAcceptCredential}				from'@aries-framework/core';
@@ -39,14 +41,15 @@ import{AnonCredsModule}						from'@aries-framework/anoncreds';
 import{AnonCredsRsModule}					from'@aries-framework/anoncreds-rs';
 import{IndyVdrAnonCredsRegistry}			from'@aries-framework/indy-vdr';
 import{IndyVdrIndyDidResolver}				from'@aries-framework/indy-vdr';
+import{IndyVdrSovDidResolver}				from'@aries-framework/indy-vdr';
 import{IndyVdrModule}						from'@aries-framework/indy-vdr';
 import{agentDependencies}					from'@aries-framework/react-native';
 import{AskarModule}							from'@aries-framework/askar';
-//import{CheqdModule}						from'@aries-framework/cheqd';						//--new
-//import{CheqdModuleConfig}					from'@aries-framework/cheqd';						//--new
-//import{CheqdAnonCredsRegistry}			from'@aries-framework/cheqd';						//--new
-//import{CheqdDidRegistrar}					from'@aries-framework/cheqd';						//--new
-//import{CheqdDidResolver}					from'@aries-framework/cheqd';						//--new
+import{CheqdModule}						from'@aries-framework/cheqd';						//--new
+import{CheqdModuleConfig}					from'@aries-framework/cheqd';						//--new
+import{CheqdAnonCredsRegistry}			from'@aries-framework/cheqd';						//--new
+import{CheqdDidRegistrar}					from'@aries-framework/cheqd';						//--new
+import{CheqdDidResolver}					from'@aries-framework/cheqd';						//--new
 import{OpenId4VcClientModule}				from'@aries-framework/openid4vc-client';
 import{anoncreds}							from'@hyperledger/anoncreds-react-native';
 import{indyVdr}								from'@hyperledger/indy-vdr-react-native';
@@ -87,9 +90,31 @@ import{QuestionnaireModule}					from'@entidad/questionnaire';
  * @param {boolean} useDidSovPrefixWhereAllowed
  * @param {boolean} useDidKeyInProtocols
  * @param {boolean} useModuleOpenId4VC
+ * @param {boolean} v1ProofProtocol
+ * @param {boolean} v2ProofProtocol
+ * @param {boolean} v1CredentialProtocol
+ * @param {boolean} v2CredentialProtocol
+ * @param {boolean} anoncreds
+ * @param {boolean} anoncredsRs
+ * @param {boolean} indyVdr
+ * @param {boolean} mediationRecipient
+ * @param {boolean} questionAnswer
+ * @param {boolean} questionnaire
+ * @param {boolean} cheqdDidRegistrar
+ * @param {boolean} keyDidRegistrar
+ * @param {boolean} jwkDidRegistrar
+ * @param {boolean} cheqdDidResolver
+ * @param {boolean} webDidResolver
+ * @param {boolean} keyDidResolver
+ * @param {boolean} jwkDidResolver
+ * @param {boolean} indyVdrIndyDidResolver
+ * @param {boolean} indyVdrSovDidResolver
+ * @param {boolean} cheqdEnabled
+ * @param {"Aries_SDK.enum_CheqdNetwork.testnet"|"Aries_SDK.enum_CheqdNetwork.mainnet"} cheqdNetwork
+ * @param {string} cheqdCosmoPlayerSeed
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, questionAnswer, questionnaire, cheqdDidRegistrar, keyDidRegistrar, jwkDidRegistrar, cheqdDidResolver, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, cheqdEnabled, cheqdNetwork, cheqdCosmoPlayerSeed) {
 	// BEGIN USER CODE
 	try{
 		//--------------------------------------------------------------------------------
@@ -301,7 +326,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(useLegacyDidSovPrefix!=null&&useLegacyDidSovPrefix!=false)config.useLegacyDidSovPrefix=useLegacyDidSovPrefix;
 		if(connectionImageUrl!=null)config.connectionImageUrl=connectionImageUrl;
 		if(autoUpdateStorageOnStartup!=null&&autoUpdateStorageOnStartup!=false)config.autoUpdateStorageOnStartup=autoUpdateStorageOnStartup;
-		if(autoAcceptConnections!=null&&autoAcceptConnections==true)config.autoAcceptConnections=autoAcceptConnections;		
+		if(autoAcceptConnections!=null)config.autoAcceptConnections=autoAcceptConnections;		
 		if(connectToIndyLedgerOnStartup!=null)config.connectToIndyLedgerOnStartup=connectToIndyLedgerOnStartup;
 		if(logger!=null)config.logger=logger;
 		if(useDidSovPrefixWhereAllowed!=null)config.useDidSovPrefixWhereAllowed=useDidSovPrefixWhereAllowed;
@@ -316,96 +341,187 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			autoAcceptConnections:autoAcceptConnections
 		});
 		//-----------------------------------------------------------------------------------
-		agentModules.credentials=new CredentialsModule({
-			autoAcceptCredentials:autoAcceptCredential_,
-			credentialProtocols:[
+		let credentialProtocols=[]
+		if(v1CredentialProtocol){
+			console.info("credentials:credentialProtocols:v1CredentialProtocol");
+			credentialProtocols.push(
 				new V1CredentialProtocol({
 					indyCredentialFormat:legacyIndyCredentialFormatService,
-				}),
+				})
+			);
+		}
+		if(v2CredentialProtocol){
+			console.info("credentials:credentialProtocols:v2CredentialProtocol");
+			credentialProtocols.push(
 				new V2CredentialProtocol({
 					credentialFormats:[
 						legacyIndyCredentialFormatService,
 						new AnonCredsCredentialFormatService()
+					]
+				})
+			);
+		}
+		agentModules.credentials=new CredentialsModule({
+			autoAcceptCredentials:autoAcceptCredential_,
+			credentialProtocols:credentialProtocols
+		});
+		//-----------------------------------------------------------------------------------
+		let proofProtocols=[]
+		if(v1ProofProtocol){
+			console.info("credentials:proofProtocols:v1ProofProtocol");
+			proofProtocols.push(
+				new V1ProofProtocol({
+					indyProofFormat:new LegacyIndyProofFormatService()//legacyIndyProofFormatService,
+				})
+			);
+		}
+		if(v2ProofProtocol){
+			console.info("credentials:proofProtocols:v2ProofProtocol");
+			proofProtocols.push(
+				new V2ProofProtocol({
+					proofFormats:[
+						new LegacyIndyProofFormatService(),//legacyIndyProofFormatService,
+						new AnonCredsProofFormatService()
 					],
 				})
-			],
-		});
-		//-----------------------------------------------------------------------------------
+			);
+		}
 		agentModules.proofs=new ProofsModule({
 			autoAcceptProofs:autoAcceptProofs,
-			proofProtocols:[
-				new V1ProofProtocol({
-					indyProofFormat:legacyIndyProofFormatService,
-				}),
-				new V2ProofProtocol({
-					proofFormats:[legacyIndyProofFormatService,new AnonCredsProofFormatService()],
-				}),
-			],
+			proofProtocols:proofProtocols
 		});
 		//-----------------------------------------------------------------------------------
-		agentModules.anoncreds=new AnonCredsModule({
-			registries:[new IndyVdrAnonCredsRegistry()]
-		});
+		if(anoncreds){
+			agentModules.anoncreds=new AnonCredsModule({
+				//todo:add configurability or turn cheqd off based on main cheqd enabling parameter
+				registries:[
+					new IndyVdrAnonCredsRegistry(),
+					new CheqdAnonCredsRegistry()
+				]
+			});
+		}
 		//-----------------------------------------------------------------------------------
-		agentModules.anoncredsRs=new AnonCredsRsModule({
-			anoncreds,
-		});
+		if(anoncredsRs){
+			agentModules.anoncredsRs=new AnonCredsRsModule({
+				anoncreds,
+			});
+		}
 		//-----------------------------------------------------------------------------------
-		agentModules.indyVdr=new IndyVdrModule({
-			indyVdr,
-			networks:indyLedgers==null?[]:indyLedgers,
-		});
+		if(indyVdr){
+			agentModules.indyVdr=new IndyVdrModule({
+				indyVdr,
+				//compare with
+				//https://github.com/animo/paradym-wallet/blob/0eed5477ad704e851c52e1b7ccc68d92df31fd9f/packages/agent/src/agent.ts#L29
+				networks:indyLedgers==null?[]:indyLedgers,
+			});
+		}
 		//-----------------------------------------------------------------------------------
+		let dids_registrars=[];
+		//if(indySdkIndyDidRegistrar){
+		//	dids_registrars.push(new IndySdkIndyDidRegistrar());
+		//}
+		// not in paradym wallet, please disable in afj configuration screen
+		if(cheqdDidRegistrar){
+			console.info("registrar:cheqdDidRegistrar");
+			dids_registrars.push(new CheqdDidRegistrar());
+		}
+		if(keyDidRegistrar){
+			console.info("registrar:keyDidRegistrar");
+			dids_registrars.push(new KeyDidRegistrar());
+		}
+		if(jwkDidRegistrar){
+			console.info("registrar:jwkDidRegistrar");
+			dids_registrars.push(new JwkDidRegistrar());
+		}
+		//-----------------------------------------------------------------------------------
+		let dids_resolvers=[];
+		if(webDidResolver){
+			console.info("resolver:webDidResolver");
+			dids_resolvers.push(new WebDidResolver());
+		}
+		if(keyDidResolver){
+			console.info("resolver:keyDidResolver");
+			dids_resolvers.push(new KeyDidResolver());
+		}
+		if(jwkDidResolver){
+			console.info("resolver:jwkDidResolver");
+			dids_resolvers.push(new JwkDidResolver());
+		}
+		if(cheqdDidResolver){
+			console.info("resolver:cheqdDidResolver");
+			dids_resolvers.push(new CheqdDidResolver());
+		}
+		if(indyVdrSovDidResolver){
+			console.info("resolver:indyVdrSovDidResolver");
+			dids_resolvers.push(new IndyVdrSovDidResolver());
+		}
+		if(indyVdrIndyDidResolver){
+			console.info("resolver:indyVdrIndyDidResolver");
+			dids_resolvers.push(new IndyVdrIndyDidResolver());
+		}
+		//if(indySdkSovDidResolver){
+		//	dids_resolvers.push(new IndySdkSovDidResolver());
+		//}
+		//if(indySdkIndyDidResolver){
+		//	dids_resolvers.push(new IndySdkIndyDidResolver());
+		//}
+		//if(indyVdrSovDidResolver){
+		//	dids_resolvers.push(new IndyVdrSovDidResolver());
+		//}
+		//if(indyVdrIndyDidResolver){
+		//	dids_resolvers.push(new IndyVdrIndyDidResolver());
+		//}
 		agentModules.dids=new DidsModule({
-			registrars:[
-				//new CheqdDidRegistrar(),
-				new KeyDidRegistrar(),
-				new JwkDidRegistrar()
-			],
-			resolvers:[
-				//new CheqdDidResolver(),
-				new WebDidResolver(),
-				new KeyDidResolver(),
-				new JwkDidResolver(),
-				new IndyVdrIndyDidResolver()
-			]
+			registrars:dids_registrars,
+			resolvers:dids_resolvers
 		});
 		//-----------------------------------------------------------------------------------
 		agentModules.askar=new AskarModule({
-			ariesAskar,
+			ariesAskar:ariesAskar
 		});
 		//-----------------------------------------------------------------------------------
-		/*
-		agentModules.cheqd=new CheqdModule(
-			new CheqdModuleConfig({
-			networks: [
-					{
-						network: 'testnet',
-						cosmosPayerSeed:
-						'robust across amount corn curve panther opera wish toe ring bleak empower wreck party abstract glad average muffin picnic jar squeeze annual long aunt',
-					},
-				],
-			})
-		);
-		*/
-		//-----------------------------------------------------------------------------------
-		if(useModuleOpenId4VC){
-			agentModules.openId4VcClient=new OpenId4VcClientModule();		
+		// * @param {"Aries_SDK.enum_CheqdNetwork.testnet"|"Aries_SDK.enum_CheqdNetwork.mainnet"} cheqdNetwork
+		// * @param {string} cheqdCosmoPlayerSeed
+		// * @returns {Promise.<string>}
+		//todo:add configuration
+		if(cheqdEnabled){
+			agentModules.cheqd=new CheqdModule(
+				new CheqdModuleConfig({
+				networks:[
+						{
+							network:cheqdNetwork,
+							cosmosPayerSeed:cheqdCosmoPlayerSeed
+						},
+					],
+				})
+			);
 		}
 		//-----------------------------------------------------------------------------------
-		agentModules.mediationRecipient=new MediationRecipientModule((mediationConnectionsInvitation!=null)?({
-			mediatorInvitationUrl:mediationConnectionsInvitation
-		}):({}));
+		if(useModuleOpenId4VC){
+			agentModules.openId4VcClient=new OpenId4VcClientModule();
+		}
 		//-----------------------------------------------------------------------------------
-		agentModules.questionAnswer=new QuestionAnswerModule();
+		if(mediationRecipient){
+			agentModules.mediationRecipient=new MediationRecipientModule((mediationConnectionsInvitation!=null)?({
+				mediatorInvitationUrl:mediationConnectionsInvitation
+				//todo:        mediatorPickupStrategy: MediatorPickupStrategy.X,
+			}):({}));
+		}
 		//-----------------------------------------------------------------------------------
-		agentModules.questionnaire=new QuestionnaireModule();
+		if(questionAnswer){
+			agentModules.questionAnswer=new QuestionAnswerModule();
+		}
+		//-----------------------------------------------------------------------------------
+		if(questionnaire){
+			agentModules.questionnaire=new QuestionnaireModule();
+		}
 		//-----------------------------------------------------------------------------------
   		const agent=new Agent({
 			config:config,
 			dependencies:agentDependencies,
 			modules:agentModules,
 		});
+		
 		return Promise.resolve(support.cache.put(agent,walletConfig_id));
 	}catch(e){
 		return Promise.reject(e.toString());

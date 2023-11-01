@@ -25,7 +25,7 @@ export async function jsa_aries_agent_ledger_getSchema(agent_key, id_) {
 		if(id_==null)return Promise.reject("Invalid id_ parameter");										//mandatory
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(await agent.ledger.getSchema(id_)));
+		return Promise.resolve(JSON.stringify(await agent.anoncreds.getSchema(id_)));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

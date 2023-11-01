@@ -1,5 +1,5 @@
 {
     "nativeDependencies": {
-        "@aries-framework/question-answer": "^0.4.0"
+        "@aries-framework/question-answer": "^0.4.1"
     }
 }

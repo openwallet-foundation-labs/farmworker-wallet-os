@@ -13,6 +13,7 @@ import { Big } from "big.js";
 
 /**
  * Returns current user name
+ * Uses mendix javascript api library call
  * @returns {Promise.<string>}
  */
 export async function jsa_currentuser_name() {
