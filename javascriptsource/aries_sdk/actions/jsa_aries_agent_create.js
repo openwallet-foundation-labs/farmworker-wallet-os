@@ -10,7 +10,7 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import support 								from"../support/entidad";
-import "../shim2.js";
+import "../shim.js";
 //import crypto from "crypto";
 import{KeyDerivationMethod}					from'@aries-framework/core';
 import{DidCommMimeType}						from'@aries-framework/core';
@@ -480,9 +480,9 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			ariesAskar:ariesAskar
 		});
 		//-----------------------------------------------------------------------------------
-// * @param {"Aries_SDK.enum_CheqdNetwork.testnet"|"Aries_SDK.enum_CheqdNetwork.mainnet"} cheqdNetwork
-// * @param {string} cheqdCosmoPlayerSeed
-// * @returns {Promise.<string>}
+		// * @param {"Aries_SDK.enum_CheqdNetwork.testnet"|"Aries_SDK.enum_CheqdNetwork.mainnet"} cheqdNetwork
+		// * @param {string} cheqdCosmoPlayerSeed
+		// * @returns {Promise.<string>}
 		//todo:add configuration
 		if(cheqdEnabled){
 			agentModules.cheqd=new CheqdModule(

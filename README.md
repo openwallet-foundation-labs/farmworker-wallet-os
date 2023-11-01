@@ -7,7 +7,10 @@
 ## Quick Start
 
 * Clone this project
-* Run `npm install` at `./javascriptsource/aries_sdk/` `./javascriptsource/keymanagement` as well as  at `./javascriptsource/testharness`
+* Run `npm install` in `./javascriptsource/aries_sdk/`
+* Run `/node_modules/.bin/rn-nodeify --hack --install` in `./javascriptsource/aries_sdk/`
+* Run `npm install` in `./javascriptsource/keymanagement`
+* Run `npm install` in `./javascriptsource/testharness`
 * Download [Studio Pro 9.24.9](https://marketplace.mendix.com/link/studiopro/)
 * Open `fwos-demo-app.mpr` from Studio Pro
 * Run the project from Studio Pro by clicking Run / Run Locally
