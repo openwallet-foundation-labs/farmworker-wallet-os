@@ -43,7 +43,7 @@ module.exports = class ProofPurpose {
    */
   async validate(
     proof, {/*document, suite, verificationMethod,
-      documentLoader, expansionMap*/}) {
+      documentLoader*/}) {
     try {
       // check expiration
       if(this.maxTimestampDelta !== Infinity) {
@@ -73,7 +73,7 @@ module.exports = class ProofPurpose {
    * @return {Promise<object>} resolves to the proof instance (in the
    *   `constants.SECURITY_CONTEXT_URL`.
    */
-  async update(proof, {/*document, suite, documentLoader, expansionMap */}) {
+  async update(proof, {/*document, suite, documentLoader */}) {
     proof.proofPurpose = this.term;
     return proof;
   }
@@ -87,7 +87,7 @@ module.exports = class ProofPurpose {
    *
    * @return {Promise<boolean>} `true` if there's a match, `false` if not.
    */
-  async match(proof, {/* document, documentLoader, expansionMap */}) {
+  async match(proof, {/* document, documentLoader */}) {
     return proof.proofPurpose === this.term;
   }
 };

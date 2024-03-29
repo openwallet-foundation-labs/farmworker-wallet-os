@@ -14,22 +14,28 @@ import support from"../support/entidad";
 
 /**
  * update(proofRecord: AriesCore.ProofExchangeRecord): Promise<void>
+ * 
+ * We implement this in a way that you can update a tag
  * @param {string} agent_key
- * @param {string} proofRecord - json?
+ * @param {string} proofRecordId
+ * @param {string} key
+ * @param {string} value
  * @returns {Promise.<void>}
  */
-export async function jsa_aries_agent_proofs_update(agent_key, proofRecord) {
+export async function jsa_aries_agent_proofs_update(agent_key, proofRecordId, key, value) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");		//mandatory
-		if(proofRecord==null)return Promise.reject("Invalid proofRecord parameter");	//mandatory
-		try{
-			proofRecord=JSON.parse(proofRecord);
-		}catch(e){
-			return Promise.reject("Argument proofRecord is not a valid JSON object");
-		}
+		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
+		if(proofRecordId==null)return Promise.reject("Invalid proofRecordId parameter");
+		if(key==null)return Promise.reject("Invalid key parameter");
+		if(key.lenth==0)return Promise.reject("Invalid key parameter string length");
+		if(value==null)return Promise.reject("Invalid value parameter");
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
+		let proofRecord=await agent.proofs.getById(proofRecordId);
+		let tag={};
+		tag[key]=value;
+		proofRecord.setTags(tag);
 		await agent.proofs.update(proofRecord);
 		return Promise.resolve();
 	}catch(e){

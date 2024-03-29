@@ -26,9 +26,10 @@ import support from"../support/entidad";
  * @param {string} agent_key
  * @param {string} connectionId
  * @param {string} message
+ * @param {string} parentThreadId
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_basicMessages_sendMessage(agent_key, connectionId, message) {
+export async function jsa_aries_agent_basicMessages_sendMessage(agent_key, connectionId, message, parentThreadId) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");										//mandatory
@@ -36,7 +37,12 @@ export async function jsa_aries_agent_basicMessages_sendMessage(agent_key, conne
 		if(message==null)return Promise.reject("Invalid message parameter");										//mandatory
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		let messageRecord=await agent.basicMessages.sendMessage(connectionId,message);
+		let messageRecord=null;
+		if(parentThreadId==null){
+			messageRecord=await agent.basicMessages.sendMessage(connectionId,message);
+		} else {
+			messageRecord=await agent.basicMessages.sendMessage(connectionId,message,parentThreadId);
+		}
 		return Promise.resolve(JSON.stringify(messageRecord));
 
 	}catch(e){

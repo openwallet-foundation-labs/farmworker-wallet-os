@@ -36,12 +36,6 @@ const VerificationError = require('./VerificationError');
  *   and other relevant URLs needed for the proof.
  *
  * Advanced optional parameters and overrides:
- *
- * @param {function} [options.expansionMap] - A custom expansion map that is
- *   passed to the JSON-LD processor; by default a function that will throw
- *   an error when unmapped properties are detected in the input, use `false`
- *   to turn this off and allow unmapped properties to be dropped or use a
- *   custom function.
  * @param {boolean} [options.addSuiteContext=true] - Toggles the default
  *   behavior of each signature suite enforcing the presence of its own
  *   `@context` (if it is not present, it's added to the context list).
@@ -49,7 +43,7 @@ const VerificationError = require('./VerificationError');
  * @returns {Promise<object>} Resolves with signed document.
  */
 api.sign = async function sign(document, {
-  suite, purpose, documentLoader, expansionMap, addSuiteContext = true
+  suite, purpose, documentLoader, addSuiteContext = true
 } = {}) {
   if(typeof document !== 'object') {
     throw new TypeError('The "document" parameter must be an object.');
@@ -61,7 +55,7 @@ api.sign = async function sign(document, {
 
   try {
     return await new ProofSet().add(
-      document, {suite, purpose, documentLoader, expansionMap});
+      document, {suite, purpose, documentLoader});
   } catch(e) {
     if(!documentLoader && e.name === 'jsonld.InvalidUrl') {
       const {details: {url}} = e;
@@ -92,11 +86,6 @@ api.sign = async function sign(document, {
  *
  * @param {function} [documentLoader]  - A custom document loader,
  *   `Promise<RemoteDocument> documentLoader(url)`.
- * @param {function} [expansionMap] - A custom expansion map that is
- *   passed to the JSON-LD processor; by default a function that will throw
- *   an error when unmapped properties are detected in the input, use `false`
- *   to turn this off and allow unmapped properties to be dropped or use a
- *   custom function.
  *
  * @return {Promise<{verified: boolean, results: Array,
  *   error: VerificationError}>}
@@ -107,12 +96,12 @@ api.sign = async function sign(document, {
  *   containing all of the errors that occurred during the verification process.
  */
 api.verify = async function verify(document, {
-  suite, purpose, documentLoader, expansionMap} = {}) {
+  suite, purpose, documentLoader} = {}) {
   if(typeof document !== 'object') {
     throw new TypeError('The "document" parameter must be an object.');
   }
   const result = await new ProofSet().verify(
-    document, {suite, purpose, documentLoader, expansionMap});
+    document, {suite, purpose, documentLoader});
   const {error} = result;
   if(error) {
     if(!documentLoader && error.name === 'jsonld.InvalidUrl') {
@@ -136,4 +125,3 @@ api.purposes = require('./purposes').purposes;
 
 // expose document loader helpers
 Object.assign(api, require('./documentLoader'));
-

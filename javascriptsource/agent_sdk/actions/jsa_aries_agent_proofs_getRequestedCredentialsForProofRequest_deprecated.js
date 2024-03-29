@@ -33,32 +33,32 @@ import support from"../support/entidad";
  * Responds with the following
  * 
  * {
-  "proofFormats": {
-    "indy": {
-      "requestedAttributes": {},
-      "requestedPredicates": {
-        "student_card": [
-          {
-            "credentialId": "1395b65c-1138-469d-a236-9a76b6a362c2",
-            "credentialInfo": {
-              "referent": "1395b65c-1138-469d-a236-9a76b6a362c2",
-              "attrs": {
-                "student_last_name": "Smith",
-                "expiry_date": "20270522",
-                "student_first_name": "Alice"
-              },
-              "schema_id": "XUxBrVSALWHLeycAUhrNr9:2:student_card:1.0",
-              "cred_def_id": "XUxBrVSALWHLeycAUhrNr9:3:CL:26293:student_card",
-              "rev_reg_id": null,
-              "cred_rev_id": null
-            }
-          }
-        ]
-      }
-    }
-  }
-}
-
+ *   "proofFormats": {
+ *     "indy": {
+ *       "requestedAttributes": {},
+ *       "requestedPredicates": {
+ *         "student_card": [
+ *           {
+ *             "credentialId": "1395b65c-1138-469d-a236-9a76b6a362c2",
+ *             "credentialInfo": {
+ *               "referent": "1395b65c-1138-469d-a236-9a76b6a362c2",
+ *               "attrs": {
+ *                 "student_last_name": "Smith",
+ *                 "expiry_date": "20270522",
+ *                 "student_first_name": "Alice"
+ *               },
+ *               "schema_id": "XUxBrVSALWHLeycAUhrNr9:2:student_card:1.0",
+ *               "cred_def_id": "XUxBrVSALWHLeycAUhrNr9:3:CL:26293:student_card",
+ *               "rev_reg_id": null,
+ *               "cred_rev_id": null
+ *             }
+ *           }
+ *         ]
+ *       }
+ *     }
+ *   }
+ * }
+ * 
  * @param {string} agent_key
  * @param {string} proofRecordId - optional
  * @param {boolean} config_filterByPresentationPreview - default false

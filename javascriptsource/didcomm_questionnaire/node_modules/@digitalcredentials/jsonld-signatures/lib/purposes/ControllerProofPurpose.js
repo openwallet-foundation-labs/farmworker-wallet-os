@@ -54,17 +54,16 @@ module.exports = class ControllerProofPurpose extends ProofPurpose {
    * @param proof
    * @param verificationMethod
    * @param documentLoader
-   * @param expansionMap
    *
    * @throws {Error} If verification method not authorized by controller
    * @throws {Error} If proof's created timestamp is out of range
    *
    * @returns {Promise<{valid: boolean, error: Error}>}
    */
-  async validate(proof, {verificationMethod, documentLoader, expansionMap}) {
+  async validate(proof, {verificationMethod, documentLoader}) {
     try {
       const result = await super.validate(
-        proof, {verificationMethod, documentLoader, expansionMap});
+        proof, {verificationMethod, documentLoader});
       if(!result.valid) {
         throw result.error;
       }
@@ -97,8 +96,6 @@ module.exports = class ControllerProofPurpose extends ProofPurpose {
           (Array.isArray(document['@context']) &&
           document['@context'][0] === DID_CONTEXT_V1));
         if(mustFrame) {
-          // Note: `expansionMap` is intentionally not passed; we can safely
-          // drop properties here and must allow for it
           document = await jsonld.frame(document, {
             '@context': constants.SECURITY_CONTEXT_URL,
             id: controllerId,

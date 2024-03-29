@@ -24,6 +24,7 @@ import { Big } from "big.js";
 export async function jsa_json_get_key(json, key) {
 	// BEGIN USER CODE
 	try{
+		if(json==null||json=="")return Promise.resolve(null);
 		let root=JSON.parse(json);
 		let cur=root;
 		/*v000

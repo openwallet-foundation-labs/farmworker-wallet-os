@@ -13,19 +13,26 @@ import support from"../support/entidad";
 // END EXTRA CODE
 
 /**
- * declineRequest(proofRecordId: string): Promise<AriesCore.ProofExchangeRecord>
+ * declineRequest(options: DeclineProofRequestOptions): Promise<ProofExchangeRecord>
+ * 
+ * export interface DeclineProofRequestOptions {
+ *     proofRecordId: string;
+ *     sendProblemReport?: boolean;
+ * }
  * @param {string} agent_key
  * @param {string} proofRecordId
+ * @param {boolean} sendProblemReport
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_proofs_declineRequest(agent_key, proofRecordId) {
+export async function jsa_aries_agent_proofs_declineRequest(agent_key, proofRecordId, sendProblemReport) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");		//mandatory
-		if(proofRecordId==null)return Promise.reject("Invalid proofRecordId parameter");	//mandatory
+		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
+		if(proofRecordId==null)return Promise.reject("Invalid proofRecordId parameter");
+		if(sendProblemReport==null)return Promise.reject("Invalid sendProblemReport parameter");
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(await agent.proofs.declineRequest(proofRecordId)));
+		return Promise.resolve(JSON.stringify(await agent.proofs.declineRequest({proofRecordId:proofRecordId,sendProblemReport:sendProblemReport})));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

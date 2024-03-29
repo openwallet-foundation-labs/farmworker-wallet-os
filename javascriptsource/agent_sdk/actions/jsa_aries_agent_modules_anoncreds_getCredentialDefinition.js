@@ -25,9 +25,14 @@ export async function jsa_aries_agent_modules_anoncreds_getCredentialDefinition(
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");							//mandatory
+		if(credentialDefinitionId==null)return Promise.reject("Invalid credentialDefinitionId parameter");
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		throw("unimplemented");
+		return Promise.resolve(
+			JSON.stringify(
+				await agent.modules.anoncreds.getCredentialDefinition(credentialDefinitionId)
+			)
+		);
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

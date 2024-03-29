@@ -21,7 +21,7 @@ module.exports = class AuthenticationProofPurpose extends
     this.domain = domain;
   }
 
-  async validate(proof, {verificationMethod, documentLoader, expansionMap}) {
+  async validate(proof, {verificationMethod, documentLoader}) {
     try {
       // check challenge
       if(proof.challenge !== this.challenge) {
@@ -36,15 +36,15 @@ module.exports = class AuthenticationProofPurpose extends
       }
 
       return super.validate(
-        proof, {verificationMethod, documentLoader, expansionMap});
+        proof, {verificationMethod, documentLoader});
     } catch(error) {
       return {valid: false, error};
     }
   }
 
-  async update(proof, {document, suite, documentLoader, expansionMap}) {
+  async update(proof, {document, suite, documentLoader}) {
     proof = await super.update(
-      proof, {document, suite, documentLoader, expansionMap});
+      proof, {document, suite, documentLoader});
     proof.challenge = this.challenge;
     if(this.domain !== undefined) {
       proof.domain = this.domain;

@@ -17,7 +17,7 @@ import support from"../support/entidad";
  * pickupMessages(mediatorConnection: AriesCore.ConnectionRecord, pickupStrategy?: AriesCore.MediatorPickupStrategy): Promise<void>
  * @param {string} agent_key
  * @param {string} mediatorConnection - json?
- * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"} pickupStrategy
+ * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"|"Agent_SDK.enum_aries_MediatorPickupStrategy.None"} pickupStrategy
  * @returns {Promise.<void>}
  */
 export async function jsa_aries_agent_mediationRecipient_pickupMessages(agent_key, mediatorConnection, pickupStrategy) {

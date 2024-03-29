@@ -9,17 +9,19 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import support from "../support/entidad";
 // END EXTRA CODE
 
 /**
  * save({ content, tags, id }: SaveGenericRecordOption): Promise<GenericRecord>
  * @param {string} agent_key
- * @param {string} content - json?
- * @param {string} tags - json?
- * @param {string} id_ - string?
+ * @param {string} content - json object
+ * @param {string} tags - optional json array
+ * @param {string} id_ - optional string
+ * @param {string} metadata - optional json
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_genericRecords_save(agent_key, content, tags, id_) {
+export async function jsa_aries_agent_genericRecords_save(agent_key, content, tags, id_, metadata) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");										//mandatory
@@ -29,16 +31,22 @@ export async function jsa_aries_agent_genericRecords_save(agent_key, content, ta
 		}catch(e){
 			return Promise.reject("Argument content is not a valid JSON object");
 		}
-		if(tags==null)return Promise.reject("Invalid tags parameter");										//mandatory
-		try{
+		//if(tags==null)return Promise.reject("Invalid tags parameter");										//mandatory
+		if(tags!=null)try{
 			tags=JSON.parse(tags);
 		}catch(e){
 			return Promise.reject("Argument tags is not a valid JSON object");
 		}
-		if(id_==null)return Promise.reject("Invalid id_ parameter");										//mandatory
+		//if(id_==null)return Promise.reject("Invalid id_ parameter");										//mandatory
+		if(metadata!=null)try{
+			metadata=JSON.parse(metadata);
+		}catch(e){
+			return Promise.reject("Argument metadata is not a valid JSON object");
+		}
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(await agent.genericRecords.save(content,tags,id_)));
+		//agent.genericRecords.save({ content, tags, id }: SaveGenericRecordOption): Promise<GenericRecord>
+		return Promise.resolve(JSON.stringify(await agent.genericRecords.save({content:content,tags:tags,id:id_,metadata:metadata})));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

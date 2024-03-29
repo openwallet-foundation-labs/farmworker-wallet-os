@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import support from "../support/entidad";
 // END EXTRA CODE
 
 /**
@@ -24,7 +25,8 @@ export async function jsa_aries_agent_genericRecords_findById(agent_key, id_) {
 		if(id_==null)return Promise.reject("Invalid id_ parameter");										//mandatory
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(await agent.genericRecords.findById(id_)));
+		let record=await agent.genericRecords.findById(id_);
+		return Promise.resolve(record==null?null:JSON.stringify(record));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

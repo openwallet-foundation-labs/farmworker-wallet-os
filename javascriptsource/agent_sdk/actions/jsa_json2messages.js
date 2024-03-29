@@ -30,6 +30,9 @@ export async function jsa_json2messages(json) {
 					case "id_":
 						_attr = "id";
 						break;
+					case "_id":
+						_attr = "id";
+						break;
 					default:
 						break;
 				}

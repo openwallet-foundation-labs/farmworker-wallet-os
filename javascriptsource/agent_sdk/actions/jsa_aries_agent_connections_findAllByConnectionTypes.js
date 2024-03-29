@@ -10,6 +10,7 @@ import { Big } from "big.js";
 import { IsInstanceOrArrayOfInstances } from "@aries-framework/core/build/utils";
 
 // BEGIN EXTRA CODE
+import support from "../support/entidad";
 // END EXTRA CODE
 
 /**

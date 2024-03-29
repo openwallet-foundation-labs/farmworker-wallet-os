@@ -86,11 +86,10 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
    * @param document {object} to be signed.
    * @param purpose {ProofPurpose}
    * @param documentLoader {function}
-   * @param expansionMap {function}
    *
    * @returns {Promise<object>} Resolves with the created proof object.
    */
-  async createProof({document, purpose, documentLoader, expansionMap}) {
+  async createProof({document, purpose, documentLoader}) {
     // build proof (currently known as `signature options` in spec)
     let proof;
     if(this.proof) {
@@ -124,23 +123,23 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
 
     // add any extensions to proof (mostly for legacy support)
     proof = await this.updateProof({
-      document, proof, purpose, documentLoader, expansionMap
+      document, proof, purpose, documentLoader
     });
 
     // allow purpose to update the proof; the `proof` is in the
     // SECURITY_CONTEXT_URL `@context` -- therefore the `purpose` must
     // ensure any added fields are also represented in that same `@context`
     proof = await purpose.update(
-      proof, {document, suite: this, documentLoader, expansionMap});
+      proof, {document, suite: this, documentLoader});
 
     // create data to sign
     const verifyData = await this.createVerifyData({
-      document, proof, documentLoader, expansionMap
+      document, proof, documentLoader
     });
 
     // sign data
     proof = await this.sign(
-      {verifyData, document, proof, documentLoader, expansionMap});
+      {verifyData, document, proof, documentLoader});
 
     return proof;
   }
@@ -149,7 +148,6 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
    * @param document {object} to be signed.
    * @param purpose {ProofPurpose}
    * @param documentLoader {function}
-   * @param expansionMap {function}
    *
    * @returns {Promise<object>} Resolves with the created proof object.
    */
@@ -162,24 +160,23 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
    * @param proof {object} the proof to be verified.
    * @param document {object} the document the proof applies to.
    * @param documentLoader {function}
-   * @param expansionMap {function}
    *
    * @returns {Promise<{object}>} Resolves with the verification result.
    */
-  async verifyProof({proof, document, documentLoader, expansionMap}) {
+  async verifyProof({proof, document, documentLoader}) {
     try {
       // create data to verify
       const verifyData = await this.createVerifyData(
-        {document, proof, documentLoader, expansionMap});
+        {document, proof, documentLoader});
 
       // fetch verification method
       const verificationMethod = await this.getVerificationMethod(
-        {proof, document, documentLoader, expansionMap});
+        {proof, document, documentLoader});
 
       // verify signature on data
       const verified = await this.verifySignature({
         verifyData, verificationMethod, document, proof,
-        documentLoader, expansionMap});
+        documentLoader});
       if(!verified) {
         throw new Error('Invalid signature.');
       }
@@ -190,18 +187,17 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
     }
   }
 
-  async canonize(input, {documentLoader, expansionMap, skipExpansion}) {
+  async canonize(input, {documentLoader, skipExpansion}) {
     return jsonld.canonize(input, {
       algorithm: 'URDNA2015',
       format: 'application/n-quads',
       documentLoader,
-      expansionMap,
       skipExpansion,
       useNative: this.useNativeCanonize
     });
   }
 
-  async canonizeProof(proof, {document, documentLoader, expansionMap}) {
+  async canonizeProof(proof, {document, documentLoader}) {
     // `jws`,`signatureValue`,`proofValue` must not be included in the proof
     // options
     proof = {
@@ -213,7 +209,6 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
     delete proof.proofValue;
     return this.canonize(proof, {
       documentLoader,
-      expansionMap,
       skipExpansion: false
     });
   }
@@ -222,11 +217,10 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
    * @param document {object} to be signed/verified.
    * @param proof {object}
    * @param documentLoader {function}
-   * @param expansionMap {function}
    *
    * @returns {Promise<{Uint8Array}>}.
    */
-  async createVerifyData({document, proof, documentLoader, expansionMap}) {
+  async createVerifyData({document, proof, documentLoader}) {
     // get cached document hash
     let cachedDocHash;
     const {_hashCache} = this;
@@ -237,7 +231,7 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
         document,
         // canonize and hash document
         hash: cachedDocHash =
-          this.canonize(document, {documentLoader, expansionMap})
+          this.canonize(document, {documentLoader})
             .then(c14nDocument => sha256digest({string: c14nDocument}))
       };
     }
@@ -246,7 +240,7 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
     const [proofHash, docHash] = await Promise.all([
       // canonize and hash proof
       this.canonizeProof(
-        proof, {document, documentLoader, expansionMap})
+        proof, {document, documentLoader})
         .then(c14nProofOptions => sha256digest({string: c14nProofOptions})),
       cachedDocHash
     ]);
@@ -271,8 +265,6 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
       throw new Error('No "verificationMethod" found in proof.');
     }
 
-    // Note: `expansionMap` is intentionally not passed; we can safely drop
-    // properties here and must allow for it
     const framed = await jsonld.frame(verificationMethod, {
       '@context': constants.SECURITY_CONTEXT_URL,
       '@embed': '@always',
@@ -295,7 +287,6 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
    * @param document {object} to be signed.
    * @param proof {object}
    * @param documentLoader {function}
-   * @param expansionMap {function}
    *
    * @returns {Promise<{object}>} the proof containing the signature value.
    */
@@ -309,7 +300,6 @@ module.exports = class LinkedDataSignature extends LinkedDataProof {
    * @param document {object} to be signed.
    * @param proof {object}
    * @param documentLoader {function}
-   * @param expansionMap {function}
    *
    * @returns {Promise<boolean>}
    */

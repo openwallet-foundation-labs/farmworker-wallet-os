@@ -35,7 +35,7 @@ export async function jsa_aries_agent_credentials_findAllByQuery(agent_key, quer
 		}
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(await agent.credentials.findAllByQuery(query));
+		return Promise.resolve(JSON.stringify(await agent.credentials.findAllByQuery(query)));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

@@ -15,12 +15,11 @@ module.exports = class LinkedDataProof {
    * @param document {object} to be signed.
    * @param purpose {ProofPurpose}
    * @param documentLoader {function}
-   * @param expansionMap {function}
    *
    * @returns {Promise<object>} Resolves with the created proof object.
    */
   async createProof({
-    /* document, purpose, documentLoader, expansionMap */
+    /* document, purpose, documentLoader */
   }) {
     throw new Error('"createProof" must be implemented in a derived class.');
   }
@@ -30,12 +29,11 @@ module.exports = class LinkedDataProof {
    * @param document {object} the document the proof applies to.
    * @param purpose {ProofPurpose}
    * @param documentLoader {function}
-   * @param expansionMap {function}
    *
    * @returns {Promise<{object}>} Resolves with the verification result.
    */
   async verifyProof({
-    /* proof, document, purpose, documentLoader, expansionMap */
+    /* proof, document, purpose, documentLoader */
   }) {
     throw new Error('"verifyProof" must be implemented in a derived class.');
   }
@@ -49,7 +47,7 @@ module.exports = class LinkedDataProof {
    * @returns {Promise<boolean>} Whether a match for the proof was found.
    */
   async matchProof({
-    proof /*, document, purpose, documentLoader, expansionMap */
+    proof /*, document, purpose, documentLoader */
   }) {
     return proof.type === this.type;
   }

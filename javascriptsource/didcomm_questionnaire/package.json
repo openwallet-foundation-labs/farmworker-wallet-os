@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@aries-framework/question-answer": "^0.4.1"
+    "@aries-framework/question-answer": "^0.4.2"
   }
 }

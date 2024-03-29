@@ -23,7 +23,7 @@ import support from"../support/entidad";
  * @returns
  * @param {string} agent_key
  * @param {string} mediator - json?
- * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"} pickupStrategy
+ * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"|"Agent_SDK.enum_aries_MediatorPickupStrategy.None"} pickupStrategy
  * @returns {Promise.<string>}
  */
 export async function jsa_aries_agent_mediationRecipient_initiateMessagePickup(agent_key, mediator, pickupStrategy) {
@@ -48,6 +48,8 @@ export async function jsa_aries_agent_mediationRecipient_initiateMessagePickup(a
 				break;																															// -
 			case"Implicit":																														// -
 				pickupStrategy=MediatorPickupStrategy.Implicit;																			// -
+			case"None":																														// -
+				pickupStrategy=MediatorPickupStrategy.None;																			// -
 				break;																															// -
 			default:																															// -
 				//return Promise.reject("Invalid mediatorPickupStrategy parameter");																// -
@@ -58,13 +60,14 @@ export async function jsa_aries_agent_mediationRecipient_initiateMessagePickup(a
 		//todo:apply named arguments properly
 		let ret=null;
 		      if(mediator==null&&pickupStrategy==null){
-				  ret=await agent.mediationRecipient.initiateMessagePickup(mediator,pickupStrategy)
+				  ret=await agent.mediationRecipient.initiateMessagePickup(undefined,undefined)
 		}else if(mediator==null&&pickupStrategy!=null){
-				  ret=await agent.mediationRecipient.initiateMessagePickup(mediator,pickupStrategy)
+				  ret=await agent.mediationRecipient.initiateMessagePickup(undefined,pickupStrategy)
 		}else if(mediator!=null&&pickupStrategy==null){
-				  ret=await agent.mediationRecipient.initiateMessagePickup(mediator,pickupStrategy)
+				  ret=await agent.mediationRecipient.initiateMessagePickup(mediator,undefined)
 		}else if(mediator!=null&&pickupStrategy!=null){
 				  ret=await agent.mediationRecipient.initiateMessagePickup(mediator,pickupStrategy)
+		}else{
 		}
 		return Promise.resolve(JSON.stringify(ret));
 	}catch(e){
