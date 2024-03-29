@@ -1,6 +1,6 @@
-# FWOS Demo App
+# Farmworker Wallet OS Demo App
 
-[Mendix](https://www.mendix.com/) and [AFJ](https://aries.js.org/) Aries Javascript Agent
+[Mendix](https://www.mendix.com/) and [Credo](https://credo.js.org), an Open Wallet Foundation growth project
 
 <img src="https://github.com/Entidad/fwos-demo-app/blob/main/img/preview.gif?raw=true" width="100%" />
 
@@ -11,12 +11,12 @@
 * Run `node_modules/.bin/rn-nodeify --hack --install` in `./javascriptsource/agent_sdk/`
 * Run `npm install` in `./javascriptsource/keymanagement`
 * Run `npm install` in `./javascriptsource/didcomm_questionnaire`
-* Download [Studio Pro 9.24.11](https://marketplace.mendix.com/link/studiopro/)
+* Download [Studio Pro 9.24.18](https://marketplace.mendix.com/link/studiopro/)
 * Open `fwos-demo-app.mpr` from Studio Pro
 * Run the project from Studio Pro by clicking Run / Run Locally
 * Create a custom React Native application from [OpenWallet Foundation Labs/fwos-native-template](https://github.com/openwallet-foundation-labs/fwos-native-template) or download a pre-built APK from [OpenWallet Foundation Labs/fwos-native-template/releases](https://github.com/openwallet-foundation-labs/fwos-native-template/releases)
 * Install and run the application on your mobile device
-* Log in using user name `user0` and password `1`
+* Log in using user name, for example `Alice` or  `Bob`
 
 ## Contributing
 See [CONTRIBUTING.md](https://github.com/openwallet-foundation-labs/fwos-demo-app/blob/main/CONTRIBUTING.md).
