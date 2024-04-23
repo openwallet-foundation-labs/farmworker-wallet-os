@@ -57,6 +57,7 @@ import { ariesAskar } from '@hyperledger/aries-askar-react-native';
 import { QuestionAnswerModule } from '@aries-framework/question-answer';
 import { QuestionnaireModule } from '@entidad/questionnaire';
 import { MediaSharingModule } from 'aries-framework-media-sharing';
+import { version } from "punycode";
 // END EXTRA CODE
 
 /**
@@ -346,6 +347,10 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			autoAcceptConnections: autoAcceptConnections
 		});
 		//-----------------------------------------------------------------------------------
+		agentModules.askar = new AskarModule({
+			ariesAskar: ariesAskar
+		});
+		//-----------------------------------------------------------------------------------
 		let credentialProtocols = []
 		if (v1CredentialProtocol) {
 			credentialProtocols.push(
@@ -392,12 +397,18 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			proofProtocols: proofProtocols
 		});
 		//-----------------------------------------------------------------------------------
+		/*
+		 * 21:45 2024/04/22
+		 *   issue:
+		 *     Failed to initialize agent: Error: Cannot inject the dependency at position #3 of "r" constructor. Reason:
+    	 *      Attempted to resolve unregistered dependency token: "Symbol(AnonCredsIssuerService)"
+		 */
 		if (anoncreds) {
 			agentModules.anoncreds = new AnonCredsModule({
 				//todo:add configurability or turn cheqd off based on main cheqd enabling parameter
 				registries: [
 					new IndyVdrAnonCredsRegistry(),
-					new CheqdAnonCredsRegistry()
+					new CheqdAnonCredsRegistry(),
 				]
 			});
 		}
@@ -467,15 +478,16 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			registrars: dids_registrars,
 			resolvers: dids_resolvers
 		});
-		//-----------------------------------------------------------------------------------
-		agentModules.askar = new AskarModule({
-			ariesAskar: ariesAskar
-		});
+
 		//-----------------------------------------------------------------------------------
 		// * @param {"Agent_SDK.enum_CheqdNetwork.testnet"|"Agent_SDK.enum_CheqdNetwork.mainnet"} cheqdNetwork
 		// * @param {string} cheqdCosmoPlayerSeed
 		// * @returns {Promise.<string>}
-		//todo:add configuration
+		// todo: add configuration
+		// 21:45 2024/04/22
+		//   issue:
+		//     causes the following issue after starting the agent:
+		//       Failed initialize agent: TypeError: Cannot read property 'connect' of undefined
 		if (cheqdEnabled) {
 			agentModules.cheqd = new CheqdModule(
 				new CheqdModuleConfig({

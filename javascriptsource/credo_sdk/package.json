@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@credo-ts/askar": "^0.5.1",
+    "@credo-ts/core": "^0.5.1",
+    "@credo-ts/react-native": "^0.5.1",
+    "@hyperledger/aries-askar-react-native": "^0.1.1",
+    "react-native-fs": "^2.20.0",
+    "react-native-get-random-values": "^1.11.0"
+  }
+}
