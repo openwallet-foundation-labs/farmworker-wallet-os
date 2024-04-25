@@ -10,6 +10,7 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 //import type { InitConfig } from '@credo-ts/core';
+import '../shim.js';
 import { Agent } from '@credo-ts/core'
 import { ConsoleLogger, LogLevel } from '@credo-ts/core'
 import { agentDependencies } from '@credo-ts/react-native'
@@ -18,7 +19,14 @@ import { ariesAskar } from '@hyperledger/aries-askar-react-native'
 import { IndyVdrAnonCredsRegistry, IndyVdrModule } from '@credo-ts/indy-vdr'
 import { indyVdr } from '@hyperledger/indy-vdr-react-native'
 import { AnonCredsModule } from '@credo-ts/anoncreds'
-
+import {
+  CheqdAnonCredsRegistry,
+  CheqdDidRegistrar,
+  CheqdDidResolver,
+  CheqdModule,
+  CheqdModuleConfig,
+  CheqdDidCreateOptions,
+} from '@credo-ts/cheqd';
 // END EXTRA CODE
 
 /**
