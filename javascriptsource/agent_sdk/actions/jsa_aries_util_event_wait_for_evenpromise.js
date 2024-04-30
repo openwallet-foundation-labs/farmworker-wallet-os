@@ -10,7 +10,7 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import support from"../support/entidad";
-import{CredentialState}from"@aries-framework/core";
+//import{CredentialState}from"@aries-framework/core";
 import{filter,firstValueFrom,merge,first,timeout}from"rxjs";
 // END EXTRA CODE
 

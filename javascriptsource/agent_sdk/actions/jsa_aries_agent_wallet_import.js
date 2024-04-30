@@ -10,7 +10,7 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import support from"../support/entidad";
-import{KeyDerivationMethod}from'@aries-framework/core';
+//import{KeyDerivationMethod}from'@aries-framework/core';
 // END EXTRA CODE
 
 /**

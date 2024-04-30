@@ -9,7 +9,8 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import{MediatorPickupStrategy}from'@aries-framework/core'
+//import{MediatorPickupStrategy}from'@aries-framework/core'
+import{MediatorPickupStrategy}from'@credo-ts/core'
 import support from"../support/entidad";
 // END EXTRA CODE
 

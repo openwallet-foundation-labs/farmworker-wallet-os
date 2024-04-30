@@ -10,6 +10,7 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import support from "../support/entidad";
+/*
 import {
   ClaimFormat,
   JwaSignatureAlgorithm,
@@ -20,6 +21,7 @@ import {
   W3cCredentialsModule,
   DidKey,
 } from '@aries-framework/core'
+*/
 //import { OpenId4VpClientService, OpenIdCredentialFormatProfile } from '@internal/openid4vc-client'
 // END EXTRA CODE
 

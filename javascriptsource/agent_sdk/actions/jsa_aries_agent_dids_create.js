@@ -10,7 +10,7 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import support from "../support/entidad";
-import {PeerDidNumAlgo,KeyType} /*{PeerDidNumAlgo}*/from"@aries-framework/core";
+//import {PeerDidNumAlgo,KeyType} /*{PeerDidNumAlgo}*/from"@aries-framework/core";
 //import{Agent}from"@aries-framework/core"
 // END EXTRA CODE
 

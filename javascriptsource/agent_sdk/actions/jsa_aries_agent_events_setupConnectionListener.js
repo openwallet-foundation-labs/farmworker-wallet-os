@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+/*
 import{
 	ConnectionEventTypes,
 	AgentEventTypes,
@@ -17,6 +18,15 @@ import{
 	ProofEventTypes,
 	DidExchangeState
 }from'@aries-framework/core';
+*/
+import{
+	ConnectionEventTypes,
+	AgentEventTypes,
+	BasicMessageEventTypes,
+	CredentialEventTypes,
+	ProofEventTypes,
+	DidExchangeState
+}from'@credo-ts/core';
 import support from "../support/entidad";
 // END EXTRA CODE
 

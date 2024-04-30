@@ -9,7 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import{AutoAcceptProof}from'@aries-framework/core'
+//import{AutoAcceptProof}from'@aries-framework/core'
 import support from"../support/entidad";
 // END EXTRA CODE
 

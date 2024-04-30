@@ -9,7 +9,8 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import{AutoAcceptCredential}from'@aries-framework/core';
+//import{AutoAcceptCredential}from'@aries-framework/core';
+import{AutoAcceptCredential}from'@credo-ts/core';
 import support from"../support/entidad";
 // END EXTRA CODE
 
