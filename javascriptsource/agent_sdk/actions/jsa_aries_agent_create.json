@@ -1,9 +1,9 @@
 {
 	"nativeDependencies": {
-		"@credo-ts/anoncreds": "^0.5.2",
-		"@credo-ts/askar": "^0.5.2",
-		"@credo-ts/indy-vdr": "^0.5.2",
-		"@credo-ts/react-native": "^0.5.2",
+		"@credo-ts/anoncreds": "^0.5.3",
+		"@credo-ts/askar": "^0.5.3",
+		"@credo-ts/indy-vdr": "^0.5.3",
+		"@credo-ts/react-native": "^0.5.3",
 		"@hyperledger/anoncreds-react-native": "^0.2.2",
 		"@hyperledger/aries-askar-react-native": "^0.2.1",
 		"@hyperledger/indy-vdr-react-native": "^0.2.2",
