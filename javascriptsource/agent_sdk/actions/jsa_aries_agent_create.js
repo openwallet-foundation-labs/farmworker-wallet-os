@@ -51,7 +51,9 @@ import { ariesAskar } from '@hyperledger/aries-askar-react-native'
 /*
 import { QuestionAnswerModule } from '@aries-framework/question-answer';
 import { QuestionnaireModule } from '@entidad/questionnaire';
-import { MediaSharingModule } from 'aries-framework-media-sharing';
+*/
+import { MediaSharingModule } from 'credo-ts-media-sharing';
+/*
 import { version } from "punycode";
 */
 //import type { InitConfig } from '@credo-ts/core'
@@ -473,6 +475,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if (questionnaire) {
 			agentModules.questionnaire = new QuestionnaireModule();
 		}
+		*/
 		//-----------------------------------------------------------------------------------
 		if(mediaSharing){
 			try{
@@ -482,7 +485,6 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			}
 		}
 		//-----------------------------------------------------------------------------------
-		*/
 		const agent = new Agent({
 			config,
 			dependencies: agentDependencies,
