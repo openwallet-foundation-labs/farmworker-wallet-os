@@ -56,6 +56,7 @@ import { MediaSharingModule } from 'credo-ts-media-sharing';
 /*
 import { version } from "punycode";
 */
+import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds';
 //import type { InitConfig } from '@credo-ts/core'
 // END EXTRA CODE
 
@@ -398,6 +399,8 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				//todo:add configurability or turn cheqd off based on main cheqd enabling parameter
 				registries: [
 					new IndyVdrAnonCredsRegistry(),
+					//16:15 2024/05/03
+					new DidWebAnonCredsRegistry()
 				],
 				anoncreds //15:52 2024/04/30 - added
 			});
