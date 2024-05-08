@@ -48,8 +48,9 @@ import { OpenId4VcHolderModule } from '@credo-ts/openid4vc';
 import { anoncreds } from '@hyperledger/anoncreds-react-native';
 import { indyVdr } from '@hyperledger/indy-vdr-react-native';
 import { ariesAskar } from '@hyperledger/aries-askar-react-native'
+import { QuestionAnswerModule } from '@credo-ts/question-answer';
 /*
-import { QuestionAnswerModule } from '@aries-framework/question-answer';
+
 import { QuestionnaireModule } from '@entidad/questionnaire';
 */
 import { MediaSharingModule } from 'credo-ts-media-sharing';
@@ -469,11 +470,12 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				//todo:        mediatorPickupStrategy: MediatorPickupStrategy.X,
 			}) : ({}));
 		}
-		/*
-		//-----------------------------------------------------------------------------------
 		if (questionAnswer) {
 			agentModules.questionAnswer = new QuestionAnswerModule();
 		}
+		/*
+		//-----------------------------------------------------------------------------------
+		
 		//-----------------------------------------------------------------------------------
 		if (questionnaire) {
 			agentModules.questionnaire = new QuestionnaireModule();
