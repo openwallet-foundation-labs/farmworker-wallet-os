@@ -49,6 +49,7 @@ import { anoncreds } from '@hyperledger/anoncreds-react-native';
 import { indyVdr } from '@hyperledger/indy-vdr-react-native';
 import { ariesAskar } from '@hyperledger/aries-askar-react-native'
 import { QuestionAnswerModule } from '@credo-ts/question-answer';
+import { SurveyModule } from '@entidad/credo-ts-survey';
 /*
 
 import { QuestionnaireModule } from '@entidad/questionnaire';
@@ -472,6 +473,9 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		}
 		if (questionAnswer) {
 			agentModules.questionAnswer = new QuestionAnswerModule();
+		}
+		if (questionnaire) {
+			agentModules.survey = new SurveyModule();
 		}
 		/*
 		//-----------------------------------------------------------------------------------

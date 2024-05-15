@@ -17,7 +17,7 @@
     "@credo-ts/openid4vc": "^0.5.3",
     "@credo-ts/question-answer": "^0.5.3",
     "@credo-ts/react-native": "^0.5.3",
-    "@entidad/questionnaire": "git+http://github.com/entidad/credo-ts-survey.git",
+    "@entidad/credo-ts-survey": "git+http://github.com/entidad/credo-ts-survey.git",
     "@hyperledger/anoncreds-react-native": "^0.2.2",
     "@hyperledger/aries-askar-react-native": "^0.2.1",
     "@hyperledger/indy-vdr-react-native": "^0.2.2",
