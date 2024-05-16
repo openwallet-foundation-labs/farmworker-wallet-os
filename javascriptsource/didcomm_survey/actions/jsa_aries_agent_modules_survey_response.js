@@ -14,11 +14,11 @@ import support from "../../agent_sdk/support/entidad";
 
 /**
  * @param {string} agent_key
- * @param {string} questionAnswerRecordId
+ * @param {string} surveyRecordId
  * @param {string} response
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_survey_response(agent_key, questionAnswerRecordId, response) {
+export async function jsa_aries_agent_modules_survey_response(agent_key, surveyRecordId, response) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
