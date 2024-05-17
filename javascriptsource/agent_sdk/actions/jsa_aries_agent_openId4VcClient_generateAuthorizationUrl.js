@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import support from "../support/entidad";
 //import { OpenId4VpClientService, OpenIdCredentialFormatProfile } from '@internal/openid4vc-client'
 // END EXTRA CODE

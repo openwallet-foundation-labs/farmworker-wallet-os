@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import { QuestionAnswerRole, QuestionAnswerState, QuestionAnswerStateChangedEvent, QuestionAnswerEventTypes  } from '@credo-ts/question-answer'
 import support from "../support/entidad";
 // END EXTRA CODE

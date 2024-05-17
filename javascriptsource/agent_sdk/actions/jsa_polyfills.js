@@ -10,6 +10,7 @@ import { Big } from "big.js";
 import bigInt from "big-integer";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 // END EXTRA CODE
 
 /**

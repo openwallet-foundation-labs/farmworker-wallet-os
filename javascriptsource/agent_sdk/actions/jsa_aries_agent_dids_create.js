@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import support from "../support/entidad";
 //import {PeerDidNumAlgo,KeyType} /*{PeerDidNumAlgo}*/from"@aries-framework/core";
 //import{Agent}from"@aries-framework/core"

@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 //import {parseMessageType} from "@aries-framework/core";
 // END EXTRA CODE
 

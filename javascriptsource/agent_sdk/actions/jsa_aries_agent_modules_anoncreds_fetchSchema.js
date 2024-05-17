@@ -11,27 +11,23 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 import "../shim.js";
 import support from "../support/entidad";
+import {fetchSchema} from "@credo-ts/anoncreds"
 // END EXTRA CODE
 
 /**
- * findAllByQuery(query: AriesCore.Query<GenericRecord>): Promise<GenericRecord[]>
+ * fetchSchema(agentContext: AgentContext, schemaId: string): Promise<{ schema: AnonCredsSchema; schemaId: string; indyNamespace: string; }>
  * @param {string} agent_key
- * @param {string} query - json?
+ * @param {string} schemaId
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_genericRecords_findAllByQuery(agent_key, query) {
+export async function jsa_aries_agent_modules_anoncreds_fetchSchema(agent_key, schemaId) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");										//mandatory
-		if(query==null)return Promise.reject("Invalid query parameter");										//mandatory
-		try{
-			query=JSON.parse(query);
-		}catch(e){
-			return Promise.reject("Argument query is not a valid JSON object");
-		}
+		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
+		if(schemaId==null)throw("Invalid schemaId");
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(await agent.genericRecords.findAllByQuery(query)));
+		return(Promise.resolve(JSON.stringify(await fetchSchema(agent.context,schemaId))));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

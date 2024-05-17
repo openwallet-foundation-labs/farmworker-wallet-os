@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 //import*as p from'@aries-framework/core/package.json';
 import*as p from'@credo-ts/core/package.json';
 // END EXTRA CODE

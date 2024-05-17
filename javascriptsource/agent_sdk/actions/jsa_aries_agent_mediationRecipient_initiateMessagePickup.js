@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 //import{MediatorPickupStrategy}from'@aries-framework/core'
 import{MediatorPickupStrategy}from'@credo-ts/core'
 import support from"../support/entidad";
