@@ -9,7 +9,9 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import{WsOutboundTransport,HttpOutboundTransport/*,HttpInboundTransport*//*,WsInboundTransport*/}from'@aries-framework/core'
+import "../shim.js";
+//import{WsOutboundTransport,HttpOutboundTransport/*,HttpInboundTransport*//*,WsInboundTransport*/}from'@aries-framework/core'
+import{WsOutboundTransport,HttpOutboundTransport/*,HttpInboundTransport*//*,WsInboundTransport*/}from'@credo-ts/core'
 import support from "../support/entidad";
 // END EXTRA CODE
 

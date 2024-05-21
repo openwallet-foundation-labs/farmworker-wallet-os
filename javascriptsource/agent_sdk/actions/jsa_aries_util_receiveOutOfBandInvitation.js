@@ -9,10 +9,11 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import support from"../support/entidad";
-import{parseMessageType,V2OfferCredentialMessage,V2RequestPresentationMessage,CredentialEventTypes,CredentialState,ProofEventTypes,ProofState,OutOfBandRepository}from"@aries-framework/core";
-import {V1OfferCredentialMessage,V1RequestPresentationMessage} from '@aries-framework/anoncreds'
-import { supportsIncomingMessageType } from '@aries-framework/core/build/utils/messageType'
+//import{parseMessageType,V2OfferCredentialMessage,V2RequestPresentationMessage,CredentialEventTypes,CredentialState,ProofEventTypes,ProofState,OutOfBandRepository}from"@aries-framework/core";
+//import {V1OfferCredentialMessage,V1RequestPresentationMessage} from '@aries-framework/anoncreds'
+//import { supportsIncomingMessageType } from '@aries-framework/core/build/utils/messageType'
 import{filter,firstValueFrom,merge,first,timeout}from"rxjs";
 // END EXTRA CODE
 

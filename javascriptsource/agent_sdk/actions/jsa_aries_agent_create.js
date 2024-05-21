@@ -9,54 +9,57 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import support from "../support/entidad";
 import "../shim.js";
+import support from "../support/entidad";
 //import crypto from "crypto";
-import { KeyDerivationMethod } from '@aries-framework/core';
-import { DidCommMimeType } from '@aries-framework/core';
-import { AutoAcceptCredential } from '@aries-framework/core';
-import { AutoAcceptProof } from '@aries-framework/core';
-import { MediatorPickupStrategy } from '@aries-framework/core';
-import { ConsoleLogger, LogLevel } from '@aries-framework/core';
-import { Agent } from '@aries-framework/core';
-import { ConnectionsModule } from '@aries-framework/core';
-import { V2CredentialProtocol } from '@aries-framework/core';
-import { KeyDidRegistrar } from '@aries-framework/core';
-import { JwkDidRegistrar } from '@aries-framework/core';
-import { WebDidResolver } from '@aries-framework/core';
-import { KeyDidResolver } from '@aries-framework/core';
-import { JwkDidResolver } from '@aries-framework/core';
-import { MediationRecipientModule } from '@aries-framework/core';
-import { DidsModule } from '@aries-framework/core';
-import { V2ProofProtocol } from '@aries-framework/core';
-import { CredentialsModule } from '@aries-framework/core';
-import { ProofsModule } from '@aries-framework/core';
-import { V1CredentialProtocol } from '@aries-framework/anoncreds';
-import { V1ProofProtocol } from '@aries-framework/anoncreds';
-import { LegacyIndyCredentialFormatService } from '@aries-framework/anoncreds';
-import { LegacyIndyProofFormatService } from '@aries-framework/anoncreds';
-import { AnonCredsProofFormatService } from '@aries-framework/anoncreds';
-import { AnonCredsCredentialFormatService } from '@aries-framework/anoncreds';
-import { AnonCredsModule } from '@aries-framework/anoncreds';
-import { AnonCredsRsModule } from '@aries-framework/anoncreds-rs';
-import { IndyVdrAnonCredsRegistry } from '@aries-framework/indy-vdr';
-import { IndyVdrIndyDidResolver } from '@aries-framework/indy-vdr';
-import { IndyVdrSovDidResolver } from '@aries-framework/indy-vdr';
-import { IndyVdrModule } from '@aries-framework/indy-vdr';
-import { agentDependencies } from '@aries-framework/react-native';
-import { AskarModule } from '@aries-framework/askar';
-import { CheqdModule } from '@aries-framework/cheqd';
-import { CheqdModuleConfig } from '@aries-framework/cheqd';
-import { CheqdAnonCredsRegistry } from '@aries-framework/cheqd';
-import { CheqdDidRegistrar } from '@aries-framework/cheqd';
-import { CheqdDidResolver } from '@aries-framework/cheqd';
-import { OpenId4VcClientModule } from '@aries-framework/openid4vc-client';
+import { KeyDerivationMethod } from '@credo-ts/core';
+import { DidCommMimeType } from '@credo-ts/core';
+import { AutoAcceptCredential } from '@credo-ts/core';
+import { AutoAcceptProof } from '@credo-ts/core';
+import { MediatorPickupStrategy } from '@credo-ts/core';
+import { ConsoleLogger, LogLevel } from '@credo-ts/core';
+import { Agent } from '@credo-ts/core'
+import { ConnectionsModule } from '@credo-ts/core';
+import { V2CredentialProtocol } from '@credo-ts/core';
+import { KeyDidRegistrar } from '@credo-ts/core';
+import { JwkDidRegistrar } from '@credo-ts/core';
+import { WebDidResolver } from '@credo-ts/core';
+import { KeyDidResolver } from '@credo-ts/core';
+import { JwkDidResolver } from '@credo-ts/core';
+import { MediationRecipientModule } from '@credo-ts/core';
+import { DidsModule } from '@credo-ts/core';
+import { V2ProofProtocol } from '@credo-ts/core';
+import { CredentialsModule } from '@credo-ts/core';
+import { ProofsModule } from '@credo-ts/core';
+import { V1CredentialProtocol } from '@credo-ts/anoncreds';
+import { V1ProofProtocol } from '@credo-ts/anoncreds';
+import { LegacyIndyCredentialFormatService } from '@credo-ts/anoncreds';
+import { LegacyIndyProofFormatService } from '@credo-ts/anoncreds';
+import { AnonCredsProofFormatService } from '@credo-ts/anoncreds';
+import { AnonCredsCredentialFormatService } from '@credo-ts/anoncreds';
+import { AnonCredsModule } from '@credo-ts/anoncreds';
+import { IndyVdrAnonCredsRegistry } from '@credo-ts/indy-vdr';
+import { IndyVdrIndyDidResolver } from '@credo-ts/indy-vdr';
+import { IndyVdrSovDidResolver } from '@credo-ts/indy-vdr';
+import { IndyVdrModule } from '@credo-ts/indy-vdr';
+import { agentDependencies } from '@credo-ts/react-native'
+import { AskarModule } from '@credo-ts/askar'
+import { OpenId4VcHolderModule } from '@credo-ts/openid4vc';
 import { anoncreds } from '@hyperledger/anoncreds-react-native';
 import { indyVdr } from '@hyperledger/indy-vdr-react-native';
-import { ariesAskar } from '@hyperledger/aries-askar-react-native';
-import { QuestionAnswerModule } from '@aries-framework/question-answer';
+import { ariesAskar } from '@hyperledger/aries-askar-react-native'
+import { QuestionAnswerModule } from '@credo-ts/question-answer';
+import { SurveyModule } from '@entidad/credo-ts-survey';
+/*
+
 import { QuestionnaireModule } from '@entidad/questionnaire';
-import { MediaSharingModule } from 'aries-framework-media-sharing';
+*/
+import { MediaSharingModule } from 'credo-ts-media-sharing';
+/*
+import { version } from "punycode";
+*/
+import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds';
+//import type { InitConfig } from '@credo-ts/core'
 // END EXTRA CODE
 
 /**
@@ -101,22 +104,17 @@ import { MediaSharingModule } from 'aries-framework-media-sharing';
  * @param {boolean} mediationRecipient
  * @param {boolean} questionAnswer
  * @param {boolean} questionnaire
- * @param {boolean} cheqdDidRegistrar
  * @param {boolean} keyDidRegistrar
  * @param {boolean} jwkDidRegistrar
- * @param {boolean} cheqdDidResolver
  * @param {boolean} webDidResolver
  * @param {boolean} keyDidResolver
  * @param {boolean} jwkDidResolver
  * @param {boolean} indyVdrIndyDidResolver
  * @param {boolean} indyVdrSovDidResolver
- * @param {boolean} cheqdEnabled
- * @param {"Agent_SDK.enum_CheqdNetwork.testnet"|"Agent_SDK.enum_CheqdNetwork.mainnet"} cheqdNetwork
- * @param {string} cheqdCosmoPlayerSeed
  * @param {boolean} mediaSharing
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, questionAnswer, questionnaire, cheqdDidRegistrar, keyDidRegistrar, jwkDidRegistrar, cheqdDidResolver, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, cheqdEnabled, cheqdNetwork, cheqdCosmoPlayerSeed, mediaSharing) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, questionAnswer, questionnaire, keyDidRegistrar, jwkDidRegistrar, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, mediaSharing) {
 	// BEGIN USER CODE
 	try {
 		//--------------------------------------------------------------------------------
@@ -166,7 +164,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			default:																															// -
 				return Promise.reject("Invalid walletConfig_KeyDerivationMethod parameter");													// -
 				break;																															// -
-		}																																		// -
+		}		
 		if (walletConfig_storage == null);																											// optional
 		if (endpoints == null);																													// optional
 		if (publicDidSeed == null);																												// optional
@@ -212,7 +210,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			default:																															// -
 				return Promise.reject("Invalid logger parameter");																				// -
 				break;																															// -
-		}																																		// -
+		}
 		if (didCommMimeType == null) didCommMimeType = "v0";																							// default
 		switch (didCommMimeType) {																												// -
 			case "v0":																															// -
@@ -295,11 +293,13 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		}
 		if (useDidSovPrefixWhereAllowed == null);
 		if (useDidKeyInProtocols == null);
+		/*
 		//--------------------------------------------------------------------------------
 		//validate and prepare parameters - end
 		//--------------------------------------------------------------------------------
 		//construct configuration parameter - begin
 		//--------------------------------------------------------------------------------
+		*/
 		let config = {};
 		if (label != null) config.label = label;
 		if (
@@ -344,6 +344,10 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//-----------------------------------------------------------------------------------
 		agentModules.connections = new ConnectionsModule({
 			autoAcceptConnections: autoAcceptConnections
+		});
+		//-----------------------------------------------------------------------------------
+		agentModules.askar = new AskarModule({
+			ariesAskar: ariesAskar
 		});
 		//-----------------------------------------------------------------------------------
 		let credentialProtocols = []
@@ -397,14 +401,10 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				//todo:add configurability or turn cheqd off based on main cheqd enabling parameter
 				registries: [
 					new IndyVdrAnonCredsRegistry(),
-					new CheqdAnonCredsRegistry()
-				]
-			});
-		}
-		//-----------------------------------------------------------------------------------
-		if (anoncredsRs) {
-			agentModules.anoncredsRs = new AnonCredsRsModule({
-				anoncreds,
+					//16:15 2024/05/03
+					new DidWebAnonCredsRegistry()
+				],
+				anoncreds //15:52 2024/04/30 - added
 			});
 		}
 		//-----------------------------------------------------------------------------------
@@ -421,10 +421,6 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//if(indySdkIndyDidRegistrar){
 		//	dids_registrars.push(new IndySdkIndyDidRegistrar());
 		//}
-		// not in paradym wallet, please disable in afj configuration screen
-		if (cheqdDidRegistrar) {
-			dids_registrars.push(new CheqdDidRegistrar());
-		}
 		if (keyDidRegistrar) {
 			dids_registrars.push(new KeyDidRegistrar());
 		}
@@ -441,9 +437,6 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		}
 		if (jwkDidResolver) {
 			dids_resolvers.push(new JwkDidResolver());
-		}
-		if (cheqdDidResolver) {
-			dids_resolvers.push(new CheqdDidResolver());
 		}
 		if (indyVdrSovDidResolver) {
 			dids_resolvers.push(new IndyVdrSovDidResolver());
@@ -468,29 +461,8 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			resolvers: dids_resolvers
 		});
 		//-----------------------------------------------------------------------------------
-		agentModules.askar = new AskarModule({
-			ariesAskar: ariesAskar
-		});
-		//-----------------------------------------------------------------------------------
-		// * @param {"Agent_SDK.enum_CheqdNetwork.testnet"|"Agent_SDK.enum_CheqdNetwork.mainnet"} cheqdNetwork
-		// * @param {string} cheqdCosmoPlayerSeed
-		// * @returns {Promise.<string>}
-		//todo:add configuration
-		if (cheqdEnabled) {
-			agentModules.cheqd = new CheqdModule(
-				new CheqdModuleConfig({
-					networks: [
-						{
-							network: cheqdNetwork,
-							cosmosPayerSeed: cheqdCosmoPlayerSeed
-						},
-					],
-				})
-			);
-		}
-		//-----------------------------------------------------------------------------------
 		if (useModuleOpenId4VC) {
-			agentModules.openId4VcClient = new OpenId4VcClientModule();
+			agentModules.openId4VcHolder=new OpenId4VcHolderModule();
 		}
 		//-----------------------------------------------------------------------------------
 		if (mediationRecipient) {
@@ -499,14 +471,20 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				//todo:        mediatorPickupStrategy: MediatorPickupStrategy.X,
 			}) : ({}));
 		}
-		//-----------------------------------------------------------------------------------
 		if (questionAnswer) {
 			agentModules.questionAnswer = new QuestionAnswerModule();
 		}
+		if (questionnaire) {
+			agentModules.survey = new SurveyModule();
+		}
+		/*
+		//-----------------------------------------------------------------------------------
+		
 		//-----------------------------------------------------------------------------------
 		if (questionnaire) {
 			agentModules.questionnaire = new QuestionnaireModule();
 		}
+		*/
 		//-----------------------------------------------------------------------------------
 		if(mediaSharing){
 			try{
@@ -517,11 +495,11 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		}
 		//-----------------------------------------------------------------------------------
 		const agent = new Agent({
-			config: config,
+			config,
 			dependencies: agentDependencies,
 			modules: agentModules,
 		});
-		return Promise.resolve(support.cache.put(agent, walletConfig_id));
+		return Promise.resolve(support.cache.put(agent, walletConfig_id));		
 	} catch (e) {
 		return Promise.reject(e.toString());
 	}

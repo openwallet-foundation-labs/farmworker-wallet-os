@@ -1,5 +1,6 @@
 //--------------------------------------------------------------------------------
-import{Logger,LogLevel}from"@aries-framework/core";
+//import{Logger,LogLevel}from"@aries-framework/core";
+import{Logger,LogLevel}from"@credo-ts/core";
 class ConsoleLogger{
 	logLevel:LogLevel
 

@@ -9,8 +9,9 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import support from"../support/entidad";
-import{ProofState,ProofEventTypes}from"@aries-framework/core";
+//import{ProofState,ProofEventTypes}from"@aries-framework/core";
 import{filter,firstValueFrom,merge,first,timeout}from"rxjs";
 // END EXTRA CODE
 

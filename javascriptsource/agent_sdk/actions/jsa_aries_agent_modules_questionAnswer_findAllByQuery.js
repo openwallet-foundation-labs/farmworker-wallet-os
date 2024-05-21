@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import support from"../support/entidad";
 //import{QuestionAnswerRecord}from'@aries-framework/question-answer';
 // END EXTRA CODE

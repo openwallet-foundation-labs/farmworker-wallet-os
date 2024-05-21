@@ -9,8 +9,9 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import support from"../support/entidad";
-import{CredentialEventTypes,CredentialState}from"@aries-framework/core";
+//import{CredentialEventTypes,CredentialState}from"@aries-framework/core";
 import{filter,firstValueFrom,merge,first,timeout}from"rxjs";
 // END EXTRA CODE
 

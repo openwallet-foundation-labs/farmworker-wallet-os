@@ -9,9 +9,10 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import{supportsIncomingMessageType}from"@aries-framework/core/build/utils/messageType";
-import{V1OfferCredentialMessage,V1RequestPresentationMessage}from"@aries-framework/anoncreds";
-import{V2OfferCredentialMessage,V2RequestPresentationMessage}from"@aries-framework/core";
+import "../shim.js";
+//import{supportsIncomingMessageType}from"@aries-framework/core/build/utils/messageType";
+//import{V1OfferCredentialMessage,V1RequestPresentationMessage}from"@aries-framework/anoncreds";
+//import{V2OfferCredentialMessage,V2RequestPresentationMessage}from"@aries-framework/core";
 // END EXTRA CODE
 
 /**

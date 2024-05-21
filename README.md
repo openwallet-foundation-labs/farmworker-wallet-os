@@ -10,7 +10,7 @@
 * Run `npm install` in `./javascriptsource/agent_sdk/`
 * Run `node_modules/.bin/rn-nodeify --hack --install` in `./javascriptsource/agent_sdk/`
 * Run `npm install` in `./javascriptsource/keymanagement`
-* Run `npm install` in `./javascriptsource/didcomm_questionnaire`
+* Run `npm install` in `./javascriptsource/didcomm_survey`
 * Download [Studio Pro 9.24.18](https://marketplace.mendix.com/link/studiopro/)
 * Open `fwos-demo-app.mpr` from Studio Pro
 * Run the project from Studio Pro by clicking Run / Run Locally

@@ -7,9 +7,9 @@
 // Other code you write will be lost the next time you deploy the project.
 import "mx-global";
 import { Big } from "big.js";
-import { IsInstanceOrArrayOfInstances } from "@aries-framework/core/build/utils";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import support from "../support/entidad";
 // END EXTRA CODE
 
