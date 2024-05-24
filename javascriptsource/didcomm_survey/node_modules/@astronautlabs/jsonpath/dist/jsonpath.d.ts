@@ -1,0 +1,12 @@
+export declare class JSONPath {
+    static parse(string: string): any;
+    static parent(obj: any, string: any): any;
+    static apply(obj: any, string: any, fn: any): any[];
+    static value(obj: any, path: any, value?: any): any;
+    private static _vivify;
+    static query(obj: Object, string: any, count?: any): any[];
+    static paths(obj: any, string: any, count: any): any[];
+    static nodes(obj: any, string: any, count?: any): any[];
+    static stringify(path: any): string;
+    private static _normalize;
+}

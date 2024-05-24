@@ -1,0 +1,1 @@
+{"version":3,"file":"exchangeStatus.js","sourceRoot":"","sources":["../../model/exchangeStatus.ts"],"names":[],"mappings":";;;AAkBa,QAAA,cAAc,GAAG;IAC1B,OAAO,EAAE,SAA2B;IACpC,SAAS,EAAE,WAA6B;IACxC,cAAc,EAAE,iBAAmC;IACnD,OAAO,EAAE,SAA2B;IACpC,QAAQ,EAAE,UAA4B;IACtC,gBAAgB,EAAE,mBAAqC;CAC1D,CAAC"}

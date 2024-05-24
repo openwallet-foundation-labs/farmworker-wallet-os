@@ -1,0 +1,224 @@
+import { Handlers } from "./handlers";
+import { TOKENS } from './tokens';
+import { Parser } from './parser';
+
+import { assert } from './assert';
+
+export class JSONPath {
+  static parse(string : string) {
+    assert.ok(typeof string === 'string', "we need a path");
+    return new Parser().parse(string);
+  }
+
+  static parent(obj, string) {
+    assert.ok(obj instanceof Object, "obj needs to be an object");
+    assert.ok(string, "we need a path");
+  
+    let node = this.nodes(obj, string)[0];
+    let key = node.path.pop(); /* jshint unused:false */
+    return this.value(obj, node.path);
+  }
+  
+  static apply(obj, string, fn) {
+
+    assert.ok(obj instanceof Object, "obj needs to be an object");
+    assert.ok(string, "we need a path");
+    assert.equal(typeof fn, "function", "fn needs to be function")
+
+    var nodes = this.nodes(obj, string).sort(function(a, b) {
+      // sort nodes so we apply from the bottom up
+      return b.path.length - a.path.length;
+    });
+
+    nodes.forEach(function(node) {
+      var key = node.path.pop();
+      var parent = this.value(obj, this.stringify(node.path));
+      var val = node.value = fn.call(obj, parent[key]);
+      parent[key] = val;
+    }, this);
+
+    return nodes;
+  }
+
+  static value(obj, path, value?) {
+
+    assert.ok(obj instanceof Object, "obj needs to be an object");
+    assert.ok(path, "we need a path");
+  
+    if (value !== undefined) {
+      var node = this.nodes(obj, path).shift();
+      if (!node) return this._vivify(obj, path, value);
+      var key = node.path.slice(-1).shift();
+      var parent = this.parent(obj, this.stringify(node.path));
+      parent[key] = value;
+    }
+    return this.query(obj, this.stringify(path), 1).shift();
+  }
+  
+  private static _vivify(obj, string, value) {
+    var self = this;
+
+    assert.ok(obj instanceof Object, "obj needs to be an object");
+    assert.ok(string, "we need a path");
+
+    var path = new Parser().parse(string)
+      .map(component => component.expression.value);
+
+    var setValue = function(path, value) {
+      var key = path.pop();
+      var node = self.value(obj, path);
+      if (!node) {
+        setValue(path.concat(), typeof key === 'string' ? {} : []);
+        node = self.value(obj, path);
+      }
+      node[key] = value;
+    }
+    setValue(path, value);
+    return this.query(obj, string)[0];
+  }
+
+  static query(obj : Object, string, count?) {
+    assert.ok(obj instanceof Object, "obj needs to be an object");
+    assert.ok(typeof string === 'string', "we need a path");
+  
+    var results = this.nodes(obj, string, count)
+      .map(function(r) { return r.value });
+  
+    return results;
+  }
+  
+  static paths(obj, string, count) {
+
+    assert.ok(obj instanceof Object, "obj needs to be an object");
+    assert.ok(string, "we need a path");
+
+    var results = this.nodes(obj, string, count)
+      .map(function(r) { return r.path });
+
+    return results;
+  }
+  
+  static nodes(obj, string, count?) {
+    assert.ok(obj instanceof Object, "obj needs to be an object");
+    assert.ok(string, "we need a path");
+
+    if (count === 0) return [];
+
+    let path = new Parser().parse(string);
+    let handlers = new Handlers();
+    let partials = [ { path: ['$'], value: obj } ];
+    let matches = [];
+
+    if (path.length && path[0].expression.type == 'root') path.shift();
+
+    if (!path.length) return partials;
+
+    path.forEach(function(component, index) {
+
+      if (matches.length >= count) return;
+      var handler = handlers.resolve(component);
+      var _partials = [];
+
+      partials.forEach(function(p) {
+
+        if (matches.length >= count) return;
+        var results = handler(component, p, count);
+
+        if (index == path.length - 1) {
+          // if we're through the components we're done
+          matches = matches.concat(results || []);
+        } else {
+          // otherwise accumulate and carry on through
+          _partials = _partials.concat(results || []);
+        }
+      });
+
+      partials = _partials;
+
+    });
+
+    return count ? matches.slice(0, count) : matches;
+  }
+
+  static stringify(path) {
+    assert.ok(path, "we need a path");
+
+    var string = '$';
+
+    var templates = {
+      'descendant-member': '..{{value}}',
+      'child-member': '.{{value}}',
+      'descendant-subscript': '..[{{value}}]',
+      'child-subscript': '[{{value}}]'
+    };
+
+    path = this._normalize(path);
+
+    path.forEach(function(component) {
+
+      if (component.expression.type == 'root') return;
+
+      var key = [component.scope, component.operation].join('-');
+      var template = templates[key];
+      var value;
+
+      if (component.expression.type == 'string_literal') {
+        value = JSON.stringify(component.expression.value)
+      } else {
+        value = component.expression.value;
+      }
+
+      if (!template) throw new Error("couldn't find template " + key);
+
+      string += template.replace(/{{value}}/, value);
+    });
+
+    return string;
+  }
+  
+  private static _normalize(path) {
+    assert.ok(path, "we need a path");
+
+    if (typeof path == "string") {
+
+      return new Parser().parse(path);
+
+    } else if (Array.isArray(path) && typeof path[0] == "string") {
+
+      var _path : any[] = [ { expression: { type: "root", value: "$" } } ];
+
+      path.forEach(function(component, index) {
+
+        if (component == '$' && index === 0) return;
+
+        if (typeof component == "string" && component.match("^" + TOKENS.identifier + "$")) {
+
+          _path.push({
+            operation: 'member',
+            scope: 'child',
+            expression: { value: component, type: 'identifier' }
+          });
+
+        } else {
+
+          var type = typeof component == "number" ?
+            'numeric_literal' : 'string_literal';
+
+          _path.push({
+            operation: 'subscript',
+            scope: 'child',
+            expression: { value: component, type: type }
+          });
+        }
+      });
+
+      return _path;
+
+    } else if (Array.isArray(path) && typeof path[0] == "object") {
+
+      return path
+    }
+
+    throw new Error("couldn't understand path " + path);
+  }
+}

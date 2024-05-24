@@ -1,0 +1,13 @@
+/**
+ * @internal
+ * @hidden
+ */
+export declare class Handlers {
+    constructor();
+    traverse: any;
+    descend: any;
+    private _fns;
+    private initialize;
+    resolve(component: any): any;
+    register(key: any, handler: any): void;
+}

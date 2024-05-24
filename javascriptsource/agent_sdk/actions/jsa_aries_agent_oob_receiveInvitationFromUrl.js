@@ -14,19 +14,56 @@ import support from "../support/entidad";
 // END EXTRA CODE
 
 /**
+ * receiveInvitationFromUrl(invitationUrl: string, config?: ReceiveOutOfBandInvitationConfig): Promise<{ outOfBandRecord: OutOfBandRecord; connectionRecord?: ConnectionRecord; }>
+ * url containing a base64 encoded invitation to receive
+ * 
+ * 
+ * Parses URL, decodes invitation and calls receiveMessage with parsed invitation message.
+ * 
+ * Agent role: receiver (invitee)
+ * 
+ * @returns — out-of-band record and connection record if one has been created
+ * 
+ * configuration:
+ * 
+ * interface BaseReceiveOutOfBandInvitationConfig {
+ *   label?: string
+ *   alias?: string
+ *   imageUrl?: string
+ *   autoAcceptInvitation?: boolean
+ *   autoAcceptConnection?: boolean
+ *   reuseConnection?: boolean
+ *   routing?: Routing
+ *   acceptInvitationTimeoutMs?: number
+ *   isImplicit?: boolean
+ *   ourDid?: string
+ * }
+ * 
+ * export type ReceiveOutOfBandInvitationConfig = Omit<BaseReceiveOutOfBandInvitationConfig, 'isImplicit'>
  * @param {string} agent_key
  * @param {string} invitationUrl
+ * @param {string} config - optional json
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_oob_receiveInvitationFromUrl(agent_key, invitationUrl) {
+export async function jsa_aries_agent_oob_receiveInvitationFromUrl(agent_key, invitationUrl, config) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");			//mandatory
-		if(invitationUrl==null)return Promise.reject("Invalid invitationUrl parameter");	//mandatory
+		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
+		if(invitationUrl==null)return Promise.reject("Invalid invitationUrl parameter");
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		const{outOfBandRecord}=await agent.oob.receiveInvitationFromUrl(invitationUrl);
-		return Promise.resolve(JSON.stringify(outOfBandRecord,0,2));
+		if(config==null||config==''){
+			const{outOfBandRecord}=await agent.oob.receiveInvitationFromUrl(invitationUrl);
+			return Promise.resolve(JSON.stringify(outOfBandRecord,0,2));
+		}else{
+			try{
+				config=JSON.parse(config);
+				const{outOfBandRecord}=await agent.oob.receiveInvitationFromUrl(invitationUrl,config);
+				return Promise.resolve(JSON.stringify(outOfBandRecord,0,2));
+			}catch(e){
+				return(Promise.reject(e.toString()));
+			}
+		}
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

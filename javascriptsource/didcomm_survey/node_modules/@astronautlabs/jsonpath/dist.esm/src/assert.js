@@ -1,0 +1,15 @@
+var assert = /** @class */ (function () {
+    function assert() {
+    }
+    assert.ok = function (predicate, message) {
+        if (!predicate)
+            throw new Error(message);
+    };
+    assert.equal = function (value, expected, message) {
+        if (value !== expected)
+            throw new Error(message);
+    };
+    return assert;
+}());
+export { assert };
+//# sourceMappingURL=assert.js.map

@@ -1,0 +1,16 @@
+import { Checked, Status } from '../../ConstraintUtils';
+export class ValidationBundler {
+    parentTag;
+    myTag;
+    constructor(parentTag, myTag) {
+        this.parentTag = parentTag;
+        this.myTag = myTag;
+    }
+    getTag() {
+        return this.parentTag != null ? this.parentTag + '.' + this.myTag : this.myTag;
+    }
+    toChecked(message) {
+        return new Checked(this.getTag(), Status.ERROR, message);
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidmFsaWRhdGlvbkJ1bmRsZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9saWIvdmFsaWRhdGlvbi9idW5kbGVycy92YWxpZGF0aW9uQnVuZGxlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsT0FBTyxFQUFFLE1BQU0sRUFBRSxNQUFNLHVCQUF1QixDQUFDO0FBR3hELE1BQU0sT0FBZ0IsaUJBQWlCO0lBQ3JDLFNBQVMsQ0FBUztJQUNsQixLQUFLLENBQVM7SUFFZCxZQUFzQixTQUFpQixFQUFFLEtBQWE7UUFDcEQsSUFBSSxDQUFDLFNBQVMsR0FBRyxTQUFTLENBQUM7UUFDM0IsSUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUM7SUFDckIsQ0FBQztJQUtTLE1BQU07UUFDZCxPQUFPLElBQUksQ0FBQyxTQUFTLElBQUksSUFBSSxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUMsU0FBUyxHQUFHLEdBQUcsR0FBRyxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDO0lBQ2pGLENBQUM7SUFFUyxTQUFTLENBQUMsT0FBZTtRQUNqQyxPQUFPLElBQUksT0FBTyxDQUFDLElBQUksQ0FBQyxNQUFNLEVBQUUsRUFBRSxNQUFNLENBQUMsS0FBSyxFQUFFLE9BQU8sQ0FBQyxDQUFDO0lBQzNELENBQUM7Q0FDRiJ9

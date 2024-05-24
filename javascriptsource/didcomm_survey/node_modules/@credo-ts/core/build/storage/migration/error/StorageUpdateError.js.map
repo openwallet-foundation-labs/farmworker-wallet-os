@@ -1,0 +1,1 @@
+{"version":3,"file":"StorageUpdateError.js","sourceRoot":"","sources":["../../../../src/storage/migration/error/StorageUpdateError.ts"],"names":[],"mappings":";;;AAAA,0DAAsD;AAEtD,MAAa,kBAAmB,SAAQ,uBAAU;IAChD,YAAmB,OAAe,EAAE,EAAE,KAAK,KAAwB,EAAE;QACnE,KAAK,CAAC,OAAO,EAAE,EAAE,KAAK,EAAE,CAAC,CAAA;IAC3B,CAAC;CACF;AAJD,gDAIC"}

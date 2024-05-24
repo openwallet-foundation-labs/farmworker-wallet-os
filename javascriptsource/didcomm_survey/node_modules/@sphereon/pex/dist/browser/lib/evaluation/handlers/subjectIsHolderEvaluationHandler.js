@@ -1,0 +1,108 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SubjectIsHolderEvaluationHandler = void 0;
+const jsonpath_1 = require("@astronautlabs/jsonpath");
+const pex_models_1 = require("@sphereon/pex-models");
+const ConstraintUtils_1 = require("../../ConstraintUtils");
+const abstractEvaluationHandler_1 = require("./abstractEvaluationHandler");
+class SubjectIsHolderEvaluationHandler extends abstractEvaluationHandler_1.AbstractEvaluationHandler {
+    constructor(client) {
+        super(client);
+        this.fieldIdzInputDescriptorsSameSubjectRequired = new Map();
+        this.fieldIdzInputDescriptorsSameSubjectPreferred = new Map();
+        this.isHolder = [];
+        this.fieldIds = [];
+        this.credentialsSubjectsByPath = new Map();
+        this.credentialsByPath = new Map();
+        this.messages = new Map();
+        this.messages.set(ConstraintUtils_1.Status.INFO, 'The field ids requiring the subject to be the holder');
+        this.messages.set(ConstraintUtils_1.Status.WARN, 'The field ids preferring the subject to be the holder');
+        this.messages.set(ConstraintUtils_1.Status.ERROR, 'The field id missing');
+    }
+    getName() {
+        return 'IsHolderEvaluation';
+    }
+    handle(pd, wrappedVcs) {
+        this.findIsHolderFieldIdsToInputDescriptorsSets(pd);
+        this.findAllCredentialSubjects(wrappedVcs);
+        this.confirmAllFieldSetHasSameSubject(this.fieldIdzInputDescriptorsSameSubjectRequired, ConstraintUtils_1.Status.INFO, pex_models_1.Optionality.Required);
+        this.confirmAllFieldSetHasSameSubject(this.fieldIdzInputDescriptorsSameSubjectPreferred, ConstraintUtils_1.Status.WARN, pex_models_1.Optionality.Preferred);
+        this.updatePresentationSubmission(pd);
+    }
+    /**
+     * We have input descriptor to field ids mapping. This function gets a (reverse) map from field id to input descriptor
+     */
+    findIsHolderFieldIdsToInputDescriptorsSets(pd) {
+        var _a;
+        this.fieldIds.push(...jsonpath_1.JSONPath.nodes(pd, '$..fields[*].id'));
+        this.isHolder.push(...jsonpath_1.JSONPath.nodes(pd, '$..is_holder[*]'));
+        const fields = (_a = this.fieldIds) === null || _a === void 0 ? void 0 : _a.map((n) => n.value);
+        const error = [];
+        error.push(...this.evaluateFields(this.fieldIdzInputDescriptorsSameSubjectPreferred, this.isHolder, fields, pex_models_1.Optionality.Preferred));
+        error.push(...this.evaluateFields(this.fieldIdzInputDescriptorsSameSubjectRequired, this.isHolder, fields, pex_models_1.Optionality.Required));
+        error.forEach((q) => this.getResults().push(this.createResult(q[1], q[0], ['', {}], ConstraintUtils_1.Status.ERROR, undefined)));
+    }
+    evaluateFields(fieldsMapping, isHolder, fields, directive) {
+        const error = [];
+        isHolder
+            .filter((d) => d.value.directive === directive)
+            .filter((e) => e.value.field_id.every((id) => fields.includes(id)))
+            .forEach((p) => fieldsMapping.set(jsonpath_1.JSONPath.stringify(p.path.slice(0, 3)), p.value.field_id));
+        isHolder
+            .filter((d) => d.value.directive === directive)
+            .filter((e) => !e.value.field_id.every((id) => fields.includes(id)))
+            .forEach((p) => error.push([jsonpath_1.JSONPath.stringify(p.path.slice(0, 3)), p.value.field_id]));
+        return error;
+    }
+    findAllCredentialSubjects(wrappedVcs) {
+        //TODO handle nested path
+        const credentialSubjects = jsonpath_1.JSONPath.nodes(wrappedVcs.map((wvc) => wvc.credential), '$..credentialSubject');
+        for (let idx = 0; idx < credentialSubjects.length; idx++) {
+            const cs = credentialSubjects[idx];
+            const path = jsonpath_1.JSONPath.stringify(cs.path.slice(0, 2));
+            this.credentialsSubjectsByPath.set(path, cs.value);
+            this.credentialsByPath.set(path, wrappedVcs[idx]);
+        }
+    }
+    confirmAllFieldSetHasSameSubject(fieldIdsInputDescriptorsGroups, status, directive) {
+        const subjectsMatchingFields = Array.from(fieldIdsInputDescriptorsGroups).flatMap((k) => Array.from(this.credentialsSubjectsByPath).filter((a) => k[1].find((c) => Object.keys(a[1]).includes(c))));
+        const credentialPathsToInputDescriptors = this.mapCredentialPathsToInputDescriptors(directive);
+        const fields = Array.from(subjectsMatchingFields).flatMap((s) => Object.keys(s[1]).filter((w) => w !== 'id'));
+        const allFieldsMatched = Array.from(fieldIdsInputDescriptorsGroups.values()).flatMap((v) => v.every((e) => fields.includes(e)))[0];
+        subjectsMatchingFields.forEach((subject) => {
+            const inDescPath = credentialPathsToInputDescriptors.get(subject[0]);
+            if (allFieldsMatched && subject[1].id && this.client.dids.includes(subject[1].id)) {
+                this.getResults().push(this.createResult(Object.keys(subject[1]).filter((k) => k !== 'id'), inDescPath, subject, status, this.credentialsByPath.get(subject[0])));
+            }
+            else {
+                this.getResults().push(this.createResult(Object.keys(subject[1]).filter((k) => k !== 'id'), inDescPath, subject, ConstraintUtils_1.Status.ERROR, this.credentialsByPath.get(subject[0])));
+            }
+        });
+    }
+    mapCredentialPathsToInputDescriptors(directive) {
+        var _a;
+        const credentialsToInputDescriptors = new Map();
+        (_a = this.fieldIds) === null || _a === void 0 ? void 0 : _a.forEach((id) => {
+            const inDescPath = jsonpath_1.JSONPath.stringify(id.path.slice(0, 3));
+            this.credentialsSubjectsByPath.forEach((cs, credentialPath) => {
+                const hs = this.isHolder.find((e) => jsonpath_1.JSONPath.stringify(e.path.slice(0, 3)) === inDescPath);
+                if (Object.keys(cs).includes(id.value) && (hs === null || hs === void 0 ? void 0 : hs.value.directive) === directive) {
+                    credentialsToInputDescriptors.set(credentialPath, inDescPath);
+                }
+            });
+        });
+        return credentialsToInputDescriptors;
+    }
+    createResult(fieldIdSet, inputDescriptorPath, credentialSub, myStatus, wvc, message) {
+        return {
+            input_descriptor_path: inputDescriptorPath,
+            verifiable_credential_path: credentialSub[0],
+            evaluator: this.getName(),
+            status: myStatus,
+            payload: Object.assign({ fieldIdSet, credentialSubject: credentialSub[1] }, (wvc ? { format: wvc.format } : {})),
+            message: message !== null && message !== void 0 ? message : this.messages.get(myStatus),
+        };
+    }
+}
+exports.SubjectIsHolderEvaluationHandler = SubjectIsHolderEvaluationHandler;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3ViamVjdElzSG9sZGVyRXZhbHVhdGlvbkhhbmRsZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9saWIvZXZhbHVhdGlvbi9oYW5kbGVycy9zdWJqZWN0SXNIb2xkZXJFdmFsdWF0aW9uSGFuZGxlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxzREFBeUQ7QUFDekQscURBQWtFO0FBR2xFLDJEQUErQztBQUsvQywyRUFBd0U7QUFFeEUsTUFBYSxnQ0FBaUMsU0FBUSxxREFBeUI7SUFXN0UsWUFBWSxNQUF3QjtRQUNsQyxLQUFLLENBQUMsTUFBTSxDQUFDLENBQUM7UUFFZCxJQUFJLENBQUMsMkNBQTJDLEdBQUcsSUFBSSxHQUFHLEVBQW9CLENBQUM7UUFDL0UsSUFBSSxDQUFDLDRDQUE0QyxHQUFHLElBQUksR0FBRyxFQUFvQixDQUFDO1FBQ2hGLElBQUksQ0FBQyxRQUFRLEdBQUcsRUFBRSxDQUFDO1FBQ25CLElBQUksQ0FBQyxRQUFRLEdBQUcsRUFBRSxDQUFDO1FBQ25CLElBQUksQ0FBQyx5QkFBeUIsR0FBRyxJQUFJLEdBQUcsRUFBOEIsQ0FBQztRQUN2RSxJQUFJLENBQUMsaUJBQWlCLEdBQUcsSUFBSSxHQUFHLEVBQXVDLENBQUM7UUFFeEUsSUFBSSxDQUFDLFFBQVEsR0FBRyxJQUFJLEdBQUcsRUFBa0IsQ0FBQztRQUMxQyxJQUFJLENBQUMsUUFBUSxDQUFDLEdBQUcsQ0FBQyx3QkFBTSxDQUFDLElBQUksRUFBRSxzREFBc0QsQ0FBQyxDQUFDO1FBQ3ZGLElBQUksQ0FBQyxRQUFRLENBQUMsR0FBRyxDQUFDLHdCQUFNLENBQUMsSUFBSSxFQUFFLHVEQUF1RCxDQUFDLENBQUM7UUFDeEYsSUFBSSxDQUFDLFFBQVEsQ0FBQyxHQUFHLENBQUMsd0JBQU0sQ0FBQyxLQUFLLEVBQUUsc0JBQXNCLENBQUMsQ0FBQztJQUMxRCxDQUFDO0lBRU0sT0FBTztRQUNaLE9BQU8sb0JBQW9CLENBQUM7SUFD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

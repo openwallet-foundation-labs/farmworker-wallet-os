@@ -10,7 +10,7 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import "../shim.js";
-//import {parseMessageType} from "@aries-framework/core";
+import {parseMessageType} from"@credo-ts/core";
 // END EXTRA CODE
 
 /**

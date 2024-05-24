@@ -1,0 +1,46 @@
+{
+  "name": "@sphereon/ssi-types",
+  "description": "SSI Common Types",
+  "version": "0.22.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:clean": "tsc --build --clean && tsc --build"
+  },
+  "dependencies": {
+    "@sd-jwt/decode": "^0.6.1",
+    "jwt-decode": "^3.1.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.2",
+    "@types/node": "18.15.3",
+    "@veramo/core": "4.2.0",
+    "jest": "^27.5.1",
+    "prettier": "^2.4.1",
+    "ts-jest": "^27.1.5",
+    "typescript": "5.4.2"
+  },
+  "files": [
+    "dist/**/*",
+    "src/**/*",
+    "plugin.schema.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "git@github.com:Sphereon-OpenSource/ssi-sdk.git",
+  "author": "Sphereon <dev@sphereon.com>",
+  "license": "Apache-2.0",
+  "keywords": [
+    "SSI",
+    "Common Credential Types",
+    "Credential Mapping",
+    "Verifiable Credentials",
+    "DIDs"
+  ],
+  "gitHead": "cff5ae59d16bf499c3cf825b8841fb3aaddeeb70"
+}

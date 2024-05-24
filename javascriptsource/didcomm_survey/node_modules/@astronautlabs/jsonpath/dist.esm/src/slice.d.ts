@@ -1,0 +1,5 @@
+/**
+ * @internal
+ * @hidden
+ */
+export declare function slice(arr: any[], start?: number, end?: number, step?: number): any[];

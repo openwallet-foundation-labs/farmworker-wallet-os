@@ -1,0 +1,11 @@
+/**
+ * Defines the token types of JSONPath by regular expression.
+ * @internal
+ * @hidden
+ */
+export declare const TOKENS: {
+    identifier: string;
+    integer: string;
+    qq_string: string;
+    q_string: string;
+};
