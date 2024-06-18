@@ -11,7 +11,7 @@
 * Run `node_modules/.bin/rn-nodeify --hack --install` in `./javascriptsource/agent_sdk/`
 * Run `npm install` in `./javascriptsource/keymanagement`
 * Run `npm install` in `./javascriptsource/didcomm_survey`
-* Download [Studio Pro 9.24.18](https://marketplace.mendix.com/link/studiopro/)
+* Download [Studio Pro 9.24.22](https://marketplace.mendix.com/link/studiopro/)
 * Open `fwos-demo-app.mpr` from Studio Pro
 * Run the project from Studio Pro by clicking Run / Run Locally
 * Create a custom React Native application from [OpenWallet Foundation Labs/fwos-native-template](https://github.com/openwallet-foundation-labs/fwos-native-template) or download a pre-built APK from [OpenWallet Foundation Labs/fwos-native-template/releases](https://github.com/openwallet-foundation-labs/fwos-native-template/releases)
