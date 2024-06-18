@@ -1,4 +1,0 @@
-export declare class assert {
-    static ok(predicate: boolean, message: string): void;
-    static equal(value: any, expected: any, message: string): void;
-}

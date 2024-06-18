@@ -1,5 +1,0 @@
-/**
- * @hidden
- * @internal
- */
-export declare function Parser(): void;

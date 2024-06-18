@@ -14,32 +14,6 @@ import support from "../support/entidad";
 // END EXTRA CODE
 
 /**
- * receiveInvitationFromUrl(invitationUrl: string, config?: ReceiveOutOfBandInvitationConfig): Promise<{ outOfBandRecord: OutOfBandRecord; connectionRecord?: ConnectionRecord; }>
- * url containing a base64 encoded invitation to receive
- * 
- * 
- * Parses URL, decodes invitation and calls receiveMessage with parsed invitation message.
- * 
- * Agent role: receiver (invitee)
- * 
- * @returns — out-of-band record and connection record if one has been created
- * 
- * configuration:
- * 
- * interface BaseReceiveOutOfBandInvitationConfig {
- *   label?: string
- *   alias?: string
- *   imageUrl?: string
- *   autoAcceptInvitation?: boolean
- *   autoAcceptConnection?: boolean
- *   reuseConnection?: boolean
- *   routing?: Routing
- *   acceptInvitationTimeoutMs?: number
- *   isImplicit?: boolean
- *   ourDid?: string
- * }
- * 
- * export type ReceiveOutOfBandInvitationConfig = Omit<BaseReceiveOutOfBandInvitationConfig, 'isImplicit'>
  * @param {string} agent_key
  * @param {string} invitationUrl
  * @param {string} config - optional json
