@@ -50,7 +50,8 @@ import { indyVdr } from '@hyperledger/indy-vdr-react-native';
 import { ariesAskar } from '@hyperledger/aries-askar-react-native'
 import { QuestionAnswerModule } from '@credo-ts/question-answer';
 import { SurveyModule } from '@entidad/credo-ts-survey';
-import { UserProfileModule } from '@entidad/credo-ts-user-profile';
+//import { UserProfileModule } from '@entidad/credo-ts-user-profile';
+import { UserProfileModule } from 'credo-ts-user-profile'
 import { MediaSharingModule } from 'credo-ts-media-sharing';
 /*
 import { version } from "punycode";
@@ -481,7 +482,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		}
 		if (userProfile) {
 			try{
-			agentModules.userProfile = new UserProfileModule();
+				agentModules.userProfile = new UserProfileModule();
 			}catch(e){
 				console.error(e.toString());
 			}
