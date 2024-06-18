@@ -1,2 +1,0 @@
-export * from './jsonpath';
-//# sourceMappingURL=index.js.map

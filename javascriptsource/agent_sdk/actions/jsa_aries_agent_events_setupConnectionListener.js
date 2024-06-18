@@ -79,15 +79,6 @@ export async function jsa_aries_agent_events_setupConnectionListener(agent_key, 
 		}
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		/*
-		agent.events.on(eventType,async({payload})=>{
-			let args={};
-			if(payloadParameterName!=null)args[payloadParameterName]=JSON.stringify(payload,0,2);
-			if(userDataParameterName!=null)args[userDataParameterName]=userData;
-			if(eventTypeParameterName!=null)args[eventTypeParameterName]=_eventType;
-			await callback(args);
-		});
-		*/
 		agent.events.on(eventType,async function({payload}){
 			let args={};
 			if(payloadParameterName!=null)args[payloadParameterName]=JSON.stringify(payload,0,2);

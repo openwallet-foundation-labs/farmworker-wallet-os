@@ -1,5 +1,0 @@
-import { suite } from 'razmin';
-suite()
-    .include(['./**/*.test.js'])
-    .run();
-//# sourceMappingURL=test.js.map
