@@ -1,33 +1,88 @@
 //--------------------------------------------------------------------------------
-//import{Logger,LogLevel}from"@aries-framework/core";
 import{Logger,LogLevel}from"@credo-ts/core";
 class ConsoleLogger{
 	logLevel:LogLevel
-
 	constructor(logLevel:LogLevel=LogLevel.off,label){
 		this.logLevel=logLevel
 		this.label=label;
 	}
-	test(message:string,data?:Record<string,any>):void{
-		console.info("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
-	}
-	trace(message:string,data?:Record<string,any>):void{
-		console.info("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
+	info(message:string,data?:Record<string,any>):void{
+		switch(this.logLevel){
+			case LogLevel.off:return;
+			case LogLevel.info:break;
+			case LogLevel.debug:break;
+			case LogLevel.warn:return;
+			case LogLevel.error:return;
+			case LogLevel.fatal:return;
+			case LogLevel.trace:return;
+			default:break;
+		}
+		console.info("credo:info:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 	debug(message:string,data?:Record<string,any>):void{
-		console.info("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
-	}
-	info(message:string,data?:Record<string,any>):void{
-		console.info("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
+		switch(this.logLevel){
+			case LogLevel.off:return;
+			case LogLevel.info:return;
+			case LogLevel.debug:break;
+			case LogLevel.warn:return;
+			case LogLevel.error:return;
+			case LogLevel.fatal:return;
+			case LogLevel.trace:return;
+			default:break;
+		}
+		console.debug("credo:debug:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 	warn(message:string,data?:Record<string,any>):void{
-		console.warn("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
+		switch(this.logLevel){
+			case LogLevel.off:return;
+			case LogLevel.info:break;
+			case LogLevel.debug:break;
+			case LogLevel.warn:break;
+			case LogLevel.error:return;
+			case LogLevel.fatal:return;
+			case LogLevel.trace:return;
+			default:break;
+		}
+		console.warn("credo:warning:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 	error(message:string,data?:Record<string,any>):void{
-		console.error("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
+		switch(this.logLevel){
+			case LogLevel.off:return;
+			case LogLevel.info:break;
+			case LogLevel.debug:break;
+			case LogLevel.warn:break;
+			case LogLevel.error:break;
+			case LogLevel.fatal:return;
+			case LogLevel.trace:return;
+			default:break;
+		}
+		console.error("credo:error:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 	fatal(message:string,data?:Record<string,any>):void{
-		console.error("afj:"+mx.session.getUserName()+":"+this.label+": "+message,data)
+		switch(this.logLevel){
+			case LogLevel.off:break;
+			case LogLevel.info:break;
+			case LogLevel.debug:break;
+			case LogLevel.warn:break;
+			case LogLevel.error:break;
+			case LogLevel.fatal:break;
+			case LogLevel.trace:return;
+			default:break;
+		}
+		console.error("credo:fatal:"+mx.session.getUserName()+":"+this.label+": "+message,data)
+	}
+	trace(message:string,data?:Record<string,any>):void{
+		switch(this.logLevel){
+			case LogLevel.off:return;
+			case LogLevel.info:return;
+			case LogLevel.debug:return;
+			case LogLevel.warn:return;
+			case LogLevel.error:return;
+			case LogLevel.fatal:return;
+			case LogLevel.trace:break;
+			default:break;
+		}
+		console.info("credo:trace:"+mx.session.getUserName()+":"+this.label+": "+message,data)
 	}
 }
 function uuid(){
