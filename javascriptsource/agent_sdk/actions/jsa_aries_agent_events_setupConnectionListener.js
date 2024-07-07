@@ -19,6 +19,20 @@ import{
 	DidExchangeState
 }from'@credo-ts/core';
 import support from "../support/entidad";
+function findKey(k,o){
+	let ret=null;
+	let keys=Object.keys(o);
+	for(let i=0;i<keys.length;i++){
+		if(ret!=null)break;
+		let ok=keys[i];
+		if(ok==k){
+			ret=(o[ok]);
+		}else if(typeof(o[ok])=="object"){
+			ret=findKey(k,o[ok]);
+		}
+	}
+	return ret;
+}
 // END EXTRA CODE
 
 /**
@@ -70,9 +84,9 @@ export async function jsa_aries_agent_events_setupConnectionListener(agent_key, 
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		agent.events.on(eventType,async function({payload}){
-			let currentMessageType=payload?.["message"]?.["type"];
-			if(currentMessageType==null)currentMessageType=payload?.["message"]?.["message"]?.["type"];
-			if(messageType=='*'||currentMessageType==messageType){
+			let currentMessageType=findKey("type",payload);
+			//if(!currentMessageType.startsWith('https://didcomm.org'))currentMessageType=null;//validate
+			if(/*currentMessageType==null||*/messageType=='*'||currentMessageType==messageType){
 				//console.info(">>>:"+_eventType+":"+currentMessageType+":"+JSON.stringify(payload));
 				let args={};
 				if(payloadParameterName!=null)args[payloadParameterName]=JSON.stringify(payload,0,2);
