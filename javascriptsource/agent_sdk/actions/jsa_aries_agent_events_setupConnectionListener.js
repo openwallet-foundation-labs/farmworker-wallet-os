@@ -73,7 +73,7 @@ export async function jsa_aries_agent_events_setupConnectionListener(agent_key, 
 			let currentMessageType=payload?.["message"]?.["type"];
 			if(currentMessageType==null)currentMessageType=payload?.["message"]?.["message"]?.["type"];
 			if(messageType=='*'||currentMessageType==messageType){
-				console.info(">>>:"+_eventType+":"+currentMessageType+":"+JSON.stringify(payload));
+				//console.info(">>>:"+_eventType+":"+currentMessageType+":"+JSON.stringify(payload));
 				let args={};
 				if(payloadParameterName!=null)args[payloadParameterName]=JSON.stringify(payload,0,2);
 				if(userDataParameterName!=null)args[userDataParameterName]=userData;
