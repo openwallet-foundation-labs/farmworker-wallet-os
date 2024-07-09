@@ -10,6 +10,13 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
+"@animo-id/react-native-ble-didcomm@^0.5.1":
+  version "0.5.4"
+  resolved "https://registry.npmjs.org/@animo-id/react-native-ble-didcomm/-/react-native-ble-didcomm-0.5.4.tgz"
+  integrity sha512-dyboDb8j+o9pbR/p/NvNftgZmZRsqljmAXHyc68YRDXGo73m4RsHsKl7jABybqYHt0BWa5UKLpXwK8rrKoW/LQ==
+  dependencies:
+    convert-string "0.1.0"
+
 "@astronautlabs/jsonpath@^1.1.2":
   version "1.1.2"
   resolved "https://registry.npmjs.org/@astronautlabs/jsonpath/-/jsonpath-1.1.2.tgz"
@@ -1252,7 +1259,7 @@
     rxjs "^7.8.0"
     tsyringe "^4.8.0"
 
-"@credo-ts/core@^0.5.0-alpha.116", "@credo-ts/core@^0.5.2", "@credo-ts/core@^0.5.3", "@credo-ts/core@0.5.3":
+"@credo-ts/core@^0.5.0", "@credo-ts/core@^0.5.0-alpha.116", "@credo-ts/core@^0.5.2", "@credo-ts/core@^0.5.3", "@credo-ts/core@0.5.3":
   version "0.5.3"
   resolved "https://registry.npmjs.org/@credo-ts/core/-/core-0.5.3.tgz"
   integrity sha512-bM9iNhhXWiJ4YdH5uqaIfK3XhZ6GjuzF0AwE1vMy586sZz05J1ZLQvIYzRpm/p3Buxj9rimnLrc4jcYNit0VUw==
@@ -1331,6 +1338,11 @@
     "@azure/core-asynciterator-polyfill" "^1.0.2"
     "@credo-ts/core" "0.5.3"
     events "^3.3.0"
+
+"@credo-ts/transport-ble@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/@credo-ts/transport-ble/-/transport-ble-0.3.0.tgz"
+  integrity sha512-2cVUSRPzd37vR0BW9dmJDjP2JjI/M3vhZXTthwJK+S/7Vu8uj48tBg3hi1rstE3ut0+2bqoFhUduzDM0l0L8HA==
 
 "@digitalbazaar/bitstring@^3.0.0":
   version "3.1.0"
@@ -3892,6 +3904,11 @@ convert-source-map@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/convert-source-map/-/convert-source-map-2.0.0.tgz"
   integrity sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==
+
+convert-string@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/convert-string/-/convert-string-0.1.0.tgz"
+  integrity sha512-1KX9ESmtl8xpT2LN2tFnKSbV4NiarbVi8DVb39ZriijvtTklyrT+4dT1wsGMHKD3CJUjXgvJzstm9qL9ICojGA==
 
 core-js-compat@^3.31.0, core-js-compat@^3.36.1:
   version "3.37.0"
@@ -7178,7 +7195,7 @@ react-native-securerandom@^0.1.1:
   dependencies:
     base64-js "*"
 
-react-native@*, "react-native@>= 0.66.0", react-native@>=0.56, react-native@>=0.71.4:
+react-native@*, "react-native@>= 0.66.0", react-native@>=0.56, react-native@>=0.60.6, react-native@>=0.71.4:
   version "0.74.0"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.74.0.tgz"
   integrity sha512-Vpp9WPmkCm4TUH5YDxwQhqktGVon/yLpjbTgjgLqup3GglOgWagYCX3MlmK1iksIcqtyMJHMEWa+UEzJ3G9T8w==
