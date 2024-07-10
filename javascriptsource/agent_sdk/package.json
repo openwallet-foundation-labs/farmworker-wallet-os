@@ -13,6 +13,7 @@
     "@credo-ts/anoncreds": "^0.5.3",
     "@credo-ts/askar": "^0.5.3",
     "@credo-ts/core": "^0.5.3",
+    "@credo-ts/drpc": "^0.5.6",
     "@credo-ts/indy-vdr": "^0.5.3",
     "@credo-ts/openid4vc": "^0.5.3",
     "@credo-ts/question-answer": "^0.5.3",
