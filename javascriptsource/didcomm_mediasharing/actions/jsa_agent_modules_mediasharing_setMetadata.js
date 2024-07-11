@@ -13,34 +13,23 @@ import support from"../../../javascriptsource/agent_sdk/support/entidad";
 // END EXTRA CODE
 
 /**
- * public async share(options: MediaSharingShareOptions)
- * 
- * Sender role: share media, providing actual file description details
+ * public async setMetadata(recordId: string, key: string, value: unknown)
  * @param {string} agent_key
  * @param {string} recordId
- * @param {string} items - json array
+ * @param {string} key
+ * @param {string} value
  * @returns {Promise.<string>}
  */
-export async function jsa_agent_modules_mediasharing_share(agent_key, recordId, items) {
+export async function jsa_agent_modules_mediasharing_setMetadata(agent_key, recordId, key, value) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
 		if(recordId==null)return Promise.reject("Invalid recordId parameter");
-		if(items==null)metadata="[]";
-		try{
-			items=JSON.parse(items);
-		}catch(e){
-			return Promise.reject("Argument items is not a valid json")
-		}
+		if(key==null)return Promise.reject("Invalid key parameter");
+		if(value==null)return Promise.reject("Invalid value parameter");
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		let record=await agent.modules.media.share({
-			recordId: recordId,
-			items: items,
-		})
-		return Promise.resolve(JSON.stringify(
-			record
-		));
+		return Promise.resolve(JSON.stringify(await agent.modules.media.setMetadata(recordId,key,value)));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

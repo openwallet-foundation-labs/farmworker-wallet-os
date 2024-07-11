@@ -13,34 +13,28 @@ import support from"../../../javascriptsource/agent_sdk/support/entidad";
 // END EXTRA CODE
 
 /**
- * public async share(options: MediaSharingShareOptions)
+ * public async request(options: MediaSharingRequestOptions)
  * 
- * Sender role: share media, providing actual file description details
+ * Receiver role: request media
  * @param {string} agent_key
- * @param {string} recordId
+ * @param {string} options - json
  * @param {string} items - json array
  * @returns {Promise.<string>}
  */
-export async function jsa_agent_modules_mediasharing_share(agent_key, recordId, items) {
+export async function jsa_agent_modules_mediasharing_request(agent_key, options, items) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
-		if(recordId==null)return Promise.reject("Invalid recordId parameter");
-		if(items==null)metadata="[]";
+		if(options==null)return Promise.reject("Invalid options parameter");
 		try{
-			items=JSON.parse(items);
+			options=JSON.parse(options);
 		}catch(e){
-			return Promise.reject("Argument items is not a valid json")
+			return(Promise.reject(e.toString()));
 		}
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		let record=await agent.modules.media.share({
-			recordId: recordId,
-			items: items,
-		})
-		return Promise.resolve(JSON.stringify(
-			record
-		));
+		let record=await agent.modules.media.request(options);
+		return Promise.resolve(JSON.stringify(await agent.modules.media.request(options)));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

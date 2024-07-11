@@ -52,7 +52,7 @@ import { QuestionAnswerModule } from '@credo-ts/question-answer';
 import { SurveyModule } from '@entidad/credo-ts-survey';
 //import { UserProfileModule } from '@entidad/credo-ts-user-profile';
 import { UserProfileModule } from 'credo-ts-user-profile'
-import { MediaSharingModule } from 'credo-ts-media-sharing';
+import { MediaSharingModule } from 'credo-ts-media-sharing';//https://github.com/2060-io/credo-ts-media-sharing
 /*
 import { version } from "punycode";
 */
