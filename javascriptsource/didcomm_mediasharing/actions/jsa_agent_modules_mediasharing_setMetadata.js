@@ -18,7 +18,7 @@ import support from"../../../javascriptsource/agent_sdk/support/entidad";
  * @param {string} recordId
  * @param {string} key
  * @param {string} value
- * @returns {Promise.<string>}
+ * @returns {Promise.<void>}
  */
 export async function jsa_agent_modules_mediasharing_setMetadata(agent_key, recordId, key, value) {
 	// BEGIN USER CODE
