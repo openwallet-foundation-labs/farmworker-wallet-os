@@ -16,20 +16,74 @@ import support from"../../../javascriptsource/agent_sdk/support/entidad";
  * public async request(options: MediaSharingRequestOptions)
  * 
  * Receiver role: request media
+ * 
+ * MediaSharingCreateOptions
+ * 
+ * export interface MediaSharingCreateOptions {
+ *   connectionId: string
+ *   parentThreadId?: string
+ *   description?: string
+ *   metadata?: Record<string, unknown>
+ *   items?: SharedMediaItem[]
+ * }
+ * 
+ * export class SharedMediaItem {
+ *   public id!: string
+ *   public uri!: string
+ *   public mimeType!: string
+ *   public description?: string
+ *   public byteCount?: number
+ *   public fileName?: string
+ *   public ciphering?: CipheringInfo
+ *   public metadata?: Record<string, unknown>
+ * 
+ * SharedMediaItemOptions
+ * 
+ *   public constructor(options: SharedMediaItemOptions) {
+ *     if (options) {
+ *       this.id = options.id ?? utils.uuid()
+ *       this.uri = options.uri
+ *       this.mimeType = options.mimeType
+ *       this.description = options.description
+ *       this.byteCount = options.byteCount
+ *       this.fileName = options.fileName
+ *       this.ciphering = options.ciphering
+ *       this.metadata = options.metadata
+ *     }
+ *   }
+ * }
  * @param {string} agent_key
- * @param {string} options - json
- * @param {string} items - json array
+ * @param {string} connectionId
+ * @param {string} parentThreadId - optional
+ * @param {string} description - optional
+ * @param {string} metadata - optional json
+ * @param {string} items - optional json
  * @returns {Promise.<string>}
  */
-export async function jsa_agent_modules_mediasharing_request(agent_key, options, items) {
+export async function jsa_agent_modules_mediasharing_request(agent_key, connectionId, parentThreadId, description, metadata, items) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
-		if(options==null)return Promise.reject("Invalid options parameter");
-		try{
-			options=JSON.parse(options);
-		}catch(e){
-			return(Promise.reject(e.toString()));
+		let options={};
+		if(connectionId==null)return Promise.reject("Invalid connectionId parameter");
+		if(connectionId!=null)options.connectionId=connectionId;
+		if(parentThreadId!=null)options.parentThreadId=parentThreadId;
+		if(description!=null)options.description=description;
+		if(metadata!=null){
+			try{
+				metadata=JSON.parse(metadata);
+			}catch(e){
+				return(Promise.reject(e.toString()));
+			}
+			options.metadata=metadata;
+		}
+		if(items!=null){
+			try{
+				items=JSON.parse(items);
+			}catch(e){
+				return(Promise.reject(e.toString()));
+			}
+			options.items=items;
 		}
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
