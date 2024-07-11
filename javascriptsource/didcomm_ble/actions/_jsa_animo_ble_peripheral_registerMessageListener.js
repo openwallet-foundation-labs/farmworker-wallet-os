@@ -25,8 +25,6 @@ export async function _jsa_animo_ble_peripheral_registerMessageListener() {
 		if(message=null)return(Promise.reject("Message null"));
 		let peripheral=cache.get("peripheral");
 		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));
-		await peripheral.shutdown();
-		cache.remove("peripheral");
 		return Promise.resolve();
 	}catch(e){
 		return Promise.reject(e.toString());
