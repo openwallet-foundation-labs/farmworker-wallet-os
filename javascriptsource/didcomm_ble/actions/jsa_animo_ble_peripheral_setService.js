@@ -26,7 +26,7 @@ import{cache}from"../support/entidad";
  * @param {string} indicationUUID
  * @returns {Promise.<void>}
  */
-export async function _jsa_animo_ble_peripheral_setService(serviceUUID, messagingUUID, indicationUUID) {
+export async function jsa_animo_ble_peripheral_setService(serviceUUID, messagingUUID, indicationUUID) {
 	// BEGIN USER CODE
 	try{
 		if(serviceUUID==null)return(Promise.reject("serviceUUID null"));

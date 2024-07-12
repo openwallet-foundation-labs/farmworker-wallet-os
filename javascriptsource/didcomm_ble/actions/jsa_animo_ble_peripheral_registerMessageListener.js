@@ -19,9 +19,9 @@ import{cache}from"../support/entidad";
  *  }) => void): EmitterSubscription
  * @param {Nanoflow} callback
  * @param {string} data_parameter_name - optional
- * @returns {Promise.<string>}
+ * @returns {Promise.<void>}
  */
-export async function _jsa_animo_ble_peripheral_registerMessageListener(callback, data_parameter_name) {
+export async function jsa_animo_ble_peripheral_registerMessageListener(callback, data_parameter_name) {
 	// BEGIN USER CODE
 	try{
 		if(callback=null)return(Promise.reject("callback null"));
@@ -29,7 +29,7 @@ export async function _jsa_animo_ble_peripheral_registerMessageListener(callback
 		let peripheral=cache.get("peripheral");
 		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));
 		return Promise.resolve(
-			JSON.stringify(await peripheral.registerMessageListener((data)=>{
+			JSON.stringify(await peripheral.registerMessageListener(async(data)=>{
 				let args={};
 				if(data_parameter_name!=null)args[data_parameter_name]=data;
 				await callback.call(window,args);

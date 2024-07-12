@@ -17,13 +17,14 @@ import{cache}from"../support/entidad";
  *  (method) Central.getState(): BleState
  * @returns {Promise.<string>}
  */
-export async function _jsa_animo_ble_central_getState() {
+export async function jsa_animo_ble_central_getState() {
 	// BEGIN USER CODE
 	try{
 		if(message=null)return(Promise.reject("Message null"));
 		let central=cache.get("central");
 		if(central==null)return(Promise.reject("Central not found in cache"));
-		return Promise.resolve(await central.getState());
+		//console.info(JSON.stringify(Object.keys(central)));//["bleDidcommEmitter"]
+		return Promise.resolve(central.getState());
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

@@ -18,7 +18,7 @@ import{cache}from"../support/entidad";
  * @param {string} peripheralId
  * @returns {Promise.<void>}
  */
-export async function _jsa_animo_ble_central_connect(peripheralId) {
+export async function jsa_animo_ble_central_connect(peripheralId) {
 	// BEGIN USER CODE
 	try{
 		if(peripheralId=null)return(Promise.reject("peripheralId null"));

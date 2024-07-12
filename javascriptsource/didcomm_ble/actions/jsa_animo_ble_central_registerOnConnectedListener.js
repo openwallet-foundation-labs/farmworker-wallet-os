@@ -24,7 +24,7 @@ import{cache}from"../support/entidad";
  * @param {string} name_parameter_name - optional
  * @returns {Promise.<void>}
  */
-export async function _jsa_animo_ble_central_registerOnConnectedListener(callback, identifier_parameter_name, name_parameter_name) {
+export async function jsa_animo_ble_central_registerOnConnectedListener(callback, identifier_parameter_name, name_parameter_name) {
 	// BEGIN USER CODE
 	try{
 		if(callback=null)return(Promise.reject("callback null"));
@@ -33,7 +33,7 @@ export async function _jsa_animo_ble_central_registerOnConnectedListener(callbac
 		let central=cache.get("central");
 		if(central==null)return(Promise.reject("Central not found in cache"));
 		return Promise.resolve(
-			JSON.stringify(await central.registerOnConnectedListener((identifier,name)=>{
+			JSON.stringify(await central.registerOnConnectedListener(async(identifier,name)=>{
 				let args={};
 				if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier;
 				if(name_parameter_name!=null)args[name_parameter_name]=name;

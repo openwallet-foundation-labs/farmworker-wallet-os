@@ -24,7 +24,7 @@ export async function jsa_animo_ble_peripheral_sendMessage(message) {
 		if(message=null)return(Promise.reject("Message null"));
 		let peripheral=cache.get("peripheral");
 		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));
-		await peripheral.sendMessage(message);
+		await peripheral.sendMessage({message:message});
 		return Promise.resolve();
 	}catch(e){
 		return Promise.reject(e.toString());

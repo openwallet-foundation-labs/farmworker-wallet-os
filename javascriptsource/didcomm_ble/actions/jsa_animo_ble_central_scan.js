@@ -17,7 +17,7 @@ import{cache}from"../support/entidad";
  * (method) Central.scan(): Promise<void>
  * @returns {Promise.<void>}
  */
-export async function _jsa_animo_ble_central_scan() {
+export async function jsa_animo_ble_central_scan() {
 	// BEGIN USER CODE
 	try{
 		let central=cache.get("central");

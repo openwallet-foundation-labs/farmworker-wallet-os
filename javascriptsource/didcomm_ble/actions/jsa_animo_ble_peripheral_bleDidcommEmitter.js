@@ -17,7 +17,7 @@ import{cache}from"../support/entidad";
  * (property) Peripheral.bleDidcommEmitter: NativeEventEmitter
  * @returns {Promise.<string>}
  */
-export async function _jsa_animo_ble_peripheral_bleDidcommEmitter() {
+export async function jsa_animo_ble_peripheral_bleDidcommEmitter() {
 	// BEGIN USER CODE
 	try{
 		let peripheral=cache.get("peripheral");

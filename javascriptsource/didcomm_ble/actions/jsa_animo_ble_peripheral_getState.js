@@ -17,7 +17,7 @@ import{cache}from"../support/entidad";
  * (method) Peripheral.getState(): BleState
  * @returns {Promise.<string>}
  */
-export async function _jsa_animo_ble_peripheral_getState() {
+export async function jsa_animo_ble_peripheral_getState() {
 	// BEGIN USER CODE
 	try{
 		let peripheral=cache.get("peripheral");

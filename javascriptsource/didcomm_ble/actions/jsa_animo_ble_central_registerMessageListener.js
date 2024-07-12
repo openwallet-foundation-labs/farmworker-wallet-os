@@ -21,7 +21,7 @@ import{cache}from"../support/entidad";
  * @param {string} data_parameter_name
  * @returns {Promise.<void>}
  */
-export async function _jsa_animo_ble_central_registerMessageListener(callback, data_parameter_name) {
+export async function jsa_animo_ble_central_registerMessageListener(callback, data_parameter_name) {
 	// BEGIN USER CODE
 	try{
 		if(callback=null)return(Promise.reject("callback null"));
@@ -29,7 +29,7 @@ export async function _jsa_animo_ble_central_registerMessageListener(callback, d
 		let central=cache.get("central");
 		if(central==null)return(Promise.reject("Central not found in cache"));
 		return Promise.resolve(
-			JSON.stringify(await central.registerMessageListener((data)=>{
+			JSON.stringify(await central.registerMessageListener(async(data)=>{
 				let args={};
 				if(data_parameter_name!=null)args[data_parameter_name]=data;
 				await callback.call(window,args);

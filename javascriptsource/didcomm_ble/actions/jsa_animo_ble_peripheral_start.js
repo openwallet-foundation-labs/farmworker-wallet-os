@@ -50,7 +50,7 @@ export async function jsa_animo_ble_peripheral_start(agent_key, config) {
 		const peripheral=new Peripheral();
 		await peripheral.start();
 		await peripheral.setService(config);
-		await peripheral.advertise();//test
+		//await peripheral.advertise();//test
 		cache.put(peripheral,"peripheral");
 		return Promise.resolve();
 	}catch(e){
