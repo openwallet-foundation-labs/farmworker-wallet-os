@@ -101,8 +101,6 @@ import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds';
  * @param {boolean} anoncredsRs
  * @param {boolean} indyVdr
  * @param {boolean} mediationRecipient
- * @param {boolean} questionAnswer
- * @param {boolean} questionnaire
  * @param {boolean} keyDidRegistrar
  * @param {boolean} jwkDidRegistrar
  * @param {boolean} webDidResolver
@@ -110,12 +108,15 @@ import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds';
  * @param {boolean} jwkDidResolver
  * @param {boolean} indyVdrIndyDidResolver
  * @param {boolean} indyVdrSovDidResolver
- * @param {boolean} mediaSharing
- * @param {boolean} userProfile
+ * @param {boolean} useQuestionAnswer
+ * @param {boolean} useQuestionnaire
+ * @param {boolean} useMediaSharing
+ * @param {boolean} useUserProfile
  * @param {boolean} useBle
+ * @param {boolean} useDrpc
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, questionAnswer, questionnaire, keyDidRegistrar, jwkDidRegistrar, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, mediaSharing, userProfile, useBle) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, keyDidRegistrar, jwkDidRegistrar, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, useQuestionAnswer, useQuestionnaire, useMediaSharing, useUserProfile, useBle, useDrpc) {
 	// BEGIN USER CODE
 	try {
 		//--------------------------------------------------------------------------------
@@ -472,10 +473,10 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				//todo:        mediatorPickupStrategy: MediatorPickupStrategy.X,
 			}) : ({}));
 		}
-		if (questionAnswer) {
+		if (useQuestionAnswer) {
 			agentModules.questionAnswer = new QuestionAnswerModule();
 		}
-		if (questionnaire) {
+		if (useQuestionnaire) {
 			try{
 				agentModules.survey = new SurveyModule();
 			}catch(e){
@@ -483,14 +484,14 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			}
 		}
 		
-		if (questionnaire) {
+		if (useDrpc) {
 			try{
 				agentModules.drpc = new DrpcModule();
 			}catch(e){
 				console.error(e.toString());
 			}
 		}
-		if (userProfile) {
+		if (useUserProfile) {
 			try{
 				agentModules.userProfile = new UserProfileModule();
 			}catch(e){
@@ -501,12 +502,12 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//-----------------------------------------------------------------------------------
 		
 		//-----------------------------------------------------------------------------------
-		if (questionnaire) {
+		if (useQuestionnaire) {
 			agentModules.questionnaire = new QuestionnaireModule();
 		}
 		*/
 		//-----------------------------------------------------------------------------------
-		if(mediaSharing){
+		if(useMediaSharing){
 			try{
 				agentModules.media = new MediaSharingModule();
 			}catch(e){
