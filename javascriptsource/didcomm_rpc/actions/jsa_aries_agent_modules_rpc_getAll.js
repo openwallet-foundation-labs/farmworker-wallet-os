@@ -24,7 +24,7 @@ export async function jsa_aries_agent_modules_rpc_getAll(agent_key) {
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		return Promise.resolve(JSON.stringify(
-			await agent.modules.rpc.getAll()
+			await agent.modules.drpc.getAll()
 		));
 	}catch(e){
 		return Promise.reject(e.toString());

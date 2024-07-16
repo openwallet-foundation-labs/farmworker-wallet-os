@@ -30,7 +30,7 @@ export async function jsa_aries_agent_modules_rpc_response(agent_key, options) {
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		return Promise.resolve(JSON.stringify(
-			await agent.modules.survey.sendResponse(options)
+			await agent.modules.drpc.sendResponse(options)
 		));
 	}catch(e){
 		return Promise.reject(e.toString());

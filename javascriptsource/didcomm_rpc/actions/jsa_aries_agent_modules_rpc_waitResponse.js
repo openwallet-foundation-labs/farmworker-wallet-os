@@ -9,7 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import { DrpcStateChanged, DrpcEventTypes  } from '@entidad/credo-ts-survey'
+import { DrpcStateChanged, DrpcEventTypes  } from '@credo-ts/drpc'
 import support from "../../agent_sdk/support/entidad";
 // END EXTRA CODE
 
