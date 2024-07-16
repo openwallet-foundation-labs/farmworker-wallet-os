@@ -18,10 +18,10 @@ import{cache}from"../support/entidad";
  * Looks up singleton ble central in cache
  * @returns {Promise.<boolean>}
  */
-export async function jsa_animo_ble_peripheral_initialized() {
+export async function jsa_animo_ble_central_is_created() {
 	// BEGIN USER CODE
 	try{
-		return Promise.resolve(cache.get('peripheral')!=null);		
+		return Promise.resolve(cache.get('central')!=null);		
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

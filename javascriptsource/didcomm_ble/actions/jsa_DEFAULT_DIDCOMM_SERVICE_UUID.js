@@ -9,19 +9,18 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import "../../agent_sdk/shim.js";
-import{cache}from"../support/entidad";
-//import support from"../support/entidad";
+import{
+	DEFAULT_DIDCOMM_SERVICE_UUID
+}from"../../agent_sdk/node_modules/@animo-id/react-native-ble-didcomm";
 // END EXTRA CODE
 
 /**
- * Looks up singleton ble central in cache
- * @returns {Promise.<boolean>}
+ * @returns {Promise.<string>}
  */
-export async function jsa_animo_ble_central_initialized() {
+export async function jsa_DEFAULT_DIDCOMM_SERVICE_UUID() {
 	// BEGIN USER CODE
 	try{
-		return Promise.resolve(cache.get('central')!=null);		
+		return Promise.resolve(DEFAULT_DIDCOMM_SERVICE_UUID);
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

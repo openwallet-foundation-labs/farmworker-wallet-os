@@ -9,22 +9,22 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import "../../agent_sdk/shim.js";
+import{
+	Central
+}from"../../agent_sdk/node_modules/@animo-id/react-native-ble-didcomm";
 import{cache}from"../support/entidad";
 // END EXTRA CODE
 
 /**
- *  (method) Central.getState(): BleState
- * @returns {Promise.<string>}
+ * create central
+ * @returns {Promise.<void>}
  */
-export async function jsa_animo_ble_central_getState() {
+export async function jsa_animo_ble_central_create() {
 	// BEGIN USER CODE
 	try{
-		if(message=null)return(Promise.reject("Message null"));
-		let central=cache.get("central");
-		if(central==null)return(Promise.reject("Central not found in cache"));
-		//console.info(JSON.stringify(Object.keys(central)));//["bleDidcommEmitter"]
-		return Promise.resolve(central.getState());
+		const central=new Central();
+		cache.put(central,"central");
+		return Promise.resolve();
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

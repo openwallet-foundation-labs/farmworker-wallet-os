@@ -9,6 +9,10 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../../agent_sdk/shim.js";
+import{
+	Peripheral
+}from"../../agent_sdk/node_modules/@animo-id/react-native-ble-didcomm";
 import{cache}from"../support/entidad";
 // END EXTRA CODE
 
@@ -16,12 +20,11 @@ import{cache}from"../support/entidad";
  * create peripheral
  * @returns {Promise.<void>}
  */
-export async function jsa_animo_ble_peripheral_start() {
+export async function jsa_animo_ble_peripheral_create() {
 	// BEGIN USER CODE
 	try{
-		let peripheral=cache.get("peripheral");
-		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));
-		await peripheral.start();
+		const peripheral=new Peripheral();
+		cache.put(peripheral,"peripheral");
 		return Promise.resolve();
 	}catch(e){
 		return Promise.reject(e.toString());

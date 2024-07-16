@@ -9,7 +9,6 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import "../../agent_sdk/shim.js";
 import{cache}from"../support/entidad";
 // END EXTRA CODE
 
@@ -19,7 +18,7 @@ import{cache}from"../support/entidad";
  *  }) => void): EmitterSubscription
  * 
  * @param {Nanoflow} callback
- * @param {string} identifier_parameter_name
+ * @param {string} identifier_parameter_name - optional
  * @returns {Promise.<void>}
  */
 export async function jsa_animo_ble_central_registerOnDisconnectedListener(callback, identifier_parameter_name) {
@@ -29,13 +28,14 @@ export async function jsa_animo_ble_central_registerOnDisconnectedListener(callb
 		if(identifier_parameter_name==null)identifier_parameter_name='identifier';
 		let central=cache.get("central");
 		if(central==null)return(Promise.reject("Central not found in cache"));
-		return Promise.resolve(
-			JSON.stringify(await central.registerOnDisconnectedListener(async(identifier,name)=>{
-				let args={};
-				if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier;
-				await callback.call(window,args);
-			}))
-		);
+		central.registerOnDisconnectedListener((identifier,name)=>{
+			console.info("jsa_animo_ble_central_registerOnDisconnectedListener:beg");
+			let args={};
+			if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier;
+			callback.call(window,args);
+			console.info("jsa_animo_ble_central_registerOnDisconnectedListener:end");
+		});
+		return(Promise.resolve());
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

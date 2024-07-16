@@ -13,24 +13,27 @@ import{cache}from"../support/entidad";
 // END EXTRA CODE
 
 /**
- *  (method) Central.registerMessageListener(cb: (data: {
- *      message: string;
- *  }) => void): EmitterSubscription
+ * registerOnDiscoveredListener(cb: ({ identifier, name }: { identifier: string; name?: string; }) => void): EmitterSubscription
  * @param {Nanoflow} callback
- * @param {string} data_parameter_name - optional
+ * @param {string} identifier_parameter_name - optional
+ * @param {string} name_parameter_name - optional
  * @returns {Promise.<void>}
  */
-export async function jsa_animo_ble_central_registerMessageListener(callback, data_parameter_name) {
+export async function jsa_animo_ble_central_registerOnDiscoveredListener(callback, identifier_parameter_name, name_parameter_name) {
 	// BEGIN USER CODE
 	try{
 		if(callback=null)return(Promise.reject("callback null"));
-		if(data_parameter_name==null)data_parameter_name='data';
+		if(identifier_parameter_name==null)identifier_parameter_name='identifier';
+		if(name_parameter_name==null)identifier_parameter_name='name';
 		let central=cache.get("central");
 		if(central==null)return(Promise.reject("Central not found in cache"));
-		central.registerMessageListener((data)=>{
+		central.registerOnDiscoveredListener((identifier,name)=>{
+			console.info("jsa_animo_ble_central_registerOnDiscoveredListener:beg");
 			let args={};
-			if(data_parameter_name!=null)args[data_parameter_name]=data;
+			if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier;
+			if(optional_parameter_name!=null)args[optional_parameter_name]=optional;
 			callback.call(window,args);
+			console.info("jsa_animo_ble_central_registerOnDiscoveredListener:end");
 		});
 		return(Promise.resolve());
 	}catch(e){

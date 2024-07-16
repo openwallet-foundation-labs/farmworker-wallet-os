@@ -9,20 +9,18 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import{cache}from"../support/entidad";
+import{
+	DEFAULT_DIDCOMM_MESSAGE_CHARACTERISTIC_UUID
+}from"../../agent_sdk/node_modules/@animo-id/react-native-ble-didcomm";
 // END EXTRA CODE
 
 /**
- * create peripheral
- * @returns {Promise.<void>}
+ * @returns {Promise.<string>}
  */
-export async function jsa_animo_ble_peripheral_start() {
+export async function jsa_DEFAULT_DIDCOMM_MESSAGE_CHARACTERISTIC_UUID() {
 	// BEGIN USER CODE
 	try{
-		let peripheral=cache.get("peripheral");
-		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));
-		await peripheral.start();
-		return Promise.resolve();
+		return Promise.resolve(DEFAULT_DIDCOMM_MESSAGE_CHARACTERISTIC_UUID);
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

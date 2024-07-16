@@ -11,18 +11,17 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 import "../../agent_sdk/shim.js";
 import{cache}from"../support/entidad";
+//import support from"../support/entidad";
 // END EXTRA CODE
 
 /**
- * (property) Peripheral.bleDidcommEmitter: NativeEventEmitter
- * @returns {Promise.<string>}
+ * Looks up singleton ble central in cache
+ * @returns {Promise.<boolean>}
  */
-export async function jsa_animo_ble_peripheral_bleDidcommEmitter() {
+export async function jsa_animo_ble_peripheral_is_created() {
 	// BEGIN USER CODE
 	try{
-		let peripheral=cache.get("peripheral");
-		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));
-		return Promise.resolve(JSON.stringify(peripheral.bleDidcommEmitter));
+		return Promise.resolve(cache.get('peripheral')!=null);		
 	}catch(e){
 		return Promise.reject(e.toString());
 	}
