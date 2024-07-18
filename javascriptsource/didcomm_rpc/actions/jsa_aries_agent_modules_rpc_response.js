@@ -13,19 +13,51 @@ import support from "../../agent_sdk/support/entidad";
 // END EXTRA CODE
 
 /**
+ * private async sendResponse(options: {
+ *   connectionId: string
+ *   threadId: string
+ *   response: DrpcResponse
+ * }): Promise<void>
+ * 
+ * Sends a drpc response to a connection
+ * @param connectionId the connection id to use
+ * @param threadId the thread id to respond to
+ * @param response the drpc response object to send
+ * 
+ * export type DrpcResponse = DrpcResponseObject | (DrpcResponseObject | Record<string, never>)[] | Record<string, never>
+ * 
+ * export interface DrpcResponseObject {
+ *   jsonrpc: string
+ *   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+ *   result?: any
+ *   error?: DrpcResponseError
+ *   id: string | number | null
+ * }
  * @param {string} agent_key
- * @param {string} options - json
+ * @param {string} connectionId
+ * @param {string} threadId
+ * @param {string} response_jsonrpc
+ * @param {string} response_result
+ * @param {string} response_id
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_rpc_response(agent_key, options) {
+export async function jsa_aries_agent_modules_rpc_response(agent_key, connectionId, threadId, response_jsonrpc, response_result, response_id) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
-		if(options==null)return Promise.reject("Invalid options parameter");
-		try{
-			options=JSON.parse(options);
-		}catch(e){
-			return Promise.reject("Invalid options parameter: failed to parse")
+		if(connectionId==null)return Promise.reject("Invalid connectionId parameter");
+		if(threadId==null)return Promise.reject("Invalid threadId parameter");
+		if(response_jsonrpc==null)return Promise.reject("Invalid response_jsonrpc parameter");
+		if(response_result==null)return Promise.reject("Invalid response_result parameter");
+		if(response_id==null)return Promise.reject("Invalid response_id parameter");
+		let options={
+			"connectionId":connectionId,
+			"threadId":threadId,
+			"response":{
+				"jsonrpc":response_jsonrpc,
+				"result":response_result,
+				"id":response_id
+			}
 		}
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");

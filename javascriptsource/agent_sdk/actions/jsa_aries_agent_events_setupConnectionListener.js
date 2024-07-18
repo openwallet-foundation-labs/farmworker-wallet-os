@@ -36,7 +36,18 @@ function findKey(k,o){
 // END EXTRA CODE
 
 /**
- * Message handler
+ * Registers a message handler
+ * 
+ * Sets up a connection listener for a specific event type
+ * 
+ * @param agent_key local agent instance lookup key
+ * @param eventType type of event to trigger callback on
+ * @param messageType message type to trigger on, e.g. 'https://didcomm.org/basicmessage/1.0/message' or '*' to trigger on all message types
+ * @param callback nanoflow to trigger
+ * @param payloadParameterName payload parameter name, defaults to 'payload'
+ * @param userDataParameterName custom user data parameter name, optional
+ * @param userData custom user data parameter value, usually the Agent
+ * @param eventTypeParameterName event type parameter name, will pass in the event type, optional. Internally this action will attempt to find the '@type' of the message and populate the argument with the value if found. Not all message types have the '@type' specified, and in those cases it will be empty
  * @param {string} agent_key
  * @param {"Agent_SDK.enum_aries_EventType.ConnectionStateChanged"|"Agent_SDK.enum_aries_EventType.BasicMessageStateChanged"|"Agent_SDK.enum_aries_EventType.CredentialStateChanged"|"Agent_SDK.enum_aries_EventType.RevocationNotificationReceived"|"Agent_SDK.enum_aries_EventType.ProofStateChanged"|"Agent_SDK.enum_aries_EventType.AgentMessageReceived"|"Agent_SDK.enum_aries_EventType.AgentMessageProcessed"|"Agent_SDK.enum_aries_EventType.AgentMessageSent"} eventType
  * @param {string} messageType
@@ -85,13 +96,10 @@ export async function jsa_aries_agent_events_setupConnectionListener(agent_key, 
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		agent.events.on(eventType,async function({payload}){
 			let currentMessageType=findKey("type",payload);
-			//if(!currentMessageType.startsWith('https://didcomm.org'))currentMessageType=null;//validate
-			if(/*currentMessageType==null||*/messageType=='*'||currentMessageType==messageType){
-				//console.info(">>>:"+_eventType+":"+currentMessageType+":"+JSON.stringify(payload));
+			if(messageType=='*'||currentMessageType==messageType){
 				let args={};
 				if(payloadParameterName!=null)args[payloadParameterName]=JSON.stringify(payload,0,2);
 				if(userDataParameterName!=null)args[userDataParameterName]=userData;
-				//if(eventTypeParameterName!=null)args[eventTypeParameterName]=eventType;
 				await callback.call(window,args);
 			}
 		});
