@@ -528,6 +528,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			dependencies: agentDependencies,
 			modules: agentModules,
 		});
+		
 		return Promise.resolve(support.cache.put(agent, walletConfig_id));		
 	} catch (e) {
 		return Promise.reject(e.toString());

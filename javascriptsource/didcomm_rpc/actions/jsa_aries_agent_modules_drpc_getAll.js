@@ -25,64 +25,10 @@ export async function jsa_aries_agent_modules_drpc_getAll(agent_key) {
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		console.info(">>>");
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService));
-		//object
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.createRequestMessage)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.createRequestMessage));
-		//function
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.createResponseMessage)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.createResponseMessage));
-		//function
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.createRequestListener)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.createRequestListener));
-		//function
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.createResponseListener)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.createResponseListener));
-		//function
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.receiveResponse)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.receiveResponse));
-		//function
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.receiveRequest)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.receiveRequest));
-		//function
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.emitStateChangedEvent)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.emitStateChangedEvent));
-		//function
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.updateState)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.updateState));
-		//function
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.findByThreadAndConnectionId)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.findByThreadAndConnectionId));
-		//function
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.findAllByQuery)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.findAllByQuery));
-		//function
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.getById)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.getById));
-		//function
-
-		console.info("typeof(agent.modules.drpc.drpcMessageService.deleteById)");
-		console.info(typeof(agent.modules.drpc.drpcMessageService.deleteById));
-		//function
-
-		console.info("<<<");
 		return Promise.resolve(JSON.stringify(
 			//await agent.modules.drpc.getAll()
-			await agent.modules.drpc.findAllByQuery({})
+			//await agent.modules.drpc.findAllByQuery({})
+			await agent.modules.drpc.drpcMessageService.findAllByQuery(agent.context,{})
 		));
 	}catch(e){
 		return Promise.reject(e.toString());

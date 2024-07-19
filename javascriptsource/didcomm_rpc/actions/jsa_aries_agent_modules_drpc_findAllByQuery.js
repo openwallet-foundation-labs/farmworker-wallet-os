@@ -50,7 +50,8 @@ export async function jsa_aries_agent_modules_drpc_findAllByQuery(agent_key, que
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		return Promise.resolve(JSON.stringify(
-			await agent.modules.drpc.findAllByQuery(query)
+			//await agent.modules.drpc.findAllByQuery(query)
+			await agent.modules.drpc.drpcMessageService.findAllByQuery(agent,{})
 		));
 	}catch(e){
 		return Promise.reject(e.toString());
