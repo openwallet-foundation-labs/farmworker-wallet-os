@@ -15,17 +15,22 @@ import support from "../../agent_sdk/support/entidad";
 /**
  *   public async receiveRequest(messageContext: InboundMessageContext<DrpcRequestMessage>) 
  * @param {string} agent_key
+ * @param {string} messageContext - json
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_drpc_drpcMessageService_receiveRequest(agent_key) {
+export async function jsa_aries_agent_modules_drpc_drpcMessageService_receiveRequest(agent_key, messageContext) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
+		if(agent_key==null)return(Promise.reject("Invalid agent_key parameter"));
+		if(messageContext==null)return(Promise.reject("Invalid messageContext parameter"));
+		try{
+			messageContext=JSON.parse(messageContext);
+		}catch(e){
+			return(Promise.reject("Invalid messageContext parameter: "+e.toString()));
+		}
 		let agent=support.cache.get(agent_key);
-		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(
-			{}//await agent.modules.drpc.drpcMessageService.({})
-		));
+		if(agent==null)return(Promise.reject("Agent not found in cache"));
+		return(Promise.resolve(JSON.stringify(await agent.modules.drpc.drpcMessageService.receiveRequest(messageContext))));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

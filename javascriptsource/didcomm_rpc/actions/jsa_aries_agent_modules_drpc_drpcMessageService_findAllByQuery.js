@@ -15,17 +15,22 @@ import support from "../../agent_sdk/support/entidad";
 /**
  *   public async findAllByQuery(agentContext: AgentContext, query: Query<DrpcRecord>, queryOptions?: QueryOptions) 
  * @param {string} agent_key
+ * @param {string} query
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_drpc_drpcMessageService_findAllByQuery(agent_key) {
+export async function jsa_aries_agent_modules_drpc_drpcMessageService_findAllByQuery(agent_key, query) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
+		if(agent_key==null)return(Promise.reject("Invalid agent_key parameter"));
+		if(query==null)return(Promise.reject("Invalid query parameter"));
+		try{
+			query=JSON.parse(query);
+		}catch(e){
+			return(Promise.reject(e.toString()));
+		}
 		let agent=support.cache.get(agent_key);
-		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(
-			{}//await agent.modules.drpc.drpcMessageService.({})
-		));
+		if(agent==null)return(Promise.reject("Agent not found in cache"));
+		return(Promise.resolve(JSON.stringify(await agent.modules.drpc.drpcMessageService.findAllByQuery(agent.context,query))));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

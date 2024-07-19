@@ -15,17 +15,29 @@ import support from "../../agent_sdk/support/entidad";
 /**
  *   public async createResponseMessage(agentContext: AgentContext, response: DrpcResponse, drpcRecord: DrpcRecord) 
  * @param {string} agent_key
+ * @param {string} response - json
+ * @param {string} drpcRecord - json
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_drpc_drpcMessageService_createResponseMessage(agent_key) {
+export async function jsa_aries_agent_modules_drpc_drpcMessageService_createResponseMessage(agent_key, response, drpcRecord) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
+		if(agent_key==null)return(Promise.reject("Invalid agent_key parameter"));
+		if(response==null)return(Promise.reject("Invalid response parameter"));
+		try{
+			response=JSON.parse(response);
+		}catch(e){
+			return(Promise.reject("Invalid response parameter: "+e.toString()));
+		}
+		if(drpcRecord==null)return(Promise.reject("Invalid drpcRecord parameter"));
+		try{
+			drpcRecord=JSON.parse(drpcRecord);
+		}catch(e){
+			return Promise.reject("Invalid drpcRecord parameter: "+e.toString());
+		}
 		let agent=support.cache.get(agent_key);
-		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(
-			{}//await agent.modules.drpc.drpcMessageService.({})
-		));
+		if(agent==null)return(Promise.reject("Agent not found in cache"));
+		return(Promise.resolve(JSON.stringify(await agent.modules.drpc.drpcMessageService.createResponseMessage(agent.context,response,drpcRecord))));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

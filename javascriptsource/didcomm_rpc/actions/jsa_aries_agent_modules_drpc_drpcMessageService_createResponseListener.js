@@ -17,17 +17,22 @@ import support from "../../agent_sdk/support/entidad";
  *     callback: (params: { drpcMessageRecord: DrpcRecord; removeListener: () => void }) => void | Promise<void>
  *   )
  * @param {string} agent_key
- * @returns {Promise.<string>}
+ * @param {string} params_drpcMessageRecord
+ * @returns {Promise.<void>}
  */
-export async function jsa_aries_agent_modules_drpc_drpcMessageService_createResponseListener(agent_key) {
+export async function jsa_aries_agent_modules_drpc_drpcMessageService_createResponseListener(agent_key, params_drpcMessageRecord) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
+		if(agent_key==null)return(Promise.reject("Invalid agent_key parameter"));
+		if(params_drpcMessageRecord==null)params_drpcMessageRecord="drpcMessageRecord";
 		let agent=support.cache.get(agent_key);
-		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(
-			{}//await agent.modules.drpc.drpcMessageService.({})
-		));
+		if(agent==null)return(Promise.reject("Agent not found in cache"));
+		await agent.modules.drpc.drpcMessageService.createResponseListener((params)=>{
+			let args={};
+			args[params_drpcMessageRecord]=params.drpcMessageRecord;
+			callback(args);
+		});
+		return(Promise.resolve());
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

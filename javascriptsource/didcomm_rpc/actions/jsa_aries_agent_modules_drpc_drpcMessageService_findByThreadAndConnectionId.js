@@ -19,17 +19,19 @@ import support from "../../agent_sdk/support/entidad";
  *     threadId: string
  *   ): Promise<DrpcRecord | null>
  * @param {string} agent_key
+ * @param {string} connectionId
+ * @param {string} threadId
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_drpc_drpcMessageService_findByThreadAndConnectionId(agent_key) {
+export async function jsa_aries_agent_modules_drpc_drpcMessageService_findByThreadAndConnectionId(agent_key, connectionId, threadId) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
+		if(agent_key==null)return(Promise.reject("Invalid agent_key parameter"));
+		if(connectionId==null)return(Promise.reject("Invalid connectionId parameter"));
+		if(threadId==null)return(Promise.reject("Invalid threadId parameter"));
 		let agent=support.cache.get(agent_key);
-		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(
-			{}//await agent.modules.drpc.drpcMessageService.({})
-		));
+		if(agent==null)return(Promise.reject("Agent not found in cache"));
+		return(Promise.resolve(JSON.stringify(agent.modules.drpc.drpcMessageService.findByThreadAndConnectionId(agent.context,connectionId,threadId))));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}
