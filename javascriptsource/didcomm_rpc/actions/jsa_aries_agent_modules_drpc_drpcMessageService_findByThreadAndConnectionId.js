@@ -18,6 +18,32 @@ import support from "../../agent_sdk/support/entidad";
  *     connectionId: string,
  *     threadId: string
  *   ): Promise<DrpcRecord | null>
+ * 
+ * export class DrpcRecord extends BaseRecord<DefaultDrpcMessageTags, CustomDrpcMessageTags> {
+ *   public request?: DrpcRequest
+ *   public response?: DrpcResponse
+ *   public connectionId!: string
+ *   public role!: DrpcRole
+ *   public state!: DrpcState
+ *   public threadId!: string
+ * 
+ *   public static readonly type = 'DrpcRecord'
+ *   public readonly type = DrpcRecord.type
+ * 
+ *   public constructor(props: DrpcStorageProps) {
+ *     super()
+ * 
+ *     if (props) {
+ *       this.id = props.id ?? utils.uuid()
+ *       this.request = props.request
+ *       this.response = props.response
+ *       this.connectionId = props.connectionId
+ *       this._tags = props.tags ?? {}
+ *       this.role = props.role
+ *       this.state = props.state
+ *       this.threadId = props.threadId
+ *     }
+ *   }
  * @param {string} agent_key
  * @param {string} connectionId
  * @param {string} threadId

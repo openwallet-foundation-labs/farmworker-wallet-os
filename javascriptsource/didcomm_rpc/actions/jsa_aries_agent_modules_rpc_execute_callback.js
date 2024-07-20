@@ -22,10 +22,25 @@ export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params
 	// BEGIN USER CODE
 	try{
 		if(alias==null)return Promise.reject("Invalid alias parameter");
-		if(params!=null&&params.length>1)try{
-			params=JSON.parse(params);
-		}catch(e){
-			return(Promise.reject(e.toString()));
+		if(
+			params!=null&&
+			params.length>2&&
+			(params[0]=="{"&&params[params.length-1]=="}")||
+			(params[0]=="["&&params[params.length-1]=="]")
+		){
+			try{
+				params=JSON.parse(params);
+			}catch(e){
+				return(Promise.reject(e.toString()));
+			}
+		}else if(params==[]){
+			//handle empty arguments
+			params=[];
+		}else if(typeof(params)=="string"||typeof(params)=="number"||typeof(params)=="boolean"){
+			//handle single string, number, or boolean
+			params=[params];
+		}else{
+			return(Promise.reject("Invalid params"));
 		}
 		let callback=cache.get(alias);
 		if(alias==null||typeof(alias)=="undefined"||alias==""){return(Promise.reject("RPC method not found"));}

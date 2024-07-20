@@ -9,17 +9,19 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import{utils}from"@credo-ts/core";
 // END EXTRA CODE
 
 /**
- * @param {Nanoflow} nano
- * @param {Big} parameter1
- * @param {Big} parameter2
- * @returns {Promise.<Big>}
+ * uuid(): string
+ * @returns {Promise.<string>}
  */
-export async function JS_CallNano(nano, parameter1, parameter2) {
+export async function jsa_aries_utils_uuid() {
 	// BEGIN USER CODE
-	return nano({a: parameter1, b:parameter2});
-	//throw new Error("JavaScript action was not implemented");
+	try{
+		return(Promise.resolve(utils.uuid()));
+	}catch(e){
+		return(Promise.reject(e.toString()));
+	}
 	// END USER CODE
 }
