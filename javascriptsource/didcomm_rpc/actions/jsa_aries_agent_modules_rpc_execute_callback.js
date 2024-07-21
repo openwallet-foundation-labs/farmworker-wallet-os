@@ -91,6 +91,10 @@ export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params
 			}
 		}
 		let result=await callback.callback(args);
+		//handle Big.js return types
+		if(typeof(result)=="object"&&result.__proto__==Big.prototype){
+			result=result.toNumber();
+		}
 		return(Promise.resolve(result==null?null:JSON.stringify(result)));
 	}catch(e){
 		return Promise.reject(e.toString());

@@ -48,8 +48,46 @@ export async function jsa_aries_agent_modules_drpc_sendResponse(agent_key, conne
 		if(connectionId==null)return Promise.reject("Invalid connectionId parameter");
 		if(threadId==null)return Promise.reject("Invalid threadId parameter");
 		if(response_jsonrpc==null)return Promise.reject("Invalid response_jsonrpc parameter");
-		if(response_result==null)return Promise.reject("Invalid response_result parameter");
+		//if(response_result==null)return Promise.reject("Invalid response_result parameter");
 		if(response_id==null)return Promise.reject("Invalid response_id parameter");
+		if(response_result!=null){
+			//todo:backup prior to trim
+			response_result=response_result.trimLeft();
+			response_result=response_result.trimRight();
+			if(
+				response_result.length>2&&
+				(response_result[0]=="{"&&response_result[response_result.length-1]=="}")||
+				(response_result[0]=="["&&response_result[response_result.length-1]=="]")
+			){
+				//json object or array
+				try{
+					let obj=JSON.parse(response_result);
+					response_result=obj;
+				}catch(e){
+					//ignore failure and use as string
+				}
+			}else if(response_result=="true"){
+				//boolean true
+				response_result=true;
+			}else if(response_result=="false"){
+				//boolean false
+				response_result=false;
+			}else{
+				//todo:rename params_ to something else
+				let params_number=null;
+				if(response_result.indexOf('.')>0){
+					params_number=parseFloat(response_result);
+				}else{
+					params_number=parseInt(response_result);
+				}
+				if(isNaN(params_number)){
+					//string
+				}else{
+					//number
+					response_result=params_number;
+				}
+			}
+		}
 		let options={
 			"connectionId":connectionId,
 			"threadId":threadId,
