@@ -12,7 +12,7 @@ import { Big } from "big.js";
 // END EXTRA CODE
 
 /**
- * throws exception
+ * Throws exception
  * @param {string} message
  * @returns {Promise.<void>}
  */

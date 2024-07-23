@@ -20,6 +20,7 @@ import{cache}from"../support/entidad";
  */
 export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params) {
 	// BEGIN USER CODE
+	// export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, agent_parameter, rpc_record_id_parameter) {
 	try{
 		if(alias==null)return Promise.reject("Invalid alias parameter");
 		if(
@@ -46,7 +47,7 @@ export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params
 		if(alias==null||typeof(alias)=="undefined"||alias==""){return(Promise.reject("RPC method not found"));}
 		if(callback==null||typeof(callback)=="undefined"){return(Promise.reject("RPC method not found"));}
 		let args={};
-		if(callback.hint!=null&&callback.parameter==null){
+		if(callback.hint!=null&&callback.parameters_parameter==null){
 			if(Array.isArray(callback.hint)&&Array.isArray(params)){
 				for(let i=0;i<callback.hint.length;i++){
 					args[callback.hint[i]]=params[i]
@@ -78,7 +79,7 @@ export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params
 				throw("Unhandled hint/params combination")
 			}
 		}else{
-			if(callback.parameter==null||typeof(callback.parameter)=="undefined"){
+			if(callback.parameters_parameter==null||typeof(callback.parameters_parameter)=="undefined"){
 				if(Array.isArray(params)){
 					for(let i=0;i<params.length;i++){
 						args['_'+i]=params[i];
@@ -87,13 +88,15 @@ export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params
 					args=params;
 				}
 			}else{
-				args[callback.parameter]=JSON.stringify(params)
+				args[callback.parameters_parameter]=JSON.stringify(params)
 			}
 		}
 		let result=await callback.callback(args);
 		//handle Big.js return types
 		if(typeof(result)=="object"&&result.__proto__==Big.prototype){
 			result=result.toNumber();
+		}else{
+			//todo:handle mendix object
 		}
 		return(Promise.resolve(result==null?null:JSON.stringify(result)));
 	}catch(e){

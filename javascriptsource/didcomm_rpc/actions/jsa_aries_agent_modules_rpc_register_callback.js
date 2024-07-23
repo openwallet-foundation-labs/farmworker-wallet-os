@@ -13,18 +13,47 @@ import{cache}from"../support/entidad";
 // END EXTRA CODE
 
 /**
- * Registers RPC callback
+ * Registers RPC callback nanoflow
+ * 
+ * This is usally called in the agent initialization flow directly or in a subflow at any point before or after agent initialization, but may be executed at any time as it does not relate directly to the CredoTS library operations
+ * 
+ * See nf_ivk_rpc_callback_register for examples.
+ * 
+ * Parameters:
+ * 
+ * alias - RPC method name
+ * callback - RPC callback nanoflow
+ * hint - RPC callback nanoflow mapping
+ *     ["a","b"]
+ *     {"a":"first_nanoflow_argument","b":"second_nanoflow_argument","0":"first_nanoflow_argument","1":"second_nanoflow_argument"}
+ * synchronous - Register in synchronous or asynchronous mode. Synchronous registration will have the return value of the nanoflow immediately be sent back as the DRPC response. In asynchronous mode it is the responsibility of the developer to send back the DRPC response. The rpc_record_id_parameter value may be used to send back the DRPC response. Make sure rpc_record_id_parameter is configured correctly to obtain the DRPC record id and eventually make send back the DRPC response.
+ * parameters_parameter - Optional parameter name of the parameter to be used for the raw DRPC parameters to be manually parsed by the developer. If not specified, will not populate any parameter with the raw DRPC parameters.
+ * agent_parameter - Optional parameter name of a parameter to have applied to the Agent object. If not specified, no paraemter will have the Agent object applied to.
+ * agent_parameter - Optional parameter name of the parameter to have applied to the Connection object. If not specified, no parameter will have the Connection object applied to.
+ * rpc_record_id_parameter - Optional parameter name of the parameter to have applied to the DRPC record id. If not specified, no parameter will have the DRPC record id applied to.
  * @param {string} alias
  * @param {Nanoflow} callback
  * @param {string} hint - optional
- * @param {string} parameter - optional
+ * @param {boolean} synchronous
+ * @param {string} parameters_parameter - optional
+ * @param {string} agent_parameter - optional
+ * @param {string} rpc_record_id_parameter - optional
  * @returns {Promise.<void>}
  */
-export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, parameter) {
+export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, agent_parameter, rpc_record_id_parameter) {
 	// BEGIN USER CODE
 	try{
-		if(alias==null)return Promise.reject("Invalid alias parameter");
-		if(callback==null)return Promise.reject("Invalid callback parameter");
+		if(alias==null||alias=="")return(Promise.reject("Invalid alias parameter: cannot be null / empty string"));
+		if(callback==null)return(Promise.reject("Invalid callback parameter: cannot be null"));
+		if(synchronous){
+		}else{
+			if(rpc_record_id_parameter==null){
+				return(Promise.reject("rpc_record_id_parameter needs to be specified in synchronous mode."))
+			}			
+			if(agent_parameter==null){
+				return(Promise.reject("agent_parameter needs to be specified in synchronous mode."))
+			}
+		}
 		if(hint!=null){
 			try{
 				hint=JSON.parse(hint);
@@ -32,7 +61,14 @@ export async function jsa_aries_agent_modules_rpc_register_callback(alias, callb
 				return(Promise.reject("Invalid hint: "+e.toString()));
 			}
 		}
-		cache.put({callback:callback,hint:hint,parameter:parameter},alias)
+		cache.put({
+			callback:callback,
+			hint:hint,
+			synchronous:synchronous,
+			parameters_parameter:parameters_parameter,
+			agent_parameter:agent_parameter,
+			rpc_record_id_parameter:rpc_record_id_parameter
+		},alias)
 		window.cache=cache;
 		return(Promise.resolve());
 	}catch(e){
