@@ -37,9 +37,11 @@ export async function jsa_aries_agent_modules_drpc_sendRequest(agent_key, connec
 		if(jsonrpc==null)jsonrpc="2.0";
 		if(method==null||method=="")return(Promise.reject("Invalid method parameter"));
 		if(params==null)params="[]";
-		if(params=="")return(Promise.reject("Invalid params parameter"));
+		//if(params=="")return(Promise.reject("Invalid params parameter"));
 		params=params.trimLeft();
 		params=params.trimRight();
+		if(params=="")params="[]";
+		let params_=params;
 		if(params[0]=="'"&&params[params.length-1]=="'"){
 			params=params.substring(1,params.length-1);
 		}else if(params[0]=='"'&&params[params.length-1]=='"'){
@@ -64,7 +66,9 @@ export async function jsa_aries_agent_modules_drpc_sendRequest(agent_key, connec
 				params=parseInt(params);
 			}
 			if(isNaN(params)){
-				return(Promise.reject("Invalid params parameter"));
+				//handle shorthand string
+				console.warn("jsa_aries_agent_modules_drpc_sendRequest: handling parameter as string")
+				params=params_;
 			}
 		}
 		if(tags=="")return(Promise.reject("Invalid tags parameter"));

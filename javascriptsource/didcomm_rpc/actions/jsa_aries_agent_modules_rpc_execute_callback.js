@@ -10,18 +10,17 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import{cache}from"../support/entidad";
+//todo:remove agent and connection, we work through drpc now
 // END EXTRA CODE
 
 /**
  * Attempts execution of regitered RPC method
  * @param {string} alias - optional
  * @param {string} params - json optional
- * @param {MxObject} agent - optional
  * @param {MxObject} drpc - optional
- * @param {MxObject} connection - optional
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params, agent, drpc, connection) {
+export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params, drpc) {
 	// BEGIN USER CODE
 	// export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, agent_parameter, rpc_record_id_parameter) {
 	try{
@@ -94,14 +93,8 @@ export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params
 				args[callback.parameters_parameter]=JSON.stringify(params)
 			}
 		}
-		if(callback.agent_parameter!=null&&agent!=null){
-			args[callback.agent_parameter]=agent;
-		}
 		if(callback.drpc_parameter!=null&&drpc!=null){
 			args[callback.drpc_parameter]=drpc;
-		}
-		if(callback.connection_parameter!=null&&connection!=null){
-			args[callback.connection_parameter]=connection;
 		}
 		let result=await callback.callback(args);
 		//handle Big.js return types
@@ -110,7 +103,11 @@ export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params
 		}else{
 			//todo:handle mendix object
 		}
-		return(Promise.resolve(result==null?null:JSON.stringify(result)));
+		if(result==null){
+		}else{
+			JSON.stringify(result)
+		}
+		return(Promise.resolve(result==null?null:result));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}
