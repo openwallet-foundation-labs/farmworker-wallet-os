@@ -58,7 +58,6 @@ export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params
 				args=params;
 			}else if(!Array.isArray(callback.hint)&&Array.isArray(params)){
 				for(let i=0;i<params.length;i++){
-					window.params=params;
 					if(Object.keys(callback.hint).includes(i.toString())){
 						args[callback.hint[i.toString()]]=params[i];
 					}else{
