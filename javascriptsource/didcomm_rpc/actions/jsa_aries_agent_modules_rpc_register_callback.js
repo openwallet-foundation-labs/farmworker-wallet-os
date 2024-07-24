@@ -30,28 +30,32 @@ import{cache}from"../support/entidad";
  * parameters_parameter - Optional parameter name of the parameter to be used for the raw DRPC parameters to be manually parsed by the developer. If not specified, will not populate any parameter with the raw DRPC parameters.
  * agent_parameter - Optional parameter name of a parameter to have applied to the Agent object. If not specified, no paraemter will have the Agent object applied to.
  * agent_parameter - Optional parameter name of the parameter to have applied to the Connection object. If not specified, no parameter will have the Connection object applied to.
- * rpc_record_id_parameter - Optional parameter name of the parameter to have applied to the DRPC record id. If not specified, no parameter will have the DRPC record id applied to.
+ * drpc_parameter - Optional parameter name of the parameter to have applied to the DRPC record Mendix object. If not specified, no parameter will have the DRPC record Mendix object applied to.
  * @param {string} alias
  * @param {Nanoflow} callback
  * @param {string} hint - optional
  * @param {boolean} synchronous
  * @param {string} parameters_parameter - optional
  * @param {string} agent_parameter - optional
- * @param {string} rpc_record_id_parameter - optional
+ * @param {string} drpc_parameter - optional
+ * @param {string} connection_parameter - optional
  * @returns {Promise.<void>}
  */
-export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, agent_parameter, rpc_record_id_parameter) {
+export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, agent_parameter, drpc_parameter, connection_parameter) {
 	// BEGIN USER CODE
 	try{
 		if(alias==null||alias=="")return(Promise.reject("Invalid alias parameter: cannot be null / empty string"));
 		if(callback==null)return(Promise.reject("Invalid callback parameter: cannot be null"));
 		if(synchronous){
 		}else{
-			if(rpc_record_id_parameter==null){
-				return(Promise.reject("rpc_record_id_parameter needs to be specified in synchronous mode."))
+			if(drpc_parameter==null){
+				return(Promise.reject("drpc_parameter needs to be specified in synchronous mode."))
 			}			
 			if(agent_parameter==null){
 				return(Promise.reject("agent_parameter needs to be specified in synchronous mode."))
+			}
+			if(connection_parameter==null){
+				return(Promise.reject("connection_parameter needs to be specified in synchronous mode."))
 			}
 		}
 		if(hint!=null){
@@ -67,7 +71,8 @@ export async function jsa_aries_agent_modules_rpc_register_callback(alias, callb
 			synchronous:synchronous,
 			parameters_parameter:parameters_parameter,
 			agent_parameter:agent_parameter,
-			rpc_record_id_parameter:rpc_record_id_parameter
+			drpc_parameter:drpc_parameter,
+			connection_parameter:connection_parameter
 		},alias)
 		window.cache=cache;
 		return(Promise.resolve());

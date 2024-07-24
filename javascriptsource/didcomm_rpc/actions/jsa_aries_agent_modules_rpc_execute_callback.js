@@ -16,9 +16,12 @@ import{cache}from"../support/entidad";
  * Attempts execution of regitered RPC method
  * @param {string} alias - optional
  * @param {string} params - json optional
+ * @param {MxObject} agent - optional
+ * @param {MxObject} drpc - optional
+ * @param {MxObject} connection - optional
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params) {
+export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params, agent, drpc, connection) {
 	// BEGIN USER CODE
 	// export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, agent_parameter, rpc_record_id_parameter) {
 	try{
@@ -90,6 +93,15 @@ export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params
 			}else{
 				args[callback.parameters_parameter]=JSON.stringify(params)
 			}
+		}
+		if(callback.agent_parameter!=null&&agent!=null){
+			args[callback.agent_parameter]=agent;
+		}
+		if(callback.drpc_parameter!=null&&drpc!=null){
+			args[callback.drpc_parameter]=drpc;
+		}
+		if(callback.connection_parameter!=null&&connection!=null){
+			args[callback.connection_parameter]=connection;
 		}
 		let result=await callback.callback(args);
 		//handle Big.js return types
