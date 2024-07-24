@@ -13,11 +13,11 @@ import{cache}from"../support/entidad";
 // END EXTRA CODE
 
 /**
- * Check if RPC method is async
+ * Check if RPC method is synchronous
  * @param {string} alias - optional
  * @returns {Promise.<boolean>}
  */
-export async function jsa_aries_agent_modules_rpc_is_async(alias) {
+export async function jsa_aries_agent_modules_rpc_is_synchronous(alias) {
 	// BEGIN USER CODE
 	// export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, agent_parameter, rpc_record_id_parameter) {
 	try{
