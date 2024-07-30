@@ -13,9 +13,6 @@ import support from"../../../javascriptsource/agent_sdk/support/entidad";
 // END EXTRA CODE
 
 /**
- * public async share(options: MediaSharingShareOptions)
- * 
- * Sender role: create a new shared media record (no actual message will be sent)
  * @param {string} agent_key
  * @param {string} connectionId
  * @param {string} metadata - json
