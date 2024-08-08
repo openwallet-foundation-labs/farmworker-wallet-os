@@ -11,6 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 import "../shim.js";
 import support from "../support/entidad";
+import {HandshakeProtocol} from "@credo-ts/core";
 // END EXTRA CODE
 
 /**
@@ -77,7 +78,8 @@ export async function jsa_aries_agent_oob_createInvitation(agent_key, domain, la
 		if(goal!=null&&goal!="")createInvitationConfig.goal=goal;
 		if(handshake==true/*false?*/)createInvitationConfig.handshake=handshake;
 		//  handshakeProtocols?: HandshakeProtocol[]
-		if(handshakeProtocols!=null||handshakeProtocols=="")createInvitationConfig.handshakeProtocols=handshakeProtocols;
+		//if(handshakeProtocols!=null||handshakeProtocols=="")createInvitationConfig.handshakeProtocols=handshakeProtocols;
+		if(handshakeProtocols!=null||handshakeProtocols=="")createInvitationConfig.handshakeProtocols=[HandshakeProtocol.DidExchange];
 		//  messages?: AgentMessage[]
 		if(messages!=null&&messages!="")createInvitationConfig.messages=messages;
 		//boolean

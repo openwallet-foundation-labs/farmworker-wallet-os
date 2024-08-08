@@ -16,17 +16,28 @@ import support from "../support/entidad";
 /**
  * @param {string} agent_key
  * @param {string} invitationUrl
+ * @param {string} config - optional json
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_oob_receiveInvitationFromUrl(agent_key, invitationUrl) {
+export async function jsa_aries_agent_oob_receiveInvitationFromUrl(agent_key, invitationUrl, config) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");			//mandatory
-		if(invitationUrl==null)return Promise.reject("Invalid invitationUrl parameter");	//mandatory
+		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
+		if(invitationUrl==null)return Promise.reject("Invalid invitationUrl parameter");
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
-		const{outOfBandRecord}=await agent.oob.receiveInvitationFromUrl(invitationUrl);
-		return Promise.resolve(JSON.stringify(outOfBandRecord,0,2));
+		if(config==null||config==''){
+			const{outOfBandRecord}=await agent.oob.receiveInvitationFromUrl(invitationUrl);
+			return Promise.resolve(JSON.stringify(outOfBandRecord,0,2));
+		}else{
+			try{
+				config=JSON.parse(config);
+				const{outOfBandRecord}=await agent.oob.receiveInvitationFromUrl(invitationUrl,config);
+				return Promise.resolve(JSON.stringify(outOfBandRecord,0,2));
+			}catch(e){
+				return(Promise.reject(e.toString()));
+			}
+		}
 	}catch(e){
 		return Promise.reject(e.toString());
 	}

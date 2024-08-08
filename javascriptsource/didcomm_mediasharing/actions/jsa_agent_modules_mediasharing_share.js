@@ -15,25 +15,26 @@ import support from"../../../javascriptsource/agent_sdk/support/entidad";
 /**
  * @param {string} agent_key
  * @param {string} recordId
- * @param {string} items - json array
+ * @param {string} media - json
  * @returns {Promise.<string>}
  */
-export async function jsa_agent_modules_mediasharing_share(agent_key, recordId, items) {
+export async function jsa_agent_modules_mediasharing_share(agent_key, recordId, media) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
 		if(recordId==null)return Promise.reject("Invalid recordId parameter");
-		if(items==null)metadata="[]";
+		if(media==null)metadata="[]";
 		try{
-			items=JSON.parse(items);
+			media=JSON.parse(media);
 		}catch(e){
-			return Promise.reject("Argument items is not a valid json")
+			return Promise.reject("Argument media is not a valid json")
 		}
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		let record=await agent.modules.media.share({
 			recordId: recordId,
-			items: items,
+			description: media.description,
+			items: media.items,
 		})
 		return Promise.resolve(JSON.stringify(
 			record
