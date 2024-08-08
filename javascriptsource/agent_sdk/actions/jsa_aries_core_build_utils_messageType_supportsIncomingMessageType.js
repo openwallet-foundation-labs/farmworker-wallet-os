@@ -13,10 +13,13 @@ import "../shim.js";
 //import{supportsIncomingMessageType}from"@aries-framework/core/build/utils/messageType";
 //import{V1OfferCredentialMessage,V1RequestPresentationMessage}from"@aries-framework/anoncreds";
 //import{V2OfferCredentialMessage,V2RequestPresentationMessage}from"@aries-framework/core";
+<<<<<<< HEAD
 
 import { supportsIncomingMessageType } from '@credo-ts/core/build/utils/messageType'
 import {V1OfferCredentialMessage,V1RequestPresentationMessage} from '@credo-ts/anoncreds'
 import {V2OfferCredentialMessage,V2RequestPresentationMessage} from"@credo-ts/core";
+=======
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
 // END EXTRA CODE
 
 /**

@@ -9,8 +9,12 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+<<<<<<<< HEAD:javascriptsource/agent_sdk/actions/jsa_aries_agent_modules_survey_getAll.js
 import "../shim.js";
 import support from "../support/entidad";
+========
+import support from "../../agent_sdk/support/entidad";
+>>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f:javascriptsource/didcomm_survey/actions/jsa_aries_agent_modules_survey_getAll.js
 // END EXTRA CODE
 
 /**

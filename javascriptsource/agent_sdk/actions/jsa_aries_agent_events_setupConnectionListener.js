@@ -10,6 +10,10 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import "../shim.js";
+<<<<<<< HEAD
+=======
+/*
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
 import{
 	ConnectionEventTypes,
 	AgentEventTypes,
@@ -17,6 +21,18 @@ import{
 	CredentialEventTypes,
 	ProofEventTypes,
 	DidExchangeState
+<<<<<<< HEAD
+=======
+}from'@aries-framework/core';
+*/
+import{
+	ConnectionEventTypes,
+	AgentEventTypes,
+	BasicMessageEventTypes,
+	CredentialEventTypes,
+	ProofEventTypes,
+	DidExchangeState
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
 }from'@credo-ts/core';
 import support from "../support/entidad";
 function findKey(k,o){

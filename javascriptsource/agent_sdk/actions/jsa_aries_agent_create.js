@@ -50,9 +50,17 @@ import { indyVdr } from '@hyperledger/indy-vdr-react-native';
 import { ariesAskar } from '@hyperledger/aries-askar-react-native'
 import { QuestionAnswerModule } from '@credo-ts/question-answer';
 import { SurveyModule } from '@entidad/credo-ts-survey';
+<<<<<<< HEAD
 import { UserProfileModule } from 'credo-ts-user-profile'
 import { DrpcModule } from '@credo-ts/drpc';
 import { MediaSharingModule } from 'credo-ts-media-sharing';//https://github.com/2060-io/credo-ts-media-sharing
+=======
+/*
+
+import { QuestionnaireModule } from '@entidad/questionnaire';
+*/
+import { MediaSharingModule } from 'credo-ts-media-sharing';
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
 /*
 import { version } from "punycode";
 */
@@ -100,6 +108,11 @@ import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds';
  * @param {boolean} anoncredsRs
  * @param {boolean} indyVdr
  * @param {boolean} mediationRecipient
+<<<<<<< HEAD
+=======
+ * @param {boolean} questionAnswer
+ * @param {boolean} questionnaire
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
  * @param {boolean} keyDidRegistrar
  * @param {boolean} jwkDidRegistrar
  * @param {boolean} webDidResolver
@@ -107,6 +120,7 @@ import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds';
  * @param {boolean} jwkDidResolver
  * @param {boolean} indyVdrIndyDidResolver
  * @param {boolean} indyVdrSovDidResolver
+<<<<<<< HEAD
  * @param {boolean} useQuestionAnswer
  * @param {boolean} useSurvey
  * @param {boolean} useMediaSharing
@@ -116,6 +130,12 @@ import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds';
  * @returns {Promise.<string>}
  */
 export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, keyDidRegistrar, jwkDidRegistrar, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, useQuestionAnswer, useSurvey, useMediaSharing, useUserProfile, useBle, useDrpc) {
+=======
+ * @param {boolean} mediaSharing
+ * @returns {Promise.<string>}
+ */
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, questionAnswer, questionnaire, keyDidRegistrar, jwkDidRegistrar, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, mediaSharing) {
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
 	// BEGIN USER CODE
 	try {
 		//--------------------------------------------------------------------------------
@@ -359,6 +379,10 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			console.error("Failed to register AskarModule:"+e.toString());
 		}
 		//-----------------------------------------------------------------------------------
+		agentModules.askar = new AskarModule({
+			ariesAskar: ariesAskar
+		});
+		//-----------------------------------------------------------------------------------
 		let credentialProtocols = []
 		if (v1CredentialProtocol) {
 			try{
@@ -430,6 +454,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		}
 		//-----------------------------------------------------------------------------------
 		if (anoncreds) {
+<<<<<<< HEAD
 			try{
 				agentModules.anoncreds = new AnonCredsModule({
 					//todo:add configurability or turn cheqd off based on main cheqd enabling parameter
@@ -443,6 +468,17 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			}catch(e){
 				console.error("Failed to register AnonCredsModule:"+e.toString());
 			}
+=======
+			agentModules.anoncreds = new AnonCredsModule({
+				//todo:add configurability or turn cheqd off based on main cheqd enabling parameter
+				registries: [
+					new IndyVdrAnonCredsRegistry(),
+					//16:15 2024/05/03
+					new DidWebAnonCredsRegistry()
+				],
+				anoncreds //15:52 2024/04/30 - added
+			});
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
 		}
 		//-----------------------------------------------------------------------------------
 		if (indyVdr) {
@@ -493,11 +529,15 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			}
 		}
 		if (jwkDidResolver) {
+<<<<<<< HEAD
 			try{
 				dids_resolvers.push(new JwkDidResolver());
 			}catch(e){
 				console.error("Failed to register JwkDidResolver:"+e.toString());
 			}
+=======
+			dids_resolvers.push(new JwkDidResolver());
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
 		}
 		if (indyVdrSovDidResolver) {
 			try{
@@ -513,6 +553,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				console.error("Failed to register IndyVdrIndyDidResolver:"+e.toString());
 			}
 		}
+<<<<<<< HEAD
 		try{
 			//if(indySdkSovDidResolver){
 			//	dids_resolvers.push(new IndySdkSovDidResolver());
@@ -540,6 +581,27 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			}catch(e){
 				console.error("Failed to register OpenId4VcHolderModule:"+e.toString());
 			}
+=======
+		//if(indySdkSovDidResolver){
+		//	dids_resolvers.push(new IndySdkSovDidResolver());
+		//}
+		//if(indySdkIndyDidResolver){
+		//	dids_resolvers.push(new IndySdkIndyDidResolver());
+		//}
+		//if(indyVdrSovDidResolver){
+		//	dids_resolvers.push(new IndyVdrSovDidResolver());
+		//}
+		//if(indyVdrIndyDidResolver){
+		//	dids_resolvers.push(new IndyVdrIndyDidResolver());
+		//}
+		agentModules.dids = new DidsModule({
+			registrars: dids_registrars,
+			resolvers: dids_resolvers
+		});
+		//-----------------------------------------------------------------------------------
+		if (useModuleOpenId4VC) {
+			agentModules.openId4VcHolder=new OpenId4VcHolderModule();
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
 		}
 		//-----------------------------------------------------------------------------------
 		if (mediationRecipient) {
@@ -580,8 +642,27 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				console.error("Failed to register DRPCModule:"+e.toString());
 			}
 		}
+<<<<<<< HEAD
 		//-----------------------------------------------------------------------------------
 		if(useMediaSharing){
+=======
+		if (questionAnswer) {
+			agentModules.questionAnswer = new QuestionAnswerModule();
+		}
+		if (questionnaire) {
+			agentModules.survey = new SurveyModule();
+		}
+		/*
+		//-----------------------------------------------------------------------------------
+		
+		//-----------------------------------------------------------------------------------
+		if (questionnaire) {
+			agentModules.questionnaire = new QuestionnaireModule();
+		}
+		*/
+		//-----------------------------------------------------------------------------------
+		if(mediaSharing){
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
 			try{
 				agentModules.media = new MediaSharingModule();
 			}catch(e){
@@ -601,7 +682,11 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			config,
 			dependencies: agentDependencies,
 			modules: agentModules,
+<<<<<<< HEAD
 		});		
+=======
+		});
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
 		return Promise.resolve(support.cache.put(agent, walletConfig_id));		
 	} catch (e) {
 		return Promise.reject(e.toString());

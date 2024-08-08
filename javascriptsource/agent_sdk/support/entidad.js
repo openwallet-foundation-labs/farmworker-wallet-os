@@ -1,4 +1,8 @@
 //--------------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+//import{Logger,LogLevel}from"@aries-framework/core";
+>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
 import{Logger,LogLevel}from"@credo-ts/core";
 class ConsoleLogger{
 	logLevel:LogLevel
