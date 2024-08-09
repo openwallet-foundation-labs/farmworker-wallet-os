@@ -10,41 +10,25 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import "../shim.js";
-<<<<<<< HEAD
-=======
-/*
->>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
-import{
+import {
 	ConnectionEventTypes,
 	AgentEventTypes,
 	BasicMessageEventTypes,
 	CredentialEventTypes,
 	ProofEventTypes,
 	DidExchangeState
-<<<<<<< HEAD
-=======
-}from'@aries-framework/core';
-*/
-import{
-	ConnectionEventTypes,
-	AgentEventTypes,
-	BasicMessageEventTypes,
-	CredentialEventTypes,
-	ProofEventTypes,
-	DidExchangeState
->>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f
-}from'@credo-ts/core';
+} from '@credo-ts/core';
 import support from "../support/entidad";
-function findKey(k,o){
-	let ret=null;
-	let keys=Object.keys(o);
-	for(let i=0;i<keys.length;i++){
-		if(ret!=null)break;
-		let ok=keys[i];
-		if(ok==k){
-			ret=(o[ok]);
-		}else if(typeof(o[ok])=="object"){
-			ret=findKey(k,o[ok]);
+function findKey(k, o) {
+	let ret = null;
+	let keys = Object.keys(o);
+	for (let i = 0; i < keys.length; i++) {
+		if (ret != null) break;
+		let ok = keys[i];
+		if (ok == k) {
+			ret = (o[ok]);
+		} else if (typeof (o[ok]) == "object") {
+			ret = findKey(k, o[ok]);
 		}
 	}
 	return ret;
@@ -76,51 +60,51 @@ function findKey(k,o){
  */
 export async function jsa_aries_agent_events_setupConnectionListener(agent_key, eventType, messageType, callback, payloadParameterName, userDataParameterName, userData, eventTypeParameterName) {
 	// BEGIN USER CODE
-	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");										//mandatory
-		if(callback==null)return Promise.reject("Invalid callback parameter");											//mandatory
-		let _eventType=eventType;
-		switch(eventType){
-			case"AgentMessageProcessed":
-				eventType=AgentEventTypes.AgentMessageProcessed;
+	try {
+		if (agent_key == null) return Promise.reject("Invalid agent_key parameter");										//mandatory
+		if (callback == null) return Promise.reject("Invalid callback parameter");											//mandatory
+		let _eventType = eventType;
+		switch (eventType) {
+			case "AgentMessageProcessed":
+				eventType = AgentEventTypes.AgentMessageProcessed;
 				break;
-			case"AgentMessageReceived":
-				eventType=AgentEventTypes.AgentMessageReceived;
+			case "AgentMessageReceived":
+				eventType = AgentEventTypes.AgentMessageReceived;
 				break;
-			case"AgentMessageSent":
-				eventType=AgentEventTypes.AgentMessageSent;
+			case "AgentMessageSent":
+				eventType = AgentEventTypes.AgentMessageSent;
 				break;
-			case"ConnectionStateChanged":
-				eventType=ConnectionEventTypes.ConnectionStateChanged;
+			case "ConnectionStateChanged":
+				eventType = ConnectionEventTypes.ConnectionStateChanged;
 				break;
-			case"BasicMessageStateChanged":
-				eventType=BasicMessageEventTypes.BasicMessageStateChanged;
+			case "BasicMessageStateChanged":
+				eventType = BasicMessageEventTypes.BasicMessageStateChanged;
 				break;
-			case"CredentialStateChanged":
-				eventType=CredentialEventTypes.CredentialStateChanged;
+			case "CredentialStateChanged":
+				eventType = CredentialEventTypes.CredentialStateChanged;
 				break;
-			case"RevocationNotificationReceived":
-				eventType=CredentialEventTypes.RevocationNotificationReceived;
+			case "RevocationNotificationReceived":
+				eventType = CredentialEventTypes.RevocationNotificationReceived;
 				break;
-			case"ProofStateChanged":
-				eventType=ProofEventTypes.ProofStateChanged;
+			case "ProofStateChanged":
+				eventType = ProofEventTypes.ProofStateChanged;
 				break;
 			default:
 				return Promise.reject("Invalid connectionEventType parameter")
 		}
-		let agent=support.cache.get(agent_key);
-		if(agent==null)return Promise.reject("Agent not found in cache");
-		agent.events.on(eventType,async function({payload}){
-			let currentMessageType=findKey("type",payload);
-			if(messageType=='*'||currentMessageType==messageType){
-				let args={};
-				if(payloadParameterName!=null)args[payloadParameterName]=JSON.stringify(payload,0,2);
-				if(userDataParameterName!=null)args[userDataParameterName]=userData;
-				await callback.call(window,args);
+		let agent = support.cache.get(agent_key);
+		if (agent == null) return Promise.reject("Agent not found in cache");
+		agent.events.on(eventType, async function ({ payload }) {
+			let currentMessageType = findKey("type", payload);
+			if (messageType == '*' || currentMessageType == messageType) {
+				let args = {};
+				if (payloadParameterName != null) args[payloadParameterName] = JSON.stringify(payload, 0, 2);
+				if (userDataParameterName != null) args[userDataParameterName] = userData;
+				await callback.call(window, args);
 			}
 		});
 		return Promise.resolve();
-	}catch(e){
+	} catch (e) {
 		return Promise.reject(e.toString());
 	}
 	// END USER CODE

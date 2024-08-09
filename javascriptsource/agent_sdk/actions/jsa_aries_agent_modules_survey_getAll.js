@@ -9,12 +9,8 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-<<<<<<<< HEAD:javascriptsource/agent_sdk/actions/jsa_aries_agent_modules_survey_getAll.js
 import "../shim.js";
 import support from "../support/entidad";
-========
-import support from "../../agent_sdk/support/entidad";
->>>>>>>> 537af94197e85e7669fbafb86b781b8cedae934f:javascriptsource/didcomm_survey/actions/jsa_aries_agent_modules_survey_getAll.js
 // END EXTRA CODE
 
 /**
@@ -24,14 +20,14 @@ import support from "../../agent_sdk/support/entidad";
  */
 export async function jsa_aries_agent_modules_survey_getAll(agent_key) {
 	// BEGIN USER CODE
-	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
-		let agent=support.cache.get(agent_key);
-		if(agent==null)return Promise.reject("Agent not found in cache");
+	try {
+		if (agent_key == null) return Promise.reject("Invalid agent_key parameter");
+		let agent = support.cache.get(agent_key);
+		if (agent == null) return Promise.reject("Agent not found in cache");
 		return Promise.resolve(JSON.stringify(
 			await agent.modules.survey.getAll()
 		));
-	}catch(e){
+	} catch (e) {
 		return Promise.reject(e.toString());
 	}
 	// END USER CODE
