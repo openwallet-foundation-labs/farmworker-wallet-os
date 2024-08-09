@@ -15,8 +15,8 @@ import "../shim.js";
 //import{V2OfferCredentialMessage,V2RequestPresentationMessage}from"@aries-framework/core";
 
 import { supportsIncomingMessageType } from '@credo-ts/core/build/utils/messageType'
-import {V1OfferCredentialMessage,V1RequestPresentationMessage} from '@credo-ts/anoncreds'
-import {V2OfferCredentialMessage,V2RequestPresentationMessage} from"@credo-ts/core";
+import { V1OfferCredentialMessage, V1RequestPresentationMessage } from '@credo-ts/anoncreds'
+import { V2OfferCredentialMessage, V2RequestPresentationMessage } from "@credo-ts/core";
 // END EXTRA CODE
 
 /**
@@ -54,36 +54,36 @@ import {V2OfferCredentialMessage,V2RequestPresentationMessage} from"@credo-ts/co
  */
 export async function jsa_aries_core_build_utils_messageType_supportsIncomingMessageType(incomingMessageType, expectedMessageType) {
 	// BEGIN USER CODE
-	try{
-		if(incomingMessageType==null||incomingMessageType.length==0)return Promise.reject("Invalid incomingMessageType parameter");
-		try{
-			incomingMessageType=JSON.parse(incomingMessageType);
-		}catch(e){
+	try {
+		if (incomingMessageType == null || incomingMessageType.length == 0) return Promise.reject("Invalid incomingMessageType parameter");
+		try {
+			incomingMessageType = JSON.parse(incomingMessageType);
+		} catch (e) {
 			return Promise.reject("incomingMessageType is not a valid JSON object");
 		}
-		if(expectedMessageType==null||expectedMessageType.length==0)return Promise.reject("Invalid expectedMessageType parameter");
-		console.info("expectedMessageType>"+expectedMessageType);
-		switch(expectedMessageType){
-			case"V1OfferCredentialMessage":
-				expectedMessageType=V1OfferCredentialMessage;
+		if (expectedMessageType == null || expectedMessageType.length == 0) return Promise.reject("Invalid expectedMessageType parameter");
+		console.info("expectedMessageType>" + expectedMessageType);
+		switch (expectedMessageType) {
+			case "V1OfferCredentialMessage":
+				expectedMessageType = V1OfferCredentialMessage;
 				break;
-			case"V1RequestPresentationMessage":
-				expectedMessageType=V1RequestPresentationMessage;
+			case "V1RequestPresentationMessage":
+				expectedMessageType = V1RequestPresentationMessage;
 				break;
-			case"V2OfferCredentialMessage":
-				expectedMessageType=V2OfferCredentialMessage;
+			case "V2OfferCredentialMessage":
+				expectedMessageType = V2OfferCredentialMessage;
 				break;
-			case"V2RequestPresentationMessage":
-				expectedMessageType=V2RequestPresentationMessage;
+			case "V2RequestPresentationMessage":
+				expectedMessageType = V2RequestPresentationMessage;
 				break;
 			default:																															// -
 				return Promise.reject("Invalid expectedMessageType parameter");																	// -
 				break;																															// -
 		}																																		// -
 		return Promise.resolve(
-			supportsIncomingMessageType(incomingMessageType,expectedMessageType.type)
+			supportsIncomingMessageType(incomingMessageType, expectedMessageType.type)
 		);
-	}catch(e){
+	} catch (e) {
 		return Promise.reject(e.toString());
 	}
 	// END USER CODE

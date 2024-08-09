@@ -165,7 +165,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			default:																															// -
 				return Promise.reject("Invalid walletConfig_KeyDerivationMethod parameter");													// -
 				break;																															// -
-		}		
+		}
 		if (walletConfig_storage == null);																											// optional
 		if (endpoints == null);																													// optional
 		if (publicDidSeed == null);																												// optional
@@ -343,36 +343,36 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//-----------------------------------------------------------------------------------
 		let agentModules = {};
 		//-----------------------------------------------------------------------------------
-		try{
+		try {
 			agentModules.connections = new ConnectionsModule({
 				autoAcceptConnections: autoAcceptConnections
 			});
-		}catch(e){
-			console.error("Failed to register ConnectionsModule:"+e.toString());
+		} catch (e) {
+			console.error("Failed to register ConnectionsModule:" + e.toString());
 		}
 		//-----------------------------------------------------------------------------------
-		try{
+		try {
 			agentModules.askar = new AskarModule({
 				ariesAskar: ariesAskar
 			});
-		}catch(e){
-			console.error("Failed to register AskarModule:"+e.toString());
+		} catch (e) {
+			console.error("Failed to register AskarModule:" + e.toString());
 		}
 		//-----------------------------------------------------------------------------------
 		let credentialProtocols = []
 		if (v1CredentialProtocol) {
-			try{
+			try {
 				credentialProtocols.push(
 					new V1CredentialProtocol({
 						indyCredentialFormat: legacyIndyCredentialFormatService,
 					})
 				);
-			}catch(e){
-				console.error("Failed to register V1CredentialProtocol:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register V1CredentialProtocol:" + e.toString());
 			}
 		}
 		if (v2CredentialProtocol) {
-			try{
+			try {
 				credentialProtocols.push(
 					new V2CredentialProtocol({
 						credentialFormats: [
@@ -381,33 +381,33 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 						]
 					})
 				);
-			}catch(e){
-				console.error("Failed to register V2CredentialProtocol:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register V2CredentialProtocol:" + e.toString());
 			}
 		}
-		try{
+		try {
 			agentModules.credentials = new CredentialsModule({
 				autoAcceptCredentials: autoAcceptCredential_,
 				credentialProtocols: credentialProtocols
 			});
-		}catch(e){
-			console.error("Failed to register CredentialsModule:"+e.toString());
+		} catch (e) {
+			console.error("Failed to register CredentialsModule:" + e.toString());
 		}
 		//-----------------------------------------------------------------------------------
 		let proofProtocols = []
 		if (v1ProofProtocol) {
-			try{
+			try {
 				proofProtocols.push(
 					new V1ProofProtocol({
 						indyProofFormat: new LegacyIndyProofFormatService()//legacyIndyProofFormatService,
 					})
 				);
-			}catch(e){
-				console.error("Failed to register V1ProofProtocol:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register V1ProofProtocol:" + e.toString());
 			}
 		}
 		if (v2ProofProtocol) {
-			try{
+			try {
 				proofProtocols.push(
 					new V2ProofProtocol({
 						proofFormats: [
@@ -416,21 +416,21 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 						],
 					})
 				);
-			}catch(e){
-				console.error("Failed to register V2ProofProtocol:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register V2ProofProtocol:" + e.toString());
 			}
 		}
-		try{
+		try {
 			agentModules.proofs = new ProofsModule({
 				autoAcceptProofs: autoAcceptProofs,
 				proofProtocols: proofProtocols
 			});
-		}catch(e){
-			console.error("Failed to register ProofsModule:"+e.toString());
+		} catch (e) {
+			console.error("Failed to register ProofsModule:" + e.toString());
 		}
 		//-----------------------------------------------------------------------------------
 		if (anoncreds) {
-			try{
+			try {
 				agentModules.anoncreds = new AnonCredsModule({
 					//todo:add configurability or turn cheqd off based on main cheqd enabling parameter
 					registries: [
@@ -440,21 +440,21 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 					],
 					anoncreds //15:52 2024/04/30 - added
 				});
-			}catch(e){
-				console.error("Failed to register AnonCredsModule:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register AnonCredsModule:" + e.toString());
 			}
 		}
 		//-----------------------------------------------------------------------------------
 		if (indyVdr) {
-			try{
+			try {
 				agentModules.indyVdr = new IndyVdrModule({
 					indyVdr,
 					//compare with
 					//https://github.com/animo/paradym-wallet/blob/0eed5477ad704e851c52e1b7ccc68d92df31fd9f/packages/agent/src/agent.ts#L29
 					networks: indyLedgers == null ? [] : indyLedgers,
 				});
-			}catch(e){
-				console.error("Failed to register IndyVdrModule:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register IndyVdrModule:" + e.toString());
 			}
 		}
 		//-----------------------------------------------------------------------------------
@@ -463,57 +463,57 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//	dids_registrars.push(new IndySdkIndyDidRegistrar());
 		//}
 		if (keyDidRegistrar) {
-			try{
+			try {
 				dids_registrars.push(new KeyDidRegistrar());
-			}catch(e){
-				console.error("Failed to register KeyDidRegistrar:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register KeyDidRegistrar:" + e.toString());
 			}
 		}
 		if (jwkDidRegistrar) {
-			try{
+			try {
 				dids_registrars.push(new JwkDidRegistrar());
-			}catch(e){
-				console.error("Failed to register JwkDidRegistrar:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register JwkDidRegistrar:" + e.toString());
 			}
 		}
 		//-----------------------------------------------------------------------------------
 		let dids_resolvers = [];
 		if (webDidResolver) {
-			try{
+			try {
 				dids_resolvers.push(new WebDidResolver());
-			}catch(e){
-				console.error("Failed to register WebDidResolver:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register WebDidResolver:" + e.toString());
 			}
 		}
 		if (keyDidResolver) {
-			try{
+			try {
 				dids_resolvers.push(new KeyDidResolver());
-			}catch(e){
-				console.error("Failed to register KeyDidResolver:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register KeyDidResolver:" + e.toString());
 			}
 		}
 		if (jwkDidResolver) {
-			try{
+			try {
 				dids_resolvers.push(new JwkDidResolver());
-			}catch(e){
-				console.error("Failed to register JwkDidResolver:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register JwkDidResolver:" + e.toString());
 			}
 		}
 		if (indyVdrSovDidResolver) {
-			try{
+			try {
 				dids_resolvers.push(new IndyVdrSovDidResolver());
-			}catch(e){
-				console.error("Failed to register IndyVdrSovDidResolver:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register IndyVdrSovDidResolver:" + e.toString());
 			}
 		}
 		if (indyVdrIndyDidResolver) {
-			try{
+			try {
 				dids_resolvers.push(new IndyVdrIndyDidResolver());
-			}catch(e){
-				console.error("Failed to register IndyVdrIndyDidResolver:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register IndyVdrIndyDidResolver:" + e.toString());
 			}
 		}
-		try{
+		try {
 			//if(indySdkSovDidResolver){
 			//	dids_resolvers.push(new IndySdkSovDidResolver());
 			//}
@@ -530,69 +530,69 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				registrars: dids_registrars,
 				resolvers: dids_resolvers
 			});
-		}catch(e){
-			console.error("Failed to register DidsModule:"+e.toString());
+		} catch (e) {
+			console.error("Failed to register DidsModule:" + e.toString());
 		}
 		//-----------------------------------------------------------------------------------
 		if (useModuleOpenId4VC) {
-			try{
-				agentModules.openId4VcHolder=new OpenId4VcHolderModule();
-			}catch(e){
-				console.error("Failed to register OpenId4VcHolderModule:"+e.toString());
+			try {
+				agentModules.openId4VcHolder = new OpenId4VcHolderModule();
+			} catch (e) {
+				console.error("Failed to register OpenId4VcHolderModule:" + e.toString());
 			}
 		}
 		//-----------------------------------------------------------------------------------
 		if (mediationRecipient) {
-			try{
+			try {
 				agentModules.mediationRecipient = new MediationRecipientModule((mediationConnectionsInvitation != null) ? ({
 					mediatorInvitationUrl: mediationConnectionsInvitation
 					//todo:        mediatorPickupStrategy: MediatorPickupStrategy.X,
 				}) : ({}));
-			}catch(e){
-				console.error("Failed to register MediationRecipientModule:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register MediationRecipientModule:" + e.toString());
 			}
 		}
 		if (useQuestionAnswer) {
-			try{
+			try {
 				agentModules.questionAnswer = new QuestionAnswerModule();
-			}catch(e){
-				console.error("Failed to register QuestionAnswerModule:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register QuestionAnswerModule:" + e.toString());
 			}
 		}
 		if (useSurvey) {
-			try{
+			try {
 				agentModules.survey = new SurveyModule();
-			}catch(e){
-				console.error("Failed to register SurveyModule:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register SurveyModule:" + e.toString());
 			}
-		}		
+		}
 		if (useUserProfile) {
-			try{
+			try {
 				agentModules.userProfile = new UserProfileModule();
-			}catch(e){
-				console.error("Failed to register UserProfileModule:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register UserProfileModule:" + e.toString());
 			}
 		}
 		if (useDrpc) {
-			try{
+			try {
 				agentModules.drpc = new DrpcModule();
-			}catch(e){
-				console.error("Failed to register DRPCModule:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register DRPCModule:" + e.toString());
 			}
 		}
 		//-----------------------------------------------------------------------------------
-		if(useMediaSharing){
-			try{
+		if (useMediaSharing) {
+			try {
 				agentModules.media = new MediaSharingModule();
-			}catch(e){
-				console.error("Failed to register MediaSharingModule:"+e.toString());
+			} catch (e) {
+				console.error("Failed to register MediaSharingModule:" + e.toString());
 			}
 		}
 		//-----------------------------------------------------------------------------------
-		if(useBle){
-			try{
+		if (useBle) {
+			try {
 				//
-			}catch(e){
+			} catch (e) {
 				console.error(e.toString());
 			}
 		}
@@ -601,8 +601,8 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			config,
 			dependencies: agentDependencies,
 			modules: agentModules,
-		});		
-		return Promise.resolve(support.cache.put(agent, walletConfig_id));		
+		});
+		return Promise.resolve(support.cache.put(agent, walletConfig_id));
 	} catch (e) {
 		return Promise.reject(e.toString());
 	}
