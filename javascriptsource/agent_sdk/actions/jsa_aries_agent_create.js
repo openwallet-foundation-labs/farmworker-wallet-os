@@ -49,15 +49,11 @@ import { anoncreds } from '@hyperledger/anoncreds-react-native';
 import { indyVdr } from '@hyperledger/indy-vdr-react-native';
 import { ariesAskar } from '@hyperledger/aries-askar-react-native'
 import { QuestionAnswerModule } from '@credo-ts/question-answer';
+import { DrpcModule } from '@credo-ts/drpc';
 import { SurveyModule } from '@entidad/credo-ts-survey';
 import { UserProfileModule } from 'credo-ts-user-profile'
-import { DrpcModule } from '@credo-ts/drpc';
 import { MediaSharingModule } from 'credo-ts-media-sharing';//https://github.com/2060-io/credo-ts-media-sharing
-/*
-import { version } from "punycode";
-*/
 import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds';
-//import type { InitConfig } from '@credo-ts/core'
 // END EXTRA CODE
 
 /**
@@ -121,171 +117,171 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		//--------------------------------------------------------------------------------
 		//Take care of empty strings - set to null
 		//--------------------------------------------------------------------------------
-		if (label == "") label = null;
-		if (walletConfig_id == "") walletConfig_id = null;
-		if (walletConfig_key == "") walletConfig_key = null;
-		if (walletConfig_KeyDerivationMethod == "") walletConfig_KeyDerivationMethod = null;
-		if (walletConfig_storage == "") walletConfig_storage = null;
-		if (endpoints == "") endpoints = null;
-		if (publicDidSeed == "") publicDidSeed = null;
-		if (connectToIndyLedgerOnStartup == "") connectToIndyLedgerOnStartup = null;
-		if (logger == "") logger = null;
-		if (loglevel == "") loglevel = null;
-		if (didCommMimeType == "") didCommMimeType = null;
-		if (autoAcceptCredentials == "") autoAcceptCredentials = null;
-		if (autoAcceptProofs == "") autoAcceptProofs = null;
-		if (autoAcceptMediationRequests == "") autoAcceptMediationRequests = null;
-		if (mediationConnectionsInvitation == "") mediationConnectionsInvitation = null;
-		if (defaultMediatorId == "") defaultMediatorId = null;
-		if (clearDefaultMediator == "") clearDefaultMediator = null;
-		if (mediatorPollingInterval == "") mediatorPollingInterval = null;
-		if (mediatorPickupStrategy == "") mediatorPickupStrategy = null;
-		if (maximumMessagePickup == "") maximumMessagePickup = null;
-		if (useLegacyDidSovPrefix == "") useLegacyDidSovPrefix = null;
-		if (connectionImageUrl == "") connectionImageUrl = null;
-		if (autoUpdateStorageOnStartup == "") autoUpdateStorageOnStartup = null;
-		if (autoAcceptConnections == "") autoAcceptConnections = null;
+		if(label == "") label = null;
+		if(walletConfig_id == "") walletConfig_id = null;
+		if(walletConfig_key == "") walletConfig_key = null;
+		if(walletConfig_KeyDerivationMethod == "") walletConfig_KeyDerivationMethod = null;
+		if(walletConfig_storage == "") walletConfig_storage = null;
+		if(endpoints == "") endpoints = null;
+		if(publicDidSeed == "") publicDidSeed = null;
+		if(connectToIndyLedgerOnStartup == "") connectToIndyLedgerOnStartup = null;
+		if(logger == "") logger = null;
+		if(loglevel == "") loglevel = null;
+		if(didCommMimeType == "") didCommMimeType = null;
+		if(autoAcceptCredentials == "") autoAcceptCredentials = null;
+		if(autoAcceptProofs == "") autoAcceptProofs = null;
+		if(autoAcceptMediationRequests == "") autoAcceptMediationRequests = null;
+		if(mediationConnectionsInvitation == "") mediationConnectionsInvitation = null;
+		if(defaultMediatorId == "") defaultMediatorId = null;
+		if(clearDefaultMediator == "") clearDefaultMediator = null;
+		if(mediatorPollingInterval == "") mediatorPollingInterval = null;
+		if(mediatorPickupStrategy == "") mediatorPickupStrategy = null;
+		if(maximumMessagePickup == "") maximumMessagePickup = null;
+		if(useLegacyDidSovPrefix == "") useLegacyDidSovPrefix = null;
+		if(connectionImageUrl == "") connectionImageUrl = null;
+		if(autoUpdateStorageOnStartup == "") autoUpdateStorageOnStartup = null;
+		if(autoAcceptConnections == "") autoAcceptConnections = null;
 		//--------------------------------------------------------------------------------
 		//validate and prepare parameters - begin
 		//--------------------------------------------------------------------------------
-		if (label == null) return Promise.reject("Invalid label parameter");																		// mandatory
-		if (walletConfig_id == null) return Promise.reject("Invalid walletConfig_id parameter");													// mandatory
-		if (walletConfig_key == null) return Promise.reject("Invalid walletConfig_key parameter");													// mandatory
-		if (walletConfig_KeyDerivationMethod == null) walletConfig_KeyDerivationMethod = "Argon2IMod";												// default
-		switch (walletConfig_KeyDerivationMethod) {																								// -
-			case "Argon2IMod":																													// -
-				walletConfig_KeyDerivationMethod = KeyDerivationMethod.Argon2IMod;																// -
-				break;																															// -
-			case "Argon2Int":																													// -
-				walletConfig_KeyDerivationMethod = KeyDerivationMethod.Argon2Int;																	// -
-				break;																															// -
-			case "Raw":																															// -
-				walletConfig_KeyDerivationMethod = KeyDerivationMethod.Raw;																		// -
-				break;																															// -
-			default:																															// -
-				return Promise.reject("Invalid walletConfig_KeyDerivationMethod parameter");													// -
-				break;																															// -
+		if(label == null) return Promise.reject("Invalid label parameter");
+		if(walletConfig_id == null) return Promise.reject("Invalid walletConfig_id parameter");
+		if(walletConfig_key == null) return Promise.reject("Invalid walletConfig_key parameter");
+		if(walletConfig_KeyDerivationMethod == null) walletConfig_KeyDerivationMethod = "Argon2IMod";
+		switch(walletConfig_KeyDerivationMethod){
+			case "Argon2IMod":
+				walletConfig_KeyDerivationMethod = KeyDerivationMethod.Argon2IMod;
+				break;
+			case "Argon2Int":
+				walletConfig_KeyDerivationMethod = KeyDerivationMethod.Argon2Int;
+				break;
+			case "Raw":
+				walletConfig_KeyDerivationMethod = KeyDerivationMethod.Raw;
+				break;
+			default:
+				return Promise.reject("Invalid walletConfig_KeyDerivationMethod parameter");
+				break;
 		}
-		if (walletConfig_storage == null);																											// optional
-		if (endpoints == null);																													// optional
-		if (publicDidSeed == null);																												// optional
-		if (connectToIndyLedgerOnStartup == null);																									// optional
-		if (loglevel == null) loglevel = "off";																										// default
-		switch (loglevel) {																														// -
-			case "debug":																														// -
-				loglevel = LogLevel.debug;																										// -
-				break;																															// -
-			case "error":																														// -
-				loglevel = LogLevel.error;																										// -
-				break;																															// -
-			case "fatal":																														// -
-				loglevel = LogLevel.fatal;																										// -
-				break;																															// -
-			case "info":																															// -
-				loglevel = LogLevel.info;																											// -
-				break;																															// -
-			case "off":																															// -
-				loglevel = LogLevel.off;																											// -
-				break;																															// -
-			case "test":																															// -
-				loglevel = LogLevel.test;																											// -
-				break;																															// -
-			case "trace":																														// -
-				loglevel = LogLevel.warn;																											// -
-				break;																															// -
-			case "warn":																															// -
-				loglevel = LogLevel.warn;																											// -
-				break;																															// -
-			default:																															// -
-				return Promise.reject("Invalid loglevel parameter");																			// -
-				break;																															// -
-		}																																		// -
-		if (logger == null) logger = "DefaultLogger";																									// default
-		switch (logger) {																															// -
-			case "Console":																														// -
-				logger = new support.logging.ConsoleLogger(loglevel, label);																				// -
-				break;																															// -
-			case "DefaultLogger":																												// -
-				logger = new ConsoleLogger(loglevel);																								// -
-				break;																															// -
-			default:																															// -
-				return Promise.reject("Invalid logger parameter");																				// -
-				break;																															// -
+		if (walletConfig_storage == null);
+		if (endpoints == null);
+		if (publicDidSeed == null);
+		if (connectToIndyLedgerOnStartup == null);
+		if (loglevel == null) loglevel = "off";
+		switch (loglevel) {
+			case "debug":
+				loglevel = LogLevel.debug;
+				break;
+			case "error":
+				loglevel = LogLevel.error;
+				break;
+			case "fatal":
+				loglevel = LogLevel.fatal;
+				break;
+			case "info":
+				loglevel = LogLevel.info;
+				break;
+			case "off":
+				loglevel = LogLevel.off;
+				break;
+			case "test":
+				loglevel = LogLevel.test;
+				break;
+			case "trace":
+				loglevel = LogLevel.warn;
+				break;
+			case "warn":
+				loglevel = LogLevel.warn;
+				break;
+			default:
+				return Promise.reject("Invalid loglevel parameter");
+				break;
 		}
-		if (didCommMimeType == null) didCommMimeType = "v0";																							// default
-		switch (didCommMimeType) {																												// -
-			case "v0":																															// -
-				didCommMimeType = DidCommMimeType.V0;																								// -
-				break;																															// -
-			case "v1":																															// -
-				didCommMimeType = DidCommMimeType.V1;																								// -
-				break;																															// -
-			default:																															// -
-				return Promise.reject("Invalid didCommMimeType parameter");																		// -
-				break;																															// -
-		}																																		// -
-		if (autoAcceptCredentials == null) autoAcceptCredentials = "Never";																			// default
-		switch (autoAcceptCredentials) {																											// -
-			case "Never":																														// -
-				autoAcceptCredential_ = AutoAcceptCredential.Never;																				// -
-				break;																															// -
-			case "ContentApproved":																												// -
-				autoAcceptCredential_ = AutoAcceptCredential.ContentApproved;																		// -
-				break;																															// -
-			case "Always":																														// -
-				autoAcceptCredential_ = AutoAcceptCredential.Always;																				// -
-				break;																															// -
-			default:																															// -
-				return Promise.reject("Invalid autoAcceptCredentials parameter");																// -
-				break;																															// -
-		}																																		// -
-		if (autoAcceptProofs == null) autoAcceptProofs = "Never";																						// default
-		switch (autoAcceptProofs) {																												// -
-			case "Never":																														// -
-				autoAcceptProofs = AutoAcceptProof.Never;																							// -
-				break;																															// -
-			case "ContentApproved":																												// -
-				autoAcceptProofs = AutoAcceptProof.ContentApproved;																				// -
-				break;																															// -
-			case "Always":																														// -
-				autoAcceptProofs = AutoAcceptProof.Always;																						// -
-				break;																															// -
-			default:																															// -
-				return Promise.reject("Invalid autoAcceptProofs parameter");																	// -
-				break;																															// -
-		}																																		// -
-		if (autoAcceptMediationRequests == null);																									// optional
-		if (mediationConnectionsInvitation == null);																								// optional
-		if (defaultMediatorId == null);																											// optional
-		if (clearDefaultMediator == null) clearDefaultMediator = false;																				// default
-		if (mediatorPollingInterval == null) mediatorPollingInterval = 5000;																		// optional
-		if (mediatorPickupStrategy == null);																										// optional
-		switch (mediatorPickupStrategy) {																											// -
-			case "PickUpV1":																														// -
-				mediatorPickupStrategy = MediatorPickupStrategy.PickUpV1;																			// -
-				break;																															// -
-			case "PickUpV2":																														// -
-				mediatorPickupStrategy = MediatorPickupStrategy.PickUpV2;																			// -
-				break;																															// -
-			case "Implicit":																														// -
-				mediatorPickupStrategy = MediatorPickupStrategy.Implicit;																			// -
-				break;																															// -
-			case "None":																														// -
-				mediatorPickupStrategy = MediatorPickupStrategy.None;																			// -
-				break;																															// -
-			default:																															// -
-				//return Promise.reject("Invalid mediatorPickupStrategy parameter");																// -
-				break;																															// -
-		}																																		// -
-		if (maximumMessagePickup == null) maximumMessagePickup = 10;																											// optional
-		if (useLegacyDidSovPrefix == null) useLegacyDidSovPrefix = false;																				// default
-		if (connectionImageUrl == null);																											// optional
-		if (autoUpdateStorageOnStartup == null) autoUpdateStorageOnStartup = false;																	// optional
-		if (autoAcceptConnections == null) autoAcceptConnections = false;																				// default
+		if (logger == null) logger = "DefaultLogger";
+		switch (logger) {
+			case "Console":
+				logger = new support.logging.ConsoleLogger(loglevel, label);
+				break;
+			case "DefaultLogger":
+				logger = new ConsoleLogger(loglevel);
+				break;
+			default:
+				return Promise.reject("Invalid logger parameter");
+				break;
+		}
+		if (didCommMimeType == null) didCommMimeType = "v0";
+		switch (didCommMimeType) {
+			case "v0":
+				didCommMimeType = DidCommMimeType.V0;
+				break;
+			case "v1":
+				didCommMimeType = DidCommMimeType.V1;
+				break;
+			default:
+				return Promise.reject("Invalid didCommMimeType parameter");
+				break;
+		}
+		if (autoAcceptCredentials == null) autoAcceptCredentials = "Never";
+		switch (autoAcceptCredentials) {
+			case "Never":
+				autoAcceptCredential_ = AutoAcceptCredential.Never;
+				break;
+			case "ContentApproved":
+				autoAcceptCredential_ = AutoAcceptCredential.ContentApproved;
+				break;
+			case "Always":
+				autoAcceptCredential_ = AutoAcceptCredential.Always;
+				break;
+			default:
+				return Promise.reject("Invalid autoAcceptCredentials parameter");
+				break;
+		}
+		if (autoAcceptProofs == null) autoAcceptProofs = "Never";
+		switch (autoAcceptProofs) {
+			case "Never":
+				autoAcceptProofs = AutoAcceptProof.Never;
+				break;
+			case "ContentApproved":
+				autoAcceptProofs = AutoAcceptProof.ContentApproved;
+				break;
+			case "Always":
+				autoAcceptProofs = AutoAcceptProof.Always;
+				break;
+			default:
+				return Promise.reject("Invalid autoAcceptProofs parameter");
+				break;
+		}
+		if (autoAcceptMediationRequests == null);
+		if (mediationConnectionsInvitation == null);
+		if (defaultMediatorId == null);
+		if (clearDefaultMediator == null) clearDefaultMediator = false;
+		if (mediatorPollingInterval == null) mediatorPollingInterval = 5000;
+		if (mediatorPickupStrategy == null);
+		switch (mediatorPickupStrategy) {
+			case "PickUpV1":
+				mediatorPickupStrategy = MediatorPickupStrategy.PickUpV1;
+				break;
+			case "PickUpV2":
+				mediatorPickupStrategy = MediatorPickupStrategy.PickUpV2;
+				break;
+			case "Implicit":
+				mediatorPickupStrategy = MediatorPickupStrategy.Implicit;
+				break;
+			case "None":
+				mediatorPickupStrategy = MediatorPickupStrategy.None;
+				break;
+			default:
+				//return Promise.reject("Invalid mediatorPickupStrategy parameter");
+				break;
+		}
+		if (maximumMessagePickup == null) maximumMessagePickup = 10;
+		if (useLegacyDidSovPrefix == null) useLegacyDidSovPrefix = false;
+		if (connectionImageUrl == null);
+		if (autoUpdateStorageOnStartup == null) autoUpdateStorageOnStartup = false;
+		if (autoAcceptConnections == null) autoAcceptConnections = false;
 		if (indyLedgers != null) {
 			try {
 				indyLedgers = JSON.parse(indyLedgers);
-				if (!Array.isArray(indyLedgers)) return Promise.reject("Parameter indyLedgers is not a JSON array")
+				if (!Array.isArray(indyLedgers)) return Promise.reject("Parameter indyLedgers is not a JSON array");
 			} catch (e) {
 				return Promise.reject("Parameter indyLedgers is not a valid JSON array object");
 			}
@@ -546,7 +542,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			try {
 				agentModules.mediationRecipient = new MediationRecipientModule((mediationConnectionsInvitation != null) ? ({
 					mediatorInvitationUrl: mediationConnectionsInvitation
-					//todo:        mediatorPickupStrategy: MediatorPickupStrategy.X,
+					//todo:mediatorPickupStrategy: MediatorPickupStrategy.X,
 				}) : ({}));
 			} catch (e) {
 				console.error("Failed to register MediationRecipientModule:" + e.toString());
@@ -559,20 +555,6 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				console.error("Failed to register QuestionAnswerModule:" + e.toString());
 			}
 		}
-		if (useSurvey) {
-			try {
-				agentModules.survey = new SurveyModule();
-			} catch (e) {
-				console.error("Failed to register SurveyModule:" + e.toString());
-			}
-		}
-		if (useUserProfile) {
-			try {
-				agentModules.userProfile = new UserProfileModule();
-			} catch (e) {
-				console.error("Failed to register UserProfileModule:" + e.toString());
-			}
-		}
 		if (useDrpc) {
 			try {
 				agentModules.drpc = new DrpcModule();
@@ -580,7 +562,21 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				console.error("Failed to register DRPCModule:" + e.toString());
 			}
 		}
+		if (useSurvey) {
+			try {
+				agentModules.survey = new SurveyModule();
+			} catch (e) {
+				console.error("Failed to register SurveyModule:" + e.toString());
+			}
+		}
 		//-----------------------------------------------------------------------------------
+		if (useUserProfile) {
+			try {
+				agentModules.userProfile = new UserProfileModule();
+			} catch (e) {
+				console.error("Failed to register UserProfileModule:" + e.toString());
+			}
+		}
 		if (useMediaSharing) {
 			try {
 				agentModules.media = new MediaSharingModule();
@@ -589,6 +585,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			}
 		}
 		//-----------------------------------------------------------------------------------
+		/*
 		if (useBle) {
 			try {
 				//
@@ -596,6 +593,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				console.error(e.toString());
 			}
 		}
+		*/
 		//-----------------------------------------------------------------------------------
 		const agent = new Agent({
 			config,
