@@ -1,4 +1,4 @@
-# Farmworker Wallet OS Demo App
+# Farmworker Wallet OS
 
 [Mendix](https://www.mendix.com/) and [Credo](https://credo.js.org), an Open Wallet Foundation growth project
 
@@ -7,14 +7,12 @@
 ## Quick Start
 
 * Clone this project
-* Run `npm install` in `./javascriptsource/agent_sdk/`
-* Run `node_modules/.bin/rn-nodeify --hack --install` in `./javascriptsource/agent_sdk/`
-* Run `npm install` in `./javascriptsource/keymanagement`
-* Run `npm install` in `./javascriptsource/didcomm_survey`
+* Navigate to the project root from a command line Terminal e.g. `cd ~/Documents/Workspaces/Github/farmworker-wallet-os`
+* Run `./install.sh`
 * Download [Studio Pro 9.24.22](https://marketplace.mendix.com/link/studiopro/)
 * Open `fwos-demo-app.mpr` from Studio Pro
 * Run the project from Studio Pro by clicking Run / Run Locally
-* Create a custom React Native application from [OpenWallet Foundation Labs/fwos-native-template](https://github.com/openwallet-foundation-labs/fwos-native-template) or download a pre-built APK from [OpenWallet Foundation Labs/fwos-native-template/releases](https://github.com/openwallet-foundation-labs/fwos-native-template/releases)
+* Create a custom React Native application from Native Template [Entidad/fwos-native-template](https://github.com/Entidad/fwos-native-template) or download a pre-built APK from [Entidad/fwos-native-template/releases](https://github.com/Entidad/fwos-native-template/releases)
 * Install and run the application on your mobile device
 * Log in using user name, for example `Alice` or  `Bob`
 
