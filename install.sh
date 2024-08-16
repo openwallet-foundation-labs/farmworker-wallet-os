@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 PACKAGE_MANAGER=yarn
+<<<<<<< HEAD
 NPX=npx
+=======
+>>>>>>> ec4e08ed (Upgrade Credo-ts to v0.5.9 (#26))
 OS="`uname`"
 function main() {
 	get_os
@@ -62,6 +65,7 @@ function main() {
 	if [ "$PACKAGE_MANAGER" == "yarn" ]; then
 		retry 100 yarn install
 	elif [ "$PACKAGE_MANAGER" == "npm" ]; then
+<<<<<<< HEAD
 		retry 100 npm install --legacy-peer-deps --save-dev
 	fi
 	if [ -z "$NPX" ]; then
@@ -71,6 +75,9 @@ function main() {
 	else
 		echo "patching"
 		retry 100 npx patch-package
+=======
+		retry 100 npm install --legacy-peer-deps
+>>>>>>> ec4e08ed (Upgrade Credo-ts to v0.5.9 (#26))
 	fi
 	find ./node_modules -type d -name __tests__ -prune -exec rm -rf {} \;
 	cd ../keymanagement
