@@ -9,22 +9,32 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import { DrpcStateChanged, DrpcEventTypes  } from '@credo-ts/drpc'
+import{DrpcRequestEventTypes}from"../../agent_sdk/node_modules/@credo-ts/drpc";
 import support from "../../agent_sdk/support/entidad";
 // END EXTRA CODE
 
 /**
  * @param {string} agent_key
+ * @param {"DIDComm_RPC.Enum_DrpcRequestEventTypes.DrpcRequestStateChanged"} eventType
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_drpc_waitResponse(agent_key) {
+export async function jsa_aries_agent_modules_drpc_waitResponse(agent_key, eventType) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
+		let eventType_=null;
+		switch(eventType){
+			case"DrpcRequestStateChanged":
+				eventType_=DrpcRequestEventTypes.DrpcRequestStateChanged;
+				break;
+			default:
+				return(Promise.reject("Unimplemented event type"));
+				break;
+		}
 		return Promise.resolve(JSON.stringify(
-			await agent.events.observable<DrpcStateChangedEvent>(DrpcEventTypes.DrpcStateChanged)))
+			await agent.events.observable/*<DrpcStateChangedEvent>*/(eventType_)))
 		}
 	catch(e){
 		return Promise.reject(e.toString());

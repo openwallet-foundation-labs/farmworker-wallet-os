@@ -1,1 +1,4 @@
-global.TextEncoder=require('text-encoding').TextEncoder;
+global.TextEncoder=require("text-encoding").TextEncoder;
+if(typeof BigInt==="undefined"){
+	global.BigInt = require("big-integer");
+}

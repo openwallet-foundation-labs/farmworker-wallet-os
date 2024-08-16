@@ -57,7 +57,7 @@ export async function jsa_aries_agent_modules_drpc_drpcMessageService_findByThre
 		if(threadId==null)return(Promise.reject("Invalid threadId parameter"));
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return(Promise.reject("Agent not found in cache"));
-		return(Promise.resolve(JSON.stringify(agent.modules.drpc.drpcMessageService.findByThreadAndConnectionId(agent.context,connectionId,threadId))));
+		return(Promise.resolve(JSON.stringify(await agent.modules.drpc.drpcMessageService.findByThreadAndConnectionId(agent.context,connectionId,threadId))));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}
