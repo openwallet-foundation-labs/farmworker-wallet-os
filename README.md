@@ -1,6 +1,7 @@
 # Farmworker Wallet OS
 
-[Mendix](https://www.mendix.com/) and [Credo](https://credo.js.org), an Open Wallet Foundation growth project
+The Farmworker Wallet OS is a solution framework built to jumpstart the integration of digital trust technologies with the [Mendix](https://www.mendix.com/) low-code application platform. The framework 
+makes it easy for any Mendix app to interoperate with open-standard technologies like [decentralized identifiers](https://www.w3.org/TR/did-core/), [DIDComm](https://didcomm.org), and [verifiable credentials](https://www.w3.org/TR/vc-data-model/).
 
 <img src="https://github.com/Entidad/fwos-demo-app/blob/main/img/preview.gif?raw=true" width="100%" />
 
