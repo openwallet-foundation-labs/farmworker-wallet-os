@@ -1,5 +1,0 @@
-{
-	"nativeDependencies": {
-		"@entidad/credo-ts-survey": "git+http://github.com/entidad/credo-ts-survey.git"
-	}
-}
