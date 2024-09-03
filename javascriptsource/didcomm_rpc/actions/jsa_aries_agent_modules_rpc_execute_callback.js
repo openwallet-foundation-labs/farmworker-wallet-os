@@ -18,10 +18,9 @@ import{cache}from"../support/entidad";
  * @param {string} alias - optional
  * @param {string} params - json optional
  * @param {MxObject} drpc - optional
- * @param {MxObject} agent - optional
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params, drpc, agent) {
+export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params, drpc) {
 	// BEGIN USER CODE
 	// export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, agent_parameter, rpc_record_id_parameter) {
 	try{
@@ -95,9 +94,6 @@ export async function jsa_aries_agent_modules_rpc_execute_callback(alias, params
 		}
 		if(callback.drpc_parameter!=null&&drpc!=null){
 			args[callback.drpc_parameter]=drpc;
-		}
-		if(callback.agent_parameter!=null&&agent!=null){
-			args[callback.agent_parameter]=agent;
 		}
 		let result=await callback.callback(args);
 		//handle Big.js return types

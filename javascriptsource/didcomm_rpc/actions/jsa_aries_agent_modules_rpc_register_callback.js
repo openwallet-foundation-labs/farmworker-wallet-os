@@ -29,17 +29,15 @@ import{cache}from"../support/entidad";
  * synchronous - Register in synchronous or asynchronous mode. Synchronous registration will have the return value of the nanoflow immediately be sent back as the DRPC response. In asynchronous mode it is the responsibility of the developer to send back the DRPC response. The rpc_record_id_parameter value may be used to send back the DRPC response. Make sure rpc_record_id_parameter is configured correctly to obtain the DRPC record id and eventually make send back the DRPC response.
  * parameters_parameter - Optional parameter name of the parameter to be used for the raw DRPC parameters to be manually parsed by the developer. If not specified, will not populate any parameter with the raw DRPC parameters.
  * drpc_parameter - Optional parameter name of the parameter to have applied to the DRPC record Mendix object. If not specified, no parameter will have the DRPC record Mendix object applied to. If provided, in the nanoflow callback, the Connection can be retrieved via the DRPC entity, and from the Connection, the Agent can be retrieved
- * agent_parameter - Optional parameter name of the parameter to have applied to the Agent Mendix object. If not specified, no parameter will have the Agent Mendix object applied to
  * @param {string} alias
  * @param {Nanoflow} callback
  * @param {string} hint - optional
  * @param {boolean} synchronous
  * @param {string} parameters_parameter - optional
  * @param {string} drpc_parameter - optional
- * @param {string} agent_parameter - optional
  * @returns {Promise.<void>}
  */
-export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, drpc_parameter, agent_parameter) {
+export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, drpc_parameter) {
 	// BEGIN USER CODE
 	try{
 		if(alias==null||alias=="")return(Promise.reject("Invalid alias parameter: cannot be null / empty string"));
@@ -63,7 +61,6 @@ export async function jsa_aries_agent_modules_rpc_register_callback(alias, callb
 			synchronous:synchronous,
 			parameters_parameter:parameters_parameter,
 			drpc_parameter:drpc_parameter,
-			agent_parameter:agent_parameter
 		},alias)
 		window.cache=cache;
 		return(Promise.resolve());

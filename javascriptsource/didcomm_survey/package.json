@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@entidad/credo-ts-survey": "git+http://github.com/entidad/credo-ts-survey.git"
+    "@entidad/credo-ts-survey": "git+http://github.com/entidad/credo-ts-survey-056.git"
   }
 }

@@ -26,7 +26,7 @@
     "@hyperledger/indy-vdr-react-native": "0.2.2",
     "base-64": "^1.0.0",
     "big-integer": "^1.6.52",
-    "credo-ts-didweb-anoncreds": "0.0.1-alpha.1",
+    "credo-ts-didweb-anoncreds": "0.0.1-alpha.14",
     "credo-ts-media-sharing": "git+http://github.com/Entidad/credo-ts-media-sharing-056.git",
     "credo-ts-user-profile": "git+https://github.com/Entidad/credo-ts-user-profile-056.git",
     "react-native-fs": "^2.20.0",
