@@ -26,14 +26,18 @@ import support from "../../agent_sdk/support/entidad";
 export async function jsa_aries_agent_modules_survey_update(agent_key, surveyRecordId, response) {
 	// BEGIN USER CODE
 	try{
-		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
-		if(surveyRecordId==null)return Promise.reject("Invalid questionAnswerRecordId parameter");
-		if(response==null)return Promise.reject("Invalid response parameter");
+		if(agent_key==null)return(Promise.reject("Invalid agent_key argument"));
+		if(surveyRecordId==null)return(Promise.reject("Invalid questionAnswerRecordId argument"));
+		if(response==null)return(Promise.reject("Invalid response argument"));
+		if(response.length<=2)return(Promise.reject("Invalid response argument"));
+		try{
+			response=JSON.parse(response);
+		}catch(e){
+			return(Promise.reject("Invalid response argument: "+e.toString()));
+		}
 		let agent=support.cache.get(agent_key);
-		if(agent==null)return Promise.reject("Agent not found in cache");
-		return Promise.resolve(JSON.stringify(
-			await agent.modules.survey.sendUpdate(surveyRecordId,response)
-		));
+		if(agent==null)return(Promise.reject("Agent not found in cache"));
+		return(Promise.resolve(JSON.stringify(await agent.modules.survey.sendUpdate(surveyRecordId,response))));
 	}catch(e){
 		return Promise.reject(e.toString());
 	}
