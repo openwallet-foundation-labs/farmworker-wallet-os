@@ -413,7 +413,7 @@
 
 "@entidad/credo-ts-survey@git+http://github.com/entidad/credo-ts-survey-056.git":
   version "0.1.9"
-  resolved "git+http://github.com/entidad/credo-ts-survey-056.git#fc26cb150ecae0443ce714b28e20d9814643cde2"
+  resolved "git+http://github.com/entidad/credo-ts-survey-056.git#7b18384943ea5140db16af973cbbd622c18f7b52"
   dependencies:
     "@credo-ts/core" "0.5.6"
     class-transformer "0.5.1"
