@@ -924,9 +924,9 @@ call-bind@^1.0.2, call-bind@^1.0.5, call-bind@^1.0.6, call-bind@^1.0.7:
     set-function-length "^1.2.1"
 
 caniuse-lite@^1.0.30001646:
-  version "1.0.30001658"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001658.tgz#b5f7be8ac748a049ab06aa1cf7a1408d83f074ec"
-  integrity sha512-N2YVqWbJELVdrnsW5p+apoQyYt51aBMSsBZki1XZEfeBCexcM/sf4xiAHcXQBkuOwJBXtWF7aW1sYX6tKebPHw==
+  version "1.0.30001660"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001660.tgz#31218de3463fabb44d0b7607b652e56edf2e2355"
+  integrity sha512-GacvNTTuATm26qC74pt+ad1fW15mlQ/zuTzzY1ZoIzECTP8HURDfF43kNxPgf7H1jmelCBQTTbBNxdSXOA7Bqg==
 
 canonicalize@^1.0.1:
   version "1.0.8"
@@ -1113,9 +1113,9 @@ ed25519-signature-2020-context@^1.0.1:
   integrity sha512-dBGSmoUIK6h2vadDctrDnhhTO01PR2hJk0mRNEfrRDPCjaIwrfy4J+eziEQ9Q1m8By4f/CSRgKM1h53ydKfdNg==
 
 electron-to-chromium@^1.5.4:
-  version "1.5.17"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.17.tgz#292da718d3d96961d022e49bb843e0c4ea10be70"
-  integrity sha512-Q6Q+04tjC2KJ8qsSOSgovvhWcv5t+SmpH6/YfAWmhpE5/r+zw6KQy1/yWVFFNyEBvy68twTTXr2d5eLfCq7QIw==
+  version "1.5.19"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.19.tgz#aeaa0a076f3f0f0e8db2c57fd10158508f00725a"
+  integrity sha512-kpLJJi3zxTR1U828P+LIUDZ5ohixyo68/IcYOHLqnbTPr/wdgn4i1ECvmALN9E16JPA6cvCG5UG79gVwVdEK5w==
 
 es-abstract@^1.22.1, es-abstract@^1.22.3, es-abstract@^1.23.0, es-abstract@^1.23.2:
   version "1.23.3"
@@ -1776,9 +1776,9 @@ levn@~0.3.0:
     type-check "~0.3.2"
 
 libphonenumber-js@^1.10.53:
-  version "1.11.7"
-  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.11.7.tgz#efe4fcf816e1982925e9c800d0013b0ee99b8283"
-  integrity sha512-x2xON4/Qg2bRIS11KIN9yCNYUjhtiEjNyptjX0mX+pyKHecxuJVLIpfX1lq9ZD6CrC/rB+y4GBi18c6CEcUR+A==
+  version "1.11.8"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.11.8.tgz#697fdd36500a97bc672d7927d867edf34b4bd2a7"
+  integrity sha512-0fv/YKpJBAgXKy0kaS3fnqoUVN8901vUYAKIGD/MWZaDfhJt1nZjPL3ZzdZBt/G8G8Hw2J1xOIrXWdNHFHPAvg==
 
 locate-path@^6.0.0:
   version "6.0.0"
