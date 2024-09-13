@@ -11,49 +11,18 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 import CBOR from"cbor-js";
 function str2ab(binaryString) {
-    var bytes = new Uint8Array(binaryString.length);
-    for (var i = 0; i < binaryString.length; i++) {
-        bytes[i] = binaryString.charCodeAt(i);
+    var bytes=new Uint8Array(binaryString.length);
+    for(var i=0;i<binaryString.length;i++){
+        bytes[i]=binaryString.charCodeAt(i);
     }
     return bytes.buffer;
 }
-const BROWSER_HANDOVER_V1 = "BrowserHandoverv1"
-const ANDROID_CREDENTIAL_DOCUMENT_VERSION = "ANDROID-HPKE-v1"
+const BROWSER_HANDOVER_V1="BrowserHandoverv1";
+const ANDROID_CREDENTIAL_DOCUMENT_VERSION="ANDROID-HPKE-v1";
 // END EXTRA CODE
 
 /**
- * Syntax:
- * 
- * get()
- * get(options)
- * 
- * Example options:
- * {
- *   "digital": {
- *     "providers": [
- *       {
- *         "protocol": "basic",
- *         "request": "{\\"selector\\":{\\"format\\":[\\"mdoc\\"],\\"retention\\":{\\"days\\":90},\\"doctype\\":\\"org.iso.18013.5.1.mDL\\",\\"fields\\":[\\"org.iso.18013.5.1.document_number\\",\\"org.iso.18013.5.1.portrait\\",\\"org.iso.18013.5.1.driving_privileges\\",\\"org.iso.18013.5.1.aamva.organ_donor\\"]},\\"nonce\\":\\"gf69kepV+m5tGxUIsFtLi6pwg=\\",\\"readerPublicKey\\":\\"ftl+VEHPB17r2Nioc9QZ7X/6w\\"}"
- *       }
- *     ]
- *   }
- * }
- * Note: signal is added within the javascript code to the parsed JSON options
- * 
- * Return Value:
- * 
- * A Promise that resolves with one of the following subclasses of Credential:
- * 
- * PasswordCredential
- * IdentityCredential
- * FederatedCredential
- * OTPCredential
- * PublicKeyCredential
- * 
- * 
- * References:
- * 
- * https://developer.mozilla.org/en-US/docs/Web/API/CredentialsContainer/get
+ * Decodes token as per https://github.com/openwallet-foundation-labs/identity-credential/blob/main/server/src/main/java/com/android/identity/wallet/server/VerifierServlet.kt#L1256
  * @param {string} token
  * @returns {Promise.<string>}
  */
@@ -61,10 +30,10 @@ export async function jsa_token_decode(token) {
 	// BEGIN USER CODE
 	try{
 			let encryptedCredentialDocumentBase64=token;
-			let encryptedCredentialDocument=atob(encryptedCredentialDocumentBase64.replace(/_/g, '/').replace(/-/g, '+'));
+			let encryptedCredentialDocument=atob(encryptedCredentialDocumentBase64.replace(/_/g,"/").replace(/-/g,"+"));
 			let encryptedCredentialDocumentBuffer=str2ab(encryptedCredentialDocument);
-			let map=CBOR.decode(encryptedCredentialDocumentBuffer)
-			let version = map["version"];
+			let map=CBOR.decode(encryptedCredentialDocumentBuffer);
+			let version=map["version"];
 			if (version!=(ANDROID_CREDENTIAL_DOCUMENT_VERSION)) {
 				return(Promise.reject(`Unexpected version ${version}`))
 			}
