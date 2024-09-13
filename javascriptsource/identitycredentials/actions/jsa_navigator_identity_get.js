@@ -64,29 +64,25 @@ export async function jsa_navigator_identity_get(options) {
 		const credentialResponse = await navigator.identity.get(options);
         if (credentialResponse.constructor.name == 'DigitalCredential') {
 			//console.info(">>>DigitalCredential");
-            const data = credentialResponse.data
-            const protocol = credentialResponse.protocol
-            //console.log("Response Data: " + data + " Protocol: " + protocol)
-			//console.info(">>>data:"+JSON.stringify(data));
-			//console.info(">>>protocol:"+JSON.stringify(protocol));
-			return(Promise.resolve(data));
-			/*
-            const responseForServer = { protocol: protocol, data: data, state: request['state'], origin: location.origin }
-            const serverResponse = await callServer('validateResponse', responseForServer)
-			return(Promise.resolve(JSON.stringify(serverResponse)));
+            const data = JSON.parse(credentialResponse.data)
+
+
+
+			return(Promise.resolve(data.token));
         } else if (credentialResponse.constructor.name == 'IdentityCredential') {
-			console.info(">>>IdentityCredential");
+			/*
             const data = credentialResponse.token
             const protocol = requestedProtocol
             console.log("Response Data: " + data + " Protocol: " + protocol)
             const responseForServer = { protocol: protocol, data: data, state: request['state'], origin: location.origin }
             const serverResponse = await callServer('validateResponse', responseForServer)
-			return(Promise.resolve(JSON.stringify(serverResponse)));
 			*/
+			return(Promise.resolve("IdentityCredential not implemtned"));
         } else {
 			return(Promise.reject("Unknown response type"));
         }
 	}catch(e){
+		console.error(e.toString());
 		return(Promise.reject(e.toString()));
 	}
 	// END USER CODE
