@@ -47,7 +47,7 @@ import { Big } from "big.js";
  * @param {string} options - json
  * @returns {Promise.<string>}
  */
-export async function jsa_navigator_identity_get(options) {
+export async function jsa_navigator_identity_get_v000(options) {
 	// BEGIN USER CODE
 	try{
 		if(options==null)return(Promise.reject("options null"));
@@ -57,35 +57,15 @@ export async function jsa_navigator_identity_get(options) {
 		}catch(e){
 			return(Promise.reject("Failed to parse options json: "+e.toString()));
 		}
-		let requestedProtocol=options.digital.providers[0].protocol;
-		//console.info(">>>requestedProtocol:"+requestedProtocol);
 		const controller = new AbortController();
 		options.signal=controller.signal;
-		const credentialResponse = await navigator.identity.get(options);
-        if (credentialResponse.constructor.name == 'DigitalCredential') {
-			//console.info(">>>DigitalCredential");
-            const data = credentialResponse.data
-            const protocol = credentialResponse.protocol
-            //console.log("Response Data: " + data + " Protocol: " + protocol)
-			//console.info(">>>data:"+JSON.stringify(data));
-			//console.info(">>>protocol:"+JSON.stringify(protocol));
-			return(Promise.resolve(data));
-			/*
-            const responseForServer = { protocol: protocol, data: data, state: request['state'], origin: location.origin }
-            const serverResponse = await callServer('validateResponse', responseForServer)
-			return(Promise.resolve(JSON.stringify(serverResponse)));
-        } else if (credentialResponse.constructor.name == 'IdentityCredential') {
-			console.info(">>>IdentityCredential");
-            const data = credentialResponse.token
-            const protocol = requestedProtocol
-            console.log("Response Data: " + data + " Protocol: " + protocol)
-            const responseForServer = { protocol: protocol, data: data, state: request['state'], origin: location.origin }
-            const serverResponse = await callServer('validateResponse', responseForServer)
-			return(Promise.resolve(JSON.stringify(serverResponse)));
-			*/
-        } else {
-			return(Promise.reject("Unknown response type"));
-        }
+		console.info(typeof(navigator));
+		console.info(typeof(navigator.identity));
+		console.info(typeof(navigator).identity.get);
+		const response= await navigator.identity.get(options);
+		console.info(JSON.stringify(Object.keys(response)));
+		if(response==null)return(Promise.resolve(null));
+		return(Promise.resolve(JSON.stringify(response)));
 	}catch(e){
 		return(Promise.reject(e.toString()));
 	}
