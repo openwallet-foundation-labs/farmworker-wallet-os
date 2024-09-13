@@ -9,6 +9,16 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import CBOR from"cbor-js";
+function str2ab(binaryString) {
+    var bytes = new Uint8Array(binaryString.length);
+    for (var i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes.buffer;
+}
+const BROWSER_HANDOVER_V1 = "BrowserHandoverv1"
+const ANDROID_CREDENTIAL_DOCUMENT_VERSION = "ANDROID-HPKE-v1"
 // END EXTRA CODE
 
 /**
@@ -44,28 +54,23 @@ import { Big } from "big.js";
  * References:
  * 
  * https://developer.mozilla.org/en-US/docs/Web/API/CredentialsContainer/get
- * @param {string} options - json
+ * @param {string} token
  * @returns {Promise.<string>}
  */
-export async function jsa_navigator_identity_get_v000(options) {
+export async function jsa_token_decode(token) {
 	// BEGIN USER CODE
 	try{
-		if(options==null)return(Promise.reject("options null"));
-		if(options.length==0)return(Promise.reject("invalid options"));
-		try{
-			options=JSON.parse(options);
-		}catch(e){
-			return(Promise.reject("Failed to parse options json: "+e.toString()));
-		}
-		const controller = new AbortController();
-		options.signal=controller.signal;
-		console.info(typeof(navigator));
-		console.info(typeof(navigator.identity));
-		console.info(typeof(navigator).identity.get);
-		const response= await navigator.identity.get(options);
-		console.info(JSON.stringify(Object.keys(response)));
-		if(response==null)return(Promise.resolve(null));
-		return(Promise.resolve(JSON.stringify(response)));
+			let encryptedCredentialDocumentBase64=token;
+			let encryptedCredentialDocument=atob(encryptedCredentialDocumentBase64.replace(/_/g, '/').replace(/-/g, '+'));
+			let encryptedCredentialDocumentBuffer=str2ab(encryptedCredentialDocument);
+			let map=CBOR.decode(encryptedCredentialDocumentBuffer)
+			let version = map["version"];
+			if (version!=(ANDROID_CREDENTIAL_DOCUMENT_VERSION)) {
+				return(Promise.reject(`Unexpected version ${version}`))
+			}
+			let encryptionParameters=map["encryptionParameters"];
+			let pkEm=encryptionParameters["pkEm"];
+			return(Promise.resolve(JSON.stringify({encryptionParameters:encryptionParameters,pkEm:pkEm})));
 	}catch(e){
 		return(Promise.reject(e.toString()));
 	}
