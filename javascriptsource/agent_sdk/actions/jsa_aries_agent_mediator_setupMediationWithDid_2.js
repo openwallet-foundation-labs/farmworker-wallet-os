@@ -23,7 +23,7 @@ import support from"../support/entidad";
  * @param {MxObject} userData - optional
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_mediator_setupMediationWithDid(agent_key, mediatorDid, callback, userData) {
+export async function jsa_aries_agent_mediator_setupMediationWithDid_2(agent_key, mediatorDid, callback, userData) {
 	// BEGIN USER CODE
 	try{
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");										//mandatory

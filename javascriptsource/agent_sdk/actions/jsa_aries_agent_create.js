@@ -109,9 +109,10 @@ import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds';
  * @param {boolean} useUserProfile
  * @param {boolean} useBle
  * @param {boolean} useDrpc
+ * @param {boolean} autoCreateLinkSecret
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, keyDidRegistrar, jwkDidRegistrar, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, useQuestionAnswer, useSurvey, useMediaSharing, useUserProfile, useBle, useDrpc) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, keyDidRegistrar, jwkDidRegistrar, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, useQuestionAnswer, useSurvey, useMediaSharing, useUserProfile, useBle, useDrpc, autoCreateLinkSecret) {
 	// BEGIN USER CODE
 	try {
 		//--------------------------------------------------------------------------------
@@ -434,6 +435,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 						//16:15 2024/05/03
 						new DidWebAnonCredsRegistry()
 					],
+					autoCreateLinkSecret:autoCreateLinkSecret,//21:04 2024/10/07 - added
 					anoncreds //15:52 2024/04/30 - added
 				});
 			} catch (e) {
