@@ -35,9 +35,10 @@ import{cache}from"../support/entidad";
  * @param {boolean} synchronous
  * @param {string} parameters_parameter - optional
  * @param {string} drpc_parameter - optional
+ * @param {string} agent_parameter - optional
  * @returns {Promise.<void>}
  */
-export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, drpc_parameter) {
+export async function jsa_aries_agent_modules_rpc_register_callback(alias, callback, hint, synchronous, parameters_parameter, drpc_parameter, agent_parameter) {
 	// BEGIN USER CODE
 	try{
 		if(alias==null||alias=="")return(Promise.reject("Invalid alias parameter: cannot be null / empty string"));
