@@ -14,7 +14,7 @@ import { Key as AskarKey, KeyAlgs } from '@hyperledger/aries-askar-react-native'
 
 /**
  * AskarKey.generate(algorithm: KeyAlgs, ephemeral?: boolean): AskarKey
- * @param {"Agent_SDK.enum_keyalgs.AesA128CbcHs256"|"Agent_SDK.enum_keyalgs.AesA128Gcm"|"Agent_SDK.enum_keyalgs.AesA128Kw"|"Agent_SDK.enum_keyalgs.AesA256CbcHs512"|"Agent_SDK.enum_keyalgs.AesA256Gcm"|"Agent_SDK.enum_keyalgs.AesA256Kw"|"Agent_SDK.enum_keyalgs.Bls12381G1"|"Agent_SDK.enum_keyalgs.Bls12381G1G2"|"Agent_SDK.enum_keyalgs.Bls12381G2"|"Agent_SDK.enum_keyalgs.Chacha20C20P"|"Agent_SDK.enum_keyalgs.Chacha20XC20P"|"Agent_SDK.enum_keyalgs.EcSecp256k1"|"Agent_SDK.enum_keyalgs.EcSecp256r1"|"Agent_SDK.enum_keyalgs.EcSecp384r1"|"Agent_SDK.enum_keyalgs.Ed25519"|"Agent_SDK.enum_keyalgs.X25519"} algorithm - optional json array
+ * @param {"Agent_SDK.enum_keyalgo.AesA128CbcHs256"|"Agent_SDK.enum_keyalgo.AesA128Gcm"|"Agent_SDK.enum_keyalgo.AesA128Kw"|"Agent_SDK.enum_keyalgo.AesA256CbcHs512"|"Agent_SDK.enum_keyalgo.AesA256Gcm"|"Agent_SDK.enum_keyalgo.AesA256Kw"|"Agent_SDK.enum_keyalgo.Bls12381G1"|"Agent_SDK.enum_keyalgo.Bls12381G1G2"|"Agent_SDK.enum_keyalgo.Bls12381G2"|"Agent_SDK.enum_keyalgo.Chacha20C20P"|"Agent_SDK.enum_keyalgo.Chacha20XC20P"|"Agent_SDK.enum_keyalgo.EcSecp256k1"|"Agent_SDK.enum_keyalgo.EcSecp256r1"|"Agent_SDK.enum_keyalgo.EcSecp384r1"|"Agent_SDK.enum_keyalgo.Ed25519"|"Agent_SDK.enum_keyalgo.X25519"} algorithm - optional json array
  * @param {boolean} ephemeral
  * @returns {Promise.<string>}
  */
