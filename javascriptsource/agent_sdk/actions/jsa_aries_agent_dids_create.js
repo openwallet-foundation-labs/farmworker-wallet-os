@@ -40,7 +40,7 @@ import support from "../support/entidad";
  * @param {string} agent_key - mandatory
  * @param {"Agent_SDK.enum_aries_DidMethod.peer"|"Agent_SDK.enum_aries_DidMethod.key"|"Agent_SDK.enum_aries_DidMethod.sov"|"Agent_SDK.enum_aries_DidMethod.web"} method - optional
  * @param {string} did - optional
- * @param {"Agent_SDK.enum_aries_KeyType.Bls12381g1"|"Agent_SDK.enum_aries_KeyType.Bls12381g1g2"|"Agent_SDK.enum_aries_KeyType.Bls12381g2"|"Agent_SDK.enum_aries_KeyType.Ed25519"|"Agent_SDK.enum_aries_KeyType.X25519"} options_keyType - mandatory
+ * @param {"Agent_SDK.enum_aries_KeyType.Bls12381g1"|"Agent_SDK.enum_aries_KeyType.Bls12381g1g2"|"Agent_SDK.enum_aries_KeyType.Bls12381g2"|"Agent_SDK.enum_aries_KeyType.Ed25519"|"Agent_SDK.enum_aries_KeyType.X25519"|"Agent_SDK.enum_aries_KeyType.K256"|"Agent_SDK.enum_aries_KeyType.P256"|"Agent_SDK.enum_aries_KeyType.P384"|"Agent_SDK.enum_aries_KeyType.P521"} options_keyType - mandatory
  * @param {string} secret - optional
  * @param {string} didDocument - optional
  * @returns {Promise.<string>}
