@@ -10,7 +10,7 @@
 		"@credo-ts/react-native": "0.5.10",
 		"@credo-ts/transport-ble": "0.3.0",
 		"@hyperledger/anoncreds-react-native": "0.2.2",
-		"@hyperledger/aries-askar-react-native": "0.2.1",
+		"@hyperledger/aries-askar-react-native": "0.2.3",
 		"@hyperledger/indy-vdr-react-native": "0.2.2",
 		"base-64": "^1.0.0",
 		"credo-ts-didweb-anoncreds": "git+http://github.com/Entidad/credo-ts-didweb-anoncreds.git",
