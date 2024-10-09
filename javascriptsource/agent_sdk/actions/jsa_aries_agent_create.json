@@ -1,7 +1,6 @@
 {
 	"nativeDependencies": {
 		"@animo-id/react-native-ble-didcomm": "0.8.0",
-<<<<<<< HEAD
 		"@credo-ts/anoncreds": "0.5.10",
 		"@credo-ts/askar": "0.5.10",
 		"@credo-ts/core": "0.5.10",
@@ -9,15 +8,6 @@
 		"@credo-ts/openid4vc": "0.5.10",
 		"@credo-ts/question-answer": "0.5.10",
 		"@credo-ts/react-native": "0.5.10",
-=======
-		"@credo-ts/anoncreds": "0.5.9",
-		"@credo-ts/askar": "0.5.9",
-		"@credo-ts/core": "0.5.9",
-		"@credo-ts/indy-vdr": "0.5.9",
-		"@credo-ts/openid4vc": "0.5.9",
-		"@credo-ts/question-answer": "0.5.9",
-		"@credo-ts/react-native": "0.5.9",
->>>>>>> ec4e08ed (Upgrade Credo-ts to v0.5.9 (#26))
 		"@credo-ts/transport-ble": "0.3.0",
 		"@hyperledger/anoncreds-react-native": "0.2.2",
 		"@hyperledger/aries-askar-react-native": "0.2.3",
