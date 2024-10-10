@@ -11,6 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 import { Key } from '@hyperledger/aries-askar-react-native';//needed otherwise undefined raised at runtime
 import{Store} from '@hyperledger/aries-askar-shared'
+import { Buffer } from '@credo-ts/core';
 // END EXTRA CODE
 
 /**
@@ -18,19 +19,22 @@ import{Store} from '@hyperledger/aries-askar-shared'
  * 
  * https://github.com/hyperledger/aries-askar/blob/3a4d5044b01d529e77b788cbe08313d0c7b758e6/wrappers/javascript/packages/aries-askar-shared/src/store/Store.ts#L23
  * @param {string} seed - optional json array
+ * @param {string} encoding - hex / base64 / utf8
  * @returns {Promise.<string>}
  */
-export async function jsa_hyperledger_aries_askar_shared_Store_generateRawKey(seed) {
+export async function jsa_hyperledger_aries_askar_shared_Store_generateRawKey(seed, encoding) {
 	// BEGIN USER CODE
 	try{
+		if(encoding==null)return(Promise.reject("encoding null"));
 		let ret=null;
 		if(seed!=null&&seed.length>0){
-			try{
-				seed=JSON.parse(seed);
-			}catch(e){
-				return(Promise.reject("Failed to parse seed: "+e.toString()));
-			}
-			seed=Uint8Array.from(seed);
+			//try{
+			//	seed=JSON.parse(seed);
+			//}catch(e){
+			//	return(Promise.reject("Failed to parse seed: "+e.toString()));
+			//}
+			//seed=Uint8Array.from(seed);
+			seed=Buffer.from(seed,encoding)
 			ret=Store.generateRawKey(seed);
 		}else{
 			ret=Store.generateRawKey();
