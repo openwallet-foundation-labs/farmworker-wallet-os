@@ -126,7 +126,17 @@ export async function jsa_hyperledger_aries_askar_react_native_AskarKey_fromSeed
 		ret.verifySignature
 		ret.wrapKey
 		*/
-  		return(Promise.resolve(JSON.stringify(ret)));
+		//ret=AskarKey.fromSeed(method,algorithm,seed);
+		let ret_={};
+		//try{ret_.secretBytes=ret.secretBytes;}catch(e){}
+		try{ret_.secretBytes=Buffer.from(ret.secretBytes).toString(encoding);}catch(e){}
+		//try{ret_.publicBytes=ret.publicBytes;}catch(e){}
+		try{ret_.publicBytes=Buffer.from(ret.publicBytes).toString(encoding);}catch(e){}
+		try{ret_.handle=ret.handle;}catch(e){}
+ 		try{ret_.algorithm=ret.algorithm;}catch(e){}
+		try{ret_.jwkPublic=ret.jwkPublic;}catch(e){}
+		try{ret_.jwkSecret=ret.jwkSecret;}catch(e){}
+  		return(Promise.resolve(JSON.stringify(ret_)));
 	}catch(e){
 		return(Promise.reject(e.toString()));
 	}
