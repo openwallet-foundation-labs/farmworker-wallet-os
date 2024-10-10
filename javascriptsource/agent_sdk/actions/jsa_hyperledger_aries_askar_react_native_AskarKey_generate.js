@@ -10,16 +10,21 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import { Key as AskarKey, KeyAlgs } from '@hyperledger/aries-askar-react-native';
+import { KeyBackend } from '@hyperledger/aries-askar-react-native';
+import { Buffer } from '@credo-ts/core';
 // END EXTRA CODE
 
 /**
- * AskarKey.generate(algorithm: KeyAlgs, ephemeral?: boolean): AskarKey
+ * generate(algorithm: KeyAlgs, keyBackend?: KeyBackend, ephemeral?: boolean): AskarKey
+ * 
+ * https://github.com/hyperledger/aries-askar/blob/3a4d5044b01d529e77b788cbe08313d0c7b758e6/wrappers/javascript/packages/aries-askar-shared/src/crypto/Key.ts
  * @param {"Agent_SDK.enum_keyalgo.AesA128CbcHs256"|"Agent_SDK.enum_keyalgo.AesA128Gcm"|"Agent_SDK.enum_keyalgo.AesA128Kw"|"Agent_SDK.enum_keyalgo.AesA256CbcHs512"|"Agent_SDK.enum_keyalgo.AesA256Gcm"|"Agent_SDK.enum_keyalgo.AesA256Kw"|"Agent_SDK.enum_keyalgo.Bls12381G1"|"Agent_SDK.enum_keyalgo.Bls12381G1G2"|"Agent_SDK.enum_keyalgo.Bls12381G2"|"Agent_SDK.enum_keyalgo.Chacha20C20P"|"Agent_SDK.enum_keyalgo.Chacha20XC20P"|"Agent_SDK.enum_keyalgo.EcSecp256k1"|"Agent_SDK.enum_keyalgo.EcSecp256r1"|"Agent_SDK.enum_keyalgo.EcSecp384r1"|"Agent_SDK.enum_keyalgo.Ed25519"|"Agent_SDK.enum_keyalgo.X25519"} algorithm - optional json array
  * @param {boolean} ephemeral
+ * @param {"Agent_SDK.enum_keyBackend.Software"|"Agent_SDK.enum_keyBackend.SecureElement"} keyBackend
  * @param {string} encoding - hex / base64 / utf8
  * @returns {Promise.<string>}
  */
-export async function jsa_hyperledger_aries_askar_react_native_AskarKey_generate(algorithm, ephemeral, encoding) {
+export async function jsa_hyperledger_aries_askar_react_native_AskarKey_generate(algorithm, ephemeral, keyBackend, encoding) {
 	// BEGIN USER CODE
 	try{
 		let ret=null;
@@ -76,7 +81,19 @@ export async function jsa_hyperledger_aries_askar_react_native_AskarKey_generate
   			default:
 				return(Promise.reject("Unimplemented algorithm"));
 		}
-		ret=AskarKey.generate(algorithm,ephemeral);
+		if(keyBackend==null)return(Promise.reject("keyBackend null"));
+		switch(keyBackend){
+			case"Software":
+				keyBackend=KeyBackend.Software;
+				break;
+			case"SecureElement":
+				keyBackend=KeyBackend.SecureElement;
+				break;
+			default:
+				return(Promise.reject("Unimplemented key backend"))
+				break;
+		}
+		if(encoding==null)return(Promise.reject("encoding null"));
 		/*
 		ret.aeadDecrypt
 		ret.aeadEncrypt
@@ -97,9 +114,15 @@ export async function jsa_hyperledger_aries_askar_react_native_AskarKey_generate
 		ret.verifySignature
 		ret.wrapKey
 		*/
+		/*
+		*/
+		//generate(algorithm: KeyAlgs, keyBackend?: KeyBackend, ephemeral?: boolean): AskarKey
+		ret=AskarKey.generate(algorithm,keyBackend, ephemeral);
 		let ret_={};
-		try{ret_.secretBytes=ret.secretBytes;}catch(e){}
-		try{ret_.publicBytes=ret.publicBytes;}catch(e){}
+		//try{ret_.secretBytes=ret.secretBytes;}catch(e){}
+		try{ret_.secretBytes=Buffer.from(ret.secretBytes).toString(encoding);}catch(e){}
+		//try{ret_.publicBytes=ret.publicBytes;}catch(e){}
+		try{ret_.publicBytes=Buffer.from(ret.publicBytes).toString(encoding);}catch(e){}
 		try{ret_.handle=ret.handle;}catch(e){}
  		try{ret_.algorithm=ret.algorithm;}catch(e){}
 		try{ret_.jwkPublic=ret.jwkPublic;}catch(e){}
