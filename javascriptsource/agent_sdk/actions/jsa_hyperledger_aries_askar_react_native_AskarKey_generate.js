@@ -16,9 +16,10 @@ import { Key as AskarKey, KeyAlgs } from '@hyperledger/aries-askar-react-native'
  * AskarKey.generate(algorithm: KeyAlgs, ephemeral?: boolean): AskarKey
  * @param {"Agent_SDK.enum_keyalgo.AesA128CbcHs256"|"Agent_SDK.enum_keyalgo.AesA128Gcm"|"Agent_SDK.enum_keyalgo.AesA128Kw"|"Agent_SDK.enum_keyalgo.AesA256CbcHs512"|"Agent_SDK.enum_keyalgo.AesA256Gcm"|"Agent_SDK.enum_keyalgo.AesA256Kw"|"Agent_SDK.enum_keyalgo.Bls12381G1"|"Agent_SDK.enum_keyalgo.Bls12381G1G2"|"Agent_SDK.enum_keyalgo.Bls12381G2"|"Agent_SDK.enum_keyalgo.Chacha20C20P"|"Agent_SDK.enum_keyalgo.Chacha20XC20P"|"Agent_SDK.enum_keyalgo.EcSecp256k1"|"Agent_SDK.enum_keyalgo.EcSecp256r1"|"Agent_SDK.enum_keyalgo.EcSecp384r1"|"Agent_SDK.enum_keyalgo.Ed25519"|"Agent_SDK.enum_keyalgo.X25519"} algorithm - optional json array
  * @param {boolean} ephemeral
+ * @param {string} encoding - hex / base64 / utf8
  * @returns {Promise.<string>}
  */
-export async function jsa_hyperledger_aries_askar_react_native_AskarKey_generate(algorithm, ephemeral) {
+export async function jsa_hyperledger_aries_askar_react_native_AskarKey_generate(algorithm, ephemeral, encoding) {
 	// BEGIN USER CODE
 	try{
 		let ret=null;
@@ -95,9 +96,15 @@ export async function jsa_hyperledger_aries_askar_react_native_AskarKey_generate
 		ret.unwrapKey
 		ret.verifySignature
 		ret.wrapKey
-		ret.
 		*/
-  		return(Promise.resolve(JSON.stringify(ret)));
+		let ret_={};
+		try{ret_.secretBytes=ret.secretBytes;}catch(e){}
+		try{ret_.publicBytes=ret.publicBytes;}catch(e){}
+		try{ret_.handle=ret.handle;}catch(e){}
+ 		try{ret_.algorithm=ret.algorithm;}catch(e){}
+		try{ret_.jwkPublic=ret.jwkPublic;}catch(e){}
+		try{ret_.jwkSecret=ret.jwkSecret;}catch(e){}
+  		return(Promise.resolve(JSON.stringify(ret_)));
 	}catch(e){
 		return(Promise.reject(e.toString()));
 	}
