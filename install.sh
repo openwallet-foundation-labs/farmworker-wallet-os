@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 PACKAGE_MANAGER=yarn
+NPX=npx
 OS="`uname`"
 function main() {
 	get_os
@@ -61,7 +62,15 @@ function main() {
 	if [ "$PACKAGE_MANAGER" == "yarn" ]; then
 		retry 100 yarn install
 	elif [ "$PACKAGE_MANAGER" == "npm" ]; then
-		retry 100 npm install --legacy-peer-deps
+		retry 100 npm install --legacy-peer-deps --save-dev
+	fi
+	if [ -z "$NPX" ]; then
+		echo "$NPX not found"
+		echo "not patching"
+		exit 1
+	else
+		echo "patching"
+		retry 100 npx patch-package
 	fi
 	find ./node_modules -type d -name __tests__ -prune -exec rm -rf {} \;
 	cd ../keymanagement
