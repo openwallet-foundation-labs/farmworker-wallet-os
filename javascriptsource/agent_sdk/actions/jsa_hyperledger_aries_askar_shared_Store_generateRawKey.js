@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import { Key } from '@hyperledger/aries-askar-react-native';//needed otherwise undefined raised at runtime
 import{Store} from '@hyperledger/aries-askar-shared'
 import { Buffer } from '@credo-ts/core';

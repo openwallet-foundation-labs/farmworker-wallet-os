@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import { Key as AskarKey, KeyAlgs } from '@hyperledger/aries-askar-react-native';
 import { KeyBackend } from '@hyperledger/aries-askar-react-native';
 import { Buffer } from '@credo-ts/core';
