@@ -29,11 +29,6 @@ export async function jsa_hyperledger_aries_askar_react_native_AskarKey_fromSeed
 	try{
 		let ret=null;
 		if(seed==null)return(Promise.reject("seed null"));
-		try{
-			seed=JSON.parse(seed)
-		}catch(e){
-			return(Promise.reject("seed is not a json array: "+e.toString()));
-		}
 		seed=Buffer.from(seed);//str2ab(seed);
 		if(!Buffer.isBuffer(seed))return(Promise.reject("seed is not a buffer"));
 		if(algorithm==null)return(Promise.reject("algorithm null"));

@@ -28,11 +28,6 @@ export async function jsa_aries_core_utils_crypto_keyUtils_isValidSeed(seed, key
 	// BEGIN USER CODE
 	try{
 		if(seed==null)return(Promise.reject("seed null"));
-		try{
-			seed=JSON.parse(seed)
-		}catch(e){
-			return(Promise.reject("seed is not a json array: "+e.toString()));
-		}
 		seed=Buffer.from(seed);
 		if(!Buffer.isBuffer(seed))return(Promise.reject("seed is not a buffer"));
 		if(keyType==null)return(Promise.reject("keyType null"));
