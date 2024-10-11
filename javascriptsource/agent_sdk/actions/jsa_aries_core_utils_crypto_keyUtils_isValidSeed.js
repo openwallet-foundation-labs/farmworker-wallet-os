@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import { isValidSeed } from '@credo-ts/core';
 import { KeyType } from '@credo-ts/core';
 import { Buffer } from '@credo-ts/core';
