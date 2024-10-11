@@ -29,11 +29,9 @@ export async function jsa_animo_ble_central_registerOnDisconnectedListener(callb
 		let central=cache.get("central");
 		if(central==null)return(Promise.reject("Central not found in cache"));
 		central.registerOnDisconnectedListener((identifier,name)=>{
-			console.info("jsa_animo_ble_central_registerOnDisconnectedListener:beg");
 			let args={};
-			if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier;
-			callback.call(window,args);
-			console.info("jsa_animo_ble_central_registerOnDisconnectedListener:end");
+			if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier.identifier;
+			callback(args);
 		});
 		return(Promise.resolve());
 	}catch(e){

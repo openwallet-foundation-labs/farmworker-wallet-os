@@ -29,8 +29,8 @@ export async function jsa_animo_ble_central_registerMessageListener(callback, da
 		if(central==null)return(Promise.reject("Central not found in cache"));
 		central.registerMessageListener((data)=>{
 			let args={};
-			if(data_parameter_name!=null)args[data_parameter_name]=data;
-			callback.call(window,args);
+			if(data_parameter_name!=null)args[data_parameter_name]=JSON.stringify(data);
+			callback(args);
 		});
 		return(Promise.resolve());
 	}catch(e){

@@ -31,12 +31,10 @@ export async function jsa_animo_ble_peripheral_registerOnConnectedListener(callb
 		let peripheral=cache.get("peripheral");
 		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));
 		peripheral.registerOnConnectedListener((identifier,name)=>{
-			console.info("jsa_animo_ble_peripheral_registerOnConnectedListener:beg");
 			let args={};
-			if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier;
+			if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier.identifier;
 			if(name_parameter_name!=null)args[name_parameter_name]=name;
-			callback.call(window,args);
-			console.info("jsa_animo_ble_peripheral_registerOnConnectedListener:end");
+			callback(args);
 		});
 		return(Promise.resolve());
 	}catch(e){

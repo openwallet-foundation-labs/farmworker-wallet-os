@@ -28,11 +28,9 @@ export async function jsa_animo_ble_peripheral_registerMessageListener(callback,
 		let peripheral=cache.get("peripheral");
 		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));
 		peripheral.registerMessageListener((data)=>{
-			console.info("jsa_animo_ble_peripheral_registerMessageListener:beg");
 			let args={};
-			if(data_parameter_name!=null)args[data_parameter_name]=data;
-			callback.call(window,args);
-			console.info("jsa_animo_ble_peripheral_registerMessageListener:end");
+			if(data_parameter_name!=null)args[data_parameter_name]=JSON.stringify(data);
+			callback(args);
 		});
 		return(Promise.resolve());
 	}catch(e){

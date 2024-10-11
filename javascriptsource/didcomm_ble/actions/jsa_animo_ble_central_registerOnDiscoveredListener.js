@@ -28,12 +28,10 @@ export async function jsa_animo_ble_central_registerOnDiscoveredListener(callbac
 		let central=cache.get("central");
 		if(central==null)return(Promise.reject("Central not found in cache"));
 		central.registerOnDiscoveredListener((identifier,name)=>{
-			console.info("jsa_animo_ble_central_registerOnDiscoveredListener:beg");
 			let args={};
-			if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier;
-			if(optional_parameter_name!=null)args[optional_parameter_name]=optional;
-			callback.call(window,args);
-			console.info("jsa_animo_ble_central_registerOnDiscoveredListener:end");
+			if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier.identifier;
+			if(identifier_parameter_name!=null)args[identifier_parameter_name]=name;
+			callback(args);
 		});
 		return(Promise.resolve());
 	}catch(e){

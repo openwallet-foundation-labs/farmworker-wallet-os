@@ -32,12 +32,10 @@ export async function jsa_animo_ble_central_registerOnConnectedListener(callback
 		let central=cache.get("central");
 		if(central==null)return(Promise.reject("Central not found in cache"));
 		central.registerOnConnectedListener((identifier,name)=>{
-			console.info("jsa_animo_ble_central_registerOnConnectedListener:beg");
 			let args={};
-			if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier;
+			if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier.identifier;
 			if(name_parameter_name!=null)args[name_parameter_name]=name;
-			callback.call(window,args);
-			console.info("jsa_animo_ble_central_registerOnConnectedListener:end");
+			callback(args);
 		});
 		return(Promise.resolve());
 	}catch(e){
