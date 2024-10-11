@@ -96,7 +96,6 @@ export async function jsa_hyperledger_aries_askar_react_native_AskarKey_fromSeed
 					return(Promise.reject("Unimplemented key method"));
 			}
 		}
-		if(!isValidSeed(seed,algorithm))return(Promise.reject("invalid seed"));
 		let options={};
 		if(method!=null)options.method=method;
 		if(algorithm!=null)options.algorithm=algorithm;
