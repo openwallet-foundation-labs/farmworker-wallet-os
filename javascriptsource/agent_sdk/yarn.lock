@@ -10,11 +10,12 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
-"@animo-id/react-native-ble-didcomm@0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@animo-id/react-native-ble-didcomm/-/react-native-ble-didcomm-0.8.0.tgz#c40a7b7abe52dd211e8e1f267eef9f9b60c29545"
-  integrity sha512-3oWaiPRyJOZqn6UoLAGqCFearaqUAtZNkroDkt8ORQmDW8k1P+TBbJNNXbzFTU7+gh5rYTEiQLqRgyAOxVWNsg==
+"@animo-id/react-native-ble-didcomm@0.9.2":
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/@animo-id/react-native-ble-didcomm/-/react-native-ble-didcomm-0.9.2.tgz#00db0a804c8df45b87ec845f876b361e388d8bbc"
+  integrity sha512-4a0LqW9f2KMwVf5p878DsklkbJftceunNVn5hatnV2WDHPnsBRrLO0ZxJfaSYtfYOgNyRZnsOx1Q5rEZqBK05g==
   dependencies:
+    "@credo-ts/transport-ble" "^0.3.0"
     buffer "^6.0.3"
 
 "@astronautlabs/jsonpath@^1.1.2":
@@ -333,7 +334,7 @@
     "@credo-ts/core" "0.5.10"
     events "^3.3.0"
 
-"@credo-ts/transport-ble@0.3.0":
+"@credo-ts/transport-ble@0.3.0", "@credo-ts/transport-ble@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@credo-ts/transport-ble/-/transport-ble-0.3.0.tgz#3e48051e3eda26aa88649b56ee356274c90917ea"
   integrity sha512-2cVUSRPzd37vR0BW9dmJDjP2JjI/M3vhZXTthwJK+S/7Vu8uj48tBg3hi1rstE3ut0+2bqoFhUduzDM0l0L8HA==
