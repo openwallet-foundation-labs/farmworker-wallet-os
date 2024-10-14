@@ -25,14 +25,14 @@ import{cache}from"../support/entidad";
 export async function jsa_animo_ble_peripheral_registerOnConnectedListener(callback, identifier_parameter_name, name_parameter_name) {
 	// BEGIN USER CODE
 	try{
-		if(callback=null)return(Promise.reject("callback null"));
+		if(callback==null)return(Promise.reject("callback null"));
 		if(identifier_parameter_name==null)identifier_parameter_name='identifier';
 		if(name_parameter_name==null)name_parameter_name='name';
 		let peripheral=cache.get("peripheral");
 		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));
 		peripheral.registerOnConnectedListener((identifier,name)=>{
 			let args={};
-			if(identifier_parameter_name!=null)args[identifier_parameter_name]=identifier.identifier;
+			if(identifier_parameter_name!=null)args[identifier_parameter_name]=JSON.stringify(identifier);
 			if(name_parameter_name!=null)args[name_parameter_name]=name;
 			callback(args);
 		});

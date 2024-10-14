@@ -21,7 +21,7 @@ import{cache}from"../support/entidad";
 export async function jsa_animo_ble_peripheral_sendMessage(message) {
 	// BEGIN USER CODE
 	try{
-		if(message=null)return(Promise.reject("Message null"));
+		if(message==null)return(Promise.reject("Message null"));
 		let peripheral=cache.get("peripheral");
 		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));
 		await peripheral.sendMessage({message:message});

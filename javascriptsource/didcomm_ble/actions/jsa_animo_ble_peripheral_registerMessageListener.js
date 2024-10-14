@@ -23,7 +23,7 @@ import{cache}from"../support/entidad";
 export async function jsa_animo_ble_peripheral_registerMessageListener(callback, data_parameter_name) {
 	// BEGIN USER CODE
 	try{
-		if(callback=null)return(Promise.reject("callback null"));
+		if(callback==null)return(Promise.reject("callback null"));
 		if(data_parameter_name==null)data_parameter_name='data';
 		let peripheral=cache.get("peripheral");
 		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));

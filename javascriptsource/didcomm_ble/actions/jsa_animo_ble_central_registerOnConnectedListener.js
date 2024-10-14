@@ -26,7 +26,7 @@ import{cache}from"../support/entidad";
 export async function jsa_animo_ble_central_registerOnConnectedListener(callback, identifier_parameter_name, name_parameter_name) {
 	// BEGIN USER CODE
 	try{
-		if(callback=null)return(Promise.reject("callback null"));
+		if(callback==null)return(Promise.reject("callback null"));
 		if(identifier_parameter_name==null)identifier_parameter_name='identifier';
 		if(name_parameter_name==null)name_parameter_name='name';
 		let central=cache.get("central");
