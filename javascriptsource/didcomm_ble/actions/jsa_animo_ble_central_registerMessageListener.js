@@ -18,18 +18,22 @@ import{cache}from"../support/entidad";
  *  }) => void): EmitterSubscription
  * @param {Nanoflow} callback
  * @param {string} data_parameter_name - optional
+ * @param {MxObject} user_data - optional
+ * @param {string} user_data_parameter_name - optional
  * @returns {Promise.<void>}
  */
-export async function jsa_animo_ble_central_registerMessageListener(callback, data_parameter_name) {
+export async function jsa_animo_ble_central_registerMessageListener(callback, data_parameter_name, user_data, user_data_parameter_name) {
 	// BEGIN USER CODE
 	try{
 		if(callback==null)return(Promise.reject("callback null"));
 		if(data_parameter_name==null)data_parameter_name='data';
+		if(user_data_parameter_name==null)user_data_parameter_name='Central';
 		let central=cache.get("central");
 		if(central==null)return(Promise.reject("Central not found in cache"));
 		central.registerMessageListener((data)=>{
 			let args={};
 			if(data_parameter_name!=null)args[data_parameter_name]=JSON.stringify(data);
+			if(user_data_parameter_name!=null)args[user_data_parameter_name]=user_data;
 			callback(args);
 		});
 		return(Promise.resolve());

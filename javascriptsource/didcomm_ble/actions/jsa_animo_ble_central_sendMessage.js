@@ -22,6 +22,7 @@ export async function jsa_animo_ble_central_sendMessage(message) {
 	// BEGIN USER CODE
 	try{
 		if(message==null)return(Promise.reject("Message null"));
+		if(message=='')return(Promise.reject("Message empty"));
 		let central=cache.get("central");
 		if(central==null)return(Promise.reject("Central not found in cache"));
 		await central.sendMessage(message);

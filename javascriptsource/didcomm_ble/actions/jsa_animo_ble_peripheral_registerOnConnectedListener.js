@@ -20,20 +20,24 @@ import{cache}from"../support/entidad";
  * @param {Nanoflow} callback
  * @param {string} identifier_parameter_name - optional
  * @param {string} name_parameter_name - optional
+ * @param {MxObject} user_data - optional
+ * @param {string} user_data_parameter_name - optional
  * @returns {Promise.<void>}
  */
-export async function jsa_animo_ble_peripheral_registerOnConnectedListener(callback, identifier_parameter_name, name_parameter_name) {
+export async function jsa_animo_ble_peripheral_registerOnConnectedListener(callback, identifier_parameter_name, name_parameter_name, user_data, user_data_parameter_name) {
 	// BEGIN USER CODE
 	try{
 		if(callback==null)return(Promise.reject("callback null"));
 		if(identifier_parameter_name==null)identifier_parameter_name='identifier';
 		if(name_parameter_name==null)name_parameter_name='name';
+		if(user_data_parameter_name==null)user_data_parameter_name='Peripheral';
 		let peripheral=cache.get("peripheral");
 		if(peripheral==null)return(Promise.reject("Peripheral not found in cache"));
 		peripheral.registerOnConnectedListener((identifier,name)=>{
 			let args={};
 			if(identifier_parameter_name!=null)args[identifier_parameter_name]=JSON.stringify(identifier);
 			if(name_parameter_name!=null)args[name_parameter_name]=name;
+			if(user_data_parameter_name!=null)args[user_data_parameter_name]=user_data;
 			callback(args);
 		});
 		return(Promise.resolve());
