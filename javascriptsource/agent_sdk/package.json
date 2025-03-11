@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@animo-id/react-native-ble-didcomm": "0.8.0",
+    "@animo-id/react-native-ble-didcomm": "0.9.2",
     "@credo-ts/anoncreds": "0.5.10",
     "@credo-ts/askar": "0.5.10",
     "@credo-ts/core": "0.5.10",

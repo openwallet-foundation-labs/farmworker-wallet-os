@@ -10,7 +10,7 @@ import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
 import{
-	Central
+	Central,
 }from"../../agent_sdk/node_modules/@animo-id/react-native-ble-didcomm";
 import{cache}from"../support/entidad";
 // END EXTRA CODE

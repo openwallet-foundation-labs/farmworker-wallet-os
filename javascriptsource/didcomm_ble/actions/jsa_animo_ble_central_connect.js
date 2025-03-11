@@ -21,7 +21,7 @@ import{cache}from"../support/entidad";
 export async function jsa_animo_ble_central_connect(peripheralId) {
 	// BEGIN USER CODE
 	try{
-		if(peripheralId=null)return(Promise.reject("peripheralId null"));
+		if(peripheralId==null)return(Promise.reject("peripheralId null"));
 		let central=cache.get("central");
 		if(central==null)return(Promise.reject("Central not found in cache"));
 		await central.connect(peripheralId);

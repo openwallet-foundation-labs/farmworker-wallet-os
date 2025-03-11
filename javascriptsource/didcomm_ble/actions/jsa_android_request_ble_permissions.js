@@ -27,7 +27,7 @@ export async function jsa_android_request_ble_permissions() {
 			'android.permission.BLUETOOTH_SCAN',
 			'android.permission.BLUETOOTH_ADVERTISE',
 			'android.permission.ACCESS_COARSE_LOCATION'
-		]);
+  		]);
 		return(Promise.resolve());
   	}catch(e){
 		return(Promise.reject(e.toString()));

@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import { isValidSeed } from '@credo-ts/core';
 import { KeyType } from '@credo-ts/core';
 import { Buffer } from '@credo-ts/core';
@@ -19,7 +20,7 @@ import { Buffer } from '@credo-ts/core';
  * isValidSeed(seed: Buffer, keyType: KeyType): boolean
  * 
  * https://github.com/openwallet-foundation/credo-ts/blob/59c7e15259af0d258cb07996d76cc0b2742c88ad/packages/core/src/crypto/keyUtils.ts
- * @param {string} seed - json array
+ * @param {string} seed
  * @param {"Agent_SDK.enum_aries_KeyType.Bls12381g1"|"Agent_SDK.enum_aries_KeyType.Bls12381g1g2"|"Agent_SDK.enum_aries_KeyType.Bls12381g2"|"Agent_SDK.enum_aries_KeyType.Ed25519"|"Agent_SDK.enum_aries_KeyType.X25519"|"Agent_SDK.enum_aries_KeyType.K256"|"Agent_SDK.enum_aries_KeyType.P256"|"Agent_SDK.enum_aries_KeyType.P384"|"Agent_SDK.enum_aries_KeyType.P521"} keyType
  * @returns {Promise.<boolean>}
  */
@@ -27,11 +28,6 @@ export async function jsa_aries_core_utils_crypto_keyUtils_isValidSeed(seed, key
 	// BEGIN USER CODE
 	try{
 		if(seed==null)return(Promise.reject("seed null"));
-		try{
-			seed=JSON.parse(seed)
-		}catch(e){
-			return(Promise.reject("seed is not a json array: "+e.toString()));
-		}
 		seed=Buffer.from(seed);
 		if(!Buffer.isBuffer(seed))return(Promise.reject("seed is not a buffer"));
 		if(keyType==null)return(Promise.reject("keyType null"));

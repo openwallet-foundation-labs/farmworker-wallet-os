@@ -9,6 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
+import "../shim.js";
 import{utils}from"@credo-ts/core";
 // END EXTRA CODE
 

@@ -1,0 +1,6 @@
+{
+    "nativeDependencies": {
+        "react-native-fs": "2.20.0",
+        "react-native-share": "8.2.0"
+    }
+}
