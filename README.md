@@ -10,7 +10,7 @@ makes it easy for any Mendix app to interoperate with open-standard technologies
 * Clone this project
 * Navigate to the project root from a command line Terminal e.g. `cd ~/Documents/Workspaces/Github/farmworker-wallet-os`
 * Run `./install.sh`
-* Download [Studio Pro 9.24.33](https://marketplace.mendix.com/link/studiopro/)
+* Download [Studio Pro 9.24.34](https://marketplace.mendix.com/link/studiopro/)
 * Open `fwos-demo-app.mpr` from Studio Pro
 * Run the project from Studio Pro by clicking Run / Run Locally
 * Create a custom React Native application from Native Template [Entidad/fwos-native-template](https://github.com/Entidad/fwos-native-template) or download a pre-built APK from [Entidad/fwos-native-template/releases](https://github.com/Entidad/fwos-native-template/releases)
