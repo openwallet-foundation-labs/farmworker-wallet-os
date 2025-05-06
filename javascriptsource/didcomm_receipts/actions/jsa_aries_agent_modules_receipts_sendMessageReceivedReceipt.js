@@ -15,42 +15,24 @@ import support from "../../agent_sdk/support/entidad";
 /**
  * @param {string} agent_key
  * @param {string} connectionId
- * @param {string} message_receipts - json array
--------------------------
-[
-     {
-          "messageId": "6db831fb-4a13-45ed-98d6-2c20f3ef29db",
-          "state": "received"
-     },
-     {
-          "messageId": "6db831fb-4a13-45ed-98d6-2c20f3ef29db",
-          "state": "viewed"
-     }
-]
+ * @param {string} messageId
+ * @param {string} received_state
  * @returns {Promise.<void>}
  */
-export async function jsa_aries_agent_modules_receipts_sendMessageReceipts(agent_key, connectionId, message_receipts) {
+export async function jsa_aries_agent_modules_receipts_sendMessageReceivedReceipt(agent_key, connectionId, messageId, received_state) {
 	// BEGIN USER CODE
 	try{
 		
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
 		if(connectionId==null)return Promise.reject("Invalid connectionId parameter");
-		if(message_receipts==null)return Promise.reject("Invalid message_receipts parameter");
+		if(messageId==null)return Promise.reject("Invalid messageId parameter");
 
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
 
-		
-		let obj_receipts=JSON.parse(message_receipts);
-		
-
-		//let receipts_array_str = JSON.stringify(obj.receipts);
-		//let receipts_array_str = JSON.stringify(obj_receipts);
-		//console.info(receipts_array_str);
-
 		let options={
-			connectionId:connectionId,
-			receipts:obj_receipts
+			connectionId: connectionId,
+      		receipts: [{ messageId: messageId, state: received_state }]
 		}
 		
 		await agent.modules.receipts.send(options);

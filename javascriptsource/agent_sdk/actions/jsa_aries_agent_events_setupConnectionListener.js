@@ -94,6 +94,7 @@ export async function jsa_aries_agent_events_setupConnectionListener(agent_key, 
 		}
 		let agent = support.cache.get(agent_key);
 		if (agent == null) return Promise.reject("Agent not found in cache");
+		
 		agent.events.on(eventType, async function ({ payload }) {
 			let currentMessageType = findKey("type", payload);
 			if (messageType == '*' || currentMessageType == messageType) {

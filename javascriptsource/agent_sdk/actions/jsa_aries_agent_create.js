@@ -54,6 +54,8 @@ import { SurveyModule } from '@entidad/credo-ts-survey';
 import { UserProfileModule } from 'credo-ts-user-profile'
 import { MediaSharingModule } from 'credo-ts-media-sharing';//https://github.com/2060-io/credo-ts-media-sharing
 import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds';
+import { ReceiptsModule } from '@2060.io/credo-ts-didcomm-receipts'; //https://github.com/2060-io/credo-ts-didcomm-ext
+
 // END EXTRA CODE
 
 /**
@@ -587,6 +589,16 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				console.error("Failed to register MediaSharingModule:" + e.toString());
 			}
 		}
+		if (useReceipts) {
+			try {
+				agentModules.receipts = new ReceiptsModule();
+				//console.info("Calling ReceiptsModule()");
+				//new ReceiptsModule();
+				//console.info(typeof(ReceiptsModule));
+			} catch (e) {
+				console.error("Failed to register ReceiptsModule: " + e.toString());
+			}
+		}
 		//-----------------------------------------------------------------------------------
 		/*
 		if (useBle) {
@@ -603,7 +615,10 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			dependencies: agentDependencies,
 			modules: agentModules,
 		});
+		
+		
 		return Promise.resolve(support.cache.put(agent, walletConfig_id));
+		
 	} catch (e) {
 		return Promise.reject(e.toString());
 	}

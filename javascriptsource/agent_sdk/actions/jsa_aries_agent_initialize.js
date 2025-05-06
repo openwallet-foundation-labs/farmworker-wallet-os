@@ -23,6 +23,7 @@ export async function jsa_aries_agent_initialize(agent_key) {
 		if(agent_key==null)return Promise.reject("Invalid agent_key parameter");
 		let agent=support.cache.get(agent_key);
 		if(agent==null)return Promise.reject("Agent not found in cache");
+		
 		await agent.initialize();
 		return Promise.resolve();
 	}catch(e){
