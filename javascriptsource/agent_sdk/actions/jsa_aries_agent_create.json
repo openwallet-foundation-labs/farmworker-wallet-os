@@ -21,6 +21,8 @@
 		"@stablelib/sha256": "^2.0.0",
 		"@entidad/credo-ts-survey": "git+http://github.com/entidad/credo-ts-survey.git",
 		"credo-ts-media-sharing": "git+http://github.com/entidad/credo-ts-media-sharing.git",
-		"credo-ts-user-profile": "git+https://github.com/entidad/credo-ts-user-profile.git"
+		"credo-ts-user-profile": "git+http://github.com/entidad/credo-ts-user-profile.git",
+		"@2060.io/credo-ts-didcomm-reactions": "0.0.2",
+		"@2060.io/credo-ts-didcomm-receipts": "0.0.7"
 	}
 }
