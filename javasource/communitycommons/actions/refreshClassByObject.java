@@ -21,12 +21,15 @@ import com.mendix.webui.FeedbackHelper;
  */
 public class refreshClassByObject extends CustomJavaAction<java.lang.Boolean>
 {
-	private IMendixObject instance;
+	private final IMendixObject instance;
 
-	public refreshClassByObject(IContext context, IMendixObject instance)
+	public refreshClassByObject(
+		IContext context,
+		IMendixObject _instance
+	)
 	{
 		super(context);
-		this.instance = instance;
+		this.instance = _instance;
 	}
 
 	@java.lang.Override

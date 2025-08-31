@@ -33,20 +33,27 @@ import communitycommons.Misc;
  */
 public class executeUnverifiedMicroflowInBatches extends CustomJavaAction<java.lang.Boolean>
 {
-	private java.lang.String xpath;
-	private java.lang.String microflowName;
-	private java.lang.Long batchsize;
-	private java.lang.Boolean waitUntilFinished;
-	private java.lang.Boolean ascending;
+	private final java.lang.String xpath;
+	private final java.lang.String microflowName;
+	private final java.lang.Long batchsize;
+	private final java.lang.Boolean waitUntilFinished;
+	private final java.lang.Boolean ascending;
 
-	public executeUnverifiedMicroflowInBatches(IContext context, java.lang.String xpath, java.lang.String microflowName, java.lang.Long batchsize, java.lang.Boolean waitUntilFinished, java.lang.Boolean ascending)
+	public executeUnverifiedMicroflowInBatches(
+		IContext context,
+		java.lang.String _xpath,
+		java.lang.String _microflowName,
+		java.lang.Long _batchsize,
+		java.lang.Boolean _waitUntilFinished,
+		java.lang.Boolean _ascending
+	)
 	{
 		super(context);
-		this.xpath = xpath;
-		this.microflowName = microflowName;
-		this.batchsize = batchsize;
-		this.waitUntilFinished = waitUntilFinished;
-		this.ascending = ascending;
+		this.xpath = _xpath;
+		this.microflowName = _microflowName;
+		this.batchsize = _batchsize;
+		this.waitUntilFinished = _waitUntilFinished;
+		this.ascending = _ascending;
 	}
 
 	@java.lang.Override

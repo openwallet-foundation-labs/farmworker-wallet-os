@@ -18,14 +18,18 @@ import communitycommons.StringUtils;
  */
 public class SubstringBefore extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String str;
-	private java.lang.String separator;
+	private final java.lang.String str;
+	private final java.lang.String separator;
 
-	public SubstringBefore(IContext context, java.lang.String str, java.lang.String separator)
+	public SubstringBefore(
+		IContext context,
+		java.lang.String _str,
+		java.lang.String _separator
+	)
 	{
 		super(context);
-		this.str = str;
-		this.separator = separator;
+		this.str = _str;
+		this.separator = _separator;
 	}
 
 	@java.lang.Override

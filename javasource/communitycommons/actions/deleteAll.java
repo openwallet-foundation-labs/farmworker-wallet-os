@@ -18,12 +18,15 @@ import communitycommons.XPath;
  */
 public class deleteAll extends CustomJavaAction<java.lang.Boolean>
 {
-	private java.lang.String entityType;
+	private final java.lang.String entityType;
 
-	public deleteAll(IContext context, java.lang.String entityType)
+	public deleteAll(
+		IContext context,
+		java.lang.String _entityType
+	)
 	{
 		super(context);
-		this.entityType = entityType;
+		this.entityType = _entityType;
 	}
 
 	@java.lang.Override

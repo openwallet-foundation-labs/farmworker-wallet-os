@@ -21,12 +21,15 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class TimeMeasureStart extends CustomJavaAction<java.lang.Boolean>
 {
-	private java.lang.String TimerName;
+	private final java.lang.String TimerName;
 
-	public TimeMeasureStart(IContext context, java.lang.String TimerName)
+	public TimeMeasureStart(
+		IContext context,
+		java.lang.String _timerName
+	)
 	{
 		super(context);
-		this.TimerName = TimerName;
+		this.TimerName = _timerName;
 	}
 
 	@java.lang.Override

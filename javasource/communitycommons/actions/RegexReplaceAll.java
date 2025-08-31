@@ -24,16 +24,21 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class RegexReplaceAll extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String haystack;
-	private java.lang.String needleRegex;
-	private java.lang.String replacement;
+	private final java.lang.String haystack;
+	private final java.lang.String needleRegex;
+	private final java.lang.String replacement;
 
-	public RegexReplaceAll(IContext context, java.lang.String haystack, java.lang.String needleRegex, java.lang.String replacement)
+	public RegexReplaceAll(
+		IContext context,
+		java.lang.String _haystack,
+		java.lang.String _needleRegex,
+		java.lang.String _replacement
+	)
 	{
 		super(context);
-		this.haystack = haystack;
-		this.needleRegex = needleRegex;
-		this.replacement = replacement;
+		this.haystack = _haystack;
+		this.needleRegex = _needleRegex;
+		this.replacement = _replacement;
 	}
 
 	@java.lang.Override

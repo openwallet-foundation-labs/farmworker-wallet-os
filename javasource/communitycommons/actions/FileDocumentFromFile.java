@@ -21,22 +21,27 @@ import com.mendix.systemwideinterfaces.core.IMendixObject;
  */
 public class FileDocumentFromFile extends CustomJavaAction<java.lang.Boolean>
 {
-	private java.lang.String file;
-	private IMendixObject __fileDocument;
-	private system.proxies.FileDocument fileDocument;
+	private final java.lang.String file;
+	/** @deprecated use fileDocument.getMendixObject() instead. */
+	@java.lang.Deprecated(forRemoval = true)
+	private final IMendixObject __fileDocument;
+	private final system.proxies.FileDocument fileDocument;
 
-	public FileDocumentFromFile(IContext context, java.lang.String file, IMendixObject fileDocument)
+	public FileDocumentFromFile(
+		IContext context,
+		java.lang.String _file,
+		IMendixObject _fileDocument
+	)
 	{
 		super(context);
-		this.file = file;
-		this.__fileDocument = fileDocument;
+		this.file = _file;
+		this.__fileDocument = _fileDocument;
+		this.fileDocument = _fileDocument == null ? null : system.proxies.FileDocument.initialize(getContext(), _fileDocument);
 	}
 
 	@java.lang.Override
 	public java.lang.Boolean executeAction() throws Exception
 	{
-		this.fileDocument = this.__fileDocument == null ? null : system.proxies.FileDocument.initialize(getContext(), __fileDocument);
-
 		// BEGIN USER CODE
 		try (
 			FileInputStream fis = new FileInputStream(new File(this.file))

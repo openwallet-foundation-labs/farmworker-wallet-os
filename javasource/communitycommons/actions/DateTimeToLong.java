@@ -18,12 +18,15 @@ import communitycommons.DateTime;
  */
 public class DateTimeToLong extends CustomJavaAction<java.lang.Long>
 {
-	private java.util.Date dateObject;
+	private final java.util.Date dateObject;
 
-	public DateTimeToLong(IContext context, java.util.Date dateObject)
+	public DateTimeToLong(
+		IContext context,
+		java.util.Date _dateObject
+	)
 	{
 		super(context);
-		this.dateObject = dateObject;
+		this.dateObject = _dateObject;
 	}
 
 	@java.lang.Override

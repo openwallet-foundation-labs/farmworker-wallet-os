@@ -12,12 +12,13 @@ import { Big } from "big.js";
 // END EXTRA CODE
 
 /**
+ * @param {string} inputString
  * @returns {Promise.<boolean>}
  */
-export async function IsJsonString() {
+export async function IsJsonString(inputString) {
 	// BEGIN USER CODE
     try {
-        JSON.parse(InputString);
+        JSON.parse(inputString);
         return true;
     } catch (e) {
         return false;

@@ -22,16 +22,21 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class executeMicroflowAsUser extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String microflow;
-	private java.lang.String username;
-	private java.lang.Boolean sudoContext;
+	private final java.lang.String microflow;
+	private final java.lang.String username;
+	private final java.lang.Boolean sudoContext;
 
-	public executeMicroflowAsUser(IContext context, java.lang.String microflow, java.lang.String username, java.lang.Boolean sudoContext)
+	public executeMicroflowAsUser(
+		IContext context,
+		java.lang.String _microflow,
+		java.lang.String _username,
+		java.lang.Boolean _sudoContext
+	)
 	{
 		super(context);
-		this.microflow = microflow;
-		this.username = username;
-		this.sudoContext = sudoContext;
+		this.microflow = _microflow;
+		this.username = _username;
+		this.sudoContext = _sudoContext;
 	}
 
 	@java.lang.Override

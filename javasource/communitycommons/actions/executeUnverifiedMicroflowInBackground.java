@@ -31,14 +31,18 @@ import com.mendix.systemwideinterfaces.core.IMendixObject;
  */
 public class executeUnverifiedMicroflowInBackground extends CustomJavaAction<java.lang.Boolean>
 {
-	private java.lang.String microflowName;
-	private IMendixObject contextObject;
+	private final java.lang.String microflowName;
+	private final IMendixObject contextObject;
 
-	public executeUnverifiedMicroflowInBackground(IContext context, java.lang.String microflowName, IMendixObject contextObject)
+	public executeUnverifiedMicroflowInBackground(
+		IContext context,
+		java.lang.String _microflowName,
+		IMendixObject _contextObject
+	)
 	{
 		super(context);
-		this.microflowName = microflowName;
-		this.contextObject = contextObject;
+		this.microflowName = _microflowName;
+		this.contextObject = _contextObject;
 	}
 
 	@java.lang.Override

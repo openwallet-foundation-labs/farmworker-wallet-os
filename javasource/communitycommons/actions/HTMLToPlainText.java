@@ -19,12 +19,15 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class HTMLToPlainText extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String html;
+	private final java.lang.String html;
 
-	public HTMLToPlainText(IContext context, java.lang.String html)
+	public HTMLToPlainText(
+		IContext context,
+		java.lang.String _html
+	)
 	{
 		super(context);
-		this.html = html;
+		this.html = _html;
 	}
 
 	@java.lang.Override

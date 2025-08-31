@@ -2267,17 +2267,18 @@ Main class hierarchy:
 
     /* Client defaults and helpers */
     .mx-dataview-content,
-    .mx-scrollcontainer-wrapper:not(.mx-scrollcontainer-nested),
     .mx-tabcontainer-content,
     .mx-grid-content {
         -webkit-overflow-scrolling: touch;
     }
     html,
     body,
-    #content {
+    #content,
+    #root {
         height: 100%;
     }
-    #content > .mx-page {
+    #content > .mx-page,
+    #root > .mx-page {
         width: 100%;
         min-height: 100%;
     }
@@ -2693,61 +2694,6 @@ Main class hierarchy:
     .mx-templategrid-item .mx-table th,
     .mx-templategrid-item .mx-table td {
         padding: 2px 8px;
-    }
-
-    .mx-scrollcontainer-horizontal {
-        width: 100%;
-        display: table;
-        table-layout: fixed;
-    }
-    .mx-scrollcontainer-horizontal > div {
-        display: table-cell;
-        vertical-align: top;
-    }
-    //.mx-scrollcontainer-wrapper {
-    //    padding: 10px;
-    //}
-    .mx-scrollcontainer-nested {
-        padding: 0;
-    }
-    .mx-scrollcontainer-fixed > .mx-scrollcontainer-middle > .mx-scrollcontainer-wrapper,
-    .mx-scrollcontainer-fixed > .mx-scrollcontainer-left > .mx-scrollcontainer-wrapper,
-    .mx-scrollcontainer-fixed > .mx-scrollcontainer-center > .mx-scrollcontainer-wrapper,
-    .mx-scrollcontainer-fixed > .mx-scrollcontainer-right > .mx-scrollcontainer-wrapper {
-        overflow: auto;
-    }
-
-    .mx-scrollcontainer-move-in {
-        transition: left 250ms ease-out;
-    }
-    .mx-scrollcontainer-move-out {
-        transition: left 250ms ease-in;
-    }
-    .mx-scrollcontainer-shrink .mx-scrollcontainer-toggleable {
-        transition-property: width;
-    }
-
-    .mx-scrollcontainer-toggleable {
-        background-color: #fff;
-    }
-    //.mx-scrollcontainer-slide > .mx-scrollcontainer-toggleable > .mx-scrollcontainer-wrapper {
-    //    position: relative;
-    //    z-index: 1;
-    //    background-color: inherit;
-    //}
-    .mx-scrollcontainer-push {
-        position: relative;
-    }
-    .mx-scrollcontainer-shrink > .mx-scrollcontainer-toggleable {
-        overflow: hidden;
-    }
-    .mx-scrollcontainer-push.mx-scrollcontainer-open > div,
-    .mx-scrollcontainer-slide.mx-scrollcontainer-open > div {
-        pointer-events: none;
-    }
-    .mx-scrollcontainer-push.mx-scrollcontainer-open > .mx-scrollcontainer-toggleable,
-    .mx-scrollcontainer-slide.mx-scrollcontainer-open > .mx-scrollcontainer-toggleable {
-        pointer-events: auto;
     }
 
     .mx-navbar-item img,

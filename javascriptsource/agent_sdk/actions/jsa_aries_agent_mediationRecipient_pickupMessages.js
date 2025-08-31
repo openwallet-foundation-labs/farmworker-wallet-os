@@ -18,7 +18,7 @@ import support from"../support/entidad";
  * pickupMessages(mediatorConnection: AriesCore.ConnectionRecord, pickupStrategy?: AriesCore.MediatorPickupStrategy): Promise<void>
  * @param {string} agent_key
  * @param {string} mediatorConnection - json?
- * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"|"Agent_SDK.enum_aries_MediatorPickupStrategy.None"} pickupStrategy
+ * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"|"Agent_SDK.enum_aries_MediatorPickupStrategy.None"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2LiveMode"} pickupStrategy
  * @returns {Promise.<void>}
  */
 export async function jsa_aries_agent_mediationRecipient_pickupMessages(agent_key, mediatorConnection, pickupStrategy) {
@@ -38,7 +38,10 @@ export async function jsa_aries_agent_mediationRecipient_pickupMessages(agent_ke
 				break;																					// -
 			case"PickUpV2":																				// -
 				pickupStrategy=MediatorPickupStrategy.PickUpV2;											// -
-				break;																					// -
+				break;
+			case "PickUpV2LiveMode":
+				mediatorPickupStrategy = MediatorPickupStrategy.PickUpV2LiveMode;
+				break;																							// -
 			case"Implicit":																				// -
 				pickupStrategy=MediatorPickupStrategy.Implicit;											// -
 				break;																					// -

@@ -31,7 +31,9 @@
         // Sidebar
         .region-sidebar {
             background-color: $navsidebar-bg;
-            z-index: 101;
+            @if not $use-modern-client {
+                z-index: 101;
+            }
             box-shadow: 0 0 4px rgb(0 0 0 / 14%), 2px 4px 8px rgb(0 0 0 / 28%);
 
             .mx-scrollcontainer-wrapper {
@@ -141,9 +143,11 @@
             }
         }
 
-        .mx-scrollcontainer-slide {
-            &:not(.mx-scrollcontainer-open) > .region-sidebar {
-                overflow: hidden;
+        @if (not $use-modern-client) {
+            .mx-scrollcontainer-slide {
+                &:not(.mx-scrollcontainer-open) > .region-sidebar {
+                    overflow: hidden;
+                }
             }
         }
     }

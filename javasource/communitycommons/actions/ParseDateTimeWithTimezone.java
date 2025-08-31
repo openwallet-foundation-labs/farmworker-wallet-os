@@ -24,18 +24,24 @@ import java.text.ParseException;
  */
 public class ParseDateTimeWithTimezone extends CustomJavaAction<java.util.Date>
 {
-	private java.lang.String date;
-	private java.lang.String pattern;
-	private java.lang.String timeZone;
-	private java.util.Date defaultValue;
+	private final java.lang.String date;
+	private final java.lang.String pattern;
+	private final java.lang.String timeZone;
+	private final java.util.Date defaultValue;
 
-	public ParseDateTimeWithTimezone(IContext context, java.lang.String date, java.lang.String pattern, java.lang.String timeZone, java.util.Date defaultValue)
+	public ParseDateTimeWithTimezone(
+		IContext context,
+		java.lang.String _date,
+		java.lang.String _pattern,
+		java.lang.String _timeZone,
+		java.util.Date _defaultValue
+	)
 	{
 		super(context);
-		this.date = date;
-		this.pattern = pattern;
-		this.timeZone = timeZone;
-		this.defaultValue = defaultValue;
+		this.date = _date;
+		this.pattern = _pattern;
+		this.timeZone = _timeZone;
+		this.defaultValue = _defaultValue;
 	}
 
 	@java.lang.Override

@@ -52,7 +52,7 @@ import { QuestionAnswerModule } from '@credo-ts/question-answer';
 import { DrpcModule } from '@credo-ts/drpc';
 import { SurveyModule } from '@entidad/credo-ts-survey';
 import { UserProfileModule } from 'credo-ts-user-profile'
-import { MediaSharingModule } from 'credo-ts-media-sharing';//https://github.com/2060-io/credo-ts-media-sharing
+import { MediaSharingModule } from '@2060.io/credo-ts-didcomm-media-sharing';//https://github.com/2060-io/credo-ts-didcomm-ext
 import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds';
 import { ReceiptsModule } from '@2060.io/credo-ts-didcomm-receipts'; //https://github.com/2060-io/credo-ts-didcomm-ext
 
@@ -80,7 +80,7 @@ import { ReceiptsModule } from '@2060.io/credo-ts-didcomm-receipts'; //https://g
  * @param {string} defaultMediatorId
  * @param {boolean} clearDefaultMediator
  * @param {Big} mediatorPollingInterval
- * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"|"Agent_SDK.enum_aries_MediatorPickupStrategy.None"} mediatorPickupStrategy
+ * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"|"Agent_SDK.enum_aries_MediatorPickupStrategy.None"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2LiveMode"} mediatorPickupStrategy
  * @param {Big} maximumMessagePickup
  * @param {boolean} useLegacyDidSovPrefix
  * @param {string} connectionImageUrl
@@ -242,13 +242,13 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if (autoAcceptProofs == null) autoAcceptProofs = "Never";
 		switch (autoAcceptProofs) {
 			case "Never":
-				autoAcceptProofs = AutoAcceptProof.Never;
+				autoAcceptProofs_ = AutoAcceptProof.Never;
 				break;
 			case "ContentApproved":
-				autoAcceptProofs = AutoAcceptProof.ContentApproved;
+				autoAcceptProofs_ = AutoAcceptProof.ContentApproved;
 				break;
 			case "Always":
-				autoAcceptProofs = AutoAcceptProof.Always;
+				autoAcceptProofs_ = AutoAcceptProof.Always;
 				break;
 			default:
 				return Promise.reject("Invalid autoAcceptProofs parameter");
@@ -260,6 +260,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if (clearDefaultMediator == null) clearDefaultMediator = false;
 		if (mediatorPollingInterval == null) mediatorPollingInterval = 5000;
 		if (mediatorPickupStrategy == null);
+		//if (mediatorPickupStrategy == null) return Promise.reject("Invalid mediatorPickupStrategy");
 		switch (mediatorPickupStrategy) {
 			case "PickUpV1":
 				mediatorPickupStrategy = MediatorPickupStrategy.PickUpV1;
@@ -267,6 +268,9 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			case "PickUpV2":
 				mediatorPickupStrategy = MediatorPickupStrategy.PickUpV2;
 				break;
+			case "PickUpV2LiveMode":
+				mediatorPickupStrategy = MediatorPickupStrategy.PickUpV2LiveMode;
+				break;	
 			case "Implicit":
 				mediatorPickupStrategy = MediatorPickupStrategy.Implicit;
 				break;
@@ -274,7 +278,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				mediatorPickupStrategy = MediatorPickupStrategy.None;
 				break;
 			default:
-				//return Promise.reject("Invalid mediatorPickupStrategy parameter");
+				
 				break;
 		}
 		if (maximumMessagePickup == null) maximumMessagePickup = 10;
@@ -422,7 +426,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		}
 		try {
 			agentModules.proofs = new ProofsModule({
-				autoAcceptProofs: autoAcceptProofs,
+				autoAcceptProofs: autoAcceptProofs_,
 				proofProtocols: proofProtocols
 			});
 		} catch (e) {
@@ -546,7 +550,8 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if (mediationRecipient) {
 			try {
 				agentModules.mediationRecipient = new MediationRecipientModule((mediationConnectionsInvitation != null) ? ({
-					mediatorInvitationUrl: mediationConnectionsInvitation
+					mediatorInvitationUrl: mediationConnectionsInvitation,
+					mediatorPickupStrategy: MediatorPickupStrategy.PickUpV2LiveMode, // We want to manually connect to the mediator, so it doesn't impact wallet startup
 					//todo:mediatorPickupStrategy: MediatorPickupStrategy.X,
 				}) : ({}));
 			} catch (e) {

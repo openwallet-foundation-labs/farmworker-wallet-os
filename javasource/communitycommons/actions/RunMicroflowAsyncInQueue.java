@@ -20,12 +20,15 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class RunMicroflowAsyncInQueue extends CustomJavaAction<java.lang.Boolean>
 {
-	private java.lang.String microflow;
+	private final java.lang.String microflow;
 
-	public RunMicroflowAsyncInQueue(IContext context, java.lang.String microflow)
+	public RunMicroflowAsyncInQueue(
+		IContext context,
+		java.lang.String _microflow
+	)
 	{
 		super(context);
-		this.microflow = microflow;
+		this.microflow = _microflow;
 	}
 
 	@java.lang.Override

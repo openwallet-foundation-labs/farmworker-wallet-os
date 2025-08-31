@@ -21,12 +21,15 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class commitWithoutEvents extends CustomJavaAction<java.lang.Boolean>
 {
-	private IMendixObject subject;
+	private final IMendixObject subject;
 
-	public commitWithoutEvents(IContext context, IMendixObject subject)
+	public commitWithoutEvents(
+		IContext context,
+		IMendixObject _subject
+	)
 	{
 		super(context);
-		this.subject = subject;
+		this.subject = _subject;
 	}
 
 	@java.lang.Override

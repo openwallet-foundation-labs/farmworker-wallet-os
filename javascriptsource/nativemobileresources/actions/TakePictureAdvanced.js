@@ -89,7 +89,7 @@ export async function TakePictureAdvanced(picture, pictureSource, pictureQuality
     }
     function takePicture() {
         return new Promise((resolve, reject) => {
-            const options = nativeVersionMajor === 2 ? getOptionsV2() : getOptionsV4();
+            const options = nativeVersionMajor === 2 ? getOptionsV2() : getOptions();
             getPictureMethod()
                 .then(method => method(options, (response) => {
                 if (response.didCancel) {
@@ -211,9 +211,10 @@ export async function TakePictureAdvanced(picture, pictureSource, pictureQuality
             }
         };
     }
-    function getOptionsV4() {
+    function getOptions() {
         const { maxWidth, maxHeight } = getPictureQuality();
         return {
+            presentationStyle: "fullScreen",
             mediaType: "photo",
             maxWidth,
             maxHeight

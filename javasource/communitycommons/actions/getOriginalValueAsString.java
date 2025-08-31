@@ -25,14 +25,18 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class getOriginalValueAsString extends CustomJavaAction<java.lang.String>
 {
-	private IMendixObject item;
-	private java.lang.String member;
+	private final IMendixObject item;
+	private final java.lang.String member;
 
-	public getOriginalValueAsString(IContext context, IMendixObject item, java.lang.String member)
+	public getOriginalValueAsString(
+		IContext context,
+		IMendixObject _item,
+		java.lang.String _member
+	)
 	{
 		super(context);
-		this.item = item;
-		this.member = member;
+		this.item = _item;
+		this.member = _member;
 	}
 
 	@java.lang.Override

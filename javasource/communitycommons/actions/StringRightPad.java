@@ -24,16 +24,21 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class StringRightPad extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String value;
-	private java.lang.Long amount;
-	private java.lang.String fillCharacter;
+	private final java.lang.String value;
+	private final java.lang.Long amount;
+	private final java.lang.String fillCharacter;
 
-	public StringRightPad(IContext context, java.lang.String value, java.lang.Long amount, java.lang.String fillCharacter)
+	public StringRightPad(
+		IContext context,
+		java.lang.String _value,
+		java.lang.Long _amount,
+		java.lang.String _fillCharacter
+	)
 	{
 		super(context);
-		this.value = value;
-		this.amount = amount;
-		this.fillCharacter = fillCharacter;
+		this.value = _value;
+		this.amount = _amount;
+		this.fillCharacter = _fillCharacter;
 	}
 
 	@java.lang.Override

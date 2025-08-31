@@ -24,29 +24,37 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class DuplicateImageDocument extends CustomJavaAction<java.lang.Boolean>
 {
-	private IMendixObject __fileToClone;
-	private system.proxies.Image fileToClone;
-	private IMendixObject __cloneTarget;
-	private system.proxies.Image cloneTarget;
-	private java.lang.Long thumbWidth;
-	private java.lang.Long thumbHeight;
+	/** @deprecated use fileToClone.getMendixObject() instead. */
+	@java.lang.Deprecated(forRemoval = true)
+	private final IMendixObject __fileToClone;
+	private final system.proxies.Image fileToClone;
+	/** @deprecated use cloneTarget.getMendixObject() instead. */
+	@java.lang.Deprecated(forRemoval = true)
+	private final IMendixObject __cloneTarget;
+	private final system.proxies.Image cloneTarget;
+	private final java.lang.Long thumbWidth;
+	private final java.lang.Long thumbHeight;
 
-	public DuplicateImageDocument(IContext context, IMendixObject fileToClone, IMendixObject cloneTarget, java.lang.Long thumbWidth, java.lang.Long thumbHeight)
+	public DuplicateImageDocument(
+		IContext context,
+		IMendixObject _fileToClone,
+		IMendixObject _cloneTarget,
+		java.lang.Long _thumbWidth,
+		java.lang.Long _thumbHeight
+	)
 	{
 		super(context);
-		this.__fileToClone = fileToClone;
-		this.__cloneTarget = cloneTarget;
-		this.thumbWidth = thumbWidth;
-		this.thumbHeight = thumbHeight;
+		this.__fileToClone = _fileToClone;
+		this.fileToClone = _fileToClone == null ? null : system.proxies.Image.initialize(getContext(), _fileToClone);
+		this.__cloneTarget = _cloneTarget;
+		this.cloneTarget = _cloneTarget == null ? null : system.proxies.Image.initialize(getContext(), _cloneTarget);
+		this.thumbWidth = _thumbWidth;
+		this.thumbHeight = _thumbHeight;
 	}
 
 	@java.lang.Override
 	public java.lang.Boolean executeAction() throws Exception
 	{
-		this.fileToClone = this.__fileToClone == null ? null : system.proxies.Image.initialize(getContext(), __fileToClone);
-
-		this.cloneTarget = this.__cloneTarget == null ? null : system.proxies.Image.initialize(getContext(), __cloneTarget);
-
 		// BEGIN USER CODE
 		return Misc.duplicateImage(this.getContext(), fileToClone.getMendixObject(), cloneTarget.getMendixObject(), thumbWidth.intValue(), thumbHeight.intValue());
 		// END USER CODE

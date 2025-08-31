@@ -21,23 +21,23 @@
     "@credo-ts/react-native": "0.5.13",
     "@credo-ts/transport-ble": "0.3.0",
     "@entidad/credo-ts-survey": "git+http://github.com/entidad/credo-ts-survey.git",
-    "@hyperledger/anoncreds-react-native": "0.2.4",
+    "@hyperledger/anoncreds-react-native": "^0.3.1",
     "@hyperledger/aries-askar-react-native": "0.2.3",
     "@hyperledger/indy-vdr-react-native": "0.2.2",
     "@stablelib/sha256": "^2.0.0",
     "base-64": "^1.0.0",
     "big-integer": "^1.6.52",
     "credo-ts-didweb-anoncreds": "0.0.1-alpha.14",
-    "credo-ts-media-sharing": "git+http://github.com/entidad/credo-ts-media-sharing.git",
     "credo-ts-user-profile": "git+http://github.com/entidad/credo-ts-user-profile.git",
     "react-native-fs": "^2.20.0",
     "react-native-get-random-values": "^1.11.0",
     "text-encoding": "^0.7.0",
     "@2060.io/credo-ts-didcomm-reactions": "0.0.2",
-    "@2060.io/credo-ts-didcomm-receipts": "0.0.7"
+    "@2060.io/credo-ts-didcomm-receipts": "0.0.7",
+    "@2060.io/credo-ts-didcomm-media-sharing": "0.0.3"
   },
   "patchedDependencies": {
-    "@credo-ts/core": "patches/@credo-ts+core+0.5.10.patch"
+    "@credo-ts/core": "patches/@credo-ts+core+0.5.13.patch"
   },
   "devDependencies": {
     "patch-package": "^8.0.0",

@@ -10,10 +10,13 @@
     .layout-atlas-responsive,
     .layout-atlas-responsive-default {
         @media (min-width: $screen-md) {
+            --closed-sidebar-width: #{$navsidebar-width-closed};
             .mx-scrollcontainer-shrink:not(.mx-scrollcontainer-open) > .region-sidebar,
             .mx-scrollcontainer-push:not(.mx-scrollcontainer-open) > .region-sidebar,
             .mx-scrollcontainer-slide:not(.mx-scrollcontainer-open) > .region-sidebar {
-                width: $navsidebar-width-closed !important;
+                @if (not $use-modern-client) {
+                    width: $navsidebar-width-closed !important;
+                }
 
                 .mx-scrollcontainer-wrapper .mx-navigationtree ul li {
                     &.mx-navigationtree-has-items a {
@@ -23,7 +26,7 @@
                     &.mx-navigationtree-has-items:hover > ul {
                         position: absolute;
                         z-index: 100;
-                        top: 0;
+                        top: $topbar-minimalheight;
                         bottom: 0;
                         left: $sidebar-icon-width;
                         display: block;
@@ -31,6 +34,7 @@
                         padding: $spacing-small 0;
 
                         & > li.mx-navigationtree-has-items:hover > ul {
+                            top: 0;
                             left: 100%;
                         }
                     }
@@ -70,34 +74,36 @@
             }
         }
 
-        .mx-scrollcontainer-slide {
-            &:not(.mx-scrollcontainer-open) > .region-sidebar {
-                overflow: hidden;
-            }
+        @if (not $use-modern-client) {
+            .mx-scrollcontainer-slide {
+                &:not(.mx-scrollcontainer-open) > .region-sidebar {
+                    overflow: hidden;
+                }
 
-            &.mx-scrollcontainer-open > .region-sidebar {
-                width: $navsidebar-width-closed !important;
+                &.mx-scrollcontainer-open > .region-sidebar {
+                    width: $navsidebar-width-closed !important;
 
-                & > .mx-scrollcontainer-wrapper {
-                    position: relative;
+                    & > .mx-scrollcontainer-wrapper {
+                        position: relative;
+                    }
+                }
+
+                .region-sidebar > .mx-scrollcontainer-wrapper {
+                    z-index: 2;
+                    left: -$navsidebar-width-closed;
+                    background-color: inherit;
                 }
             }
 
-            .region-sidebar > .mx-scrollcontainer-wrapper {
-                z-index: 2;
-                left: -$navsidebar-width-closed;
-                background-color: inherit;
-            }
-        }
+            // Push aside for mobile
+            @media (max-width: $screen-sm-max) {
+                .mx-scrollcontainer-open:not(.mx-scrollcontainer-slide) {
+                    width: 1100px;
+                }
 
-        // Push aside for mobile
-        @media (max-width: $screen-sm-max) {
-            .mx-scrollcontainer-open:not(.mx-scrollcontainer-slide) {
-                width: 1100px;
-            }
-
-            .mx-scrollcontainer-slide .toggle-btn {
-                display: inline-block !important;
+                .mx-scrollcontainer-slide .toggle-btn {
+                    display: inline-block !important;
+                }
             }
         }
 

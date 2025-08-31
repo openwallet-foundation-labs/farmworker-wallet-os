@@ -1,7 +1,9 @@
 // Default variables
-@import "exclusion-variables";
+@import "exclusion-variables-defaults";
 @import "../../../theme/web/exclusion-variables";
+@import "generated-exclusion-variables";
 @import "variables";
+@import "variables-css-mappings";
 @import "../../../theme/web/custom-variables";
 
 // Font Family Import
@@ -212,6 +214,16 @@
 @import "core/widgets/radio-button";
 @if not $exclude-radio-button {
     @include radio-button();
+}
+
+@import "core/widgets/scroll-container-react";
+@import "core/widgets/scroll-container-dojo";
+@if not $exclude-scroll-container {
+    @if $use-modern-client {
+        @include scroll-container-react();
+    } @else {
+        @include scroll-container-dojo();
+    }
 }
 
 @import "core/widgets/tab-container";

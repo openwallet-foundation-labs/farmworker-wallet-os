@@ -24,14 +24,18 @@ import java.util.Date;
  */
 public class YearsBetween extends CustomJavaAction<java.lang.Long>
 {
-	private java.util.Date dateTime;
-	private java.util.Date compareDate;
+	private final java.util.Date dateTime;
+	private final java.util.Date compareDate;
 
-	public YearsBetween(IContext context, java.util.Date dateTime, java.util.Date compareDate)
+	public YearsBetween(
+		IContext context,
+		java.util.Date _dateTime,
+		java.util.Date _compareDate
+	)
 	{
 		super(context);
-		this.dateTime = dateTime;
-		this.compareDate = compareDate;
+		this.dateTime = _dateTime;
+		this.compareDate = _compareDate;
 	}
 
 	@java.lang.Override

@@ -22,12 +22,15 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class ThrowWebserviceException extends CustomJavaAction<java.lang.Boolean>
 {
-	private java.lang.String faultstring;
+	private final java.lang.String faultstring;
 
-	public ThrowWebserviceException(IContext context, java.lang.String faultstring)
+	public ThrowWebserviceException(
+		IContext context,
+		java.lang.String _faultstring
+	)
 	{
 		super(context);
-		this.faultstring = faultstring;
+		this.faultstring = _faultstring;
 	}
 
 	@java.lang.Override

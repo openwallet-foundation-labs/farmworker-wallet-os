@@ -19,14 +19,18 @@ import communitycommons.proxies.SplitItem;
 
 public class StringSplit extends CustomJavaAction<java.util.List<IMendixObject>>
 {
-	private java.lang.String inputString;
-	private java.lang.String splitParameter;
+	private final java.lang.String inputString;
+	private final java.lang.String splitParameter;
 
-	public StringSplit(IContext context, java.lang.String inputString, java.lang.String splitParameter)
+	public StringSplit(
+		IContext context,
+		java.lang.String _inputString,
+		java.lang.String _splitParameter
+	)
 	{
 		super(context);
-		this.inputString = inputString;
-		this.splitParameter = splitParameter;
+		this.inputString = _inputString;
+		this.splitParameter = _splitParameter;
 	}
 
 	@java.lang.Override

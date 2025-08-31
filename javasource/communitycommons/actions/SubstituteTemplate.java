@@ -34,16 +34,21 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class SubstituteTemplate extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String template;
-	private IMendixObject substitute;
-	private java.lang.Boolean useHTMLEncoding;
+	private final java.lang.String template;
+	private final IMendixObject substitute;
+	private final java.lang.Boolean useHTMLEncoding;
 
-	public SubstituteTemplate(IContext context, java.lang.String template, IMendixObject substitute, java.lang.Boolean useHTMLEncoding)
+	public SubstituteTemplate(
+		IContext context,
+		java.lang.String _template,
+		IMendixObject _substitute,
+		java.lang.Boolean _useHTMLEncoding
+	)
 	{
 		super(context);
-		this.template = template;
-		this.substitute = substitute;
-		this.useHTMLEncoding = useHTMLEncoding;
+		this.template = _template;
+		this.substitute = _substitute;
+		this.useHTMLEncoding = _useHTMLEncoding;
 	}
 
 	@java.lang.Override

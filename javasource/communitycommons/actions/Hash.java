@@ -17,27 +17,30 @@ import com.mendix.webui.CustomJavaAction;
  * Hashes a value using the SHA-256 hash algorithm. 
  * 
  * - value : the value to hash
- * - length : the desired length of the hash. 
  * 
- * Returns a SHA-256 hash of 'value', with length 'length'
+ * Returns a SHA-256 hash of 'value'
  */
 public class Hash extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String value;
-	private java.lang.Long length;
+	private final java.lang.String value;
+	private final java.lang.Long length;
 
-	public Hash(IContext context, java.lang.String value, java.lang.Long length)
+	public Hash(
+		IContext context,
+		java.lang.String _value,
+		java.lang.Long _length
+	)
 	{
 		super(context);
-		this.value = value;
-		this.length = length;
+		this.value = _value;
+		this.length = _length;
 	}
 
 	@java.lang.Override
 	public java.lang.String executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-		return StringUtils.hash(value, length.intValue());
+		return StringUtils.hash(value);
 		// END USER CODE
 	}
 
