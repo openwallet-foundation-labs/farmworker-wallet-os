@@ -17,7 +17,7 @@ import support from "../../agent_sdk/support/entidad";
  *     callback: (params: { drpcMessageRecord: DrpcRecord; removeListener: () => void }) => void | Promise<void>
  *   ) 
  * @param {string} agent_key
- * @param {Nanoflow} callback
+ * @param {Nanoflow} [callback]
  * @param {string} params_drpcMessageRecord - optional
  * @returns {Promise.<void>}
  */

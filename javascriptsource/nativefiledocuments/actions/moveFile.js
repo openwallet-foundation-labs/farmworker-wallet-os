@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import { Platform } from 'react-native';
 
 // END EXTRA CODE
@@ -28,21 +28,21 @@ import { Platform } from 'react-native';
 export async function moveFile(filepath, filepathType, destPath, destPathType, writeToLog) {
 	// BEGIN USER CODE
 	if (!filepath) {
-		Promise.reject(new Error("No file path specified"));
+		return Promise.reject(new Error("No file path specified"));
 	}
 	if (!filepathType) {
-		Promise.reject(new Error("No path type specified"));
+		return Promise.reject(new Error("No path type specified"));
 	}
 
 	if (!destPath) {
-		Promise.reject(new Error("No destination path specified"));
+		return Promise.reject(new Error("No destination path specified"));
 	}
 	if (!destPathType) {
-		Promise.reject(new Error("No destination type specified"));
+		return Promise.reject(new Error("No destination type specified"));
 	}
 
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
+		await NativeFileDocumentsUtils.writeToLog({
 			actionName: "moveFile",
 			logType: "Parameters",
 			logMessage: JSON.stringify({
@@ -54,18 +54,18 @@ export async function moveFile(filepath, filepathType, destPath, destPathType, w
 		});
 	}
 
-	const fullFilePath = NativeFileDocumentsUtils.getFullPath(filepath, filepathType, RNFS, Platform.OS);
-	const fullDestPath = NativeFileDocumentsUtils.getFullPath(destPath, destPathType, RNFS, Platform.OS);
+	const fullFilePath = NativeFileDocumentsUtils.getFullPathNoPrefix(filepath, filepathType, RNBlobUtil, Platform.OS);
+	const fullDestPath = NativeFileDocumentsUtils.getFullPathNoPrefix(destPath, destPathType, RNBlobUtil, Platform.OS);
 
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
+		await NativeFileDocumentsUtils.writeToLog({
 			actionName: "moveFile",
 			logType: "Info",
 			logMessage: "Full file path: " + fullFilePath + ", full dest path: " + fullDestPath
 		});
 	}
 
-	return RNFS.moveFile(fullFilePath, fullDestPath);
+	return RNBlobUtil.fs.mv(fullFilePath, fullDestPath);
 
 	// END USER CODE
 }

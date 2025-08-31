@@ -1,0 +1,55 @@
+{
+    "images": [
+        {
+            "filename": "ic_launcher.png",
+            "directory": "mipmap-mdpi",
+            "title": "mipmap-mdpi-ic_launcher.png"
+        },
+        {
+            "filename": "ic_launcher.png",
+            "directory": "mipmap-hdpi",
+            "title": "mipmap-hdpi-ic_launcher.png"
+        },
+        {
+            "filename": "ic_launcher.png",
+            "directory": "mipmap-xhdpi",
+            "title": "mipmap-xhdpi-ic_launcher.png"
+        },
+        {
+            "filename": "ic_launcher.png",
+            "directory": "mipmap-xxhdpi",
+            "title": "mipmap-xxhdpi-ic_launcher.png"
+        },
+        {
+            "filename": "ic_launcher.png",
+            "directory": "mipmap-xxxhdpi",
+            "title": "mipmap-xxxhdpi-ic_launcher.png"
+        },
+        {
+            "filename": "ic_launcher_round.png",
+            "directory": "mipmap-mdpi",
+            "title": "mipmap-mdpi-ic_launcher_round.png"
+        },
+        {
+            "filename": "ic_launcher_round.png",
+            "directory": "mipmap-hdpi",
+            "title": "mipmap-hdpi-ic_launcher_round.png"
+        },
+        {
+            "filename": "ic_launcher_round.png",
+            "directory": "mipmap-xhdpi",
+            "title": "mipmap-xhdpi-ic_launcher_round.png"
+        },
+        {
+            "filename": "ic_launcher_round.png",
+            "directory": "mipmap-xxhdpi",
+            "title": "mipmap-xxhdpi-ic_launcher_round.png"
+        },
+        {
+            "filename": "ic_launcher_round.png",
+            "directory": "mipmap-xxxhdpi",
+            "title": "mipmap-xxxhdpi-ic_launcher_round.png"
+        }
+    ],
+    "version": 1
+}

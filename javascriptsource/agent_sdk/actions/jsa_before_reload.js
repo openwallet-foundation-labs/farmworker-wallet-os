@@ -16,7 +16,7 @@ let _=null;
 /**
  * Adds callback to mendix mx.reload api call
  * This function is used when the react native application is restarted from the mendix modeler
- * @param {Nanoflow} callback
+ * @param {Nanoflow} [callback]
  * @returns {Promise.<void>}
  */
 export async function jsa_before_reload(callback) {

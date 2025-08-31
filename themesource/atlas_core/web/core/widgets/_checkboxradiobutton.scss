@@ -1,0 +1,23 @@
+//
+// DISCLAIMER:
+// Do not change this file because it is core styling.
+// Customizing core files will make updating Atlas much more difficult in the future.
+// To customize any core styling, copy the part you want to customize to styles/web/sass/app/ so the core styling is overwritten.
+//
+
+@mixin checkboxradiobutton() {
+    /* ==========================================================================
+       Checkbox Radio Button selection
+    ========================================================================== */
+
+    .list-horizontal {
+        .widget-checkbox-radio-selection-list {
+            flex-direction: row;
+            gap: var(--checkboxradio-gap, var(--spacing-small));
+        }
+    }
+
+    .widget-checkbox-radio-selection-list {
+        gap: var(--checkboxradio-gap, var(--spacing-none));
+    }
+}

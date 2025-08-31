@@ -188,6 +188,18 @@
             @media (max-width: $screen-sm-max) {
                 padding: 0 $spacing-small;
             }
+
+            .mx-scrollcontainer-wrapper {
+                .mx-layoutgrid,
+                .mx-layoutgrid-fluid {
+                    padding: 0 $gutter-size;
+                }
+            }
+
+            .mx-icon-filled,
+            .mx-icon-lined {
+                font-size: 20px;
+            }
         }
     }
 

@@ -174,7 +174,6 @@
         .control-label {
             overflow: hidden;
             margin-bottom: 4px;
-            text-align: left;
             text-overflow: ellipsis;
             color: $form-label-color;
             font-size: $form-label-size;
@@ -208,7 +207,13 @@
 
     // Targets only webkit iOS devices
     .dj_webkit.dj_ios .form-control {
-        transform: translateZ(0);
+        transform: translate3d(0,0,0);
+        -webkit-transform: translate3d(0,0,0);
+
+         &.widget-dropdown-filter{
+            transform: inherit;
+            -webkit-transform: inherit;
+        }
     }
 
     @media only screen and (min-width: $screen-md) {

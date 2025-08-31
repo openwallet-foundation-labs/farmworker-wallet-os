@@ -1,0 +1,71 @@
+buildscript {
+    ext {
+        buildToolsVersion = "35.0.0"
+        minSdkVersion = 24
+        compileSdkVersion = 35
+        targetSdkVersion = 35
+        kotlinVersion = "1.9.24"
+        excludeAppGlideModule = true
+        androidx_lifecycle_version = "2.8.6"
+        playServicesVersion = "18+"
+        firebaseMessagingVersion = "21.0.0"
+        androidXCore = "1.6.0"
+        androidXBrowser = "1.3.0"
+
+        ndkVersion = "26.1.10909125"
+    }
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://maven.fabric.io/public"
+        }
+        maven {
+            url "https://packages.rnd.mendix.com/jcenter"
+        }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.8.2"
+        classpath "com.facebook.react:react-native-gradle-plugin"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath 'org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.0.21'
+        apply from: file("../node_modules/@mendix/native/androidlib/mendix.gradle"); applyMendixClassPaths(project)
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        all { repo ->
+            println repo.url.toString()
+            if (repo.url.toString().contains("jcenter.bintray.com") || repo.url.toString().contains("jitpack.io")) {
+                project.logger.warn "Repository ${repo.url} removed."
+                remove repo
+                google()
+                mavenCentral()
+            }
+        }
+        maven {
+            url "$rootDir/../node_modules/detox/Detox-android"
+        }
+        google()
+        maven {
+            url "https://maven.fabric.io/public"
+        }
+        maven { url "https://www.jitpack.io" }
+        maven {
+            url "https://maven.scijava.org/content/repositories/public/"
+        }
+        maven {
+            url "https://maven.scijava.org/content/repositories/jitpack/"
+        }
+        maven {
+            url "https://maven.scijava.org/content/repositories/jcenter/"
+        }
+        maven { url "https://packages.rnd.mendix.com/jcenter" }
+    }
+}
+
+apply plugin: "com.facebook.react.rootproject"

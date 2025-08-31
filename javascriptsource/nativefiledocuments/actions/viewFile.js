@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import FileViewer from "react-native-file-viewer";
 import { Platform } from 'react-native';
 
@@ -26,40 +26,44 @@ import { Platform } from 'react-native';
  */
 export async function viewFile(filepath, pathType, writeToLog) {
 	// BEGIN USER CODE
-	return new Promise(function (resolve, reject) {
-		if (!filepath) {
-			reject(new Error("No file path specified"));
-		}
-		if (!pathType) {
-			reject(new Error("No path type specified"));
-		}
-		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
-				actionName: "viewFile",
-				logType: "Parameters",
-				logMessage: JSON.stringify({
-					filepath: filepath,
-					pathType: pathType
-				})
-			});
-		}
-
-		const fullPath = NativeFileDocumentsUtils.getFullPathNoPrefix(filepath, pathType, RNFS, Platform.OS);
-
-		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
-				actionName: "viewFile",
-				logType: "Info",
-				logMessage: "Full path: " + fullPath
-			});
-		}
-
-		FileViewer.open(fullPath).then(() => {
-			resolve(true);
-		}).catch(() => {
-			reject(new Error("Failed to open document")); // Device has no app for the file type
+	if (!filepath) {
+		return Promise.reject(new Error("No file path specified"));
+	}
+	if (!pathType) {
+		return Promise.reject(new Error("No path type specified"));
+	}
+	if (writeToLog) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "viewFile",
+			logType: "Parameters",
+			logMessage: JSON.stringify({
+				filepath: filepath,
+				pathType: pathType
+			})
 		});
+	}
 
-	});
+	const fullPath = NativeFileDocumentsUtils.getFullPathNoPrefix(filepath, pathType, RNBlobUtil, Platform.OS);
+
+	if (writeToLog) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "viewFile",
+			logType: "Info",
+			logMessage: "Full path: " + fullPath
+		});
+	}
+
+	try {
+		await FileViewer.open(fullPath);
+		return true;
+	} catch (error) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "viewFile",
+			logType: "Exception",
+			logMessage: JSON.stringify(error)
+		});
+		return Promise.reject(error);
+	};
+
 	// END USER CODE
 }

@@ -11,12 +11,12 @@ package communitycommons.actions;
 
 import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Converts a base64 encoded string to the plain, original string
  */
-public class Base64Decode extends CustomJavaAction<java.lang.String>
+public class Base64Decode extends UserAction<java.lang.String>
 {
 	private final java.lang.String encoded;
 

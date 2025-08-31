@@ -12,14 +12,14 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.ORM;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Returns the user that created an object 
  * 
  * (or empty if not applicable).
  */
-public class getCreatedByUser extends CustomJavaAction<IMendixObject>
+public class getCreatedByUser extends UserAction<IMendixObject>
 {
 	private final IMendixObject thing;
 

@@ -12,7 +12,7 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Given an object and a template, substitutes all fields in the template. Supports attributes, references, referencesets and constants. 
@@ -32,7 +32,7 @@ import com.mendix.webui.CustomJavaAction;
  * 
  * datetimeformat identifies a format string which is applied to date/time based attributes. Can be left empty. Defaults to "EEE dd MMM yyyy, HH:mm"
  */
-public class SubstituteTemplate extends CustomJavaAction<java.lang.String>
+public class SubstituteTemplate extends UserAction<java.lang.String>
 {
 	private final java.lang.String template;
 	private final IMendixObject substitute;

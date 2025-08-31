@@ -2,6 +2,13 @@
 
 Zip archive utility for react-native
 
+## Attention
+
+In order to comply with the new privacy policy of the App Store on iOS, you need to upgrade react-native-zip-archive to version 7.0.0, which requires the deployment target to be iOS 15.5 or later.
+
+## For Expo Users
+
+The only way to make this work with Expo is to create a [dev build](https://docs.expo.dev/workflow/overview/#development-builds), the expo go is not supported.
 
 ## Compatibility
 
@@ -21,7 +28,7 @@ npm install react-native-zip-archive --save
 
 ## Linking
 
-For iOS, run the command below in you app's root folder once the package has been installed
+For iOS, run the command below in your app's root folder once the package has been installed
 
 ````bash
 cd ./ios && pod install
@@ -51,7 +58,7 @@ import { MainBundlePath, DocumentDirectoryPath } from 'react-native-fs'
 
 > zip source to target
 
-***NOTE: only support zip folder, not file entries***
+***NOTE: the string version of source is for folder, the string[] version is for file, so if you want to zip a single file, use zip([file]) instead of zip(file)***
 
 Example
 
@@ -72,7 +79,7 @@ zip(sourcePath, targetPath)
 
 > zip source to target
 
-***NOTE: only support zip folder, not file entries***
+***NOTE: the string version of source is for folder, the string[] version is for file, so if you want to zip a single file, use zip([file]) instead of zip(file)***
 
 ***NOTE: encryptionType is not supported on iOS yet, so it would be igonred on that platform.***
 
@@ -192,3 +199,7 @@ You can use this repo, https://github.com/plrthink/RNZATestApp, for testing and 
 
 - [ZipArchive](https://github.com/ZipArchive/ZipArchive)
 - [zip4j](https://github.com/srikanth-lingala/zip4j)
+
+---
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/plrthink)

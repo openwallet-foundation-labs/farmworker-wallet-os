@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="com.mendix.nativetemplate">
+    <application android:name="com.mendix.nativetemplate.DevApplication" tools:replace="android:name">
+        <activity android:name="com.mendix.nativetemplate.MainActivity" android:screenOrientation="userPortrait" android:windowSoftInputMode="adjustPan" tools:replace="android:windowSoftInputMode" tools:node="merge"/>
+        <activity android:name="com.mendix.mendixnative.activity.MendixReactActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode|fontScale" android:launchMode="singleInstance" android:windowSoftInputMode="adjustPan" android:exported="true"/>
+    </application>
+    <supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="false" android:xlargeScreens="false"/>
+</manifest>

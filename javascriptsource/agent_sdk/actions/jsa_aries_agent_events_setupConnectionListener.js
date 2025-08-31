@@ -51,7 +51,7 @@ function findKey(k, o) {
  * @param {string} agent_key
  * @param {"Agent_SDK.enum_aries_EventType.ConnectionStateChanged"|"Agent_SDK.enum_aries_EventType.BasicMessageStateChanged"|"Agent_SDK.enum_aries_EventType.CredentialStateChanged"|"Agent_SDK.enum_aries_EventType.RevocationNotificationReceived"|"Agent_SDK.enum_aries_EventType.ProofStateChanged"|"Agent_SDK.enum_aries_EventType.AgentMessageReceived"|"Agent_SDK.enum_aries_EventType.AgentMessageProcessed"|"Agent_SDK.enum_aries_EventType.AgentMessageSent"} eventType
  * @param {string} messageType
- * @param {Nanoflow} callback
+ * @param {Nanoflow} [callback]
  * @param {string} payloadParameterName - optional
  * @param {string} userDataParameterName - optional
  * @param {MxObject} userData - optional

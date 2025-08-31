@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import { Platform } from 'react-native';
 
 // END EXTRA CODE
@@ -27,13 +27,13 @@ export async function exists(filepath, pathType, writeToLog) {
 	// BEGIN USER CODE
 
 	if (!filepath) {
-		Promise.reject(new Error("No file path specified"));
+		return Promise.reject(new Error("No file path specified"));
 	}
 	if (!pathType) {
-		Promise.reject(new Error("No path type specified"));
+		return Promise.reject(new Error("No path type specified"));
 	}
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
+		await NativeFileDocumentsUtils.writeToLog({
 			actionName: "exists",
 			logType: "Parameters",
 			logMessage: JSON.stringify({
@@ -43,17 +43,17 @@ export async function exists(filepath, pathType, writeToLog) {
 		});
 	}
 
-	const fullPath = NativeFileDocumentsUtils.getFullPath(filepath, pathType, RNFS, Platform.OS);
+	const fullPath = NativeFileDocumentsUtils.getFullPathNoPrefix(filepath, pathType, RNBlobUtil, Platform.OS);
 
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
+		await NativeFileDocumentsUtils.writeToLog({
 			actionName: "exists",
 			logType: "Info",
 			logMessage: "Full path: " + fullPath
 		});
 	}
 
-	return RNFS.exists(fullPath);
+	return RNBlobUtil.fs.exists(fullPath);
 
 	// END USER CODE
 }

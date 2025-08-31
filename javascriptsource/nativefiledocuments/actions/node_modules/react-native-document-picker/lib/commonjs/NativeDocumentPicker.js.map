@@ -1,0 +1,1 @@
+{"version":3,"names":["_reactNative","require","NativeDocumentPicker","TurboModuleRegistry","getEnforcing","exports"],"sourceRoot":"../../src","sources":["NativeDocumentPicker.ts"],"mappings":";;;;;;AACA,IAAAA,YAAA,GAAAC,OAAA;AAyBO,MAAMC,oBAAoB,GAAGC,gCAAmB,CAACC,YAAY,CAAO,kBAAkB,CAAC;AAAAC,OAAA,CAAAH,oBAAA,GAAAA,oBAAA"}

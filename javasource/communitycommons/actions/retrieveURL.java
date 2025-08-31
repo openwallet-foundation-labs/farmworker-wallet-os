@@ -11,7 +11,7 @@ package communitycommons.actions;
 
 import communitycommons.Misc;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Retrieves data (such as an HTML page) from an URL using the HTTP protocol, and returns it as string. 
@@ -26,7 +26,7 @@ import com.mendix.webui.CustomJavaAction;
  * Example post data: 
  * 'ipSearchTag=url&x=0&y=0'
  */
-public class retrieveURL extends CustomJavaAction<java.lang.String>
+public class retrieveURL extends UserAction<java.lang.String>
 {
 	private final java.lang.String url;
 	private final java.lang.String postdata;

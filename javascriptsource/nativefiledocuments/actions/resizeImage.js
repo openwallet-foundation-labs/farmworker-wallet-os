@@ -12,8 +12,9 @@ import { Big } from "big.js";
 
 import ImageResizer from 'react-native-image-resizer';
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import { Platform } from 'react-native';
+import { create } from "mx-api/data";
 
 // END EXTRA CODE
 
@@ -35,99 +36,99 @@ import { Platform } from 'react-native';
 export async function resizeImage(filepath, pathType, maxWidth, maxHeight, compressFormat, quality, rotation, keepMeta, resizeMode, onlyScaleDown, writeToLog) {
 	// BEGIN USER CODE
 
-	return new Promise(function (resolve, reject) {
-		if (!filepath) {
-			reject(new Error("No file path specified"));
-		}
+	if (!filepath) {
+		return Promise.reject(new Error("No file path specified"));
+	}
 
-		if (!pathType) {
-			reject(new Error("No path type specified"));
-		}
+	if (!pathType) {
+		return Promise.reject(new Error("No path type specified"));
+	}
 
-		if (!maxWidth) {
-			reject(new Error("No maximum width specified"));
-		}
-		const maxWidthValue = Number(maxWidth);
-		if (maxWidthValue < 0) {
-			reject(new Error("Invalid maximum width: must be positive"));
-		}
+	if (!maxWidth) {
+		return Promise.reject(new Error("No maximum width specified"));
+	}
+	const maxWidthValue = Number(maxWidth);
+	if (maxWidthValue < 0) {
+		return Promise.reject(new Error("Invalid maximum width: must be positive"));
+	}
 
-		if (!maxHeight) {
-			reject(new Error("No maximum height specified"));
-		}
-		const maxHeightValue = Number(maxHeight);
-		if (maxHeightValue < 0) {
-			reject(new Error("Invalid maximum height: must be positive"));
-		}
+	if (!maxHeight) {
+		return Promise.reject(new Error("No maximum height specified"));
+	}
+	const maxHeightValue = Number(maxHeight);
+	if (maxHeightValue < 0) {
+		return Promise.reject(new Error("Invalid maximum height: must be positive"));
+	}
 
-		if (!compressFormat) {
-			reject(new Error("No compression format specified"));
-		}
+	if (!compressFormat) {
+		return Promise.reject(new Error("No compression format specified"));
+	}
 
-		if (!quality) {
-			reject(new Error("No quality specified"));
-		}
-		const qualityValue = Number(quality);
-		if (qualityValue < 0 || qualityValue > 100) {
-			reject(new Error("Invalid quality value: must be between 0 and 100"));
-		}
+	if (!quality) {
+		return Promise.reject(new Error("No quality specified"));
+	}
+	const qualityValue = Number(quality);
+	if (qualityValue < 0 || qualityValue > 100) {
+		return Promise.reject(new Error("Invalid quality value: must be between 0 and 100"));
+	}
 
-		if (!rotation) {
-			reject(new Error("No rotation specified"));
-		}
-		const rotationValue = Number(rotation);
-		if (rotationValue < 0) {
-			reject(new Error("Invalid rotation: must be positive"));
-		}
+	if (!rotation) {
+		return Promise.reject(new Error("No rotation specified"));
+	}
+	const rotationValue = Number(rotation);
+	if (rotationValue < 0) {
+		return Promise.reject(new Error("Invalid rotation: must be positive"));
+	}
 
-		if (!resizeMode) {
-			reject(new Error("No resize mode specified"));
-		}
+	if (!resizeMode) {
+		return Promise.reject(new Error("No resize mode specified"));
+	}
 
-		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
-				actionName: "resizeImage",
-				logType: "Parameters",
-				logMessage: JSON.stringify({
-					filepath: filepath,
-					pathType: pathType,
-					maxWidth: maxWidthValue,
-					maxHeight: maxHeightValue,
-					compressFormat: compressFormat,
-					quality: qualityValue,
-					rotation: rotationValue,
-					resizeMode: resizeMode
-				})
-			});
-		}
+	if (writeToLog) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "resizeImage",
+			logType: "Parameters",
+			logMessage: JSON.stringify({
+				filepath: filepath,
+				pathType: pathType,
+				maxWidth: maxWidthValue,
+				maxHeight: maxHeightValue,
+				compressFormat: compressFormat,
+				quality: qualityValue,
+				rotation: rotationValue,
+				resizeMode: resizeMode
+			})
+		});
+	}
 
-		const fullPath = NativeFileDocumentsUtils.getFullPathNoPrefix(filepath, pathType, RNFS, Platform.OS);
+	const fullPath = NativeFileDocumentsUtils.getFullPathNoPrefix(filepath, pathType, RNBlobUtil, Platform.OS);
 
-		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
-				actionName: "resizeImage",
-				logType: "Info",
-				logMessage: "Full path: " + fullPath
-			});
-		}
+	if (writeToLog) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "resizeImage",
+			logType: "Info",
+			logMessage: "Full path: " + fullPath
+		});
+	}
 
-		const slashPos = fullPath.lastIndexOf("/");
-		const outputPath = fullPath.substring(0, slashPos + 1);
+	const slashPos = fullPath.lastIndexOf("/");
+	const outputPath = fullPath.substring(0, slashPos + 1);
 
-		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
-				actionName: "resizeImage",
-				logType: "Info",
-				logMessage: "Output path: " + outputPath
-			});
-		}
+	if (writeToLog) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "resizeImage",
+			logType: "Info",
+			logMessage: "Output path: " + outputPath
+		});
+	}
 
-		const options = {
-			mode: resizeMode,
-			onlyScaleDown: onlyScaleDown
-		};
+	const options = {
+		mode: resizeMode,
+		onlyScaleDown: onlyScaleDown
+	};
 
-		ImageResizer.createResizedImage(
+	try {
+		const resizedImageData = await ImageResizer.createResizedImage(
 			fullPath,
 			maxWidthValue,
 			maxHeightValue,
@@ -137,31 +138,32 @@ export async function resizeImage(filepath, pathType, maxWidth, maxHeight, compr
 			outputPath,
 			keepMeta,
 			options
-		).then(resizedImageData => {
-			if (writeToLog) {
-				NativeFileDocumentsUtils.writeToLog({
-					actionName: "resizeImage",
-					logType: "Info",
-					logMessage: JSON.stringify(resizedImageData)
-				});
-			}
-			NativeFileDocumentsUtils.createMxObject("NativeFileDocuments.ResizeImageResult").then(resultMxObj => {
-				resultMxObj.set("ResizedWidth", resizedImageData.width);
-				resultMxObj.set("ResizedHeight", resizedImageData.height);
-				resultMxObj.set("Name", resizedImageData.name);
-				resultMxObj.set("FilePath", resizedImageData.path);
-				resolve(resultMxObj);
-			});
-		}).catch(error => {
-			// If this fails, always write a log entry
-			NativeFileDocumentsUtils.writeToLog({
-				actionName: "resizeImage",
-				logType: "Exception",
-				logMessage: JSON.stringify(error)
-			});
-			reject(error)
-		});
+		);
 
-	});
+		if (writeToLog) {
+			await NativeFileDocumentsUtils.writeToLog({
+				actionName: "resizeImage",
+				logType: "Info",
+				logMessage: JSON.stringify(resizedImageData)
+			});
+		}
+
+		const resultMxObj = await create({ entity: "NativeFileDocuments.ResizeImageResult"});
+		resultMxObj.set("ResizedWidth", resizedImageData.width);
+		resultMxObj.set("ResizedHeight", resizedImageData.height);
+		resultMxObj.set("Name", resizedImageData.name);
+		resultMxObj.set("FilePath", resizedImageData.path);
+		return resultMxObj;
+
+	} catch (error) {
+		// If this fails, always write a log entry
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "resizeImage",
+			logType: "Exception",
+			logMessage: JSON.stringify(error)
+		});
+		return Promise.reject(error)
+
+	};
 	// END USER CODE
 }

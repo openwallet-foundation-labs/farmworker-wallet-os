@@ -1,0 +1,7 @@
+import type { TurboModule } from 'react-native/Libraries/TurboModule/RCTExport';
+export interface Spec extends TurboModule {
+    launchCamera(options: Object, callback: () => void): void;
+    launchImageLibrary(options: Object, callback: () => void): void;
+}
+declare const _default: Spec | null;
+export default _default;

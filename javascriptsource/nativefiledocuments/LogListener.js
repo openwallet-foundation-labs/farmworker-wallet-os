@@ -1,12 +1,12 @@
 /* jshint node: true */
-/* globals mx */
 
 import { addLogListener } from "mendix/logging";
 import NativeFileDocumentsUtils from "./nativefiledocumentsutils";
+import { create } from "mx-api/data";
 
 "use strict";
 
-var RNFS;
+var RNBlobUtil;
 var os;
 var logFolderPath;
 var currentLogFileName;
@@ -93,7 +93,7 @@ const setCurrentLogFile = () => {
     currentLogFileName = "log_" + year + month + day + '_' + hours + minutes + seconds + '.txt';
     const logfilePath = logFolderPath + '/' + currentLogFileName;
     // console.info("LogListener current log file path: " + logfilePath);
-    currentFullLogFilePath = NativeFileDocumentsUtils.getFullPath(logfilePath, "DocumentsDirectory", RNFS, os);
+    currentFullLogFilePath = NativeFileDocumentsUtils.getFullPathNoPrefix(logfilePath, "DocumentsDirectory", RNBlobUtil, os);
 };
 
 const includeLogMessage = (logNode, logLevel) => {
@@ -111,16 +111,17 @@ const includeLogMessage = (logNode, logLevel) => {
     return flags[logLevel];
 }
 
-const writeToLogFile = textData => {
-    RNFS.appendFile(currentFullLogFilePath, new Date().toISOString() + "\t" + textData + "\n", "utf8")
-        .then()
-        .catch(e => {
-            const dummy = JSON.stringify(e);
-        });
+const writeToLogFile = async textData => {
+    const fileExists = await RNBlobUtil.fs.exists(currentFullLogFilePath);
+    if (fileExists) {
+        await RNBlobUtil.fs.appendFile(currentFullLogFilePath, new Date().toISOString() + "\t" + textData + "\n", "utf8");
+    } else {
+        await RNBlobUtil.fs.createFile(currentFullLogFilePath, new Date().toISOString() + "\t" + textData + "\n", "utf8");
+    }
 };
 
-const startListener = async (parmLogFolderPath, parmRNFS, parmOS) => {
-    RNFS = parmRNFS;
+const startListener = async (parmLogFolderPath, parmRNBlobUtil, parmOS) => {
+    RNBlobUtil = parmRNBlobUtil;
     os = parmOS;
     logFolderPath = parmLogFolderPath;
     setCurrentLogFile();
@@ -142,25 +143,10 @@ const rotateLog = () => {
     }
 };
 
-const createMxObject = async entityName => {
-	return new Promise((resolve, reject) => {
-		mx.data.create({
-			entity: entityName,
-			callback:  (mxObject) => {
-				resolve(mxObject);
-			},
-			error: (e) => {
-				reject("Could not create '" + entityName + "': " + e.message);
-			}
-		});
-
-	});
-};
-
 const getLogNodes = async () => {
     const result = [];
     for (const logNode of knownLogNodes.keys()) {
-        const mxObj = await createMxObject("NativeFileDocuments.LogNodeInfo");
+        const mxObj = await create({ entity: "NativeFileDocuments.LogNodeInfo"});
         mxObj.set("LogNode", logNode);
         const customLogLevel = config.logLevels[logNode];
         if (customLogLevel) {
@@ -179,9 +165,9 @@ const endListener = async () => {
 
     // Only log the listener stop log line if lines were logged.
     // Otherwise we end up with a lot of log files only containing this single line.
-    const logFileExists = await RNFS.exists(currentFullLogFilePath);
+    const logFileExists = await RNBlobUtil.fs.exists(currentFullLogFilePath);
     if (logFileExists) {
-        writeToLogFile("Stopping the log listener");
+        await writeToLogFile("Stopping the log listener");
     }
     if (removeListener) {
         removeListener();
@@ -193,8 +179,8 @@ const endListener = async () => {
 };
 
 const LogListener = {
-    startListener(logFolderPath, RNFS, os) {
-        startListener(logFolderPath, RNFS, os);
+    startListener(logFolderPath, RNBlobUtil, os) {
+        startListener(logFolderPath, RNBlobUtil, os);
     },
 
     isListenerActive() {

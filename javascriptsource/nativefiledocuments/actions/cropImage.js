@@ -9,6 +9,7 @@ import { Big } from "big.js";
 import "mx-global";
 import ImagePicker from "react-native-image-crop-picker";
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
+import { create } from "mx-api/data";
 
 // BEGIN EXTRA CODE
 // END EXTRA CODE
@@ -29,40 +30,41 @@ import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
  */
 export async function cropImage(sourceImageFullPath, cropWindowWidth, cropWindowHeight, cropperCircleOverlay, cancelCaption, confirmCaption, dialogTitle, writeToLog) {
 	// BEGIN USER CODE
-	return new Promise(function(resolve, reject) {
-		if (!sourceImageFullPath) {
-			reject(new Error("No source image path specified"));
-		}
+	if (!sourceImageFullPath) {
+		return Promise.reject(new Error("No source image path specified"));
+	}
 
-		if (!cropWindowWidth) {
-			reject(new Error("No crop window width specified"));
-		}
-		const cropWindowWidthValue = Number(cropWindowWidth);
-		if (cropWindowWidthValue < 0) {
-			reject(new Error("Invalid crop window width: must be positive"));
-		}
+	if (!cropWindowWidth) {
+		return Promise.reject(new Error("No crop window width specified"));
+	}
+	const cropWindowWidthValue = Number(cropWindowWidth);
+	if (cropWindowWidthValue < 0) {
+		return Promise.reject(new Error("Invalid crop window width: must be positive"));
+	}
 
-		if (!cropWindowHeight) {
-			reject(new Error("No crop window height specified"));
-		}
-		const cropWindowHeightValue = Number(cropWindowHeight);
-		if (cropWindowHeightValue < 0) {
-			reject(new Error("Invalid crop window height: must be positive"));
-		}
+	if (!cropWindowHeight) {
+		return Promise.reject(new Error("No crop window height specified"));
+	}
+	const cropWindowHeightValue = Number(cropWindowHeight);
+	if (cropWindowHeightValue < 0) {
+		return Promise.reject(new Error("Invalid crop window height: must be positive"));
+	}
 
-		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
-				actionName: "cropImage",
-				logType: "Parameters",
-				logMessage: JSON.stringify({
-					sourceImageFullPath: sourceImageFullPath,
-					cropWindowWidth: cropWindowWidthValue,
-					cropWindowHeight: cropWindowHeightValue
-				})
-			});
-		}
+	if (writeToLog) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "cropImage",
+			logType: "Parameters",
+			logMessage: JSON.stringify({
+				sourceImageFullPath: sourceImageFullPath,
+				cropWindowWidth: cropWindowWidthValue,
+				cropWindowHeight: cropWindowHeightValue
+			})
+		});
+	}
 
-		ImagePicker.openCropper({
+	try {
+
+		const cropData = await ImagePicker.openCropper({
 			path: sourceImageFullPath,
 			width: cropWindowWidthValue,
 			height: cropWindowHeightValue,
@@ -73,40 +75,39 @@ export async function cropImage(sourceImageFullPath, cropWindowWidth, cropWindow
 			cropperCancelText: cancelCaption ? cancelCaption : undefined,
 			cropperChooseText: confirmCaption ? confirmCaption : undefined,
 			cropperToolbarTitle: dialogTitle ? dialogTitle : undefined
-		}).then(cropData => {
+		});
+		if (writeToLog) {
+			await NativeFileDocumentsUtils.writeToLog({
+				actionName: "cropImage",
+				logType: "Info",
+				logMessage: JSON.stringify(cropData)
+			});
+		}
+		const resultMxObj = await create({entity: "NativeFileDocuments.ImageCropMetaData"});
+		resultMxObj.set("CroppedImageFullPath", cropData.path);
+		resultMxObj.set("CroppedWidth", cropData.width);
+		resultMxObj.set("CroppedHeight", cropData.height);
+		resultMxObj.set("CroppedSize", cropData.size);
+		return resultMxObj;
+
+	} catch (error) {
+		if (error.code === "E_PICKER_CANCELLED") {
 			if (writeToLog) {
-				NativeFileDocumentsUtils.writeToLog({
+				await NativeFileDocumentsUtils.writeToLog({
 					actionName: "cropImage",
 					logType: "Info",
-					logMessage: JSON.stringify(cropData)
+					logMessage: "User cancelled"
 				});
 			}
-			NativeFileDocumentsUtils.createMxObject("NativeFileDocuments.ImageCropMetaData").then(resultMxObj => {
-				resultMxObj.set("CroppedImageFullPath", cropData.path);
-				resultMxObj.set("CroppedWidth", cropData.width);
-				resultMxObj.set("CroppedHeight", cropData.height);
-				resultMxObj.set("CroppedSize", cropData.size);
-				resolve(resultMxObj);
+			return undefined;
+		} else {
+			await NativeFileDocumentsUtils.writeToLog({
+				actionName: "cropImage",
+				logType: "Exception",
+				logMessage: JSON.stringify(error)
 			});
-		}).catch(error => {
-			if (error.code === "E_PICKER_CANCELLED") {
-				if (writeToLog) {
-					NativeFileDocumentsUtils.writeToLog({
-						actionName: "cropImage",
-						logType: "Info",
-						logMessage: "User cancelled"
-					});
-				}
-				resolve(undefined);
-			} else {
-				NativeFileDocumentsUtils.writeToLog({
-					actionName: "cropImage",
-					logType: "Exception",
-					logMessage: JSON.stringify(error)
-				});
-				reject(error);
-			}
-		});
-	});
+			return Promise.reject(error);
+		}
+	};
 	// END USER CODE
 }

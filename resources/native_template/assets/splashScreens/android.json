@@ -1,0 +1,20 @@
+{
+    "images": [
+        {
+            "filename": "splash.png",
+            "directory": "drawable-hdpi",
+            "title": "drawable-hdpi-splash.png"
+        },
+        {
+            "filename": "splash.png",
+            "directory": "drawable-xhdpi",
+            "title": "drawable-xhdpi-splash.png"
+        },
+        {
+            "filename": "splash.png",
+            "directory": "drawable-xxhdpi",
+            "title": "drawable-xxhdpi-splash.png"
+        }
+    ],
+    "version": 1
+}

@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import { Platform } from 'react-native';
 
 // END EXTRA CODE
@@ -29,14 +29,14 @@ export async function getFullPathNoPrefix(filepath, pathType, writeToLog) {
 	// BEGIN USER CODE
 
 	if (!filepath) {
-		Promise.reject(new Error("No file path specified"));
+		return Promise.reject(new Error("No file path specified"));
 	}
 	if (!pathType) {
-		Promise.reject(new Error("No path type specified"));
+		return Promise.reject(new Error("No path type specified"));
 	}
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
-			actionName: "getFullPath",
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "getFullPathNoPrefix",
 			logType: "Parameters",
 			logMessage: JSON.stringify({
 				filepath: filepath,
@@ -45,11 +45,11 @@ export async function getFullPathNoPrefix(filepath, pathType, writeToLog) {
 		});
 	}
 
-	const fullPath = NativeFileDocumentsUtils.getFullPathNoPrefix(filepath, pathType, RNFS, Platform.OS);
+	const fullPath = NativeFileDocumentsUtils.getFullPathNoPrefix(filepath, pathType, RNBlobUtil, Platform.OS);
 
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
-			actionName: "getFullPath",
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "getFullPathNoPrefix",
 			logType: "Info",
 			logMessage: "Full path: " + fullPath
 		});

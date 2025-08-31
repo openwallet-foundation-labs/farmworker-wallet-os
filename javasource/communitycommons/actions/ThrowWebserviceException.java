@@ -11,7 +11,7 @@ package communitycommons.actions;
 
 import communitycommons.Misc;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * (Behavior has changed since version 3.2. The exception is now properly propagated to the cient). 
@@ -20,7 +20,7 @@ import com.mendix.webui.CustomJavaAction;
  * 
  * If debug level of community commons is set to 'debug' the errors will be locally visible as well, otherwise not. Throwing a webservice exception states that the webservice invocation was incorrect, not the webservice implementation.
  */
-public class ThrowWebserviceException extends CustomJavaAction<java.lang.Boolean>
+public class ThrowWebserviceException extends UserAction<java.lang.Boolean>
 {
 	private final java.lang.String faultstring;
 

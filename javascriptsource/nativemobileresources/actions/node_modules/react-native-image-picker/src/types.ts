@@ -8,6 +8,7 @@ export interface OptionsCommon {
   videoQuality?: AndroidVideoOptions | iOSVideoOptions;
   includeBase64?: boolean;
   includeExtra?: boolean;
+  formatAsMp4?: boolean;
   presentationStyle?:
     | 'currentContext'
     | 'fullScreen'
@@ -15,7 +16,11 @@ export interface OptionsCommon {
     | 'formSheet'
     | 'popover'
     | 'overFullScreen'
-    | 'overCurrentContext';
+    | 'overCurrentContext'
+    assetRepresentationMode?:
+    | 'auto'
+    | 'current'
+    | 'compatible';
 }
 
 export interface ImageLibraryOptions extends OptionsCommon {
@@ -33,6 +38,7 @@ export interface Asset {
   uri?: string;
   width?: number;
   height?: number;
+  originalPath?: string;
   fileSize?: number;
   type?: string;
   fileName?: string;

@@ -1,0 +1,15 @@
+/**
+ * Copyright (c) React Native Community
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @format
+ */
+export function setRNConfiguration(_config: any): void;
+export function requestAuthorization(_success: any, _error: any): void;
+export function getCurrentPosition(success: any, error: any, options: any): Promise<void>;
+export function watchPosition(success: any, error: any, options: any): number;
+export function clearWatch(watchID: any): void;
+export function stopObserving(): void;
+//# sourceMappingURL=implementation.d.ts.map

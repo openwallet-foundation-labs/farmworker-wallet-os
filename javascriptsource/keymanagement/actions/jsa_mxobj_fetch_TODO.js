@@ -63,8 +63,8 @@ import { Big } from "big.js";
  * });
  * @param {MxObject} input
  * @param {string} path
- * @param {Nanoflow} callback
- * @param {Nanoflow} error
+ * @param {Nanoflow} [callback]
+ * @param {Nanoflow} [error]
  * @returns {Promise.<void>}
  */
 export async function jsa_mxobj_fetch_TODO(input, path, callback, error) {

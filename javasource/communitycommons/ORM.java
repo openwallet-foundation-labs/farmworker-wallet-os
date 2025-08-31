@@ -12,7 +12,6 @@ import com.mendix.systemwideinterfaces.core.IMendixIdentifier;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import com.mendix.systemwideinterfaces.core.IMendixObject.ObjectState;
 import com.mendix.systemwideinterfaces.core.IMendixObjectMember;
-import com.mendix.systemwideinterfaces.core.IMendixObjectMember.MemberState;
 import com.mendix.systemwideinterfaces.core.meta.IMetaAssociation;
 import com.mendix.systemwideinterfaces.core.meta.IMetaAssociation.AssociationType;
 import com.mendix.systemwideinterfaces.core.meta.IMetaEnumValue;
@@ -27,7 +26,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import system.proxies.FileDocument;
 
 public class ORM {
 
@@ -37,7 +35,7 @@ public class ORM {
 
 	public static String getOriginalValueAsString(IContext context, IMendixObject item,
 		String member) {
-		return String.valueOf(item.getMember(context, member).getOriginalValue(context));
+		return String.valueOf(item.getMember(member).getOriginalValue(context));
 	}
 
 	public static boolean objectHasChanged(IMendixObject anyobject) {
@@ -45,6 +43,12 @@ public class ORM {
 			throw new IllegalArgumentException("The provided object is empty");
 		}
 		return anyobject.isChanged();
+	}
+
+	/** Returns true if any member has a value other than its original value. */
+	public static boolean objectHasChangedMemberValue(IContext context, IMendixObject object) {
+		if (object == null) throw new IllegalArgumentException("The provided object is empty");
+		return object.hasChangedMemberValue(context);
 	}
 
 	/**
@@ -63,7 +67,14 @@ public class ORM {
 		if (!item.hasMember(member)) {
 			throw new IllegalArgumentException("Unknown member: " + member);
 		}
-		return item.getMember(context, member).getState() == MemberState.CHANGED || item.getState() != ObjectState.NORMAL;
+		return item.getMember(member).isChanged() || item.getState() != ObjectState.NORMAL;
+	}
+
+	/** Check if the value of the member was changed to something other than its original value. */
+	public static boolean memberHasChangedValue(IContext context, IMendixObject item, String member) {
+		if (item == null) throw new IllegalArgumentException("The provided object is empty");
+		if (!item.hasMember(member)) throw new IllegalArgumentException("Unknown member: " + member);
+		return item.getMember(member).isValueChanged(context);
 	}
 
 	public static void deepClone(IContext c, IMendixObject source, IMendixObject target, String membersToSkip, String membersToKeep, String reverseAssociations, String excludeEntities, String excludeModules) throws CoreException {
@@ -195,7 +206,7 @@ public class ORM {
 	public static String getValueOfPath(IContext context, IMendixObject substitute, String fullpath, String datetimeformat) throws Exception {
 		String[] path = fullpath.split("/");
 		if (path.length == 1) {
-			IMendixObjectMember<?> member = substitute.getMember(context, path[0]);
+			IMendixObjectMember<?> member = substitute.getMember(path[0]);
 
 			//special case, see ticket 9135, format datetime.
 			if (member instanceof MendixDateTime) {
@@ -222,7 +233,7 @@ public class ORM {
 		} else if (path.length == 0) {
 			throw new Exception("communitycommons.ORM.getValueOfPath: Unexpected end of path.");
 		} else {
-			IMendixObjectMember<?> member = substitute.getMember(context, path[0]);
+			IMendixObjectMember<?> member = substitute.getMember(path[0]);
 			if (member instanceof MendixObjectReference) {
 				MendixObjectReference ref = (MendixObjectReference) member;
 				IMendixIdentifier id = ref.getValue(context);
@@ -260,11 +271,16 @@ public class ORM {
 	}
 
 	private static boolean isFileDocument(IMendixObject object) {
-		return Core.isSubClassOf(Core.getMetaObject(FileDocument.entityName), object.getMetaObject());
+		return object.getMetaObject().isFileDocument();
 	}
 
 	public static Boolean cloneObject(IContext c, IMendixObject source,
 		IMendixObject target, Boolean withAssociations) {
+		return cloneObject(c, source, target, withAssociations, false);
+	}
+
+	public static Boolean cloneObject(IContext c, IMendixObject source,
+		IMendixObject target, Boolean withAssociations, Boolean skipIsBoth) {
 		Map<String, ? extends IMendixObjectMember<?>> members = source.getMembers(c);
 
 		for (var entry : members.entrySet()) {
@@ -277,8 +293,12 @@ public class ORM {
 			}
 			if ("__UUID__".equals(m.getName()) && (isFileDocument(source) || isFileDocument(target))) {
 				continue;
-            }
+			}
 			if (withAssociations || ((!(m instanceof MendixObjectReference) && !(m instanceof MendixObjectReferenceSet) && !(m instanceof MendixAutoNumber)))) {
+				if (skipIsBoth && (
+					(m instanceof MendixObjectReference && ((MendixObjectReference) m).isBoth()) ||
+					(m instanceof MendixObjectReferenceSet && ((MendixObjectReferenceSet) m).isBoth())))
+					continue;
 				target.setValue(c, entry.getKey(), m.getValue(c));
 			}
 		}
@@ -287,7 +307,12 @@ public class ORM {
 
 	public static IMendixObject firstWhere(IContext c, String entityName,
 		Object member, String value) throws CoreException {
-		List<IMendixObject> items = Core.retrieveXPathQuery(c, String.format("//%s[%s =  '%s']", entityName, member, value), 1, 0, new HashMap<String, String>());
+		List<IMendixObject> items = 
+			Core.createXPathQuery(String.format("//%s[%s =  '%s']", entityName, member, value))
+				.setAmount(1)
+				.setOffset(0)
+				.execute(c);
+
 		if (items == null || items.size() == 0) {
 			return null;
 		}

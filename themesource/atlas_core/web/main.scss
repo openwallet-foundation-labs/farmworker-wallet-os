@@ -2,9 +2,9 @@
 @import "exclusion-variables-defaults";
 @import "../../../theme/web/exclusion-variables";
 @import "generated-exclusion-variables";
+@import "../../../theme/web/custom-variables";
 @import "variables";
 @import "variables-css-mappings";
-@import "../../../theme/web/custom-variables";
 
 // Font Family Import
 @if $font-family-import != false {
@@ -104,6 +104,11 @@
 @import "core/widgets/check-box";
 @if not $exclude-check-box {
     @include check-box();
+}
+
+@import "core/widgets/checkboxradiobutton";
+@if not $exclude-check-box-radio-button {
+    @include checkboxradiobutton();
 }
 
 @import "core/widgets/grid";

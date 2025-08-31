@@ -12,7 +12,7 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.ORM;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Clones objects, their associations and even referred objects. 
@@ -35,7 +35,7 @@ import com.mendix.webui.CustomJavaAction;
  * 
  * Note that DeepClone does commit all objects, where Clone does not.
  */
-public class DeepClone extends CustomJavaAction<java.lang.Boolean>
+public class DeepClone extends UserAction<java.lang.Boolean>
 {
 	private final IMendixObject source;
 	private final IMendixObject target;

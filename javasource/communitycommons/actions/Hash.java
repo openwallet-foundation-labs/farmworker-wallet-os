@@ -11,7 +11,7 @@ package communitycommons.actions;
 
 import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Hashes a value using the SHA-256 hash algorithm. 
@@ -20,7 +20,7 @@ import com.mendix.webui.CustomJavaAction;
  * 
  * Returns a SHA-256 hash of 'value'
  */
-public class Hash extends CustomJavaAction<java.lang.String>
+public class Hash extends UserAction<java.lang.String>
 {
 	private final java.lang.String value;
 	private final java.lang.Long length;

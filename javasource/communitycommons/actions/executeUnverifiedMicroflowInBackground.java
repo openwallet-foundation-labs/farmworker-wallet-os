@@ -10,9 +10,9 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.Misc;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * This action allows an microflow to be executed independently from this microflow. 
@@ -29,7 +29,7 @@ import com.mendix.systemwideinterfaces.core.IMendixObject;
  * 
  * Returns true if scheduled successfully.
  */
-public class executeUnverifiedMicroflowInBackground extends CustomJavaAction<java.lang.Boolean>
+public class executeUnverifiedMicroflowInBackground extends UserAction<java.lang.Boolean>
 {
 	private final java.lang.String microflowName;
 	private final IMendixObject contextObject;

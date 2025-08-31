@@ -10,13 +10,13 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.StringUtils;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Generates and asymmetric hexadecimal hash using the HMAC_SHA256 hash algorithm
  */
-public class GenerateHMAC_SHA256 extends CustomJavaAction<java.lang.String>
+public class GenerateHMAC_SHA256 extends UserAction<java.lang.String>
 {
 	private final java.lang.String key;
 	private final java.lang.String valueToEncrypt;

@@ -10,13 +10,13 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.StringUtils;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Escapes a string value so that it can be used literally with Mendix build-in regex replacement functions. (Otherwise the dollar sign would be interpreted as back reference to a match for example). 
  */
-public class RegexQuote extends CustomJavaAction<java.lang.String>
+public class RegexQuote extends UserAction<java.lang.String>
 {
 	private final java.lang.String unquotedLiteral;
 

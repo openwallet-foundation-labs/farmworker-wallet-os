@@ -88,3 +88,29 @@ $gallery-screen-md: $screen-md;
 .widget-gallery-item-button {
     width: inherit;
 }
+
+:where(.widget-gallery-footer-controls) {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+:where(.widget-gallery-fc-start) {
+    margin-block: var(--spacing-medium);
+    padding-inline: var(--spacing-medium);
+}
+
+:where(.widget-gallery-fc-start, .widget-gallery-fc-middle, .widget-gallery-fc-end) {
+    flex-grow: 1;
+    flex-basis: 33.33%;
+    min-height: 20px;
+}
+
+.widget-gallery-clear-selection {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    text-decoration: underline;
+    color: var(--link-color);
+    padding: 0;
+    display: inline-block;
+}

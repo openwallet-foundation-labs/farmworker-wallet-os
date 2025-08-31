@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import { Platform } from 'react-native';
 
 // END EXTRA CODE
@@ -23,34 +23,57 @@ import { Platform } from 'react-native';
  * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} pathType
  * @param {string} textData
  * @param {boolean} append - Append to the existing file contents or write as only file contents.
- * @returns {Promise.<boolean>}
+ * @param {boolean} writeToLog
+ * @returns {Promise.<void>}
  */
-export async function writeTextFile(filepath, pathType, textData, append) {
+export async function writeTextFile(filepath, pathType, textData, append, writeToLog) {
 	// BEGIN USER CODE
 
-	return new Promise(function (resolve, reject) {
-		if (!filepath) {
-			reject(new Error("No file path specified"));
-		}
-		if (!pathType) {
-			reject(new Error("No path type specified"));
-		}
-		if (!textData) {
-			reject(new Error("No data specified"));
-		}
+	if (!filepath) {
+		return Promise.reject(new Error("No file path specified"));
+	}
+	if (!pathType) {
+		return Promise.reject(new Error("No path type specified"));
+	}
+	if (!textData) {
+		return Promise.reject(new Error("No data specified"));
+	}
+	if (writeToLog) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "writeTextFile",
+			logType: "Parameters",
+			logMessage: JSON.stringify({
+				filepath: filepath,
+				pathType: pathType,
+				append: append ? "yes" : "no",
+				dataLength: textData.length
+			})
+		});
+	}
 
-		const fullPath = NativeFileDocumentsUtils.getFullPath(filepath, pathType, RNFS, Platform.OS);
+	const fullPath = NativeFileDocumentsUtils.getFullPathNoPrefix(filepath, pathType, RNBlobUtil, Platform.OS);
 
+	const fileExists = await RNBlobUtil.fs.exists(fullPath);
+
+	if (writeToLog) {
+		const logPrefix = fileExists ? "Existing" : "New";
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "writeTextFile",
+			logType: "Info",
+			logMessage: logPrefix + " full path: " + fullPath
+		});
+	}
+
+	if (fileExists) {
 		if (append) {
-			RNFS.appendFile(fullPath, textData, "utf8").then(() => {
-				resolve(true);
-			});
+			return RNBlobUtil.fs.appendFile(fullPath, textData, "utf8");
 		} else {
-			RNFS.writeFile(fullPath, textData, "utf8").then(() => {
-				resolve(true);
-			});
+			return RNBlobUtil.fs.writeFile(fullPath, textData, "utf8");
 		}
-	});
+	} else {
+		return RNBlobUtil.fs.createFile(fullPath, textData, "utf8");
+	}
+
 
 	// END USER CODE
 }

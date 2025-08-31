@@ -19,7 +19,7 @@ import support from"../support/entidad";
  * Note, connections to the Mediator are created using a public did hosted by the mediator. Using AFJ you can connect to the did, without first receiving an invitation
  * @param {string} agent_key
  * @param {string} mediatorDid - e.g. did:web:ab.cd.id
- * @param {Nanoflow} callback - optional
+ * @param {Nanoflow} [callback] - optional
  * @returns {Promise.<string>}
  */
 export async function jsa_aries_agent_mediator_setupMediationWithDid(agent_key, mediatorDid, callback) {

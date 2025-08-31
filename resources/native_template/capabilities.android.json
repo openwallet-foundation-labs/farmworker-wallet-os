@@ -1,0 +1,12 @@
+{
+    "deepLink": false,
+    "firebaseIos": false,
+    "firebaseAndroid": false,
+    "crashlytics": false,
+    "localNotifications": false,
+    "pushNotifications": false,
+    "appCenterOTA": false,
+    "maps": false,
+    "mapsIos": false,
+    "nativeOTA": false
+}

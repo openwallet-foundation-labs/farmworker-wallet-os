@@ -12,6 +12,7 @@ import { Big } from "big.js";
 
 import DocumentPicker from "react-native-document-picker";
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
+import { create } from "mx-api/data";
 
 // END EXTRA CODE
 
@@ -22,7 +23,7 @@ import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
  */
 export async function openDocumentPicker(allowedTypes, writeToLog) {
 	// BEGIN USER CODE
-	const resultMxObj = await NativeFileDocumentsUtils.createMxObject("NativeFileDocuments.DocumentPickerResult");
+	const resultMxObj = await create({ entity: "NativeFileDocuments.DocumentPickerResult" });
 
 	try {
 		// The contents of the file can only be directly accessed when copying it.
@@ -48,7 +49,7 @@ export async function openDocumentPicker(allowedTypes, writeToLog) {
 		}
 
 		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
+			await NativeFileDocumentsUtils.writeToLog({
 				actionName: "openDocumentPicker",
 				logType: "Parameters",
 				logMessage: JSON.stringify(options)
@@ -57,7 +58,7 @@ export async function openDocumentPicker(allowedTypes, writeToLog) {
 
 		const pickerResult = await DocumentPicker.pickSingle(options);
 		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
+			await NativeFileDocumentsUtils.writeToLog({
 				actionName: "openDocumentPicker",
 				logType: "Info",
 				logMessage: "Result: " + JSON.stringify(pickerResult)
@@ -73,7 +74,7 @@ export async function openDocumentPicker(allowedTypes, writeToLog) {
 	} catch(err) {
 		if (DocumentPicker.isCancel(err)) {
 			if (writeToLog) {
-				NativeFileDocumentsUtils.writeToLog({
+				await NativeFileDocumentsUtils.writeToLog({
 					actionName: "openDocumentPicker",
 					logType: "Info",
 					logMessage: "Cancelled by user"
@@ -82,7 +83,7 @@ export async function openDocumentPicker(allowedTypes, writeToLog) {
 			return resultMxObj;
 		} else {
 			if (writeToLog) {
-				NativeFileDocumentsUtils.writeToLog({
+				await NativeFileDocumentsUtils.writeToLog({
 					actionName: "openDocumentPicker",
 					logType: "Exception",
 					logMessage: JSON.stringify(err)

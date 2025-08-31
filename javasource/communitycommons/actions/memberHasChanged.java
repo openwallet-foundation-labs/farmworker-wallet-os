@@ -12,7 +12,7 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.ORM;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Checks whether a member has changed since the last commit. Useful in combination with getOriginalValueAsString.
@@ -22,7 +22,7 @@ import com.mendix.webui.CustomJavaAction;
  * 
  * Returns true if changed.
  */
-public class memberHasChanged extends CustomJavaAction<java.lang.Boolean>
+public class memberHasChanged extends UserAction<java.lang.Boolean>
 {
 	private final IMendixObject item;
 	private final java.lang.String member;

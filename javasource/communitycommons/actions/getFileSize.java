@@ -12,7 +12,7 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.Misc;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Returns the filesize of a file document in bytes.
@@ -22,7 +22,7 @@ import com.mendix.webui.CustomJavaAction;
  * NOTE:
  * before 2.1, this functioned returned the size in kilobytes, although this documentation mentioned bytes
  */
-public class getFileSize extends CustomJavaAction<java.lang.Long>
+public class getFileSize extends UserAction<java.lang.Long>
 {
 	/** @deprecated use document.getMendixObject() instead. */
 	@java.lang.Deprecated(forRemoval = true)

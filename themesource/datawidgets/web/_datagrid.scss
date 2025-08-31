@@ -335,7 +335,7 @@ $root: ".widget-datagrid";
     color: $dg-pagination-caption-color;
 
     .paging-status {
-        padding: 0 8px 8px;
+        padding: 0 8px 0;
     }
 
     .pagination-button {
@@ -410,7 +410,15 @@ $root: ".widget-datagrid";
     position: relative;
 
     &-grid {
-        display: grid !important;
+        &.table {
+            display: grid !important;
+            min-width: fit-content;
+            margin-bottom: 0;
+        }
+    }
+
+    &-content {
+        overflow-x: auto;
     }
 
     &-grid-head {
@@ -539,6 +547,33 @@ $root: ".widget-datagrid";
 :where(.infinite-loading .widget-datagrid-grid-head .th) {
     position: sticky;
     z-index: 1;
+}
+
+:where(#{$root}-paging-bottom) {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+:where(#{$root}-pb-start, #{$root}-pb-end, #{$root}-pb-middle) {
+    flex-grow: 1;
+    flex-basis: 33.33%;
+    min-height: 20px;
+}
+
+:where(#{$root}-pb-start) {
+    margin-block: var(--spacing-medium);
+    padding-inline: var(--spacing-medium);
+}
+
+#{$root}-clear-selection {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    text-decoration: underline;
+    color: var(--link-color);
+    padding: 0;
+    display: inline-block;
 }
 
 @keyframes skeleton-loading {

@@ -10,14 +10,14 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.Misc;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Identical to executeMicroflowAsUser, but takes 2 arguments
  */
-public class executeMicroflowAsUser_2 extends CustomJavaAction<java.lang.String>
+public class executeMicroflowAsUser_2 extends UserAction<java.lang.String>
 {
 	private final java.lang.String microflow;
 	private final java.lang.String username;

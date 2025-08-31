@@ -14,12 +14,12 @@ import communitycommons.StringUtils;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Reads the contents form the provided file document, using the specified encoding, and returns it as string.
  */
-public class StringFromFile extends CustomJavaAction<java.lang.String>
+public class StringFromFile extends UserAction<java.lang.String>
 {
 	/** @deprecated use source.getMendixObject() instead. */
 	@java.lang.Deprecated(forRemoval = true)

@@ -10,13 +10,13 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.StringUtils;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * True if a string can be simplified by the removal of diacritics.
  */
-public class IsStringSimplified extends CustomJavaAction<java.lang.Boolean>
+public class IsStringSimplified extends UserAction<java.lang.Boolean>
 {
 	private final java.lang.String value;
 

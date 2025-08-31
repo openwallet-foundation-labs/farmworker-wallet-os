@@ -11,7 +11,7 @@ package communitycommons.actions;
 
 import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Performs a regular expression. Similar to the replaceAll microflow function, but supports more advanced usages such as capture variables.
@@ -22,7 +22,7 @@ import com.mendix.webui.CustomJavaAction;
  * A decent regexp tester can be found at:
  * http://www.fileformat.info/tool/regex.htm
  */
-public class RegexReplaceAll extends CustomJavaAction<java.lang.String>
+public class RegexReplaceAll extends UserAction<java.lang.String>
 {
 	private final java.lang.String haystack;
 	private final java.lang.String needleRegex;
