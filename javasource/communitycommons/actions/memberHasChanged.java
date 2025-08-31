@@ -24,14 +24,18 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class memberHasChanged extends CustomJavaAction<java.lang.Boolean>
 {
-	private IMendixObject item;
-	private java.lang.String member;
+	private final IMendixObject item;
+	private final java.lang.String member;
 
-	public memberHasChanged(IContext context, IMendixObject item, java.lang.String member)
+	public memberHasChanged(
+		IContext context,
+		IMendixObject _item,
+		java.lang.String _member
+	)
 	{
 		super(context);
-		this.item = item;
-		this.member = member;
+		this.item = _item;
+		this.member = _member;
 	}
 
 	@java.lang.Override

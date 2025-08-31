@@ -20,12 +20,15 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class Delay extends CustomJavaAction<java.lang.Boolean>
 {
-	private java.lang.Long delaytime;
+	private final java.lang.Long delaytime;
 
-	public Delay(IContext context, java.lang.Long delaytime)
+	public Delay(
+		IContext context,
+		java.lang.Long _delaytime
+	)
 	{
 		super(context);
-		this.delaytime = delaytime;
+		this.delaytime = _delaytime;
 	}
 
 	@java.lang.Override

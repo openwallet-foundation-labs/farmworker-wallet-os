@@ -18,12 +18,15 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class StringSimplify extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String value;
+	private final java.lang.String value;
 
-	public StringSimplify(IContext context, java.lang.String value)
+	public StringSimplify(
+		IContext context,
+		java.lang.String _value
+	)
 	{
 		super(context);
-		this.value = value;
+		this.value = _value;
 	}
 
 	@java.lang.Override

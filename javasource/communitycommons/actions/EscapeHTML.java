@@ -21,12 +21,15 @@ import communitycommons.StringUtils;
  */
 public class EscapeHTML extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String rawString;
+	private final java.lang.String rawString;
 
-	public EscapeHTML(IContext context, java.lang.String rawString)
+	public EscapeHTML(
+		IContext context,
+		java.lang.String _rawString
+	)
 	{
 		super(context);
-		this.rawString = rawString;
+		this.rawString = _rawString;
 	}
 
 	@java.lang.Override

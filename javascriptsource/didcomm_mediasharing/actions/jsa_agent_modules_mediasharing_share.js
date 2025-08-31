@@ -33,6 +33,7 @@ export async function jsa_agent_modules_mediasharing_share(agent_key, recordId, 
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		let record=await agent.modules.media.share({
 			recordId: recordId,
+			parentThreadId: media.parentThreadId,
 			description: media.description,
 			items: media.items,
 		})

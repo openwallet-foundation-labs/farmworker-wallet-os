@@ -22,12 +22,15 @@ import java.util.Optional;
  */
 public class EnumerationFromString extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String toConvert;
+	private final java.lang.String toConvert;
 
-	public EnumerationFromString(IContext context, java.lang.String toConvert)
+	public EnumerationFromString(
+		IContext context,
+		java.lang.String _toConvert
+	)
 	{
 		super(context);
-		this.toConvert = toConvert;
+		this.toConvert = _toConvert;
 	}
 
 	@java.lang.Override

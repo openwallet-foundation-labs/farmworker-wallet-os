@@ -24,25 +24,31 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class DuplicateFileDocument extends CustomJavaAction<java.lang.Boolean>
 {
-	private IMendixObject __fileToClone;
-	private system.proxies.FileDocument fileToClone;
-	private IMendixObject __cloneTarget;
-	private system.proxies.FileDocument cloneTarget;
+	/** @deprecated use fileToClone.getMendixObject() instead. */
+	@java.lang.Deprecated(forRemoval = true)
+	private final IMendixObject __fileToClone;
+	private final system.proxies.FileDocument fileToClone;
+	/** @deprecated use cloneTarget.getMendixObject() instead. */
+	@java.lang.Deprecated(forRemoval = true)
+	private final IMendixObject __cloneTarget;
+	private final system.proxies.FileDocument cloneTarget;
 
-	public DuplicateFileDocument(IContext context, IMendixObject fileToClone, IMendixObject cloneTarget)
+	public DuplicateFileDocument(
+		IContext context,
+		IMendixObject _fileToClone,
+		IMendixObject _cloneTarget
+	)
 	{
 		super(context);
-		this.__fileToClone = fileToClone;
-		this.__cloneTarget = cloneTarget;
+		this.__fileToClone = _fileToClone;
+		this.fileToClone = _fileToClone == null ? null : system.proxies.FileDocument.initialize(getContext(), _fileToClone);
+		this.__cloneTarget = _cloneTarget;
+		this.cloneTarget = _cloneTarget == null ? null : system.proxies.FileDocument.initialize(getContext(), _cloneTarget);
 	}
 
 	@java.lang.Override
 	public java.lang.Boolean executeAction() throws Exception
 	{
-		this.fileToClone = this.__fileToClone == null ? null : system.proxies.FileDocument.initialize(getContext(), __fileToClone);
-
-		this.cloneTarget = this.__cloneTarget == null ? null : system.proxies.FileDocument.initialize(getContext(), __cloneTarget);
-
 		// BEGIN USER CODE
 		return Misc.duplicateFileDocument(this.getContext(), fileToClone.getMendixObject(), cloneTarget.getMendixObject());
 		// END USER CODE

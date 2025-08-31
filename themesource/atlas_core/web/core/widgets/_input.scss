@@ -38,11 +38,14 @@
         }
     }
 
-    .form-control:not([readonly]):focus {
-        border-color: $form-input-border-focus-color;
-        outline: 0;
-        background-color: $form-input-bg-focus;
-        box-shadow: none;
+    .form-control:not([readonly]) {
+        &:focus,
+        &:focus-within {
+            border-color: $form-input-border-focus-color;
+            outline: 0;
+            background-color: $form-input-bg-focus;
+            box-shadow: none;
+        }
     }
 
     .form-control[disabled],

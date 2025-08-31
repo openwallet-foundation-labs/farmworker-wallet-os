@@ -466,6 +466,13 @@ let floatingActionButton = {
         borderColor: brand.primary,
         backgroundColor: brand.primary
     },
+    buttonContainer: {
+        heigh: 50,
+        width: 50,
+        borderRadius: 25,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     buttonIcon: {
         size: font.sizeLarge,
         color: contrast.lowest

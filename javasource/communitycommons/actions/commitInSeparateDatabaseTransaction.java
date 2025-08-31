@@ -20,12 +20,15 @@ import com.mendix.systemwideinterfaces.core.IMendixObject;
  */
 public class commitInSeparateDatabaseTransaction extends CustomJavaAction<java.lang.Boolean>
 {
-	private IMendixObject mxObject;
+	private final IMendixObject mxObject;
 
-	public commitInSeparateDatabaseTransaction(IContext context, IMendixObject mxObject)
+	public commitInSeparateDatabaseTransaction(
+		IContext context,
+		IMendixObject _mxObject
+	)
 	{
 		super(context);
-		this.mxObject = mxObject;
+		this.mxObject = _mxObject;
 	}
 
 	@java.lang.Override

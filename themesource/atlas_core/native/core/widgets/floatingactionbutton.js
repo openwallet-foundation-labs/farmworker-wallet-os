@@ -35,6 +35,14 @@ export const com_mendix_widget_native_floatingactionbutton_FloatingActionButton 
             height: 2
         }
     },
+    buttonContainer: {
+        // All ViewStyle properties are allowed
+        width: floatingActionButton.button.size,
+        height: floatingActionButton.button.size,
+        borderRadius: floatingActionButton.button.size / 2,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     buttonIcon: {
         // Size and color are allowed
         size: floatingActionButton.buttonIcon.size,

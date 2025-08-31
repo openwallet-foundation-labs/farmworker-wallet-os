@@ -21,22 +21,27 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class StringFromFile extends CustomJavaAction<java.lang.String>
 {
-	private IMendixObject __source;
-	private system.proxies.FileDocument source;
-	private communitycommons.proxies.StandardEncodings encoding;
+	/** @deprecated use source.getMendixObject() instead. */
+	@java.lang.Deprecated(forRemoval = true)
+	private final IMendixObject __source;
+	private final system.proxies.FileDocument source;
+	private final communitycommons.proxies.StandardEncodings encoding;
 
-	public StringFromFile(IContext context, IMendixObject source, java.lang.String encoding)
+	public StringFromFile(
+		IContext context,
+		IMendixObject _source,
+		java.lang.String _encoding
+	)
 	{
 		super(context);
-		this.__source = source;
-		this.encoding = encoding == null ? null : communitycommons.proxies.StandardEncodings.valueOf(encoding);
+		this.__source = _source;
+		this.source = _source == null ? null : system.proxies.FileDocument.initialize(getContext(), _source);
+		this.encoding = _encoding == null ? null : communitycommons.proxies.StandardEncodings.valueOf(_encoding);
 	}
 
 	@java.lang.Override
 	public java.lang.String executeAction() throws Exception
 	{
-		this.source = this.__source == null ? null : system.proxies.FileDocument.initialize(getContext(), __source);
-
 		// BEGIN USER CODE
 		Charset charset = StandardCharsets.UTF_8;
 		if (this.encoding != null)

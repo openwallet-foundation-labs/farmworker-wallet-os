@@ -21,12 +21,15 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class getCreatedByUser extends CustomJavaAction<IMendixObject>
 {
-	private IMendixObject thing;
+	private final IMendixObject thing;
 
-	public getCreatedByUser(IContext context, IMendixObject thing)
+	public getCreatedByUser(
+		IContext context,
+		IMendixObject _thing
+	)
 	{
 		super(context);
-		this.thing = thing;
+		this.thing = _thing;
 	}
 
 	@java.lang.Override

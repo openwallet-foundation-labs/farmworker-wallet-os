@@ -24,20 +24,24 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class getFileSize extends CustomJavaAction<java.lang.Long>
 {
-	private IMendixObject __document;
-	private system.proxies.FileDocument document;
+	/** @deprecated use document.getMendixObject() instead. */
+	@java.lang.Deprecated(forRemoval = true)
+	private final IMendixObject __document;
+	private final system.proxies.FileDocument document;
 
-	public getFileSize(IContext context, IMendixObject document)
+	public getFileSize(
+		IContext context,
+		IMendixObject _document
+	)
 	{
 		super(context);
-		this.__document = document;
+		this.__document = _document;
+		this.document = _document == null ? null : system.proxies.FileDocument.initialize(getContext(), _document);
 	}
 
 	@java.lang.Override
 	public java.lang.Long executeAction() throws Exception
 	{
-		this.document = this.__document == null ? null : system.proxies.FileDocument.initialize(getContext(), __document);
-
 		// BEGIN USER CODE
 		return Misc.getFileSize(this.getContext(), document.getMendixObject());
 		// END USER CODE

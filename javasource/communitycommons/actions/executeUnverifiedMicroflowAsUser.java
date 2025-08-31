@@ -22,16 +22,21 @@ import communitycommons.Misc;
  */
 public class executeUnverifiedMicroflowAsUser extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String microflowName;
-	private java.lang.String username;
-	private java.lang.Boolean sudoContext;
+	private final java.lang.String microflowName;
+	private final java.lang.String username;
+	private final java.lang.Boolean sudoContext;
 
-	public executeUnverifiedMicroflowAsUser(IContext context, java.lang.String microflowName, java.lang.String username, java.lang.Boolean sudoContext)
+	public executeUnverifiedMicroflowAsUser(
+		IContext context,
+		java.lang.String _microflowName,
+		java.lang.String _username,
+		java.lang.Boolean _sudoContext
+	)
 	{
 		super(context);
-		this.microflowName = microflowName;
-		this.username = username;
-		this.sudoContext = sudoContext;
+		this.microflowName = _microflowName;
+		this.username = _username;
+		this.sudoContext = _sudoContext;
 	}
 
 	@java.lang.Override

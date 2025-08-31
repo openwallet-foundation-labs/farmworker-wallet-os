@@ -21,12 +21,15 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class objectHasChanged extends CustomJavaAction<java.lang.Boolean>
 {
-	private IMendixObject item;
+	private final IMendixObject item;
 
-	public objectHasChanged(IContext context, IMendixObject item)
+	public objectHasChanged(
+		IContext context,
+		IMendixObject _item
+	)
 	{
 		super(context);
-		this.item = item;
+		this.item = _item;
 	}
 
 	@java.lang.Override

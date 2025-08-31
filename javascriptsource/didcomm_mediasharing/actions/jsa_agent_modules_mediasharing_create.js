@@ -15,10 +15,12 @@ import support from"../../../javascriptsource/agent_sdk/support/entidad";
 /**
  * @param {string} agent_key
  * @param {string} connectionId
+ * @param {string} parentThreadId
+ * @param {string} description
  * @param {string} metadata - json
  * @returns {Promise.<string>}
  */
-export async function jsa_agent_modules_mediasharing_create(agent_key, connectionId, metadata) {
+export async function jsa_agent_modules_mediasharing_create(agent_key, connectionId, parentThreadId, description, metadata) {
 	// BEGIN USER CODE
 	/*
 import {
@@ -58,6 +60,8 @@ import {
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		const record = await agent.modules.media.create({
 			connectionId: connectionId,//aliceConnectionRecord!.id,
+			parentThreadId: parentThreadId,
+			description: description,
 			metadata:metadata,// {metadataKey1: 'metadata-val',metadataKey2: { key21: 'value21', key22: 'value22' },
 		});
 		return Promise.resolve(JSON.stringify(

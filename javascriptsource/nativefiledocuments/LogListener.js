@@ -69,18 +69,30 @@ const getDefaultLogLevel = () => {
     return config.defaultLogLevel;
 };
 
+const formatDateNumber = (num) => {
+
+    if (!num) {
+        return "00";
+    }
+
+    if (num < 10) {
+        return "0" + num;
+    }
+
+    return "" + num;
+};
+
 const setCurrentLogFile = () => {
     const currentDateTime = new Date();
-    const dateString = currentDateTime.toLocaleDateString("en-UK");
-    const timeString = currentDateTime.toLocaleTimeString("en-UK");
-    const year = dateString.substring(6);
-    const month = dateString.substring(3, 5);
-    const day = dateString.substring(0, 2);
-    const hours = timeString.substring(0, 2);
-    const minutes = timeString.substring(3, 5);
-    const seconds = timeString.substring(6);
+    const year = currentDateTime.getFullYear();
+    const month = formatDateNumber(currentDateTime.getMonth() + 1);
+    const day = formatDateNumber(currentDateTime.getDate() + 1);
+    const hours = formatDateNumber(currentDateTime.getHours());
+    const minutes = formatDateNumber(currentDateTime.getMinutes());
+    const seconds = formatDateNumber(currentDateTime.getSeconds());
     currentLogFileName = "log_" + year + month + day + '_' + hours + minutes + seconds + '.txt';
     const logfilePath = logFolderPath + '/' + currentLogFileName;
+    // console.info("LogListener current log file path: " + logfilePath);
     currentFullLogFilePath = NativeFileDocumentsUtils.getFullPath(logfilePath, "DocumentsDirectory", RNFS, os);
 };
 
@@ -100,7 +112,11 @@ const includeLogMessage = (logNode, logLevel) => {
 }
 
 const writeToLogFile = textData => {
-    RNFS.appendFile(currentFullLogFilePath, new Date().toISOString() + "\t" + textData + "\n", "utf8").then();
+    RNFS.appendFile(currentFullLogFilePath, new Date().toISOString() + "\t" + textData + "\n", "utf8")
+        .then()
+        .catch(e => {
+            const dummy = JSON.stringify(e);
+        });
 };
 
 const startListener = async (parmLogFolderPath, parmRNFS, parmOS) => {

@@ -9,7 +9,7 @@
 		"@credo-ts/question-answer": "0.5.13",
 		"@credo-ts/react-native": "0.5.13",
 		"@credo-ts/transport-ble": "0.3.0",
-		"@hyperledger/anoncreds-react-native": "0.2.4",
+		"@hyperledger/anoncreds-react-native": "^0.3.1",
 		"@hyperledger/aries-askar-react-native": "0.2.3",
 		"@hyperledger/indy-vdr-react-native": "0.2.2",
 		"base-64": "^1.0.0",
@@ -20,7 +20,7 @@
 		"@credo-ts/drpc": "0.5.13",
 		"@stablelib/sha256": "^2.0.0",
 		"@entidad/credo-ts-survey": "git+http://github.com/entidad/credo-ts-survey.git",
-		"credo-ts-media-sharing": "git+http://github.com/entidad/credo-ts-media-sharing.git",
+		"@2060.io/credo-ts-didcomm-media-sharing": "0.0.3",
 		"credo-ts-user-profile": "git+http://github.com/entidad/credo-ts-user-profile.git",
 		"@2060.io/credo-ts-didcomm-reactions": "0.0.2",
 		"@2060.io/credo-ts-didcomm-receipts": "0.0.7"

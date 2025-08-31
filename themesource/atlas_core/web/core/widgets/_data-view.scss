@@ -44,6 +44,13 @@
             }
         }
 
+        /* Fix for Dojo rendering in react client */
+        [id^="mxui_widget_Wrapper"]:has(> .mx-button) {
+            .mx-button {
+                margin-right: $spacing-small;
+            }
+        }
+
         background-color: inherit;
     }
 }

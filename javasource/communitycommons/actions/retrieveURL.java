@@ -28,14 +28,18 @@ import com.mendix.webui.CustomJavaAction;
  */
 public class retrieveURL extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String url;
-	private java.lang.String postdata;
+	private final java.lang.String url;
+	private final java.lang.String postdata;
 
-	public retrieveURL(IContext context, java.lang.String url, java.lang.String postdata)
+	public retrieveURL(
+		IContext context,
+		java.lang.String _url,
+		java.lang.String _postdata
+	)
 	{
 		super(context);
-		this.url = url;
-		this.postdata = postdata;
+		this.url = _url;
+		this.postdata = _postdata;
 	}
 
 	@java.lang.Override

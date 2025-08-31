@@ -24,14 +24,18 @@ import java.util.Date;
  */
 public class MonthsBetween extends CustomJavaAction<java.lang.Long>
 {
-	private java.util.Date date1;
-	private java.util.Date date2;
+	private final java.util.Date date1;
+	private final java.util.Date date2;
 
-	public MonthsBetween(IContext context, java.util.Date date1, java.util.Date date2)
+	public MonthsBetween(
+		IContext context,
+		java.util.Date _date1,
+		java.util.Date _date2
+	)
 	{
 		super(context);
-		this.date1 = date1;
-		this.date2 = date2;
+		this.date1 = _date1;
+		this.date2 = _date2;
 	}
 
 	@java.lang.Override

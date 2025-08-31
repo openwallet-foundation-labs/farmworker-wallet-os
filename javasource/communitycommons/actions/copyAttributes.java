@@ -21,14 +21,18 @@ import communitycommons.ORM;
  */
 public class copyAttributes extends CustomJavaAction<java.lang.Boolean>
 {
-	private IMendixObject source;
-	private IMendixObject target;
+	private final IMendixObject source;
+	private final IMendixObject target;
 
-	public copyAttributes(IContext context, IMendixObject source, IMendixObject target)
+	public copyAttributes(
+		IContext context,
+		IMendixObject _source,
+		IMendixObject _target
+	)
 	{
 		super(context);
-		this.source = source;
-		this.target = target;
+		this.source = _source;
+		this.target = _target;
 	}
 
 	@java.lang.Override

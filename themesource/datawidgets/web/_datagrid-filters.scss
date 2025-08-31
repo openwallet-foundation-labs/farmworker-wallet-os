@@ -1,18 +1,22 @@
-$hover-color: #f8f8f8 !default;
-$background-color: #fff !default;
-$selected-color: #dadcde !default;
-$border-color: #ced0d3 !default;
+$dg-hover-color: #f8f8f8;
+$dg-background-color: #fff;
+$dg-selected-color: #dadcde;
+$dg-border-color: #ced0d3;
+$dg-spacing-small: 8px;
 $arrow: "resources/dropdown-arrow.svg";
-$item-min-height: 32px;
+$dg-item-min-height: 32px;
 
 @import "date-picker";
 
 @font-face {
     font-family: "datagrid-filters";
     src: url("./fonts/datagrid-filters.eot");
-    src: url("./fonts/datagrid-filters.eot") format("embedded-opentype"),
-        url("./fonts/datagrid-filters.woff2") format("woff2"), url("./fonts/datagrid-filters.woff") format("woff"),
-        url("./fonts/datagrid-filters.ttf") format("truetype"), url("./fonts/datagrid-filters.svg") format("svg");
+    src:
+        url("./fonts/datagrid-filters.eot") format("embedded-opentype"),
+        url("./fonts/datagrid-filters.woff2") format("woff2"),
+        url("./fonts/datagrid-filters.woff") format("woff"),
+        url("./fonts/datagrid-filters.ttf") format("truetype"),
+        url("./fonts/datagrid-filters.svg") format("svg");
     font-weight: normal;
     font-style: normal;
 }
@@ -21,6 +25,7 @@ $item-min-height: 32px;
     display: flex;
     flex-direction: row;
     flex-grow: 1;
+    position: relative;
 
     .filter-input {
         border-top-left-radius: 0;
@@ -58,55 +63,25 @@ $item-min-height: 32px;
                 padding-left: 4px; /* The font has spaces in the right side, so to align in the middle we need this */
             }
         }
-
-        .filter-selectors {
-            position: absolute;
-            width: max-content;
-            left: 0;
-            margin: 0 $spacing-small;
-            padding: 0;
-            background: $background-color;
-            z-index: 102;
-            border-radius: 8px;
-            list-style-type: none;
-            box-shadow: 0 2px 20px 1px rgba(5, 15, 129, 0.05), 0 2px 16px 0 rgba(33, 43, 54, 0.08);
-            overflow: hidden;
-            z-index: 102;
-
-            li {
-                display: flex;
-                align-items: center;
-                font-weight: normal;
-                line-height: 32px;
-                cursor: pointer;
-
-                .filter-label {
-                    padding-right: 8px;
-                }
-
-                &.filter-selected {
-                    background-color: $hover-color;
-                    color: $brand-primary;
-                }
-
-                &:hover,
-                &:focus {
-                    background-color: $hover-color;
-                }
-            }
-        }
     }
 }
 
 .filter-selectors {
+    position: absolute;
+    width: max-content;
+    left: 0;
     padding: 0;
-    background: $background-color;
+    margin: 0;
+    background: var(--bg-color-secondary, $dg-background-color);
+    z-index: 51;
     border-radius: 8px;
     list-style-type: none;
-    box-shadow: 0 2px 20px 1px rgba(5, 15, 129, 0.05), 0 2px 16px 0 rgba(33, 43, 54, 0.08);
+    box-shadow:
+        0 2px 20px 1px rgba(5, 15, 129, 0.05),
+        0 2px 16px 0 rgba(33, 43, 54, 0.08);
     overflow: hidden;
-    z-index: 102;
 
+    .filter-listitem,
     li {
         display: flex;
         align-items: center;
@@ -119,13 +94,13 @@ $item-min-height: 32px;
         }
 
         &.filter-selected {
-            background-color: $hover-color;
-            color: $brand-primary;
+            background-color: var(--gray-lighter, $dg-hover-color);
+            color: var(--brand-primary, $dg-brand-primary);
         }
 
         &:hover,
-        &:focus {
-            background-color: $hover-color;
+        &.filter-highlighted {
+            background-color: var(--gray-lighter, $dg-hover-color);
         }
     }
 }
@@ -139,9 +114,9 @@ $item-min-height: 32px;
         display: flex;
         align-items: center;
         font-weight: normal;
-        min-height: $item-min-height;
+        min-height: var(--spacing-larger, $dg-item-min-height);
         cursor: pointer;
-        padding: 0 $spacing-small;
+        padding: 0 var(--spacing-small, $dg-spacing-small);
 
         .filter-label {
             overflow: hidden;
@@ -150,13 +125,13 @@ $item-min-height: 32px;
         }
 
         &.filter-selected {
-            background-color: $hover-color;
-            color: $brand-primary;
+            background-color: var(--gray-lighter, $dg-hover-color);
+            color: var(--brand-primary, $dg-brand-primary);
         }
 
         &:hover,
         &:focus {
-            background-color: $hover-color;
+            background-color: var(--gray-lighter, $dg-hover-color);
         }
 
         label {
@@ -171,25 +146,23 @@ $item-min-height: 32px;
 }
 
 :not(.dropdown-content) > .dropdown-list {
-    background: $background-color;
+    background: var(--bg-color-secondary, $dg-background-color);
     border-radius: 8px;
-    box-shadow: 0 2px 20px 1px rgba(5, 15, 129, 0.05), 0 2px 16px 0 rgba(33, 43, 54, 0.08);
-    overflow-x: hidden;
+    box-shadow:
+        0 2px 20px 1px rgba(5, 15, 129, 0.05),
+        0 2px 16px 0 rgba(33, 43, 54, 0.08);
     max-height: 40vh;
     z-index: 102;
 }
 
 .dropdown-content {
-    background: $background-color;
+    background: var(--bg-color-secondary, $dg-background-color);
     border-radius: 8px;
-    box-shadow: 0 2px 20px 1px rgba(5, 15, 129, 0.05), 0 2px 16px 0 rgba(33, 43, 54, 0.08);
-    overflow-x: hidden;
+    box-shadow:
+        0 2px 20px 1px rgba(5, 15, 129, 0.05),
+        0 2px 16px 0 rgba(33, 43, 54, 0.08);
     max-height: 40vh;
     z-index: 140;
-
-    &-section + &-section {
-        border-top: 1px solid $form-input-border-color;
-    }
 }
 
 .dropdown-footer {
@@ -203,7 +176,7 @@ $item-min-height: 32px;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    padding: 0 $spacing-small;
+    padding: 0 var(--spacing-small, $dg-spacing-small);
     min-height: 40px;
 }
 
@@ -214,6 +187,7 @@ $item-min-height: 32px;
 
 .dropdown-container {
     flex: 1;
+    position: relative;
 
     .dropdown-triggerer {
         caret-color: transparent;
@@ -230,16 +204,16 @@ $item-min-height: 32px;
     }
 
     .dropdown-list {
-        position: absolute;
-        width: max-content;
         left: 0;
-        margin: 0 $spacing-small;
+        margin: 0 var(--spacing-small, $dg-spacing-small);
         padding: 0;
-        background: $background-color;
+        background: var(--bg-color-secondary, $dg-background-color);
         z-index: 102;
         border-radius: 8px;
         list-style-type: none;
-        box-shadow: 0 2px 20px 1px rgba(5, 15, 129, 0.05), 0 2px 16px 0 rgba(33, 43, 54, 0.08);
+        box-shadow:
+            0 2px 20px 1px rgba(5, 15, 129, 0.05),
+            0 2px 16px 0 rgba(33, 43, 54, 0.08);
         overflow-x: hidden;
         max-height: 40vh;
 
@@ -247,9 +221,9 @@ $item-min-height: 32px;
             display: flex;
             align-items: center;
             font-weight: normal;
-            min-height: $item-min-height;
+            min-height: var(--spacing-larger, $dg-item-min-height);
             cursor: pointer;
-            padding: 0 $spacing-small;
+            padding: 0 var(--spacing-small, $dg-spacing-small);
 
             .filter-label {
                 overflow: hidden;
@@ -258,13 +232,13 @@ $item-min-height: 32px;
             }
 
             &.filter-selected {
-                background-color: $hover-color;
-                color: $brand-primary;
+                background-color: var(--gray-lighter, $dg-hover-color);
+                color: var(--brand-primary, $dg-brand-primary);
             }
 
             &:hover,
             &:focus {
-                background-color: $hover-color;
+                background-color: var(--gray-lighter, $dg-hover-color);
             }
 
             label {
@@ -277,10 +251,6 @@ $item-min-height: 32px;
             }
         }
     }
-}
-
-.date-filter-container {
-    z-index: 102;
 }
 
 /**
@@ -352,13 +322,13 @@ div:not(.table-compact) > .table {
     .th {
         .filter-selector {
             .filter-selectors {
-                margin: 0 $spacing-medium;
+                margin: 0;
             }
         }
 
         .dropdown-container {
             .dropdown-list {
-                margin: 0 $spacing-medium;
+                margin: 0;
             }
         }
     }

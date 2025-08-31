@@ -18,12 +18,15 @@ import communitycommons.StringUtils;
  */
 public class IsStringSimplified extends CustomJavaAction<java.lang.Boolean>
 {
-	private java.lang.String value;
+	private final java.lang.String value;
 
-	public IsStringSimplified(IContext context, java.lang.String value)
+	public IsStringSimplified(
+		IContext context,
+		java.lang.String _value
+	)
 	{
 		super(context);
-		this.value = value;
+		this.value = _value;
 	}
 
 	@java.lang.Override
