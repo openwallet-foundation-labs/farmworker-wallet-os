@@ -1,0 +1,45 @@
+diff --git a/node_modules/@hyperledger/indy-vdr-react-native/android/CMakeLists.txt b/node_modules/@hyperledger/indy-vdr-react-native/android/CMakeLists.txt
+index c84556e..0da656e 100644
+--- a/node_modules/@hyperledger/indy-vdr-react-native/android/CMakeLists.txt
++++ b/node_modules/@hyperledger/indy-vdr-react-native/android/CMakeLists.txt
+@@ -91,7 +91,7 @@ if(${REACT_NATIVE_VERSION} GREATER_EQUAL 71)
+   target_link_libraries(
+     ${PACKAGE_NAME}
+     ReactAndroid::jsi
+-    ReactAndroid::reactnativejni
++    ReactAndroid::reactnative
+     fbjni::fbjni
+   )
+ elseif(${REACT_NATIVE_VERSION} LESS 66)
+diff --git a/node_modules/@hyperledger/indy-vdr-react-native/android/build.gradle b/node_modules/@hyperledger/indy-vdr-react-native/android/build.gradle
+index 9017d77..c0bf9ea 100644
+--- a/node_modules/@hyperledger/indy-vdr-react-native/android/build.gradle
++++ b/node_modules/@hyperledger/indy-vdr-react-native/android/build.gradle
+@@ -59,6 +59,10 @@ def getExt(name) {
+   return rootProject.ext.get(name)
+ }
+ 
++def getExtWithFallback(prop, fallback) {
++  return rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
++}
++
+ def resolveBuildType() {
+     def buildType = "debug"
+     tasks.all({ task ->
+@@ -81,7 +85,7 @@ android {
+   }
+   
+   defaultConfig {
+-    minSdkVersion 21 
++    minSdkVersion getExtWithFallback('minSdkVersion', '21') 
+     targetSdkVersion getExt('targetSdkVersion')
+     
+     externalNativeBuild {
+@@ -106,6 +110,7 @@ android {
+     excludes = ["**/libc++_shared.so", 
+                 "**/libfbjni.so", 
+                 "**/libjsi.so", 
++                "**/libreactnative.so",
+                 "**/libreactnativejni.so", 
+                 "**/libjscexecutor.so", 
+     ]

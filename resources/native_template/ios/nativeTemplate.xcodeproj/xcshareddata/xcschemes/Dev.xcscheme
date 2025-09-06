@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1A0B3A912397DA2300388BF7"
-               BuildableName = "NativeTemplateDev.app"
+               BuildableName = "FWOSDev.app"
                BlueprintName = "dev"
                ReferencedContainer = "container:nativeTemplate.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A0B3A912397DA2300388BF7"
-            BuildableName = "NativeTemplateDev.app"
+            BuildableName = "FWOSDev.app"
             BlueprintName = "dev"
             ReferencedContainer = "container:nativeTemplate.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A0B3A912397DA2300388BF7"
-            BuildableName = "NativeTemplateDev.app"
+            BuildableName = "FWOSDev.app"
             BlueprintName = "dev"
             ReferencedContainer = "container:nativeTemplate.xcodeproj">
          </BuildableReference>
