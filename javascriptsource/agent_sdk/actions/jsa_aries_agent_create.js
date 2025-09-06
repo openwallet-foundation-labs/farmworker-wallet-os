@@ -335,7 +335,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if (maximumMessagePickup != null) config.maximumMessagePickup = maximumMessagePickup;
 		if (useLegacyDidSovPrefix != null && useLegacyDidSovPrefix != false) config.useLegacyDidSovPrefix = useLegacyDidSovPrefix;
 		if (connectionImageUrl != null) config.connectionImageUrl = connectionImageUrl;
-		if (autoUpdateStorageOnStartup != null && autoUpdateStorageOnStartup != false) config.autoUpdateStorageOnStartup = autoUpdateStorageOnStartup;
+		if (autoUpdateStorageOnStartup != null) config.autoUpdateStorageOnStartup = autoUpdateStorageOnStartup;
 		if (autoAcceptConnections != null) config.autoAcceptConnections = autoAcceptConnections;
 		if (connectToIndyLedgerOnStartup != null) config.connectToIndyLedgerOnStartup = connectToIndyLedgerOnStartup;
 		if (logger != null) config.logger = logger;
@@ -551,7 +551,8 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			try {
 				agentModules.mediationRecipient = new MediationRecipientModule((mediationConnectionsInvitation != null) ? ({
 					mediatorInvitationUrl: mediationConnectionsInvitation,
-					mediatorPickupStrategy: MediatorPickupStrategy.PickUpV2LiveMode, // We want to manually connect to the mediator, so it doesn't impact wallet startup
+					mediatorPickupStrategy: mediatorPickupStrategy
+					//mediatorPickupStrategy: MediatorPickupStrategy.PickUpV2LiveMode, // We want to manually connect to the mediator, so it doesn't impact wallet startup
 					//todo:mediatorPickupStrategy: MediatorPickupStrategy.X,
 				}) : ({}));
 			} catch (e) {
