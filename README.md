@@ -10,17 +10,17 @@ makes it easy for any Mendix app to interoperate with open-standard technologies
 * Clone this project
 * Navigate to the project root from a command line Terminal e.g. `cd ~/Documents/Workspaces/Github/farmworker-wallet-os`
 * Run `./install.sh`
-* Download [Studio Pro 10.6.24](https://marketplace.mendix.com/link/studiopro/)
+* Download [Studio Pro 10.24.4](https://marketplace.mendix.com/link/studiopro/)
 * Open `fwos-demo-app.mpr` from Studio Pro
 * Run the project from Studio Pro by clicking Run / Run Locally
-* Create a custom React Native application from Native Template [Entidad/fwos-native-template](https://github.com/Entidad/fwos-native-template) or download a pre-built APK from [Entidad/fwos-native-template/releases](https://github.com/Entidad/fwos-native-template/releases)
+* Create a custom React Native application from Native Template `./resources/native_template`
 * Install and run the application on your mobile device
 * Log in using user name, for example `Alice` or  `Bob`
 
 ## Contributing
-See [CONTRIBUTING.md](https://github.com/openwallet-foundation-labs/fwos-demo-app/blob/main/CONTRIBUTING.md).
+See [CONTRIBUTING.md](https://github.com/openwallet-foundation-labs/farmworker-wallet-os/blob/main/CONTRIBUTING.md).
 
 ## Raising problems/issues
--   We encourage everyone to use [/issues](https://github.com/openwallet-foundation-labs/fwos-demo-app/issues) in case of any problems.
+-   We encourage everyone to use [/issues](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) in case of any problems.
 
 
