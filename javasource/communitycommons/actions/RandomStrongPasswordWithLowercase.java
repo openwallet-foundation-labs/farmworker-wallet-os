@@ -10,24 +10,15 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-<<<<<<< HEAD
 import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.UserAction;
-=======
-import com.mendix.webui.CustomJavaAction;
-import communitycommons.StringUtils;
->>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
 
 /**
  * Returns a random strong password containing a specified minimum number of digits, uppercase, lowercase and special characters.
  * 
  * Note:Minimumlength should be equal or larger than NrOfCapitalizedCharacters, NrOfLowercaseCharacters, NrOfDigits and NrOfSpecialCharacters
  */
-<<<<<<< HEAD
 public class RandomStrongPasswordWithLowercase extends UserAction<java.lang.String>
-=======
-public class RandomStrongPasswordWithLowercase extends CustomJavaAction<java.lang.String>
->>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
 {
 	private final java.lang.Long MinLength;
 	private final java.lang.Long MaxLength;

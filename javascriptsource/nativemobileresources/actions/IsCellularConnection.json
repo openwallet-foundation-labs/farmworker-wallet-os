@@ -1,9 +1,5 @@
 {
   "nativeDependencies": {
-<<<<<<< HEAD
     "@react-native-community/netinfo": "11.4.1"
-=======
-    "@react-native-community/netinfo": "5.9.7"
->>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
   }
 }

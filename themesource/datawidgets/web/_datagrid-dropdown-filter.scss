@@ -1,10 +1,6 @@
 @mixin scroll-shadow {
     background:
-<<<<<<< HEAD
         /* Shadow Cover TOP */
-=======
-            /* Shadow Cover TOP */
->>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
         linear-gradient(white 30%, rgba(255, 255, 255, 0)) center top,
         /* Shadow Cover BOTTOM */ linear-gradient(rgba(255, 255, 255, 0), white 70%) center bottom,
         /* Shadow TOP */ linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(197, 197, 197, 0.6)) center top,

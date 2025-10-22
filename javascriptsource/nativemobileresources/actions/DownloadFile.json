@@ -1,11 +1,6 @@
 {
   "nativeDependencies": {
-<<<<<<< HEAD
     "react-native-blob-util": "0.21.2",
     "react-native-file-viewer": "2.1.5"
-=======
-    "react-native-file-viewer": "2.1.5",
-    "react-native-blob-util": "0.16.2"
->>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
   }
 }

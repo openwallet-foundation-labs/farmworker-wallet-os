@@ -92,10 +92,12 @@ export async function RequestLocationPermission() {
                 : reactNativeModule === null || reactNativeModule === void 0 ? void 0 : reactNativeModule.PermissionsAndroid.request(locationPermission).then(status => status === (reactNativeModule === null || reactNativeModule === void 0 ? void 0 : reactNativeModule.PermissionsAndroid.RESULTS.GRANTED)));
         }
         else if (geolocationModule) {
-            geolocationModule.requestAuthorization(() => {
-                return Promise.resolve(true);
-            }, (err) => {
-                return Promise.reject(err);
+            return new Promise(resolve => {
+                geolocationModule.requestAuthorization(() => {
+                    resolve(true);
+                }, () => {
+                    resolve(false);
+                });
             });
         }
         return false;

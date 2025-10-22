@@ -24,7 +24,6 @@ export async function RequestNotificationPermission() {
         return Promise.reject(new Error("Firebase module is not available in your app"));
     }
     if (Platform.OS === "android") {
-<<<<<<< HEAD
         try {
             const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
             return granted === PermissionsAndroid.RESULTS.GRANTED;
@@ -51,23 +50,5 @@ export async function RequestNotificationPermission() {
         console.error("Failed to request permission on iOS", error);
         return false;
     }
-=======
-        return PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS)
-            .then(() => {
-            return true;
-        })
-            .catch(() => {
-            return false;
-        });
-    }
-    return messaging()
-        .requestPermission()
-        .then(() => Platform.OS === "ios" && !messaging().isDeviceRegisteredForRemoteMessages
-        ? messaging()
-            .registerDeviceForRemoteMessages()
-            .then(() => true)
-        : true)
-        .catch(() => false);
->>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
 	// END USER CODE
 }

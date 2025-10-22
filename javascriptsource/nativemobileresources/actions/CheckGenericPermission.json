@@ -1,9 +1,5 @@
 {
   "nativeDependencies": {
-<<<<<<< HEAD
     "react-native-permissions": "4.1.5"
-=======
-    "react-native-permissions": "3.3.1"
->>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
   }
 }

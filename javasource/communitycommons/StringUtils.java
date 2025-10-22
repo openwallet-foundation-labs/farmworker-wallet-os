@@ -36,10 +36,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.parser.ParserDelegator;
 
 import org.apache.commons.io.IOUtils;
-<<<<<<< HEAD
 import org.apache.commons.io.input.BOMInputStream;
-=======
->>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
 import org.apache.commons.text.StringEscapeUtils;
 import org.owasp.html.PolicyFactory;
 import org.owasp.html.Sanitizers;
