@@ -335,7 +335,11 @@ $root: ".widget-datagrid";
     color: $dg-pagination-caption-color;
 
     .paging-status {
+<<<<<<< HEAD
         padding: 0 8px 0;
+=======
+        padding: 0 8px 8px;
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
     }
 
     .pagination-button {
@@ -410,6 +414,7 @@ $root: ".widget-datagrid";
     position: relative;
 
     &-grid {
+<<<<<<< HEAD
         &.table {
             display: grid !important;
             min-width: fit-content;
@@ -419,6 +424,9 @@ $root: ".widget-datagrid";
 
     &-content {
         overflow-x: auto;
+=======
+        display: grid !important;
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
     }
 
     &-grid-head {
@@ -549,6 +557,7 @@ $root: ".widget-datagrid";
     z-index: 1;
 }
 
+<<<<<<< HEAD
 :where(#{$root}-paging-bottom) {
     display: flex;
     flex-flow: row nowrap;
@@ -576,6 +585,8 @@ $root: ".widget-datagrid";
     display: inline-block;
 }
 
+=======
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
 @keyframes skeleton-loading {
     0% {
         background-position: right;

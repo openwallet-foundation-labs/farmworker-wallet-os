@@ -188,10 +188,15 @@
         overflow-x: clip;
     }
 
+<<<<<<< HEAD
     .mx-scrollcontainer-wrapper {
         &:not(.mx-scrollcontainer-nested) {
             -webkit-overflow-scrolling: touch;
         }
+=======
+    .mx-scrollcontainer-wrapper:not(.mx-scrollcontainer-nested) {
+        -webkit-overflow-scrolling: touch;
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
     }
 
     // for push aside and slide over the main part should be non-interactive if sidebar is open
@@ -215,6 +220,7 @@
             }
         }
     }
+<<<<<<< HEAD
 
 
     // make the first child of the MAIN part of the scroll container to grow full height
@@ -242,3 +248,6 @@
         }
     }
 }
+=======
+}
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8

@@ -1,5 +1,9 @@
 {
   "nativeDependencies": {
+<<<<<<< HEAD
     "@react-native-async-storage/async-storage": "2.0.0"
+=======
+    "@react-native-community/async-storage": "1.12.1"
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
   }
 }

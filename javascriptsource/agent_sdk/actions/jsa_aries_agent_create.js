@@ -551,8 +551,12 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			try {
 				agentModules.mediationRecipient = new MediationRecipientModule((mediationConnectionsInvitation != null) ? ({
 					mediatorInvitationUrl: mediationConnectionsInvitation,
+<<<<<<< HEAD
 					mediatorPickupStrategy: mediatorPickupStrategy
 					//mediatorPickupStrategy: MediatorPickupStrategy.PickUpV2LiveMode, // We want to manually connect to the mediator, so it doesn't impact wallet startup
+=======
+					mediatorPickupStrategy: MediatorPickupStrategy.PickUpV2LiveMode, // We want to manually connect to the mediator, so it doesn't impact wallet startup
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
 					//todo:mediatorPickupStrategy: MediatorPickupStrategy.X,
 				}) : ({}));
 			} catch (e) {

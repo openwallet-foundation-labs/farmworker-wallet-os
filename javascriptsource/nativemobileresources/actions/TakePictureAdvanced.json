@@ -1,7 +1,13 @@
 {
   "nativeDependencies": {
+<<<<<<< HEAD
     "react-native-image-picker": "7.2.3",
     "react-native-localize": "3.2.1",
     "react-native-permissions": "4.1.5"
+=======
+    "react-native-localize": "1.4.2",
+    "react-native-image-picker": "5.0.1",
+    "react-native-permissions": "3.3.1"
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
   }
 }

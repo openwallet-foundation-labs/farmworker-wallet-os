@@ -36,7 +36,11 @@
                     /* For IE8 and earlier */
                     color: $modal-header-color;
                     text-shadow: none;
+<<<<<<< HEAD
                     &:focus-visible {
+=======
+                    &:focus {
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
                         border-radius: 4px;
                         outline: 2px solid $brand-primary;
                     }

@@ -13,6 +13,7 @@
     ========================================================================== */
 
     .mx-dataview {
+<<<<<<< HEAD
         display: flex;
         flex-direction: column;
         /* Dataview-content gives problems for nested layout grid containers */
@@ -28,6 +29,13 @@
                     margin-right: 0;
                     margin-left: 0;
                 }
+=======
+        /* Dataview-content gives problems for nexted layout grid containers */
+        > .mx-dataview-content > .mx-container-nested {
+            > .row {
+                margin-right: 0;
+                margin-left: 0;
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
             }
         }
 
@@ -39,6 +47,10 @@
     }
 
     .mx-dataview-controls {
+<<<<<<< HEAD
+=======
+        margin-top: $spacing-medium;
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
         padding: $spacing-medium 0 0;
         border-top: 1px solid $dataview-controls-border-color;
         border-radius: 0;

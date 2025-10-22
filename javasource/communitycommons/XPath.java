@@ -351,17 +351,25 @@ public class XPath<T> {
 	public long count() throws CoreException {
 		assertEmptyStack();
 
+<<<<<<< HEAD
 		return Core.createXPathQuery("count(" + getXPath() + ")").executeAggregateLong(context);
+=======
+		return Core.retrieveXPathQueryAggregate(context, "count(" + getXPath() + ")");
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
 	}
 
 	public IMendixObject firstMendixObject() throws CoreException {
 		assertEmptyStack();
 
+<<<<<<< HEAD
 		XPathQuery query = (XPathQuery) Core.createXPathQuery(getXPath()).setAmount(1).setOffset(offset);
 		for (Map.Entry<String, String> sort : sorting.entrySet())
 			query.addSort(sort.getKey(), sort.getValue() == "asc");
 		List<IMendixObject> result = query.execute(context);
 
+=======
+		List<IMendixObject> result = Core.retrieveXPathQuery(context, getXPath(), 1, offset, sorting);
+>>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
 		if (result.isEmpty())
 			return null;
 		return result.get(0);
