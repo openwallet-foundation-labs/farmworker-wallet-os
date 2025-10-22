@@ -10,13 +10,13 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.DateTime;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Converts a Unix timestamp to a dateTime object
  */
-public class LongToDateTime extends CustomJavaAction<java.util.Date>
+public class LongToDateTime extends UserAction<java.util.Date>
 {
 	private final java.lang.Long value;
 

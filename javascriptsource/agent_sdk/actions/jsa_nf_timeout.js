@@ -13,7 +13,7 @@ import "../shim.js";
 // END EXTRA CODE
 
 /**
- * @param {Nanoflow} callback - Flow to execute
+ * @param {Nanoflow} [callback] - Flow to execute
  * @param {Big} timeout - Milliseconds timeout
  * @param {string} json_args - optional simple types only e.g. {"p0":42,"p1":"foo"}
  * @param {boolean} show_progress

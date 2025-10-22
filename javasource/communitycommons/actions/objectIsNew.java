@@ -10,13 +10,13 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Returns true if this object is new (not committed in the database).
  */
-public class objectIsNew extends CustomJavaAction<java.lang.Boolean>
+public class objectIsNew extends UserAction<java.lang.Boolean>
 {
 	private final IMendixObject mxObject;
 

@@ -11,13 +11,13 @@ package communitycommons.actions;
 
 import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Use this function to convert HTML text to plain text. 
  * It will preserve linebreaks but strip all other markup. including html entity decoding.
  */
-public class HTMLToPlainText extends CustomJavaAction<java.lang.String>
+public class HTMLToPlainText extends UserAction<java.lang.String>
 {
 	private final java.lang.String html;
 

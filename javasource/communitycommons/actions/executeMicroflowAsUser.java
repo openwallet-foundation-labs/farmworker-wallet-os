@@ -11,7 +11,7 @@ package communitycommons.actions;
 
 import communitycommons.Misc;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Executes the given microflow as if the $currentuser is the provided user (delegation). Use sudoContext to determine if 'apply entity access' should be used 
@@ -20,7 +20,7 @@ import com.mendix.webui.CustomJavaAction;
  * - username: The user that should be used to execute the microflow
  * - sudoContext: whether entity access should be applied.
  */
-public class executeMicroflowAsUser extends CustomJavaAction<java.lang.String>
+public class executeMicroflowAsUser extends UserAction<java.lang.String>
 {
 	private final java.lang.String microflow;
 	private final java.lang.String username;

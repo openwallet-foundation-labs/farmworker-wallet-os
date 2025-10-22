@@ -10,14 +10,14 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.Misc;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Overlay a generated PDF document with another PDF (containing the company stationary for example)
  */
-public class OverlayPdfDocument extends CustomJavaAction<java.lang.Boolean>
+public class OverlayPdfDocument extends UserAction<java.lang.Boolean>
 {
 	/** @deprecated use generatedDocument.getMendixObject() instead. */
 	@java.lang.Deprecated(forRemoval = true)

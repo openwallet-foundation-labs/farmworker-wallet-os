@@ -20,9 +20,10 @@ import { Big } from "big.js";
  * 
  * @param {string} username - This field is required.
  * @param {string} password - This field is required.
+ * @param {boolean} [useAuthToken] - This field is optional.
  * @returns {Promise.<Big>}
  */
-export async function SignIn(username, password) {
+export async function SignIn(username, password, useAuthToken) {
 	// BEGIN USER CODE
     if (!username || !password) {
         return Promise.resolve(new Big(401));

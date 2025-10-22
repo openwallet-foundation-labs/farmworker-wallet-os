@@ -13,13 +13,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import com.mendix.core.Core;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Loads a file from the local (server) storage and stores it inside a FileDocument.
  */
-public class FileDocumentFromFile extends CustomJavaAction<java.lang.Boolean>
+public class FileDocumentFromFile extends UserAction<java.lang.Boolean>
 {
 	private final java.lang.String file;
 	/** @deprecated use fileDocument.getMendixObject() instead. */

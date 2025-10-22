@@ -2,9 +2,8 @@
 // Use of this source code is governed by a MIT-style license that can be
 // found in the LICENSE file.
 
-import { NativeModules, Platform } from 'react-native';
-
-const ReactNativeBlobUtil = NativeModules.ReactNativeBlobUtil;
+import { Platform } from 'react-native';
+import ReactNativeBlobUtil from './codegenSpecs/NativeBlobUtils';
 
 /**
  * Send an intent to open the file.

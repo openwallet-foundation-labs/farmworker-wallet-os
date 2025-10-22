@@ -10,9 +10,9 @@
 package main.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
-public class ja_get_admin_user_rolename extends CustomJavaAction<java.lang.String>
+public class ja_get_admin_user_rolename extends UserAction<java.lang.String>
 {
 	public ja_get_admin_user_rolename(IContext context)
 	{

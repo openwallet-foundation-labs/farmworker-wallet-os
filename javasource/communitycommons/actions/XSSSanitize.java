@@ -11,13 +11,13 @@ package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.MendixRuntimeException;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.proxies.SanitizerPolicy;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Removes all potential dangerous HTML from a string so that it can be safely displayed in a browser. 
@@ -38,7 +38,7 @@ import org.apache.commons.lang3.StringUtils;
  * 
  * http://javadoc.io/doc/com.googlecode.owasp-java-html-sanitizer/owasp-java-html-sanitizer/20180219.1
  */
-public class XSSSanitize extends CustomJavaAction<java.lang.String>
+public class XSSSanitize extends UserAction<java.lang.String>
 {
 	private final java.lang.String html;
 	private final communitycommons.proxies.SanitizerPolicy policy1;

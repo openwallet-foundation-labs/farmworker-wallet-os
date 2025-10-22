@@ -45,7 +45,7 @@ import support from "../support/entidad";
  * If created Observable does not have any resources to clean up, function does not have to return anything.
  * 
  * @param {string} agent_key
- * @param {Nanoflow} teardown
+ * @param {Nanoflow} [teardown]
  * @param {string} userDataParameterName - optional
  * @param {MxObject} userData - optional
  * @returns {Promise.<void>}

@@ -2,13 +2,7 @@
 // Use of this source code is governed by a MIT-style license that can be
 // found in the LICENSE file.
 
-import {
- NativeModules,
- DeviceEventEmitter,
- NativeAppEventEmitter,
-} from 'react-native';
-
-const ReactNativeBlobUtil = NativeModules.ReactNativeBlobUtil;
+import ReactNativeBlobUtil from '../codegenSpecs/NativeBlobUtils';
 
 let sessions = {};
 
@@ -30,8 +24,8 @@ export default class ReactNativeBlobUtilSession {
 
   constructor(name:string, list:Array<string>) {
     this.name = name;
-    if(!sessions[name]) {
-      if(Array.isArray(list))
+    if (!sessions[name]) {
+      if (Array.isArray(list))
       sessions[name] = list;
       else
       sessions[name] = [];
@@ -45,8 +39,8 @@ export default class ReactNativeBlobUtilSession {
 
   remove(path:string):ReactNativeBlobUtilSession {
     let list = sessions[this.name];
-    for(let i of list) {
-      if(list[i] === path) {
+    for (let i of list) {
+      if (list[i] === path) {
         sessions[this.name].splice(i, 1);
         break;
       }
@@ -61,7 +55,7 @@ export default class ReactNativeBlobUtilSession {
   dispose():Promise {
     return new Promise((resolve, reject) => {
       ReactNativeBlobUtil.removeSession(sessions[this.name], (err) => {
-        if(err)
+        if (err)
           reject(new Error(err));
         else {
           delete sessions[this.name];

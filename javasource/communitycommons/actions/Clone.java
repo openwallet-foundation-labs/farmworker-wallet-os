@@ -12,7 +12,7 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.ORM;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Clones objects
@@ -23,7 +23,7 @@ import com.mendix.webui.CustomJavaAction;
  * 
  * If associated objects need to be cloned as well, use deepClone, this function only copies the references, not the reffered objects. Target is not committed automatically.
  */
-public class Clone extends CustomJavaAction<java.lang.Boolean>
+public class Clone extends UserAction<java.lang.Boolean>
 {
 	private final IMendixObject source;
 	private final IMendixObject target;

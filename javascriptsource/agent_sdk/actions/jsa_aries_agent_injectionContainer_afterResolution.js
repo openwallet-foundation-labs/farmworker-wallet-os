@@ -21,7 +21,7 @@ import support from "../support/entidad";
  * Registers a callback that is called after a successful resolution of the token
  * @param {string} agent_key
  * @param {string} token - json?
- * @param {Nanoflow} callback - parameters?
+ * @param {Nanoflow} [callback] - parameters?
  * @param {string} userDataParameterName - optional
  * @param {MxObject} userData - optional
  * @returns {Promise.<void>}

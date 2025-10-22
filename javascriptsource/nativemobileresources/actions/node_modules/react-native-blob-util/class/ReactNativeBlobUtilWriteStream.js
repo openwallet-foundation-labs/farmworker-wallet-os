@@ -2,14 +2,7 @@
 // Use of this source code is governed by a MIT-style license that can be
 // found in the LICENSE file.
 
-import {
- NativeModules,
- DeviceEventEmitter,
- NativeAppEventEmitter,
-} from 'react-native';
-
-const ReactNativeBlobUtil = NativeModules.ReactNativeBlobUtil;
-
+import ReactNativeBlobUtil from '../codegenSpecs/NativeBlobUtils';
 export default class ReactNativeBlobUtilWriteStream {
 
   id : string;
@@ -26,17 +19,17 @@ export default class ReactNativeBlobUtilWriteStream {
     return new Promise((resolve, reject) => {
       try {
         let method = this.encoding === 'ascii' ? 'writeArrayChunk' : 'writeChunk';
-        if(this.encoding.toLocaleLowerCase() === 'ascii' && !Array.isArray(data)) {
+        if (this.encoding.toLocaleLowerCase() === 'ascii' && !Array.isArray(data)) {
             reject(new Error('ascii input data must be an Array'));
             return;
         }
         ReactNativeBlobUtil[method](this.id, data, (error) => {
-          if(error)
+          if (error)
             reject(new Error(error));
           else
             resolve(this);
         });
-      } catch(err) {
+      } catch (err) {
         reject(new Error(err));
       }
     });

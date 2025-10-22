@@ -40,7 +40,10 @@ class ReactNativeBlobUtilFetchPolyfill {
                     log.verbose('convert FormData to blob body');
                     promise = Blob.build(body).then((b) => {
                         blobCache = b;
-                        options.headers['Content-Type'] = 'multipart/form-data;boundary=' + b.multipartBoundary;
+
+                        const contentType = 'multipart/form-data;boundary=' + b.multipartBoundary
+                        options.headers['Content-Type'] = contentType;
+                        options.headers['content-type'] = contentType;
                         return Promise.resolve(URIUtil.wrap(b._ref));
                     });
                 }
