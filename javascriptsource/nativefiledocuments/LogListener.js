@@ -93,11 +93,7 @@ const setCurrentLogFile = () => {
     currentLogFileName = "log_" + year + month + day + '_' + hours + minutes + seconds + '.txt';
     const logfilePath = logFolderPath + '/' + currentLogFileName;
     // console.info("LogListener current log file path: " + logfilePath);
-<<<<<<< HEAD
     currentFullLogFilePath = NativeFileDocumentsUtils.getFullPathNoPrefix(logfilePath, "DocumentsDirectory", RNBlobUtil, os);
-=======
-    currentFullLogFilePath = NativeFileDocumentsUtils.getFullPath(logfilePath, "DocumentsDirectory", RNFS, os);
->>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
 };
 
 const includeLogMessage = (logNode, logLevel) => {
@@ -115,7 +111,6 @@ const includeLogMessage = (logNode, logLevel) => {
     return flags[logLevel];
 }
 
-<<<<<<< HEAD
 const writeToLogFile = async textData => {
     const fileExists = await RNBlobUtil.fs.exists(currentFullLogFilePath);
     if (fileExists) {
@@ -123,14 +118,6 @@ const writeToLogFile = async textData => {
     } else {
         await RNBlobUtil.fs.createFile(currentFullLogFilePath, new Date().toISOString() + "\t" + textData + "\n", "utf8");
     }
-=======
-const writeToLogFile = textData => {
-    RNFS.appendFile(currentFullLogFilePath, new Date().toISOString() + "\t" + textData + "\n", "utf8")
-        .then()
-        .catch(e => {
-            const dummy = JSON.stringify(e);
-        });
->>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
 };
 
 const startListener = async (parmLogFolderPath, parmRNBlobUtil, parmOS) => {
