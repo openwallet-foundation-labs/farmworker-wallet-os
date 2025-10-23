@@ -15,7 +15,7 @@ import support from "../../agent_sdk/support/entidad";
 
 /**
  * @param {string} agent_key
- * @param {"DIDComm_RPC.Enum_DrpcRequestEventTypes.DrpcRequestStateChanged"|"DIDComm_RPC.Enum_DrpcRequestEventTypes.DrpcResponseStateChanged"} eventType
+ * @param {"DIDComm_RPC.Enum_DrpcRequestEventTypes.DrpcRequestStateChanged"} eventType
  * @returns {Promise.<string>}
  */
 export async function jsa_aries_agent_modules_drpc_waitResponse(agent_key, eventType) {

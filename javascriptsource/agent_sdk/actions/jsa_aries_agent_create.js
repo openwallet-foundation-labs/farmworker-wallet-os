@@ -12,7 +12,7 @@ import { Big } from "big.js";
 import "../shim.js";
 import support from "../support/entidad";
 //import crypto from "crypto";
-import { KeyDerivationMethod } from '@credo-ts/core';
+import { JsonTransformer, KeyDerivationMethod } from '@credo-ts/core';
 import { DidCommMimeType } from '@credo-ts/core';
 import { AutoAcceptCredential } from '@credo-ts/core';
 import { AutoAcceptProof } from '@credo-ts/core';
@@ -76,12 +76,13 @@ import { ReceiptsModule } from '@2060.io/credo-ts-didcomm-receipts'; //https://g
  * @param {"Agent_SDK.enum_aries_AutoAcceptCredential.Never"|"Agent_SDK.enum_aries_AutoAcceptCredential.ContentApproved"|"Agent_SDK.enum_aries_AutoAcceptCredential.Always"} autoAcceptCredentials
  * @param {"Agent_SDK.enum_aries_AutoAcceptProof.Never"|"Agent_SDK.enum_aries_AutoAcceptProof.ContentApproved"|"Agent_SDK.enum_aries_AutoAcceptProof.Always"} autoAcceptProofs
  * @param {boolean} autoAcceptMediationRequests
- * @param {string} mediationConnectionsInvitation
- * @param {string} defaultMediatorId
+ * @param {boolean} useMediationRecipient
  * @param {boolean} clearDefaultMediator
- * @param {Big} mediatorPollingInterval
- * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"|"Agent_SDK.enum_aries_MediatorPickupStrategy.None"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2LiveMode"} mediatorPickupStrategy
- * @param {Big} maximumMessagePickup
+ * @param {string} configDefaultMediatorId
+ * @param {string} configMediationConnectionsInvitation
+ * @param {Big} configMediatorPollingInterval
+ * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"|"Agent_SDK.enum_aries_MediatorPickupStrategy.None"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2LiveMode"} configMediatorPickupStrategy
+ * @param {Big} configMaximumMessagePickup
  * @param {boolean} useLegacyDidSovPrefix
  * @param {string} connectionImageUrl
  * @param {boolean} autoUpdateStorageOnStartup
@@ -94,10 +95,9 @@ import { ReceiptsModule } from '@2060.io/credo-ts-didcomm-receipts'; //https://g
  * @param {boolean} v2ProofProtocol
  * @param {boolean} v1CredentialProtocol
  * @param {boolean} v2CredentialProtocol
- * @param {boolean} anoncreds
- * @param {boolean} anoncredsRs
+ * @param {boolean} use_anoncreds
+ * @param {boolean} use_anoncredsRs
  * @param {boolean} indyVdr
- * @param {boolean} mediationRecipient
  * @param {boolean} keyDidRegistrar
  * @param {boolean} jwkDidRegistrar
  * @param {boolean} webDidResolver
@@ -113,9 +113,10 @@ import { ReceiptsModule } from '@2060.io/credo-ts-didcomm-receipts'; //https://g
  * @param {boolean} useDrpc
  * @param {boolean} autoCreateLinkSecret
  * @param {boolean} useReceipts - https://didcomm.org/receipts/1.0/
+ * @param {boolean} processDidCommMessagesConcurrently
  * @returns {Promise.<string>}
  */
-export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, mediationConnectionsInvitation, defaultMediatorId, clearDefaultMediator, mediatorPollingInterval, mediatorPickupStrategy, maximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, anoncreds, anoncredsRs, indyVdr, mediationRecipient, keyDidRegistrar, jwkDidRegistrar, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, useQuestionAnswer, useSurvey, useMediaSharing, useUserProfile, useBle, useDrpc, autoCreateLinkSecret, useReceipts) {
+export async function jsa_aries_agent_create(label, walletConfig_id, walletConfig_key, walletConfig_KeyDerivationMethod, walletConfig_storage, endpoints, publicDidSeed, connectToIndyLedgerOnStartup, logger, loglevel, didCommMimeType, autoAcceptCredentials, autoAcceptProofs, autoAcceptMediationRequests, useMediationRecipient, clearDefaultMediator, configDefaultMediatorId, configMediationConnectionsInvitation, configMediatorPollingInterval, configMediatorPickupStrategy, configMaximumMessagePickup, useLegacyDidSovPrefix, connectionImageUrl, autoUpdateStorageOnStartup, autoAcceptConnections, indyLedgers, useDidSovPrefixWhereAllowed, useDidKeyInProtocols, useModuleOpenId4VC, v1ProofProtocol, v2ProofProtocol, v1CredentialProtocol, v2CredentialProtocol, use_anoncreds, use_anoncredsRs, indyVdr, keyDidRegistrar, jwkDidRegistrar, webDidResolver, keyDidResolver, jwkDidResolver, indyVdrIndyDidResolver, indyVdrSovDidResolver, useQuestionAnswer, useSurvey, useMediaSharing, useUserProfile, useBle, useDrpc, autoCreateLinkSecret, useReceipts, processDidCommMessagesConcurrently) {
 	// BEGIN USER CODE
 	try {
 		//--------------------------------------------------------------------------------
@@ -135,16 +136,17 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if(autoAcceptCredentials == "") autoAcceptCredentials = null;
 		if(autoAcceptProofs == "") autoAcceptProofs = null;
 		if(autoAcceptMediationRequests == "") autoAcceptMediationRequests = null;
-		if(mediationConnectionsInvitation == "") mediationConnectionsInvitation = null;
-		if(defaultMediatorId == "") defaultMediatorId = null;
+		if(configMediationConnectionsInvitation == "") configMediationConnectionsInvitation = null;
+		if(configDefaultMediatorId == "") configDefaultMediatorId = null;
 		if(clearDefaultMediator == "") clearDefaultMediator = null;
-		if(mediatorPollingInterval == "") mediatorPollingInterval = null;
-		if(mediatorPickupStrategy == "") mediatorPickupStrategy = null;
-		if(maximumMessagePickup == "") maximumMessagePickup = null;
+		if(configMediatorPollingInterval == "") configMediatorPollingInterval = null;
+		if(configMediatorPickupStrategy == "") configMediatorPickupStrategy = null;
+		if(configMaximumMessagePickup == "") configMaximumMessagePickup = null;
 		if(useLegacyDidSovPrefix == "") useLegacyDidSovPrefix = null;
 		if(connectionImageUrl == "") connectionImageUrl = null;
 		if(autoUpdateStorageOnStartup == "") autoUpdateStorageOnStartup = null;
 		if(autoAcceptConnections == "") autoAcceptConnections = null;
+		if(processDidCommMessagesConcurrently =="") processDidCommMessagesConcurrently = null;
 		//--------------------------------------------------------------------------------
 		//validate and prepare parameters - begin
 		//--------------------------------------------------------------------------------
@@ -255,37 +257,38 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 				break;
 		}
 		if (autoAcceptMediationRequests == null);
-		if (mediationConnectionsInvitation == null);
-		if (defaultMediatorId == null);
+		if (configMediationConnectionsInvitation == null);
+		if (configDefaultMediatorId == null);
 		if (clearDefaultMediator == null) clearDefaultMediator = false;
-		if (mediatorPollingInterval == null) mediatorPollingInterval = 5000;
-		if (mediatorPickupStrategy == null);
+		if (configMediatorPollingInterval == null) configMediatorPollingInterval = 5000;
+		if (configMediatorPickupStrategy == null);
 		//if (mediatorPickupStrategy == null) return Promise.reject("Invalid mediatorPickupStrategy");
-		switch (mediatorPickupStrategy) {
+		switch (configMediatorPickupStrategy) {
 			case "PickUpV1":
-				mediatorPickupStrategy = MediatorPickupStrategy.PickUpV1;
+				configMediatorPickupStrategy = MediatorPickupStrategy.PickUpV1;
 				break;
 			case "PickUpV2":
-				mediatorPickupStrategy = MediatorPickupStrategy.PickUpV2;
+				configMediatorPickupStrategy = MediatorPickupStrategy.PickUpV2;
 				break;
 			case "PickUpV2LiveMode":
-				mediatorPickupStrategy = MediatorPickupStrategy.PickUpV2LiveMode;
+				configMediatorPickupStrategy = MediatorPickupStrategy.PickUpV2LiveMode;
 				break;	
 			case "Implicit":
-				mediatorPickupStrategy = MediatorPickupStrategy.Implicit;
+				configMediatorPickupStrategy = MediatorPickupStrategy.Implicit;
 				break;
 			case "None":
-				mediatorPickupStrategy = MediatorPickupStrategy.None;
+				configMediatorPickupStrategy = MediatorPickupStrategy.None;
 				break;
 			default:
 				
 				break;
 		}
-		if (maximumMessagePickup == null) maximumMessagePickup = 10;
+		if (configMaximumMessagePickup == null) configMaximumMessagePickup = 10;
 		if (useLegacyDidSovPrefix == null) useLegacyDidSovPrefix = false;
 		if (connectionImageUrl == null);
 		if (autoUpdateStorageOnStartup == null) autoUpdateStorageOnStartup = false;
 		if (autoAcceptConnections == null) autoAcceptConnections = false;
+		if (processDidCommMessagesConcurrently == null) processDidCommMessagesConcurrently = false;
 		if (indyLedgers != null) {
 			try {
 				indyLedgers = JSON.parse(indyLedgers);
@@ -328,11 +331,11 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if (autoAcceptCredentials != null) config.autoAcceptCredentials = autoAcceptCredentials;
 		if (autoAcceptProofs != null) config.autoAcceptProofs = autoAcceptProofs;
 		if (autoAcceptMediationRequests != null) config.autoAcceptMediationRequests = autoAcceptMediationRequests;
-		if (defaultMediatorId != null && defaultMediatorId != "") config.defaultMediatorId = defaultMediatorId;
+		if (configDefaultMediatorId != null && configDefaultMediatorId != "") config.defaultMediatorId = configDefaultMediatorId;
 		if (clearDefaultMediator != null && clearDefaultMediator != false) config.clearDefaultMediator = clearDefaultMediator;
-		if (mediatorPollingInterval != null) config.mediatorPollingInterval = mediatorPollingInterval;
-		if (mediatorPickupStrategy != null) config.mediatorPickupStrategy = mediatorPickupStrategy;
-		if (maximumMessagePickup != null) config.maximumMessagePickup = maximumMessagePickup;
+		if (configMediatorPollingInterval != null) config.mediatorPollingInterval = configMediatorPollingInterval;
+		if (configMediatorPickupStrategy != null) config.mediatorPickupStrategy = configMediatorPickupStrategy;
+		if (configMaximumMessagePickup != null) config.maximumMessagePickup = configMaximumMessagePickup;
 		if (useLegacyDidSovPrefix != null && useLegacyDidSovPrefix != false) config.useLegacyDidSovPrefix = useLegacyDidSovPrefix;
 		if (connectionImageUrl != null) config.connectionImageUrl = connectionImageUrl;
 		if (autoUpdateStorageOnStartup != null) config.autoUpdateStorageOnStartup = autoUpdateStorageOnStartup;
@@ -341,6 +344,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		if (logger != null) config.logger = logger;
 		if (useDidSovPrefixWhereAllowed != null) config.useDidSovPrefixWhereAllowed = useDidSovPrefixWhereAllowed;
 		if (useDidKeyInProtocols != null) config.useDidKeyInProtocols = useDidKeyInProtocols;
+		if (processDidCommMessagesConcurrently != null) config.processDidCommMessagesConcurrently = processDidCommMessagesConcurrently;
 		//-----------------------------------------------------------------------------------
 		const legacyIndyCredentialFormatService = new LegacyIndyCredentialFormatService()
 		const legacyIndyProofFormatService = new LegacyIndyProofFormatService()
@@ -433,7 +437,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			console.error("Failed to register ProofsModule:" + e.toString());
 		}
 		//-----------------------------------------------------------------------------------
-		if (anoncreds) {
+		if (use_anoncreds) {
 			try {
 				agentModules.anoncreds = new AnonCredsModule({
 					//todo:add configurability or turn cheqd off based on main cheqd enabling parameter
@@ -547,18 +551,18 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 			}
 		}
 		//-----------------------------------------------------------------------------------
-		if (mediationRecipient) {
+		if (useMediationRecipient) {
 			try {
-				agentModules.mediationRecipient = new MediationRecipientModule((mediationConnectionsInvitation != null) ? ({
-					mediatorInvitationUrl: mediationConnectionsInvitation,
-<<<<<<< HEAD
-					mediatorPickupStrategy: mediatorPickupStrategy
-					//mediatorPickupStrategy: MediatorPickupStrategy.PickUpV2LiveMode, // We want to manually connect to the mediator, so it doesn't impact wallet startup
-=======
-					mediatorPickupStrategy: MediatorPickupStrategy.PickUpV2LiveMode, // We want to manually connect to the mediator, so it doesn't impact wallet startup
->>>>>>> aec85746435d3ba41358c5b7d65f93f87448e5b8
+				agentModules.mediationRecipient = new MediationRecipientModule((configMediationConnectionsInvitation != null) ? ({
+					mediatorInvitationUrl: configMediationConnectionsInvitation,
+					mediatorPickupStrategy: configMediatorPickupStrategy,
+					maximumMessagePickup: configMaximumMessagePickup
+					//mediatorPickupStrategy: MediatorPickupStrategy.None, // We want to manually connect to the mediator, so it doesn't impact wallet startup
 					//todo:mediatorPickupStrategy: MediatorPickupStrategy.X,
-				}) : ({}));
+				}) : ({
+					mediatorPickupStrategy: configMediatorPickupStrategy,
+					maximumMessagePickup: configMaximumMessagePickup
+				}));
 			} catch (e) {
 				console.error("Failed to register MediationRecipientModule:" + e.toString());
 			}
@@ -620,6 +624,7 @@ export async function jsa_aries_agent_create(label, walletConfig_id, walletConfi
 		}
 		*/
 		//-----------------------------------------------------------------------------------
+		
 		const agent = new Agent({
 			config,
 			dependencies: agentDependencies,
