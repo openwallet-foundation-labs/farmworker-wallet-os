@@ -1,0 +1,30 @@
+diff --git a/node_modules/@credo-ts/core/build/crypto/hashes/Sha256.js b/node_modules/@credo-ts/core/build/crypto/hashes/Sha256.js
+index ce6d476..1740ce7 100644
+--- a/node_modules/@credo-ts/core/build/crypto/hashes/Sha256.js
++++ b/node_modules/@credo-ts/core/build/crypto/hashes/Sha256.js
+@@ -1,10 +1,10 @@
+ "use strict";
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.Sha256 = void 0;
+-const sha256_1 = require("@noble/hashes/sha256");
++const sha256_1 = require("@stablelib/sha256");
+ class Sha256 {
+     hash(data) {
+-        return (0, sha256_1.sha256)(data);
++	return (0, sha256_1.hash)(data);
+     }
+ }
+ exports.Sha256 = Sha256;
+diff --git a/node_modules/@credo-ts/core/build/modules/routing/MediationRecipientApi.js b/node_modules/@credo-ts/core/build/modules/routing/MediationRecipientApi.js
+index 62a957a..ddf4cce 100644
+--- a/node_modules/@credo-ts/core/build/modules/routing/MediationRecipientApi.js
++++ b/node_modules/@credo-ts/core/build/modules/routing/MediationRecipientApi.js
+@@ -67,7 +67,7 @@ let MediationRecipientApi = class MediationRecipientApi {
+         // Poll for messages from mediator
+         const defaultMediator = await this.findDefaultMediator();
+         if (defaultMediator) {
+-            this.initiateMessagePickup(defaultMediator).catch((error) => {
++            this.initiateMessagePickup(defaultMediator, this.config.mediatorPickupStrategy).catch((error) => {
+                 this.logger.warn(`Error initiating message pickup with mediator ${defaultMediator.id}`, { error });
+             });
+         }

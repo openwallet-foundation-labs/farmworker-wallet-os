@@ -67,8 +67,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "react-native-camera", "general"
-        versionCode 18
-        versionName "0.4.0"
+        versionCode 20
+        versionName "0.5.0"
         testBuildType System.getProperty("testBuildType", "debug")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resValue "string", "CODE_PUSH_APK_BUILD_TIME", String.format("\"%d\"", System.currentTimeMillis())
@@ -89,15 +89,6 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-
-            ndk {
-                abiFilters "armeabi-v7a", "arm64-v8a"
-            }
-        }
-        debug {
-            ndk {
-                abiFilters "armeabi-v7a", "arm64-v8a"
-            }
         }
     }
     compileOptions {
@@ -148,9 +139,6 @@ dependencies {
 
     androidTestImplementation("com.wix:detox:+")  { transitive = true }
     androidTestImplementation "junit:junit:4.12"
-
-    //Required by Credo-ts
-    implementation 'net.java.dev.jna:jna:5.2.0'
 }
 
 configurations.all {
