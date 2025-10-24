@@ -14,11 +14,11 @@ import javax.imageio.ImageIO;
 import com.mendix.core.Core;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.proxies.ImageDimensions;
 import java.io.InputStream;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
-public class GetImageDimensions extends CustomJavaAction<IMendixObject>
+public class GetImageDimensions extends UserAction<IMendixObject>
 {
 	/** @deprecated use ImageParameter.getMendixObject() instead. */
 	@java.lang.Deprecated(forRemoval = true)

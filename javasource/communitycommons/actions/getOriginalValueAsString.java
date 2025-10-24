@@ -12,7 +12,7 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.ORM;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Returns the original value of an object member, that is, the last committed value.
@@ -23,7 +23,7 @@ import com.mendix.webui.CustomJavaAction;
  * 
  * The function is applicable for non-String members as well, but always returns a String representation of the previous value.
  */
-public class getOriginalValueAsString extends CustomJavaAction<java.lang.String>
+public class getOriginalValueAsString extends UserAction<java.lang.String>
 {
 	private final IMendixObject item;
 	private final java.lang.String member;

@@ -11,7 +11,7 @@ package guidgenerator.actions;
 
 import java.util.UUID;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * A simple function for creating Guids. Useful for when you want exposed unique ids for objects used with REST APIs.
@@ -20,7 +20,7 @@ import com.mendix.webui.CustomJavaAction;
  * 
  * See https://www.geeksforgeeks.org/java-util-uuid-class-java/ for more information.
  */
-public class CreateGuid extends CustomJavaAction<java.lang.String>
+public class CreateGuid extends UserAction<java.lang.String>
 {
 	public CreateGuid(IContext context)
 	{

@@ -188,8 +188,11 @@
         overflow-x: clip;
     }
 
-    .mx-scrollcontainer-wrapper:not(.mx-scrollcontainer-nested) {
-        -webkit-overflow-scrolling: touch;
+    .mx-scrollcontainer-wrapper {
+        &:not(.mx-scrollcontainer-nested) {
+            -webkit-overflow-scrolling: touch;
+        }
+        isolation: isolate;
     }
 
     // for push aside and slide over the main part should be non-interactive if sidebar is open
@@ -210,6 +213,32 @@
             .mx-layoutgrid,
             .mx-layoutgrid-fluid {
                 padding: 0;
+            }
+        }
+    }
+
+
+    // make the first child of the MAIN part of the scroll container to grow full height
+    .region-content {
+        display: flex;
+        flex-direction: column;
+
+        & > .mx-scrollcontainer-wrapper{
+            height: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            & > .mx-placeholder{
+                height: 100%;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+
+                & > *:only-child{
+                    height: 100%;
+                    flex-grow: 1;
+                }
             }
         }
     }

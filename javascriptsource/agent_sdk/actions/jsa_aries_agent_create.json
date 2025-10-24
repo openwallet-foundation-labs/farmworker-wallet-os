@@ -9,7 +9,7 @@
 		"@credo-ts/question-answer": "0.5.13",
 		"@credo-ts/react-native": "0.5.13",
 		"@credo-ts/transport-ble": "0.3.0",
-		"@hyperledger/anoncreds-react-native": "^0.3.1",
+		"@hyperledger/anoncreds-react-native": "0.2.4",
 		"@hyperledger/aries-askar-react-native": "0.2.3",
 		"@hyperledger/indy-vdr-react-native": "0.2.2",
 		"base-64": "^1.0.0",

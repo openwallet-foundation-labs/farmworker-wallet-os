@@ -10,8 +10,8 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.DateTime;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Converts a datetime to an integer based on the selector used.
@@ -21,7 +21,7 @@ import communitycommons.DateTime;
  * - month (returns 1-12)
  * - day (returns 1-31)
  */
-public class GetIntFromDateTime extends CustomJavaAction<java.lang.Long>
+public class GetIntFromDateTime extends UserAction<java.lang.Long>
 {
 	private final java.util.Date dateObj;
 	private final communitycommons.proxies.DatePartSelector selectorObj;

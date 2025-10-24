@@ -10,7 +10,7 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Pads a string on the left to a certain length. 
@@ -22,7 +22,7 @@ import com.mendix.webui.CustomJavaAction;
  * StringLeftPad("hello", 8, "-")  returns "---hello"
  * StringLeftPad("hello", 2, "-")  returns "hello"
  */
-public class StringLeftPad extends CustomJavaAction<java.lang.String>
+public class StringLeftPad extends UserAction<java.lang.String>
 {
 	private final java.lang.String value;
 	private final java.lang.Long amount;

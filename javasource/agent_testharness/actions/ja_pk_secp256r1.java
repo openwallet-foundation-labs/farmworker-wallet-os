@@ -10,7 +10,6 @@
 package agent_testharness.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import java.security.KeyPairGenerator;
 import java.security.spec.ECGenParameterSpec;
 import java.security.SecureRandom;
@@ -18,12 +17,13 @@ import java.security.KeyPair;
 import java.security.PrivateKey;
 import org.bouncycastle.asn1.DEROctetString;
 import org.bouncycastle.asn1.DERSequence;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * https://stackoverflow.com/questions/63568619/elliptic-curve-private-key-length-in-java
  * https://stackoverflow.com/questions/42639620/generate-ecpublickey-from-ecprivatekey
  */
-public class ja_pk_secp256r1 extends CustomJavaAction<java.lang.String>
+public class ja_pk_secp256r1 extends UserAction<java.lang.String>
 {
 	public ja_pk_secp256r1(IContext context)
 	{

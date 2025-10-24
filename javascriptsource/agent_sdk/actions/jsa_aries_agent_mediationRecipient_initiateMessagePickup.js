@@ -65,14 +65,14 @@ export async function jsa_aries_agent_mediationRecipient_initiateMessagePickup(a
 		if(agent==null)return Promise.reject("Agent not found in cache");
 		//todo:apply named arguments properly
 		let ret=null;
-		      if(mediator==null&&pickupStrategy==null){
-				  ret=await agent.mediationRecipient.initiateMessagePickup(undefined,undefined)
+		if(mediator==null&&pickupStrategy==null){
+			ret=await agent.mediationRecipient.initiateMessagePickup(undefined,undefined)
 		}else if(mediator==null&&pickupStrategy!=null){
-				  ret=await agent.mediationRecipient.initiateMessagePickup(undefined,pickupStrategy)
+			ret=await agent.mediationRecipient.initiateMessagePickup(undefined,pickupStrategy)
 		}else if(mediator!=null&&pickupStrategy==null){
-				  ret=await agent.mediationRecipient.initiateMessagePickup(mediator,undefined)
+			ret=await agent.mediationRecipient.initiateMessagePickup(mediator,undefined)
 		}else if(mediator!=null&&pickupStrategy!=null){
-				  ret=await agent.mediationRecipient.initiateMessagePickup(mediator,pickupStrategy)
+			ret=await agent.mediationRecipient.initiateMessagePickup(mediator,pickupStrategy)
 		}else{
 		}
 		return Promise.resolve();

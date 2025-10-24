@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import { Platform } from 'react-native';
 
 // END EXTRA CODE
@@ -22,47 +22,50 @@ import { Platform } from 'react-native';
  * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} pathType
  * @param {string} base64Data
  * @param {boolean} writeToLog
- * @returns {Promise.<boolean>}
+ * @returns {Promise.<void>}
  */
 export async function writeFile(filepath, pathType, base64Data, writeToLog) {
 	// BEGIN USER CODE
 
-	return new Promise(function (resolve, reject) {
-		if (!filepath) {
-			reject(new Error("No file path specified"));
-		}
-		if (!pathType) {
-			reject(new Error("No path type specified"));
-		}
-		if (!base64Data) {
-			reject(new Error("No data specified"));
-		}
-		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
-				actionName: "writeFile",
-				logType: "Parameters",
-				logMessage: JSON.stringify({
-					filepath: filepath,
-					pathType: pathType,
-					dataLength: base64Data.length
-				})
-			});
-		}
-
-		const fullPath = NativeFileDocumentsUtils.getFullPath(filepath, pathType, RNFS, Platform.OS);
-
-		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
-				actionName: "writeFile",
-				logType: "Info",
-				logMessage: "Full path: " + fullPath
-			});
-		}
-
-		RNFS.writeFile(fullPath, base64Data, "base64").then(() => {
-			resolve(true);
+	if (!filepath) {
+		return Promise.reject(new Error("No file path specified"));
+	}
+	if (!pathType) {
+		return Promise.reject(new Error("No path type specified"));
+	}
+	if (!base64Data) {
+		return Promise.reject(new Error("No data specified"));
+	}
+	if (writeToLog) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "writeFile",
+			logType: "Parameters",
+			logMessage: JSON.stringify({
+				filepath: filepath,
+				pathType: pathType,
+				dataLength: base64Data.length
+			})
 		});
-	});
+	}
+
+	const fullPath = NativeFileDocumentsUtils.getFullPathNoPrefix(filepath, pathType, RNBlobUtil, Platform.OS);
+
+	const fileExists = await RNBlobUtil.fs.exists(fullPath);
+
+	if (writeToLog) {
+		const logPrefix = fileExists ? "Existing" : "New";
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "writeFile",
+			logType: "Info",
+			logMessage: logPrefix + " full path: " + fullPath
+		});
+	}
+
+	if (fileExists) {
+		return RNBlobUtil.fs.writeFile(fullPath, base64Data, "base64");
+	} else {
+		return RNBlobUtil.fs.createFile(fullPath, base64Data, "base64");
+	}
 
 	// END USER CODE
 }

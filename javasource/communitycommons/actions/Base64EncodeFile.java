@@ -12,12 +12,12 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Converts an unencoded file to a base 64 encoded string.
  */
-public class Base64EncodeFile extends CustomJavaAction<java.lang.String>
+public class Base64EncodeFile extends UserAction<java.lang.String>
 {
 	/** @deprecated use file.getMendixObject() instead. */
 	@java.lang.Deprecated(forRemoval = true)

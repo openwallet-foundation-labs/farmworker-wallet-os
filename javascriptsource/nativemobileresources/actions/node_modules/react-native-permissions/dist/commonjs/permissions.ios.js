@@ -6,8 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.PERMISSIONS = void 0;
 const IOS = Object.freeze({
   APP_TRACKING_TRANSPARENCY: 'ios.permission.APP_TRACKING_TRANSPARENCY',
-  BLUETOOTH_PERIPHERAL: 'ios.permission.BLUETOOTH_PERIPHERAL',
+  BLUETOOTH: 'ios.permission.BLUETOOTH',
   CALENDARS: 'ios.permission.CALENDARS',
+  CALENDARS_WRITE_ONLY: 'ios.permission.CALENDARS_WRITE_ONLY',
   CAMERA: 'ios.permission.CAMERA',
   CONTACTS: 'ios.permission.CONTACTS',
   FACE_ID: 'ios.permission.FACE_ID',
@@ -23,10 +24,9 @@ const IOS = Object.freeze({
   SPEECH_RECOGNITION: 'ios.permission.SPEECH_RECOGNITION',
   STOREKIT: 'ios.permission.STOREKIT'
 });
-const PERMISSIONS = Object.freeze({
+const PERMISSIONS = exports.PERMISSIONS = Object.freeze({
   ANDROID: {},
   IOS,
   WINDOWS: {}
 });
-exports.PERMISSIONS = PERMISSIONS;
 //# sourceMappingURL=permissions.ios.js.map

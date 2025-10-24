@@ -12,7 +12,7 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.Misc;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Clones the contents of one image document into another, and generates a thumbnail as well. 
@@ -22,7 +22,7 @@ import com.mendix.webui.CustomJavaAction;
  * Returns true if copied, returns file if the source had no contents, throws exception in any other case.
  * Pre condition: HasContents of the 'fileToClone' need to be set to true, otherwise the action will not copy anything.
  */
-public class DuplicateImageDocument extends CustomJavaAction<java.lang.Boolean>
+public class DuplicateImageDocument extends UserAction<java.lang.Boolean>
 {
 	/** @deprecated use fileToClone.getMendixObject() instead. */
 	@java.lang.Deprecated(forRemoval = true)

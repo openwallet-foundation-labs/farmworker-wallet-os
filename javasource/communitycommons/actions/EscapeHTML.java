@@ -10,8 +10,8 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.StringUtils;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Given a, escapes it to html codes, for example
@@ -19,7 +19,7 @@ import communitycommons.StringUtils;
  * "< Joe & John >" will be converted to 
  * "&lt; Joe &amp; John &gt;"
  */
-public class EscapeHTML extends CustomJavaAction<java.lang.String>
+public class EscapeHTML extends UserAction<java.lang.String>
 {
 	private final java.lang.String rawString;
 

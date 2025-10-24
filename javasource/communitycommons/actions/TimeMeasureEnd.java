@@ -11,7 +11,7 @@ package communitycommons.actions;
 
 import communitycommons.Logging;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * End timing something, and print the result to the log. 
@@ -19,7 +19,7 @@ import com.mendix.webui.CustomJavaAction;
  * - LogLevel. The loglevel used to print the result.
  * - The message to be printed in the log.
  */
-public class TimeMeasureEnd extends CustomJavaAction<java.lang.Long>
+public class TimeMeasureEnd extends UserAction<java.lang.Long>
 {
 	private final java.lang.String TimerName;
 	private final communitycommons.proxies.LogLevel Loglevel;

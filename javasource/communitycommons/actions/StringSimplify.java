@@ -11,12 +11,12 @@ package communitycommons.actions;
 
 import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Remove diacritics from a string.
  */
-public class StringSimplify extends CustomJavaAction<java.lang.String>
+public class StringSimplify extends UserAction<java.lang.String>
 {
 	private final java.lang.String value;
 

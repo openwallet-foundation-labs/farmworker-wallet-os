@@ -11,13 +11,13 @@ package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.Misc;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Takes the top n items of a given list and returns the resulting list.
  */
-public class ListTop extends CustomJavaAction<java.util.List<IMendixObject>>
+public class ListTop extends UserAction<java.util.List<IMendixObject>>
 {
 	private final java.util.List<IMendixObject> ObjectList;
 	private final java.lang.Long Top;

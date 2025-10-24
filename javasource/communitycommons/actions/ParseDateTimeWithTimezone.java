@@ -12,17 +12,17 @@ package communitycommons.actions;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.Logging;
 import communitycommons.proxies.LogLevel;
 import communitycommons.proxies.LogNodes;
 import java.text.ParseException;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * This method parses a date from a string with a given pattern according to a specific timezone.
  * The timezone has to be a valid timezone id http://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html (e.g. one of https://garygregory.wordpress.com/2013/06/18/what-are-the-java-timezone-ids/) 
  */
-public class ParseDateTimeWithTimezone extends CustomJavaAction<java.util.Date>
+public class ParseDateTimeWithTimezone extends UserAction<java.util.Date>
 {
 	private final java.lang.String date;
 	private final java.lang.String pattern;

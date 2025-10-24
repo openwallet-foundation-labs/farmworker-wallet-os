@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import { Platform } from 'react-native';
 
 // END EXTRA CODE
@@ -31,24 +31,24 @@ export async function saveToMendixFileDocument(filepath, pathType, fileDocument,
 	// BEGIN USER CODE
 
 	if (!filepath) {
-		Promise.reject(new Error("No file path specified"));
+		return Promise.reject(new Error("No file path specified"));
 	}
 	if (!pathType) {
-		Promise.reject(new Error("No path type specified"));
+		return Promise.reject(new Error("No path type specified"));
 	}
 	if (!fileDocument) {
-		Promise.reject(new Error("No file document specified"));
+		return Promise.reject(new Error("No file document specified"));
 	}
     if (!fileDocument.inheritsFrom("System.FileDocument")) {
         const entity = picfileDocumentture.getEntity();
-        Promise.reject(new Error("Entity " + entity + " does not inherit from System.FileDocument"));
+        return Promise.reject(new Error("Entity " + entity + " does not inherit from System.FileDocument"));
     }
 	if (!fileName) {
-		Promise.reject(new Error("No file name specified"));
+		return Promise.reject(new Error("No file name specified"));
 	}
 	const guid = fileDocument.getGuid();
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
+		await NativeFileDocumentsUtils.writeToLog({
 			actionName: "saveToMendixFileDocument",
 			logType: "Parameters",
 			logMessage: JSON.stringify({
@@ -59,10 +59,10 @@ export async function saveToMendixFileDocument(filepath, pathType, fileDocument,
 		});
 	}
 
-	const fullPath = NativeFileDocumentsUtils.getFullPath(filepath, pathType, RNFS, Platform.OS);
+	const fullPath = NativeFileDocumentsUtils.getFullPath(filepath, pathType, RNBlobUtil, Platform.OS);
 
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
+		await NativeFileDocumentsUtils.writeToLog({
 			actionName: "saveToMendixFileDocument",
 			logType: "Info",
 			logMessage: "Full path: " + fullPath
@@ -80,8 +80,9 @@ export async function saveToMendixFileDocument(filepath, pathType, fileDocument,
 					actionName: "saveToMendixFileDocument",
 					logType: "Exception",
 					logMessage: JSON.stringify(error)
+				}).then(() => {
+					reject(error)
 				});
-				reject(error)
 			};
 			mx.data.saveDocument(guid, fileName, { width: 180, height: 180 }, blob, onSuccess, onError);
 		});

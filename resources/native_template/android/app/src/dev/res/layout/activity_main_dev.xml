@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="#081218">
+
+    <RelativeLayout
+        android:id="@+id/barcode_scanner_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/dev_menu_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/dev_menu_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:animateLayoutChanges="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_max="400dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/input_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/url_input_field"
+                android:text="Host:"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/url_input_field"
+                app:layout_constraintStart_toStartOf="@+id/url_input_field" />
+
+            <EditText
+                android:id="@+id/app_url_input_field"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:background="#33ffffff"
+                android:contentDescription="appUrl"
+                android:hint="@string/hint_app_url_input"
+                android:imeOptions="actionGo"
+                android:importantForAutofill="no"
+                android:inputType="textUri"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textColorHint="#666" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/launch_app_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/mendix_green"
+            android:onClick="launchApp"
+            android:text="@string/launch_app_button"
+            android:textColor="@android:color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/checkbox_dev_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@android:color/white"
+                android:contentDescription="@string/enable_dev_mode"
+                android:text="@string/enable_dev_mode"
+                android:textColor="@android:color/white" />
+
+            <CheckBox
+                android:id="@+id/checkbox_clear_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@android:color/white"
+                android:contentDescription="@string/clear_data"
+                android:text="@string/clear_data"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#33ffffff">
+
+        <ProgressBar
+            android:indeterminate="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

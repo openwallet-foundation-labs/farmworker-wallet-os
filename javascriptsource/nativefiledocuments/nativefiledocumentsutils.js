@@ -1,37 +1,17 @@
 /* jshint node: true */
-/* globals mx */
+import { commit, create } from "mx-api/data";
 
 "use strict";
-
-/**
- * Create a Mendix object
- * @param entityName The name of the entity to create an object for.
- * @returns Promise
- */
-const createMxObject = (entityName) => {
-    return new Promise((resolve, reject) => {
-        mx.data.create({
-            entity: entityName,
-            callback:  (mxObject) => {
-                resolve(mxObject);
-            },
-            error: (e) => {
-                reject(new Error("Could not create '" + entityName + "': " + e.message));
-            }
-        });
-
-    });
-};
 
 /**
  * Determine full path.
  * For Android, paths must be prefixed with file://
  * @param {string} filepath - The path to the file or directory.
  * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"|"NativeFileDocuments.PathType.TemporaryDirectory"} pathType
- * @param {object} RNFS
+ * @param {object} RNBlobUtil
  * @param {string} os
  */
-const getFullPath = (filepath, pathType, RNFS, os) => {
+const getFullPath = (filepath, pathType, RNBlobUtil, os) => {
     let fullPath = null;
     const prefixAndroid = "file://";
 	switch (pathType) {
@@ -49,9 +29,9 @@ const getFullPath = (filepath, pathType, RNFS, os) => {
 	
 		case "DocumentsDirectory":
 			if (filepath.startsWith("/")) {
-				fullPath = RNFS.DocumentDirectoryPath + filepath;
+				fullPath = RNBlobUtil.fs.dirs.DocumentDir + filepath;
 			} else {
-				fullPath = RNFS.DocumentDirectoryPath + "/" + filepath;
+				fullPath = RNBlobUtil.fs.dirs.DocumentDir + "/" + filepath;
             }
             if (os === "android") {
                 fullPath = prefixAndroid + fullPath;
@@ -65,10 +45,10 @@ const getFullPath = (filepath, pathType, RNFS, os) => {
  * Determine full path, without prefix.
  * @param {string} filepath - The path to the file or directory.
  * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"|"NativeFileDocuments.PathType.TemporaryDirectory"} pathType
- * @param {object} RNFS
+ * @param {object} RNBlobUtil
  * @param {string} os
  */
-const getFullPathNoPrefix = (filepath, pathType, RNFS, os) => {
+const getFullPathNoPrefix = (filepath, pathType, RNBlobUtil, os) => {
     let fullPath = null;
 	switch (pathType) {
 		case "FullPath":
@@ -77,9 +57,9 @@ const getFullPathNoPrefix = (filepath, pathType, RNFS, os) => {
 	
 		case "DocumentsDirectory":
 			if (filepath.startsWith("/")) {
-				fullPath = RNFS.DocumentDirectoryPath + filepath;
+				fullPath = RNBlobUtil.fs.dirs.DocumentDir + filepath;
 			} else {
-				fullPath = RNFS.DocumentDirectoryPath + "/" + filepath;
+				fullPath = RNBlobUtil.fs.dirs.DocumentDir + "/" + filepath;
             }
 			break;	
     }
@@ -90,33 +70,21 @@ const getFullPathNoPrefix = (filepath, pathType, RNFS, os) => {
  * Write to log.
  * @param  logData 
  */
-const writeToLog = (logData) => {
-    createMxObject("NativeFileDocuments.NativeActionLog").then((newLog) => {
-        newLog.set("LoggedAt", new Date());
-        newLog.set("ActionName", logData.actionName);
-        newLog.set("LogType", logData.logType);
-        newLog.set("LogMessage", logData.logMessage);
-        mx.data.commit({
-            mxobj: newLog,
-            callback: function() {
-                // console.log("Log entry written");
-            },
-            error: function(e) {
-                Promise.reject(new Error("Could not commit new native action log object: " + e.message));
-            }
-        });
-    });
+const writeToLog = async (logData) => {
+    const newLog = await create({ entity: "NativeFileDocuments.NativeActionLog"});
+    newLog.set("LoggedAt", new Date());
+    newLog.set("ActionName", logData.actionName);
+    newLog.set("LogType", logData.logType);
+    newLog.set("LogMessage", logData.logMessage);
+    await commit({ objects: [newLog] });
 };
 
 const NativeFileDocumentsUtils = {
-    createMxObject(entityName) {
-        return createMxObject(entityName);
+    getFullPath(filepath, pathType, RNBlobUtil, os) {
+        return getFullPath(filepath, pathType, RNBlobUtil, os);
     },
-    getFullPath(filepath, pathType, RNFS, os) {
-        return getFullPath(filepath, pathType, RNFS, os);
-    },
-    getFullPathNoPrefix(filepath, pathType, RNFS, os) {
-        return getFullPathNoPrefix(filepath, pathType, RNFS, os);
+    getFullPathNoPrefix(filepath, pathType, RNBlobUtil, os) {
+        return getFullPathNoPrefix(filepath, pathType, RNBlobUtil, os);
     },
     writeToLog(logData) {
         return writeToLog(logData);

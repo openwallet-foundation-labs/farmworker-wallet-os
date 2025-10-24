@@ -1,0 +1,25 @@
+diff --git a/node_modules/@hyperledger/aries-askar-react-native/android/CMakeLists.txt b/node_modules/@hyperledger/aries-askar-react-native/android/CMakeLists.txt
+index 74b6aff..e5553fa 100644
+--- a/node_modules/@hyperledger/aries-askar-react-native/android/CMakeLists.txt
++++ b/node_modules/@hyperledger/aries-askar-react-native/android/CMakeLists.txt
+@@ -91,7 +91,7 @@ if(${REACT_NATIVE_VERSION} GREATER_EQUAL 71)
+   target_link_libraries(
+     ${PACKAGE_NAME}
+     ReactAndroid::jsi
+-    ReactAndroid::reactnativejni
++    ReactAndroid::reactnative
+     fbjni::fbjni
+   )
+ elseif(${REACT_NATIVE_VERSION} LESS 66)
+diff --git a/node_modules/@hyperledger/aries-askar-react-native/android/build.gradle b/node_modules/@hyperledger/aries-askar-react-native/android/build.gradle
+index 15eeb9c..543997f 100644
+--- a/node_modules/@hyperledger/aries-askar-react-native/android/build.gradle
++++ b/node_modules/@hyperledger/aries-askar-react-native/android/build.gradle
+@@ -110,6 +110,7 @@ android {
+     excludes = ["**/libc++_shared.so", 
+                 "**/libfbjni.so", 
+                 "**/libjsi.so",
++                "**/libreactnative.so",  
+                 "**/libreactnativejni.so", 
+                 "**/libjscexecutor.so", 
+     ]

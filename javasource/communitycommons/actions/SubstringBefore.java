@@ -10,13 +10,13 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.StringUtils;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Gets the substring before the first occurrence of a separator.
  */
-public class SubstringBefore extends CustomJavaAction<java.lang.String>
+public class SubstringBefore extends UserAction<java.lang.String>
 {
 	private final java.lang.String str;
 	private final java.lang.String separator;

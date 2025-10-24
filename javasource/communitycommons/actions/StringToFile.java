@@ -14,13 +14,13 @@ import communitycommons.StringUtils;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Stores a string into the provided FileDocument, using the specified encoding.
  * Note that destination will be committed.
  */
-public class StringToFile extends CustomJavaAction<java.lang.Boolean>
+public class StringToFile extends UserAction<java.lang.Boolean>
 {
 	private final java.lang.String value;
 	/** @deprecated use destination.getMendixObject() instead. */

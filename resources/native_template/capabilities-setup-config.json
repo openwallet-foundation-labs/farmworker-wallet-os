@@ -1,0 +1,103 @@
+{
+    "deepLink": {
+        "ios": {
+            "AppDelegate": {
+                "imports": [
+                    "#import \"React/RCTLinkingManager.h\""
+                ],
+                "boolean_openURLWithOptions": [
+                    "return [RCTLinkingManager application:application openURL:url options:options];"
+                ]
+            }
+        }
+    },
+    "crashlytics": {
+        "android": {
+            "gradle": {
+                "classpaths": [
+                    "com.google.firebase:firebase-crashlytics-gradle:2.2.0"
+                ],
+                "plugins": [
+                    "com.google.firebase.crashlytics"
+                ]
+            },
+            "externalDependencies": [
+                "com.google.firebase:firebase-analytics"
+            ]
+        },
+        "ios": {
+            "pods": {
+                "Firebase/Analytics": {}
+            }
+        }
+    },
+    "localNotifications": {
+        "android": {
+            "externalDependencies": [
+                "me.leolin:ShortcutBadger:1.1.22@aar"
+            ]
+        },
+        "ios": {
+            "AppDelegate": {
+                "imports": [
+                    "#import <RNCPushNotificationIOS.h>"
+                ],
+                "didFinishLaunchingWithOptions": [
+                    "UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];",
+                    "center.delegate = MendixAppDelegate.delegate;"
+                ],
+                "willPresentNotification": [
+                    "completionHandler(UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge);"
+                ],
+                "didReceiveNotificationResponse": [
+                    "[RNCPushNotificationIOS didReceiveNotificationResponse:response];",
+                    "completionHandler();"
+                ]
+            }
+        }
+    },
+    "firebaseAndroid": {
+        "android": {
+            "gradle": {
+                "classpaths": [
+                    "com.google.gms:google-services:4.3.3"
+                ],
+                "plugins": [
+                    "com.google.gms.google-services"
+                ]
+            }
+        }
+    },
+    "firebaseIos": {
+        "ios": {
+            "AppDelegate": {
+                "imports": [
+                    "#import <Firebase.h>"
+                ],
+                "didFinishLaunchingWithOptions": [
+                    "[FIRApp configure];"
+                ]
+            }
+        }
+    },
+    "maps": {},
+    "mapsIos": {
+        "ios": {
+            "AppDelegate": {
+                "imports": [
+                    "#import <GoogleMaps/GoogleMaps.h>"
+                ],
+                "didFinishLaunchingWithOptions": [
+                    "[GMSServices provideAPIKey:[[NSBundle mainBundle] objectForInfoDictionaryKey:@\"GoogleMapsApiKey\"] ?: @\"\"];"
+                ]
+            },
+            "pods": {
+                "react-native-google-maps": {
+                    "path": "react-native-maps"
+                },
+                "GoogleMaps": {},
+                "Google-Maps-iOS-Utils": {}
+            }
+        }
+    }
+}

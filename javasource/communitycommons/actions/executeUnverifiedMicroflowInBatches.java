@@ -10,8 +10,8 @@
 package communitycommons.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import communitycommons.Misc;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Invokes a microflow in batches. The microflow is invoked for each individual item returned by the xpath query. 
@@ -31,7 +31,7 @@ import communitycommons.Misc;
  * 
  * Note, if new objects are added to the dataset while the batch is still running, those objects will be processed as well.
  */
-public class executeUnverifiedMicroflowInBatches extends CustomJavaAction<java.lang.Boolean>
+public class executeUnverifiedMicroflowInBatches extends UserAction<java.lang.Boolean>
 {
 	private final java.lang.String xpath;
 	private final java.lang.String microflowName;

@@ -17,7 +17,7 @@ import{cache}from"../support/entidad";
  *      identifier: string;
  *  }) => void): EmitterSubscription
  * 
- * @param {Nanoflow} callback
+ * @param {Nanoflow} [callback]
  * @param {string} identifier_parameter_name - optional
  * @param {MxObject} user_data - optional
  * @param {string} user_data_parameter_name - optional

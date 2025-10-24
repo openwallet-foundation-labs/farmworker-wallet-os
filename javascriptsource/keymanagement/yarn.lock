@@ -12,7 +12,7 @@ react-native-argon2@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-native-argon2/-/react-native-argon2-2.0.1.tgz#eaa6fb77c76b8c85ad83dfa4507f83ba37285e4b"
   integrity sha512-/iOi0S+VVgS1gQGtQgL4ZxUVS4gz6Lav3bgIbtNmr9KbOunnBYzP6/yBe/XxkbpXvasHDwdQnuppOH/nuOBn7w==
 
-react-native-sensitive-info@^6.0.0-alpha.9:
+react-native-sensitive-info@6.0.0-alpha.9:
   version "6.0.0-alpha.9"
   resolved "https://registry.yarnpkg.com/react-native-sensitive-info/-/react-native-sensitive-info-6.0.0-alpha.9.tgz#b488fab715d36efdf80b377a21545cfe888ab8d2"
   integrity sha512-W2R1gUHgBAmy+wVl0BvA7s01SqqTitnG4Sdj2zmck0OS5a54kq+pTnXRqDljMa2NQs4Mue2IHyvd+Tf0X1ZL6Q==

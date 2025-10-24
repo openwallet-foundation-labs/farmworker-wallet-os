@@ -11,12 +11,12 @@ package communitycommons.actions;
 
 import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Generates an asymmetric hash using the HMAC_SHA256 hash algorithm
  */
-public class GenerateHMAC_SHA256_hash extends CustomJavaAction<java.lang.String>
+public class GenerateHMAC_SHA256_hash extends UserAction<java.lang.String>
 {
 	private final java.lang.String key;
 	private final java.lang.String valueToEncrypt;

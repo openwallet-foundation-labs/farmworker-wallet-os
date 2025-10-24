@@ -30,7 +30,7 @@ import{cache}from"../support/entidad";
  * parameters_parameter - Optional parameter name of the parameter to be used for the raw DRPC parameters to be manually parsed by the developer. If not specified, will not populate any parameter with the raw DRPC parameters.
  * drpc_parameter - Optional parameter name of the parameter to have applied to the DRPC record Mendix object. If not specified, no parameter will have the DRPC record Mendix object applied to. If provided, in the nanoflow callback, the Connection can be retrieved via the DRPC entity, and from the Connection, the Agent can be retrieved
  * @param {string} alias
- * @param {Nanoflow} callback
+ * @param {Nanoflow} [callback]
  * @param {string} hint - optional
  * @param {boolean} synchronous
  * @param {string} parameters_parameter - optional

@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import { Platform } from "react-native";
 import { zip, zipWithPassword } from "react-native-zip-archive";
 
@@ -32,21 +32,21 @@ import { zip, zipWithPassword } from "react-native-zip-archive";
 export async function zipFolder(sourcePath, sourcePathType, destPath, destPathType, writeToLog, password) {
 	// BEGIN USER CODE
 	if (!sourcePath) {
-		Promise.reject(new Error("No source path specified"));
+		return Promise.reject(new Error("No source path specified"));
 	}
 	if (!sourcePathType) {
-		Promise.reject(new Error("No source type specified"));
+		return Promise.reject(new Error("No source type specified"));
 	}
 
 	if (!destPath) {
-		Promise.reject(new Error("No destination file specified"));
+		return Promise.reject(new Error("No destination file specified"));
 	}
 	if (!destPathType) {
-		Promise.reject(new Error("No destination type specified"));
+		return Promise.reject(new Error("No destination type specified"));
 	}
 
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
+		await NativeFileDocumentsUtils.writeToLog({
 			actionName: "unzip",
 			logType: "Parameters",
 			logMessage: JSON.stringify({
@@ -58,11 +58,11 @@ export async function zipFolder(sourcePath, sourcePathType, destPath, destPathTy
 		});
 	}
 
-	const fullSourcePath = NativeFileDocumentsUtils.getFullPathNoPrefix(sourcePath, sourcePathType, RNFS, Platform.OS);
-	const fullDestPath = NativeFileDocumentsUtils.getFullPathNoPrefix(destPath, destPathType, RNFS, Platform.OS);
+	const fullSourcePath = NativeFileDocumentsUtils.getFullPathNoPrefix(sourcePath, sourcePathType, RNBlobUtil, Platform.OS);
+	const fullDestPath = NativeFileDocumentsUtils.getFullPathNoPrefix(destPath, destPathType, RNBlobUtil, Platform.OS);
 
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
+		await NativeFileDocumentsUtils.writeToLog({
 			actionName: "unzip",
 			logType: "Info",
 			logMessage: "Full source path: " + fullSourcePath + ", full dest path: " + fullDestPath + ", has password: " + !!password

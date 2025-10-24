@@ -12,7 +12,7 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.Misc;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Retrieve a document from an URL using a HTTP GET request. 
@@ -24,7 +24,7 @@ import com.mendix.webui.CustomJavaAction;
  * 
  * NOTE: For images, no thumbnail will be generated.
  */
-public class storeURLToFileDocument extends CustomJavaAction<java.lang.Boolean>
+public class storeURLToFileDocument extends UserAction<java.lang.Boolean>
 {
 	private final java.lang.String url;
 	/** @deprecated use document.getMendixObject() instead. */

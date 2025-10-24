@@ -17,7 +17,7 @@ import{cache}from"../support/entidad";
 /**
  * Unregisters RPC method
  * @param {string} alias - optional
- * @param {Nanoflow} callback - optional
+ * @param {Nanoflow} [callback] - optional
  * @returns {Promise.<void>}
  */
 export async function jsa_aries_agent_modules_rpc_unregister_callback(alias, callback) {

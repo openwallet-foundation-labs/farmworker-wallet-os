@@ -11,8 +11,10 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import { Platform } from 'react-native';
+import { create } from "mx-api/data";
+
 
 // END EXTRA CODE
 
@@ -26,13 +28,13 @@ import { Platform } from 'react-native';
 export async function readDir(dirpath, pathType, writeToLog) {
 	// BEGIN USER CODE
 	if (!dirpath && pathType !== "DocumentsDirectory") {
-		Promise.reject(new Error("No file path specified"));
+		return Promise.reject(new Error("No file path specified"));
 	}
 	if (!pathType) {
-		Promise.reject(new Error("No path type specified"));
+		return Promise.reject(new Error("No path type specified"));
 	}
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
+		await NativeFileDocumentsUtils.writeToLog({
 			actionName: "readDir",
 			logType: "Parameters",
 			logMessage: JSON.stringify({
@@ -42,28 +44,28 @@ export async function readDir(dirpath, pathType, writeToLog) {
 		});
 	}
 
-	const fullPath = NativeFileDocumentsUtils.getFullPath(dirpath, pathType, RNFS, Platform.OS);
+	const fullPath = NativeFileDocumentsUtils.getFullPathNoPrefix(dirpath, pathType, RNBlobUtil, Platform.OS);
 
 	if (writeToLog) {
-		NativeFileDocumentsUtils.writeToLog({
+		await NativeFileDocumentsUtils.writeToLog({
 			actionName: "readDir",
 			logType: "Info",
 			logMessage: "readDir fullPath: " + fullPath
 		});
 	}
 
-	const dirItemArray = await RNFS.readDir(fullPath);
+	const dirItemArray = await RNBlobUtil.fs.lstat(fullPath);
 
 	const resultArray = [];
 
 	for (item of dirItemArray) {
-		const newResultItem = await NativeFileDocumentsUtils.createMxObject("NativeFileDocuments.ReadDirItem");
-		newResultItem.set("Name", item.name);
+		const newResultItem = await create({ entity: "NativeFileDocuments.ReadDirItem" });
+		newResultItem.set("Name", item.filename);
 		newResultItem.set("Path", item.path);
 		newResultItem.set("Size", item.size);
-		newResultItem.set("IsFile", item.isFile());
-		newResultItem.set("IsDirectory", item.isDirectory());
-		newResultItem.set("LastModified", item.mtime);
+		newResultItem.set("IsFile", "file" === item.type);
+		newResultItem.set("IsDirectory", "directory" === item.type);
+		newResultItem.set("LastModified", item.lastModified);
 		resultArray.push(newResultItem);
 	}
 

@@ -11,14 +11,14 @@ package communitycommons.actions;
 
 import communitycommons.Misc;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Causes this request to sleep for a while. Useful to prevent brute force attacks or to simulate latency delays. 
  *  
  * Delaytime : time in ms
  */
-public class Delay extends CustomJavaAction<java.lang.Boolean>
+public class Delay extends UserAction<java.lang.Boolean>
 {
 	private final java.lang.Long delaytime;
 

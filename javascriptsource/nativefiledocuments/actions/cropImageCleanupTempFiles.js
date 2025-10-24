@@ -20,24 +20,24 @@ import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
  */
 export async function cropImageCleanupTempFiles(writeToLog) {
 	// BEGIN USER CODE
-	return new Promise(function(resolve, reject) {
-		ImagePicker.clean().then(() => {
-			if (writeToLog) {
-				NativeFileDocumentsUtils.writeToLog({
-					actionName: "cropImageCleanupTempFiles",
-					logType: "Info",
-					logMessage: "Cleanup complete"
-				});
-			}
-			resolve(undefined);
-		}).catch(error => {
-			NativeFileDocumentsUtils.writeToLog({
+	try {
+		await ImagePicker.clean();
+		if (writeToLog) {
+			await NativeFileDocumentsUtils.writeToLog({
 				actionName: "cropImageCleanupTempFiles",
-				logType: "Exception",
-				logMessage: JSON.stringify(error)
+				logType: "Info",
+				logMessage: "Cleanup complete"
 			});
-			reject(error);
+		}
+		return undefined;
+
+	} catch(error) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "cropImageCleanupTempFiles",
+			logType: "Exception",
+			logMessage: JSON.stringify(error)
 		});
-	});
+		return Promise.reject(error);
+	};
 	// END USER CODE
 }

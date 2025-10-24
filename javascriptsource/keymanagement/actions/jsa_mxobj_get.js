@@ -40,7 +40,7 @@ import { Big } from "big.js";
  * Type
  *     string | number | external:Big | boolean 
  * @param {MxObject} input
- * @param {Nanoflow} attribute
+ * @param {Nanoflow} [attribute]
  * @returns {Promise.<string>}
  */
 export async function jsa_mxobj_get(input, attribute) {

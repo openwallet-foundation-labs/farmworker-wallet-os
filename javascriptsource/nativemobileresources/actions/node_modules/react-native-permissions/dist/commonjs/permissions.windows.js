@@ -148,10 +148,9 @@ const WINDOWS = Object.freeze({
   WIFI_CONTROL: 'windows.permission.wiFiControl',
   XBOX_ACCESSORY_MANAGEMENT: 'windows.permission.xboxAccessoryManagement'
 });
-const PERMISSIONS = Object.freeze({
+const PERMISSIONS = exports.PERMISSIONS = Object.freeze({
   ANDROID: {},
   IOS: {},
   WINDOWS
 });
-exports.PERMISSIONS = PERMISSIONS;
 //# sourceMappingURL=permissions.windows.js.map

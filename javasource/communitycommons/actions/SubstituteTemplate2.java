@@ -12,14 +12,14 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Identical to SubstituteTemplate, but adds an datetimeformat argument
  * 
  * DateTimeFormat identifies a format string which is applied to date/time based attributes. Can be left empty. Defaults to "EEE dd MMM yyyy, HH:mm"
  */
-public class SubstituteTemplate2 extends CustomJavaAction<java.lang.String>
+public class SubstituteTemplate2 extends UserAction<java.lang.String>
 {
 	private final java.lang.String template;
 	private final IMendixObject substitute;

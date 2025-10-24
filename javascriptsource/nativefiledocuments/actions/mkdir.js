@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 
 import NativeFileDocumentsUtils from "../nativefiledocumentsutils";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import { Platform } from 'react-native';
 
 // END EXTRA CODE
@@ -28,46 +28,37 @@ import { Platform } from 'react-native';
  */
 export async function mkdir(dirpath, pathType, excludeFromBackup, writeToLog) {
 	// BEGIN USER CODE
-	return new Promise(function (resolve, reject) {
-		if (!dirpath) {
-			reject(new Error("No file path specified"));
-		}
-		if (!pathType) {
-			reject(new Error("No path type specified"));
-		}
-		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
-				actionName: "mkdir",
-				logType: "Parameters",
-				logMessage: JSON.stringify({
-					dirpath: dirpath,
-					pathType: pathType
-				})
-			});
-		}
-
-		const fullPath = NativeFileDocumentsUtils.getFullPath(dirpath, pathType, RNFS, Platform.OS);
-
-		let options = {};
-		if (Platform.OS === "ios" && excludeFromBackup) {
-			// Only supported on iOS
-			options.NSURLIsExcludedFromBackupKey = true;
-		}
-
-		if (writeToLog) {
-			NativeFileDocumentsUtils.writeToLog({
-				actionName: "mkdir",
-				logType: "Info",
-				logMessage: "mkdir options: " + JSON.stringify({
-					fullPath: fullPath,
-					options: options
-				})
-			});
-		}
-
-		RNFS.mkdir(fullPath, options).then(() => {
-			resolve(true);
+	if (!dirpath) {
+		return Promise.reject(new Error("No file path specified"));
+	}
+	if (!pathType) {
+		return Promise.reject(new Error("No path type specified"));
+	}
+	if (writeToLog) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "mkdir",
+			logType: "Parameters",
+			logMessage: JSON.stringify({
+				dirpath: dirpath,
+				pathType: pathType
+			})
 		});
-	});
+	}
+
+	const fullPath = NativeFileDocumentsUtils.getFullPathNoPrefix(dirpath, pathType, RNBlobUtil, Platform.OS);
+
+	if (writeToLog) {
+		await NativeFileDocumentsUtils.writeToLog({
+			actionName: "mkdir",
+			logType: "Info",
+			logMessage: "mkdir options: " + JSON.stringify({
+				fullPath: fullPath
+			})
+		});
+	}
+
+	RNBlobUtil.fs.mkdir(fullPath);
+	return true;
+
 	// END USER CODE
 }

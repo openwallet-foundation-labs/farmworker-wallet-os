@@ -1,0 +1,26 @@
+{
+    "images": [
+        {
+            "size": "640x960",
+            "idiom": "universal",
+            "scale": "1x",
+            "type": "splashScreen",
+            "filename": "splash@1x.png"
+        },
+        {
+            "size": "375x667",
+            "idiom": "universal",
+            "scale": "2x",
+            "type": "splashScreen",
+            "filename": "splash@2x.png"
+        },
+        {
+            "size": "414x736",
+            "idiom": "universal",
+            "scale": "3x",
+            "type": "splashScreen",
+            "filename": "splash@3x.png"
+        }
+    ],
+    "version": 1
+}

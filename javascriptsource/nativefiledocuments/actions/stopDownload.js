@@ -9,17 +9,19 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import RNFS from "react-native-fs";
+
+import DownloadFileImpl from "../DownloadFileImpl";
+
 // END EXTRA CODE
 
 /**
- * @param {Big} jobId
+ * @param {MxObject} downloadFileProgress
  * @returns {Promise.<void>}
  */
-export async function stopDownload(jobId) {
+export async function stopDownload(downloadFileProgress) {
 	// BEGIN USER CODE
 
-	// no write to log, stopping a download will trigger an exception on the downloadFile
-	RNFS.stopDownload(Number(jobId));
+	DownloadFileImpl.stopDownload(downloadFileProgress);
+
 	// END USER CODE
 }

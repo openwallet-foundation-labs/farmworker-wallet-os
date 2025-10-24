@@ -33,7 +33,7 @@ export async function TakePicture(picture, pictureSource, pictureQuality, maximu
         return Promise.reject(new Error("Picture quality is set to 'Custom', but no maximum width or height was provided"));
     }
     // V3 dropped the feature of providing an action sheet so users can decide on which action to take, camera or library.
-    const nativeVersionMajor = NativeModules.ImagePickerManager.showImagePicker ? 2 : 4;
+    const nativeVersionMajor = ((_a = NativeModules === null || NativeModules === void 0 ? void 0 : NativeModules.ImagePickerManager) === null || _a === void 0 ? void 0 : _a.showImagePicker) ? 2 : 4;
     const RNPermissions = nativeVersionMajor === 4 ? (await import('react-native-permissions')).default : null;
     try {
         const uri = await takePicture();

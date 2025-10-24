@@ -12,14 +12,14 @@ package communitycommons.actions;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Stores an base 64 encoded string plain in the provided target file document
  * 
  * Note that targetFile will be committed.
  */
-public class Base64DecodeToFile extends CustomJavaAction<java.lang.Boolean>
+public class Base64DecodeToFile extends UserAction<java.lang.Boolean>
 {
 	private final java.lang.String encoded;
 	/** @deprecated use targetFile.getMendixObject() instead. */

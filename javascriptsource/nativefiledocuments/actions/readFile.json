@@ -1,5 +1,5 @@
 {
     "nativeDependencies": {
-        "react-native-fs": "2.20.0"
+        "react-native-blob-util": "0.21.2"
     }
 }

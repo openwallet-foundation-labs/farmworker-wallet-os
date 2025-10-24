@@ -10,14 +10,14 @@
 package agent_testharness.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * Generates Pay to Public Key Hash (P2PKH) Bitcoin address (compressed and uncompressed public key)
  * 
  * Can be validated at https://awebanalysis.com/en/bitcoin-address-validate/
  */
-public class ja_P2PKH extends CustomJavaAction<java.lang.String>
+public class ja_P2PKH extends UserAction<java.lang.String>
 {
 	public ja_P2PKH(IContext context)
 	{

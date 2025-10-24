@@ -11,9 +11,9 @@ package communitycommons.actions;
 
 import communitycommons.Misc;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
-public class recommitInBatches extends CustomJavaAction<java.lang.Boolean>
+public class recommitInBatches extends UserAction<java.lang.Boolean>
 {
 	private final java.lang.String xpath;
 	private final java.lang.Long batchsize;

@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 
 import LogListener from "../LogListener";
-import RNFS from "react-native-fs";
+import RNBlobUtil from "react-native-blob-util";
 import { Platform } from 'react-native';
 
 // END EXTRA CODE
@@ -24,7 +24,7 @@ import { Platform } from 'react-native';
 export async function startLogListener(logFolderPath) {
 	// BEGIN USER CODE
 
-	return LogListener.startListener(logFolderPath, RNFS, Platform.OS);
+	return LogListener.startListener(logFolderPath, RNBlobUtil, Platform.OS);
 
 	// END USER CODE
 }

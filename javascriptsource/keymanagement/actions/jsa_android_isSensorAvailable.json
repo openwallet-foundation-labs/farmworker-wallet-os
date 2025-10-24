@@ -1,7 +1,7 @@
 {
     "nativeDependencies": {
         "json-query": "^2.2.2",
-        "react-native-sensitive-info": "^6.0.0-alpha.9",
+        "react-native-sensitive-info": "6.0.0-alpha.9",
         "react-native-argon2": "^2.0.1",
         "react-native-crypto": "^2.2.0"
     }
