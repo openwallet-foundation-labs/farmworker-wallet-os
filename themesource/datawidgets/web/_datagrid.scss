@@ -397,6 +397,10 @@ $root: ".widget-datagrid";
         }
     }
 
+    &-top-bar {
+        container: widget-datagrid-header / inline-size;
+    }
+
     &-content {
         overflow-x: auto;
     }
@@ -407,6 +411,10 @@ $root: ".widget-datagrid";
 
     &-grid-body {
         display: contents;
+    }
+
+    &-footer {
+        container: widget-datagrid-footer / inline-size;
     }
 
     &.widget-datagrid-selection-method-click {
@@ -420,7 +428,8 @@ $root: ".widget-datagrid";
         align-items: center;
     }
 
-    &-exporting {
+    &-exporting,
+    &-selecting-all-pages {
         .widget-datagrid-top-bar,
         .widget-datagrid-header,
         .widget-datagrid-content,
@@ -517,7 +526,7 @@ $root: ".widget-datagrid";
 
 .widget-datagrid .widget-datagrid-load-more {
     display: block !important;
-    margin: 0 auto;
+    margin: var(--spacing-small, 8px) 0;
 }
 
 .infinite-loading.widget-datagrid-grid-body {
@@ -540,31 +549,67 @@ $root: ".widget-datagrid";
     grid-column: 1 / -1;
 }
 
-:where(#{$root}-paging-bottom) {
+:where(#{$root}-paging-bottom, #{$root}-padding-top) {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
 }
 
-:where(#{$root}-pb-start, #{$root}-pb-end, #{$root}-pb-middle) {
+:where(#{$root}-pb-end, #{$root}-tb-end) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+:where(#{$root}-pb-start, #{$root}-tb-start, #{$root}-pb-end, #{$root}-tb-end, #{$root}-pb-middle) {
     flex-grow: 1;
     flex-basis: 33.33%;
-    min-height: 20px;
 }
 
-:where(#{$root}-pb-start) {
-    margin-block: var(--spacing-medium);
-    padding-inline: var(--spacing-medium);
+:where(#{$root}-pb-middle) {
+    display: flex;
+    justify-content: center;
 }
 
-#{$root}-clear-selection {
+:where(#{$root}-pb-start, #{$root}-tb-start) {
+    display: flex;
+    align-items: center;
+}
+
+#{$root}-btn-link {
     cursor: pointer;
     background: transparent;
     border: none;
-    text-decoration: underline;
     color: var(--link-color);
-    padding: 0;
+    padding: 0.3em 0.5em;
+    border-radius: 6px;
     display: inline-block;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus-visible {
+        background-color: var(--brand-primary-50, #e6e7f2);
+    }
+}
+
+:where(#{$root}-selection-counter) {
+    display: flex;
+    align-items: center;
+    height: 54px;
+    padding: var(--spacing-small) var(--spacing-medium);
+}
+
+:where(#{$root}-select-all-bar) {
+    grid-column: 1 / -1;
+    background-color: #f0f1f2;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: var(--spacing-smaller, 8px) var(--spacing-medium, 16px);
+
+    #{$root}-spinner {
+        padding: 6.2px;
+    }
 }
 
 @keyframes skeleton-loading {
@@ -576,5 +621,25 @@ $root: ".widget-datagrid";
 @keyframes rotate {
     to {
         transform: rotate(1turn);
+    }
+}
+
+@container widget-datagrid-footer (width < 500px) {
+    #{$root}-paging-bottom {
+        flex-direction: column;
+        :where(#{$root}-pb-start, #{$root}-pb-end, #{$root}-pb-middle) {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
+
+@container widget-datagrid-header (width < 500px) {
+    #{$root}-padding-top {
+        flex-direction: column-reverse;
+        :where(#{$root}-tb-start, #{$root}-tb-end) {
+            width: 100%;
+            justify-content: center;
+        }
     }
 }

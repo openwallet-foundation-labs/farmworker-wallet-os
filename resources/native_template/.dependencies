@@ -1,5 +1,5 @@
 {
-    "react-native-camera": "3.40.0",
+    "react-native-vision-camera": "4.7.3",
     "json-query": "^2.2.2",
     "react-native-sensitive-info": "6.0.0-alpha.9",
     "react-native-argon2": "^2.0.1",
