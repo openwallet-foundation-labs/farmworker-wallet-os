@@ -1,7 +1,7 @@
 #include "../../Config/config.xcconfig"
 
 MAIN_STORY_BOARD = LaunchApp
-BUNDLE_DISPLAY_NAME = Dev-Farmworker Wallet OS
+BUNDLE_DISPLAY_NAME = Farmworker Wallet OS
 BUNDLE_IDENTIFIER_APPEND = .developerapp
 
 PRODUCT_NAME = FWOSDev
