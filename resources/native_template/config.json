@@ -1,7 +1,7 @@
 {
     "configVersion": 2,
     "appIdentifier": "io.entidad.app.fwos",
-    "appName": "FWOS",
+    "appName": "Farmworker Wallet OS",
     "bundleName": {
         "main": "FWOS",
         "dev": "FWOSDev"
@@ -179,8 +179,8 @@
             "enabled": false
         }
     },
-    "appVersion": "0.5.0",
-    "buildNumber": 20,
+    "appVersion": "0.5.1",
+    "buildNumber": 21,
     "runtimeUrl": "http://localhost:8080",
     "hermesEnabled": true,
     "cookieEncryptionEnabled": false

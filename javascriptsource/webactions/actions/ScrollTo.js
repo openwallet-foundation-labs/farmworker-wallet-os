@@ -12,7 +12,7 @@ import { Big } from "big.js";
 
 /**
  * Scroll the window to make targeted element visible
- * @param {string} targetSelector - Selector to reach the element to be scrolled to, example .mx-class or #widget-id
+ * @param {string} targetSelector - Selector to reach the element to be scrolled to. Examples: .warning to scroll to an element with the class warning, or .mx-name-textBox1 to scroll to a text box with the class mx-name-textBox1 (and name textBox1).
  * @returns {Promise.<void>}
  */
 export async function ScrollTo(targetSelector) {
@@ -24,8 +24,7 @@ export async function ScrollTo(targetSelector) {
             block: "start",
             inline: "nearest"
         });
-    }
-    else {
+    } else {
         console.log("no item found");
     }
 	// END USER CODE

@@ -2952,6 +2952,175 @@
   content: "\ea6d";
 }
 
+/* ==========================================================================
+  Take picture styles
+========================================================================== */
+.take-picture-wrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  /* Should be higher than the the video. */
+  z-index: 111;
+}
+
+.take-picture-video-element {
+  position: absolute;
+  /* Should be higher than the z-index of '.layout-atlas .region-sidebar' so it sits on top of the page. */
+  z-index: 110;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+.take-picture-action-control-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  /* should be higher than the video. */
+  z-index: 111;
+  margin-bottom: 74px;
+}
+
+.take-picture-action-switch-control-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  /* should be higher than the video. */
+  z-index: 111;
+  margin-bottom: 74px;
+}
+
+.take-picture-close-control-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  /* should be higher than the video. */
+  z-index: 111;
+}
+
+.take-picture-action-control {
+  background-color: transparent;
+  border-style: none;
+  padding: 0;
+}
+
+.take-picture-action-spacing {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.take-picture-switch-spacing {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.take-picture-spacing-div {
+  flex: 1;
+}
+
+.take-picture-action-control-inner {
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid black;
+  width: 58px;
+  height: 58px;
+}
+
+.take-picture-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 111;
+}
+
+.take-picture-save-button {
+  color: white;
+  background-color: #264ae5;
+  width: 100%;
+  border-radius: 4px;
+  height: 40px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  border-style: none;
+}
+
+.take-picture-switch-control {
+  background-color: transparent;
+  border-style: none;
+  padding: 0;
+  margin-right: 22.33px;
+}
+
+.take-picture-close-control {
+  margin: 30px 0 0 30px;
+  border-style: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+.take-picture-save-control {
+  margin: 30px 30px 0 0;
+  border-style: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+.take-picture-confirm-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  /* should be higher than the wrapper. */
+  z-index: 112;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.take-picture-image {
+  position: absolute;
+  /* Should be higher than the z-index of '.layout-atlas .region-sidebar' so it sits on top of the page. */
+  z-index: 110;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+/* Overwrite 'atlas_core/web/core/_legacy/_mxui.scss' for this particular widget because otherwise
+    iOS Safari will in certain cases put the top and/or bottom bar on top of the overlay of this widget. */
+.mx-scrollcontainer-wrapper:not(.mx-scrollcontainer-nested) {
+  -webkit-overflow-scrolling: auto;
+}
+
 :root {
   /*
    DISCLAIMER:
@@ -25674,7 +25843,7 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
   padding: 4px;
 }
 .widget-datagrid-export-alert-cancel.btn:focus-visible {
-  outline: 1px solid #264ae5;
+  outline: 1px solid var(--brand-primary, #264ae5);
 }
 .widget-datagrid-export-alert-message {
   color: rgb(38, 74, 229);
@@ -26082,6 +26251,9 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
   min-width: fit-content;
   margin-bottom: 0;
 }
+.widget-datagrid-top-bar {
+  container: widget-datagrid-header/inline-size;
+}
 .widget-datagrid-content {
   overflow-x: auto;
 }
@@ -26090,6 +26262,9 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
 }
 .widget-datagrid-grid-body {
   display: contents;
+}
+.widget-datagrid-footer {
+  container: widget-datagrid-footer/inline-size;
 }
 .widget-datagrid.widget-datagrid-selection-method-click .tr.tr-selected .td {
   background-color: #e6eaff;
@@ -26101,13 +26276,19 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
 .widget-datagrid-exporting .widget-datagrid-top-bar,
 .widget-datagrid-exporting .widget-datagrid-header,
 .widget-datagrid-exporting .widget-datagrid-content,
-.widget-datagrid-exporting .widget-datagrid-footer {
+.widget-datagrid-exporting .widget-datagrid-footer, .widget-datagrid-selecting-all-pages .widget-datagrid-top-bar,
+.widget-datagrid-selecting-all-pages .widget-datagrid-header,
+.widget-datagrid-selecting-all-pages .widget-datagrid-content,
+.widget-datagrid-selecting-all-pages .widget-datagrid-footer {
   visibility: hidden;
 }
 .widget-datagrid-exporting .widget-datagrid-top-bar *,
 .widget-datagrid-exporting .widget-datagrid-header *,
 .widget-datagrid-exporting .widget-datagrid-content *,
-.widget-datagrid-exporting .widget-datagrid-footer * {
+.widget-datagrid-exporting .widget-datagrid-footer *, .widget-datagrid-selecting-all-pages .widget-datagrid-top-bar *,
+.widget-datagrid-selecting-all-pages .widget-datagrid-header *,
+.widget-datagrid-selecting-all-pages .widget-datagrid-content *,
+.widget-datagrid-selecting-all-pages .widget-datagrid-footer * {
   transition: unset;
 }
 .widget-datagrid-col-select input:focus-visible {
@@ -26182,7 +26363,7 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
 
 .widget-datagrid .widget-datagrid-load-more {
   display: block !important;
-  margin: 0 auto;
+  margin: var(--spacing-small, 8px) 0;
 }
 
 .infinite-loading.widget-datagrid-grid-body {
@@ -26196,31 +26377,64 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
   grid-column: 1/-1;
 }
 
-:where(.widget-datagrid-paging-bottom) {
+:where(.widget-datagrid-paging-bottom, .widget-datagrid-padding-top) {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
 }
 
-:where(.widget-datagrid-pb-start, .widget-datagrid-pb-end, .widget-datagrid-pb-middle) {
+:where(.widget-datagrid-pb-end, .widget-datagrid-tb-end) {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+:where(.widget-datagrid-pb-start, .widget-datagrid-tb-start, .widget-datagrid-pb-end, .widget-datagrid-tb-end, .widget-datagrid-pb-middle) {
   flex-grow: 1;
   flex-basis: 33.33%;
-  min-height: 20px;
 }
 
-:where(.widget-datagrid-pb-start) {
-  margin-block: var(--spacing-medium);
-  padding-inline: var(--spacing-medium);
+:where(.widget-datagrid-pb-middle) {
+  display: flex;
+  justify-content: center;
 }
 
-.widget-datagrid-clear-selection {
+:where(.widget-datagrid-pb-start, .widget-datagrid-tb-start) {
+  display: flex;
+  align-items: center;
+}
+
+.widget-datagrid-btn-link {
   cursor: pointer;
   background: transparent;
   border: none;
-  text-decoration: underline;
   color: var(--link-color);
-  padding: 0;
+  padding: 0.3em 0.5em;
+  border-radius: 6px;
   display: inline-block;
+  white-space: nowrap;
+}
+.widget-datagrid-btn-link:hover, .widget-datagrid-btn-link:focus-visible {
+  background-color: var(--brand-primary-50, #e6e7f2);
+}
+
+:where(.widget-datagrid-selection-counter) {
+  display: flex;
+  align-items: center;
+  height: 54px;
+  padding: var(--spacing-small) var(--spacing-medium);
+}
+
+:where(.widget-datagrid-select-all-bar) {
+  grid-column: 1/-1;
+  background-color: #f0f1f2;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: var(--spacing-smaller, 8px) var(--spacing-medium, 16px);
+}
+:where(.widget-datagrid-select-all-bar) .widget-datagrid-spinner {
+  padding: 6.2px;
 }
 
 @keyframes skeleton-loading {
@@ -26231,6 +26445,24 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
 @keyframes rotate {
   to {
     transform: rotate(1turn);
+  }
+}
+@container widget-datagrid-footer (width < 500px) {
+  .widget-datagrid-paging-bottom {
+    flex-direction: column;
+  }
+  .widget-datagrid-paging-bottom :where(.widget-datagrid-pb-start, .widget-datagrid-pb-end, .widget-datagrid-pb-middle) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@container widget-datagrid-header (width < 500px) {
+  .widget-datagrid-padding-top {
+    flex-direction: column-reverse;
+  }
+  .widget-datagrid-padding-top :where(.widget-datagrid-tb-start, .widget-datagrid-tb-end) {
+    width: 100%;
+    justify-content: center;
   }
 }
 /**
@@ -27114,13 +27346,14 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
    Override styles of Gallery widget
 ========================================================================== */
 .widget-gallery {
+  --gallery-gap: var(--spacing-small, $gallery-gap);
   /**
    Helper classes
     */
 }
 .widget-gallery .widget-gallery-items {
   display: grid;
-  grid-gap: var(--spacing-small, 8px);
+  grid-gap: var(--gallery-gap);
   /*
    Desktop widths
    */
@@ -27262,9 +27495,14 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
   overflow: auto;
 }
 .widget-gallery .widget-gallery-filter,
-.widget-gallery .widget-gallery-empty,
-.widget-gallery .widget-gallery-pagination {
+.widget-gallery .widget-gallery-empty {
   flex: 1;
+}
+.widget-gallery-top-bar {
+  container: widget-gallery-header/inline-size;
+}
+.widget-gallery-footer {
+  container: widget-gallery-footer/inline-size;
 }
 .widget-gallery .widget-gallery-column-span-1 {
   grid-column: span 1;
@@ -27343,20 +27581,30 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
   width: inherit;
 }
 
-:where(.widget-gallery-footer-controls) {
+:where(.widget-gallery-footer-controls, .widget-gallery-top-bar-controls) {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
 }
 
-:where(.widget-gallery-fc-start) {
-  margin-block: var(--spacing-medium);
-  padding-inline: var(--spacing-medium);
+:where(.widget-gallery-fc-end, .widget-gallery-tb-end) {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-:where(.widget-gallery-fc-start, .widget-gallery-fc-middle, .widget-gallery-fc-end) {
+:where(.widget-gallery-fc-start, .widget-gallery-tb-start, .widget-gallery-fc-end, .widget-gallery-tb-end) {
   flex-grow: 1;
   flex-basis: 33.33%;
   min-height: 20px;
+  height: 54px;
+  padding: var(--spacing-small) 0;
+}
+
+:where(.widget-gallery-fc-start, .widget-gallery-tb-start) {
+  padding-inline: var(--spacing-medium);
+  display: flex;
+  align-items: center;
 }
 
 .widget-gallery-clear-selection {
@@ -27368,7 +27616,32 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
   padding: 0;
   display: inline-block;
 }
+.widget-gallery-clear-selection:focus:not(:focus-visible) {
+  outline: none;
+}
+.widget-gallery-clear-selection:focus-visible {
+  outline: 1px solid var(--brand-primary, #264ae5);
+  outline-offset: 2px;
+}
 
+@container widget-gallery-footer (width < 500px) {
+  .widget-gallery-footer-controls {
+    flex-direction: column;
+  }
+  .widget-gallery-footer-controls :where(.widget-gallery-fc-start, .widget-gallery-fc-end, .widget-gallery-fc-middle) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@container widget-gallery-header (width < 500px) {
+  .widget-gallery-top-bar-controls {
+    flex-direction: column-reverse;
+  }
+  .widget-gallery-top-bar-controls :where(.widget-gallery-tb-start, .widget-gallery-tb-end) {
+    width: 100%;
+    justify-content: center;
+  }
+}
 /* ==========================================================================
    Gallery default
 
@@ -27405,7 +27678,7 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
   left: 0;
   right: 0;
   border-bottom: 1px solid var(--grid-border-color, #ced0d3);
-  margin-top: calc(var(--spacing-small, 8px) / 2);
+  margin-top: calc(var(--gallery-gap, var(--spacing-small, 8px)) / 2 - 1px);
 }
 
 .widget-gallery-hover .widget-gallery-items .widget-gallery-item:hover {
@@ -27419,20 +27692,20 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
   background-color: #fff;
 }
 
-.widget-gallery.widget-gallery-gridgap-none .widget-gallery-items {
-  gap: 0;
+.widget-gallery.widget-gallery-gridgap-none {
+  --gallery-gap: 0px;
 }
 
-.widget-gallery.widget-gallery-gridgap-small .widget-gallery-items {
-  gap: var(--spacing-small, 8px);
+.widget-gallery.widget-gallery-gridgap-small {
+  --gallery-gap: var(--spacing-small, $spacing-small);
 }
 
-.widget-gallery.widget-gallery-gridgap-medium .widget-gallery-items {
-  gap: var(--spacing-medium, 16px);
+.widget-gallery.widget-gallery-gridgap-medium {
+  --gallery-gap: var(--spacing-medium, $spacing-medium);
 }
 
-.widget-gallery.widget-gallery-gridgap-large .widget-gallery-items {
-  gap: var(--spacing-large, 24px);
+.widget-gallery.widget-gallery-gridgap-large {
+  --gallery-gap: var(--spacing-large, $spacing-large);
 }
 
 .widget-gallery-pagination-left .widget-gallery-pagination .pagination-bar {
@@ -27441,6 +27714,10 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
 
 .widget-gallery-pagination-center .widget-gallery-pagination .pagination-bar {
   justify-content: center;
+}
+
+.widget-gallery-disable-selected-items-highlight {
+  /* stylelint-disable-line no-empty-rules */
 }
 
 .mx-refresh-container {

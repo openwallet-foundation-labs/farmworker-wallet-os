@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dev-FWOS</string>
+    <string name="app_name">Dev-Farmworker Wallet OS</string>
     <string name="hint_app_url_input">Your local Mendix Studio Pro URL</string>
     <string name="launch_app_button">Launch</string>
     <string name="neutral_button">Continue</string>
