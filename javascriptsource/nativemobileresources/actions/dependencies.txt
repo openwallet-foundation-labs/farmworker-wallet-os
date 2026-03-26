@@ -77,19 +77,19 @@ SOFTWARE.
 
 ---
 
-Name: react-native-localize
-Version: 3.2.1
+Name: react-native-permissions
+Version: 4.1.5
 License: MIT
 Private: false
-Description: A toolbox for your React Native app localization.
-Repository: https://github.com/zoontek/react-native-localize.git
-Homepage: https://github.com/zoontek/react-native-localize
+Description: An unified permissions API for React Native on iOS, Android and Windows
+Repository: https://github.com/zoontek/react-native-permissions.git
+Homepage: https://github.com/zoontek/react-native-permissions#readme
 License Copyright:
 ===
 
 MIT License
 
-Copyright (c) 2017-present, Mathieu Acthernoene
+Copyright (c) 2019 Mathieu Acthernoene
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -112,19 +112,19 @@ SOFTWARE.
 
 ---
 
-Name: react-native-permissions
-Version: 4.1.5
+Name: react-native-localize
+Version: 3.2.1
 License: MIT
 Private: false
-Description: An unified permissions API for React Native on iOS, Android and Windows
-Repository: https://github.com/zoontek/react-native-permissions.git
-Homepage: https://github.com/zoontek/react-native-permissions#readme
+Description: A toolbox for your React Native app localization.
+Repository: https://github.com/zoontek/react-native-localize.git
+Homepage: https://github.com/zoontek/react-native-localize
 License Copyright:
 ===
 
 MIT License
 
-Copyright (c) 2019 Mathieu Acthernoene
+Copyright (c) 2017-present, Mathieu Acthernoene
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
