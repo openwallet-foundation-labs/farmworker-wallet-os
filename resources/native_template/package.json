@@ -1,6 +1,6 @@
 {
   "name": "native-template",
-  "version": "14.1.10",
+  "version": "14.1.14",
   "private": true,
   "scripts": {
     "postinstall": "node patches/apply-patches.js && jetify",
@@ -25,8 +25,7 @@
     "@hyperledger/anoncreds-react-native": "0.2.4",
     "@hyperledger/aries-askar-react-native": "0.2.3",
     "@hyperledger/indy-vdr-react-native": "0.2.2",
-    "@mendix/native": "9.2.0",
-    "@mendix/react-native-sqlite-storage": "^7.1.0",
+    "@mendix/native": "9.3.0",
     "@op-engineering/op-sqlite": "9.2.7",
     "@react-native-async-storage/async-storage": "2.0.0",
     "@react-native-camera-roll/camera-roll": "7.4.0",
@@ -34,6 +33,7 @@
     "@react-native-community/cli-platform-android": "16.0.2",
     "@react-native-community/cli-platform-ios": "16.0.2",
     "@react-native-community/datetimepicker": "8.2.0",
+    "@react-native-community/netinfo": "11.4.1",
     "@react-native-community/push-notification-ios": "1.10.1",
     "@react-native-masked-view/masked-view": "0.3.1",
     "@react-native-picker/picker": "2.11.0",
