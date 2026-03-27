@@ -129,6 +129,7 @@ $root: ".widget-datagrid";
                 color: var(--gray-dark, $gray-dark);
                 height: var(--btn-font-size, $btn-font-size);
                 align-self: center;
+                z-index: 1;
             }
 
             &:focus:not(:focus-visible) {
@@ -266,6 +267,7 @@ $root: ".widget-datagrid";
 
         > .td-custom-content {
             flex-grow: 1;
+            min-width: 0;
         }
 
         > .empty-placeholder {
@@ -304,52 +306,6 @@ $root: ".widget-datagrid";
     font-weight: normal;
     flex-grow: 1;
     width: 100%;
-}
-
-.pagination-bar {
-    display: flex;
-    justify-content: flex-end;
-    white-space: nowrap;
-    align-items: baseline;
-    margin: 16px;
-    color: $pagination-caption-color;
-
-    .paging-status {
-        padding: 0 8px 0;
-    }
-
-    .pagination-button {
-        padding: 6px;
-        color: var(--gray-darker, $gray-darker);
-        border-color: transparent;
-        background-color: transparent;
-
-        &:hover {
-            color: var(--brand-primary, $brand-primary);
-            border-color: transparent;
-            background-color: transparent;
-        }
-
-        &:disabled {
-            border-color: transparent;
-            background-color: transparent;
-        }
-
-        &:focus:not(:focus-visible) {
-            outline: none;
-        }
-
-        &:focus-visible {
-            outline: 1px solid var(--brand-primary, $brand-primary);
-        }
-    }
-    .pagination-icon {
-        position: relative;
-        top: 4px;
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-    }
 }
 
 /* Column selector for hidable columns outside DG context */
@@ -394,6 +350,11 @@ $root: ".widget-datagrid";
             display: grid !important;
             min-width: fit-content;
             margin-bottom: 0;
+            &.infinite-loading {
+                // in order to restrict the scroll to row area
+                // we need to prevent table itself to expanding beyond available position
+                min-width: 0;
+            }
         }
     }
 
@@ -403,14 +364,6 @@ $root: ".widget-datagrid";
 
     &-content {
         overflow-x: auto;
-    }
-
-    &-grid-head {
-        display: contents;
-    }
-
-    &-grid-body {
-        display: contents;
     }
 
     &-footer {
@@ -524,32 +477,117 @@ $root: ".widget-datagrid";
     }
 }
 
+.widget-datagrid .progress-bar {
+    margin: var(--spacing-medium, 16px);
+}
+
 .widget-datagrid .widget-datagrid-load-more {
     display: block !important;
     margin: var(--spacing-small, 8px) 0;
 }
 
-.infinite-loading.widget-datagrid-grid-body {
-    // when virtual scroll is enabled we make area that holds rows scrollable
-    // (while the area that holds column headers still stays in place)
-    overflow-y: auto;
+.infinite-loading {
+    .widget-datagrid-grid-head {
+        // lock header width
+        // and prevent it from having own scrolling
+        // as scrolling is synchronized in JS
+        width: calc(var(--widgets-grid-width) - var(--widgets-grid-scrollbar-size));
+        overflow-x: hidden;
+    }
+
+    .widget-datagrid-grid-head {
+        &[data-scrolled-x="true"],
+        &[data-scrolled-y="true"] {
+            z-index: 1;
+        }
+    }
+
+    .widget-datagrid-grid-head[data-scrolled-y="true"] {
+        // add shadow under the header
+        // implying that grid is scrolled vertically (there are rows hidden under header)
+        // the data attribute added in JS
+        box-shadow: 0 5px 5px -5px gray;
+    }
+
+    .widget-datagrid-grid-body {
+        // lock the size of the body
+        // and enable it to have own scrolling
+        // body is the leading element
+        // header scroll will be synced to match it
+        width: var(--widgets-grid-width);
+        overflow-y: auto;
+        max-height: var(--widgets-grid-body-height);
+    }
+
+    .widget-datagrid-grid-head[data-scrolled-x="true"]:after {
+        // add inner shadow to the left side of the grid
+        // implying that the grid is scrolled horizontally (there are rows hidden on the left)
+        // the data attribute added in JS
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 10px;
+        box-shadow: inset 5px 0 5px -5px gray;
+        top: 0;
+        bottom: 0;
+    }
 }
 
-.widget-datagrid-grid-head,
-.widget-datagrid-grid-body {
-    // this element has to position their children (columns or headers)
-    // as grid and have those aligned with the parent grid
-    display: grid;
-    // this property makes sure we align our own grid columns
-    // to the columns defined in the global grid
-    grid-template-columns: subgrid;
-
-    // ensure that we cover all columns of original top level grid
-    // so our own columns get aligned with the parent
-    grid-column: 1 / -1;
+// styles for browsers that don't support subgrid
+// if the browser doesn't support subgrid
+// fall back header an body the contents and apply grid template to the table
+.widget-datagrid-grid.table {
+    grid-template-columns: var(--widgets-grid-template-columns);
+}
+.widget-datagrid-grid-body,
+.widget-datagrid-grid-head {
+    display: contents;
 }
 
-:where(#{$root}-paging-bottom, #{$root}-padding-top) {
+// styles for modern browsers
+@supports (grid-template-rows: subgrid) {
+    .widget-datagrid-grid.table:not([data-has-scroll-x="true"]) {
+        grid-template-columns: var(--widgets-grid-template-columns);
+        .widget-datagrid-grid-body,
+        .widget-datagrid-grid-head {
+            display: grid;
+            min-width: 0;
+
+            // this property makes sure we align our own grid columns
+            // to the columns defined in the global grid
+            grid-template-columns: subgrid;
+
+            // ensure that we cover all columns of original top level grid
+            // so our own columns get aligned with the parent
+            grid-column: 1 / -1;
+        }
+    }
+
+    .widget-datagrid-grid.table[data-has-scroll-x="true"] {
+        // reset the columns defined on table level
+        // header and body will define their own instead
+        // this is needed to make body horizontally scrollable
+        grid-template-columns: initial;
+        .widget-datagrid-grid-head {
+            display: grid;
+            min-width: 0;
+
+            grid-template-columns: var(--widgets-grid-template-columns-head, var(--widgets-grid-template-columns));
+        }
+
+        .widget-datagrid-grid-body {
+            display: grid;
+
+            grid-template-columns: var(--widgets-grid-template-columns);
+        }
+    }
+}
+
+.grid-mock-header {
+    display: contents;
+}
+
+:where(#{$root}-paging-bottom, #{$root}-paging-top) {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;

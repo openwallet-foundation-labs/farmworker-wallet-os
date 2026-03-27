@@ -1290,6 +1290,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - react-native-netinfo (11.4.1):
+    - React-Core
   - react-native-pager-view (6.4.1):
     - DoubleConversion
     - glog
@@ -1902,6 +1904,7 @@ DEPENDENCIES:
   - "react-native-cameraroll (from `../node_modules/@react-native-camera-roll/camera-roll`)"
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
+  - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-sensitive-info (from `../node_modules/react-native-sensitive-info`)
@@ -2062,6 +2065,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-get-random-values"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
+  react-native-netinfo:
+    :path: "../node_modules/@react-native-community/netinfo"
   react-native-pager-view:
     :path: "../node_modules/react-native-pager-view"
   react-native-safe-area-context:
@@ -2221,6 +2226,7 @@ SPEC CHECKSUMS:
   react-native-cameraroll: fa835a59246b90ad2fa33c5e008fc25752ba7b80
   react-native-get-random-values: 21325b2244dfa6b58878f51f9aa42821e7ba3d06
   react-native-image-picker: f104798044ef2c9211c42a48025d0693b5f34981
+  react-native-netinfo: f0a9899081c185db1de5bb2fdc1c88c202a059ac
   react-native-pager-view: c3b8efd9000368320e3710c01f38a83bd2170779
   react-native-safe-area-context: 849d7df29ecb2a7155c769c0b76849ba952c2aa3
   react-native-sensitive-info: d44e909d065f9c0e15734245e5dd6a24b82e3dcd
@@ -2267,7 +2273,7 @@ SPEC CHECKSUMS:
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGestureHandler: de78ee811b577ae76d679715e5e9298b23a8c278
   RNLocalize: 4f22418187ecd5ca693231093ff1d912d1b3c9bc
-  RNPermissions: 4da8c626e4ac9d71c1a199d500d52dd54da62e38
+  RNPermissions: 49ee1a4ca41631b3038c889c672592869659af8d
   RNReanimated: 280140e1989bc33d5586cbca10bd199fd1fbdbf1
   RNScreens: e9bb7c3063237983e75d01bb45ce591cc4e7afc2
   RNSVG: 515a902fc18a375907eb4c3abec0b803fbfa37ef
@@ -2279,8 +2285,8 @@ SPEC CHECKSUMS:
   SQLCipher: eb79c64049cb002b4e9fcb30edb7979bf4706dfc
   SSZipArchive: 8a6ee5677c8e304bebc109e39cf0da91ccef22ea
   VisionCamera: 3ea10c46a5c612f5f89fb46a54bef4a0de8b58a7
-  Yoga: 92f3bb322c40a86b7233b815854730442e01b8c4
+  Yoga: 7d51419602153919f32aec72812e324d495ee49d
 
-PODFILE CHECKSUM: 2b2fa51e94fd1f0bb16be829c95c5cd44b985dcc
+PODFILE CHECKSUM: 1e7bb04e8e1d024b29e552482da711ae1e3771e4
 
 COCOAPODS: 1.16.2

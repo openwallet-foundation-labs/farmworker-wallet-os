@@ -1,10 +1,10 @@
 {
     "configVersion": 2,
     "appIdentifier": "io.entidad.app.fwos",
-    "appName": "Farmworker Wallet OS",
+    "appName": "fwos-demo-app",
     "bundleName": {
-        "main": "FWOS",
-        "dev": "FWOSDev"
+        "main": "fwosDemoApp",
+        "dev": "fwosDemoAppDev"
     },
     "deviceTarget": {
         "phone": true,
@@ -12,7 +12,7 @@
     },
     "orientation": {
         "portrait": true,
-        "landscape": false
+        "landscape": true
     },
     "permissions": [
         {
@@ -40,18 +40,42 @@
             "required": false
         },
         {
+            "title": "Read Media Images",
+            "name": "android.permission.READ_MEDIA_IMAGES",
+            "platform": "android",
+            "required": false
+        },
+        {
+            "title": "Read Media Video",
+            "name": "android.permission.READ_MEDIA_VIDEO",
+            "platform": "android",
+            "required": false
+        },
+        {
+            "title": "Read Media Audio",
+            "name": "android.permission.READ_MEDIA_AUDIO",
+            "platform": "android",
+            "required": false
+        },
+        {
+            "title": "Read Media Visual User Selected",
+            "name": "android.permission.READ_MEDIA_VISUAL_USER_SELECTED",
+            "platform": "android",
+            "required": false
+        },
+        {
             "title": "Location - When In Use Usage",
             "name": "NSLocationWhenInUseUsageDescription",
             "purpose": "To use that feature, the app needs access to your location.",
             "platform": "ios",
-            "required": true
+            "required": false
         },
         {
             "title": "Location - Always And When in Use Usage",
             "name": "NSLocationAlwaysAndWhenInUseUsageDescription",
             "purpose": "To use that feature, the app needs access to your location.",
             "platform": "ios",
-            "required": true
+            "required": false
         },
         {
             "title": "Camera Usage",
@@ -73,17 +97,16 @@
             "required": true
         },
         {
-            "title": "Location - Always Usage",
-            "name": "NSLocationAlwaysUsageDescription",
-            "purpose": "To use that feature, the app needs access to your location.",
-            "platform": "ios",
-            "required": true
-        },
-        {
             "title": "Photo Library Usage",
             "name": "NSPhotoLibraryUsageDescription",
             "purpose": "To use that feature, the app needs access to your photo library.",
             "platform": "ios",
+            "required": false
+        },
+        {
+            "title": "Bluetooth - Privileged",
+            "name": "android.permission.BLUETOOTH_PRIVILEGED",
+            "platform": "android",
             "required": false
         },
         {
@@ -98,42 +121,6 @@
             "name": "NSBluetoothPeripheralUsageDescription",
             "purpose": "This app may need access to your Bluetooth connection.",
             "platform": "ios",
-            "required": false
-        },
-        {
-            "title": "Bluetooth - Connect",
-            "name": "android.permission.BLUETOOTH_CONNECT",
-            "platform": "android",
-            "required": false
-        },
-        {
-            "title": "Bluetooth - Scan",
-            "name": "android.permission.BLUETOOTH_SCAN",
-            "platform": "android",
-            "required": false
-        },
-        {
-            "title": "Bluetooth - Advertise",
-            "name": "android.permission.BLUETOOTH_ADVERTISE",
-            "platform": "android",
-            "required": false
-        },
-        {
-            "title": "Bluetooth - Privileged",
-            "name": "android.permission.BLUETOOTH_PRIVILEGED",
-            "platform": "android",
-            "required": false
-        },
-        {
-            "title": "Use Biometric",
-            "name": "android.permission.USE_BIOMETRIC",
-            "platform": "android",
-            "required": false
-        },
-        {
-            "title": "Fingerprint",
-            "name": "android.permission.USE_FINGERPRINT",
-            "platform": "android",
             "required": false
         }
     ],
@@ -179,9 +166,9 @@
             "enabled": false
         }
     },
-    "appVersion": "0.5.1",
-    "buildNumber": 21,
-    "runtimeUrl": "http://localhost:8080",
+    "appVersion": "0.6.0",
+    "buildNumber": 24,
+    "runtimeUrl": "http://192.168.4.161:8080",
     "hermesEnabled": true,
     "cookieEncryptionEnabled": false
 }

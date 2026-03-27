@@ -26,6 +26,7 @@
 		1A0B3AFD23992F8200388BF7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		1A0B83DB22E09B2600EA1E51 /* Bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1A0B83DA22E09B2500EA1E51 /* Bundle */; };
 		1AAE158923C5FEFC00F855F4 /* SwiftInterop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAE158823C5FEFC00F855F4 /* SwiftInterop.swift */; };
+		270472A010184F15863F320C /* native_dependencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 75F35D3C28124A45A7C43D58 /* native_dependencies.json */; };
 		2C4991D124C593C3008403BB /* MendixAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4991D024C593C3008403BB /* MendixAppDelegate.m */; };
 		2C4991D224C593C3008403BB /* MendixAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4991D024C593C3008403BB /* MendixAppDelegate.m */; };
 		2C887F7224B7BFFE0003DC53 /* SplashScreenPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C887F7124B7BFFE0003DC53 /* SplashScreenPresenter.m */; };
@@ -35,12 +36,11 @@
 		2C887FE224B8948F0003DC53 /* StoryBoardSplash.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C887FE124B8948F0003DC53 /* StoryBoardSplash.m */; };
 		2C887FE324B8948F0003DC53 /* StoryBoardSplash.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C887FE124B8948F0003DC53 /* StoryBoardSplash.m */; };
 		572D87C4D9F46E7564D1FE09 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DBB22F41E3AF5D95F9759402 /* PrivacyInfo.xcprivacy */; };
-		59D591073755451898B99A26 /* native_dependencies.json in Resources */ = {isa = PBXBuildFile; fileRef = DE7B7CFA46454CA297BF4EE3 /* native_dependencies.json */; };
 		6EBE02112EE9B3BC00A4F24F /* Info-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EBE02102EE9B3BC00A4F24F /* Info-dev.plist */; };
 		6EBE02122EE9B3BC00A4F24F /* Info-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EBE02102EE9B3BC00A4F24F /* Info-dev.plist */; };
+		98FEE6524A0A4F4A882DFA4C /* native_dependencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 75F35D3C28124A45A7C43D58 /* native_dependencies.json */; };
 		9DF4091425A46A56E2A9A405 /* libPods-nativeTemplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F36AC2CCD37CCD4E7B1BB8 /* libPods-nativeTemplate.a */; };
 		B28D6DAD97033B55832E5853 /* libPods-dev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11502903429AC2E6E69E6482 /* libPods-dev.a */; };
-		B484E6A482AD492696F7605A /* native_dependencies.json in Resources */ = {isa = PBXBuildFile; fileRef = DE7B7CFA46454CA297BF4EE3 /* native_dependencies.json */; };
 		C5A009082BE291FE00F10EC1 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C5A009072BE291FE00F10EC1 /* PrivacyInfo.xcprivacy */; };
 		DF6591BE26650DF3006E3A5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6591BD26650DF3006E3A5E /* AppDelegate.m */; };
 		E8FF139E28C8D4510066AC98 /* mendixnative.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B1254D2869E1AF000161E3 /* mendixnative.xcframework */; };
@@ -54,10 +54,10 @@
 
 /* Begin PBXFileReference section */
 		11502903429AC2E6E69E6482 /* libPods-dev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07F961A680F5B00A75B9A /* FWOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FWOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* fwosDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fwosDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = nativeTemplate/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = nativeTemplate/Info.plist; sourceTree = "<group>"; };
-		1A0B3A922397DA2300388BF7 /* FWOSDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FWOSDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0B3A922397DA2300388BF7 /* fwosDemoAppDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fwosDemoAppDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A0B3A982397DA2300388BF7 /* LaunchAppViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = LaunchAppViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		1A0B3A9B2397DA2300388BF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchApp.storyboard; sourceTree = "<group>"; };
 		1A0B3AD22397E15800388BF7 /* MendixApp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MendixApp.storyboard; sourceTree = "<group>"; };
@@ -90,6 +90,7 @@
 		6ABE4BDB54D431090249D8EC /* Pods-dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dev.release.xcconfig"; path = "Target Support Files/Pods-dev/Pods-dev.release.xcconfig"; sourceTree = "<group>"; };
 		6EBE02102EE9B3BC00A4F24F /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-dev.plist"; path = "nativeTemplate/Info-dev.plist"; sourceTree = "<group>"; };
 		73F36AC2CCD37CCD4E7B1BB8 /* libPods-nativeTemplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-nativeTemplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75F35D3C28124A45A7C43D58 /* native_dependencies.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = native_dependencies.json; sourceTree = "<group>"; };
 		7EEDF4024CB6865C31DBA5BB /* Pods-nativeTemplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nativeTemplate.release.xcconfig"; path = "Target Support Files/Pods-nativeTemplate/Pods-nativeTemplate.release.xcconfig"; sourceTree = "<group>"; };
 		9A27E05F0AD54B417B79E303 /* Pods-dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dev.debug.xcconfig"; path = "Target Support Files/Pods-dev/Pods-dev.debug.xcconfig"; sourceTree = "<group>"; };
 		BFF2B70938A7895ADAB4177A /* Pods-dev.releasedevapp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dev.releasedevapp.xcconfig"; path = "Target Support Files/Pods-dev/Pods-dev.releasedevapp.xcconfig"; sourceTree = "<group>"; };
@@ -97,7 +98,6 @@
 		CBB85EF00DCBBB622B4C25E7 /* Pods-nativeTemplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nativeTemplate.release.xcconfig"; path = "Target Support Files/Pods-nativeTemplate/Pods-nativeTemplate.release.xcconfig"; sourceTree = "<group>"; };
 		DBB22F41E3AF5D95F9759402 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		DDC51A1160C5ED4D3C396705 /* Pods-dev.releasedevapp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dev.releasedevapp.xcconfig"; path = "Target Support Files/Pods-dev/Pods-dev.releasedevapp.xcconfig"; sourceTree = "<group>"; };
-		DE7B7CFA46454CA297BF4EE3 /* native_dependencies.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = native_dependencies.json; sourceTree = "<group>"; };
 		DF6591BD26650DF3006E3A5E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E8B1254D2869E1AF000161E3 /* mendixnative.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = mendixnative.xcframework; path = "../node_modules/@mendix/native/ios/mendixnative.xcframework"; sourceTree = "<group>"; };
 		EB55620B22E0755000E19C26 /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 				1AAE158823C5FEFC00F855F4 /* SwiftInterop.swift */,
 				2C887FD924B88A0E0003DC53 /* LaunchScreen.storyboard */,
 				2C005A7823D5B1E200003E29 /* nativeTemplate.entitlements */,
-				DE7B7CFA46454CA297BF4EE3 /* native_dependencies.json */,
+				75F35D3C28124A45A7C43D58 /* native_dependencies.json */,
 			);
 			name = NativeTemplate;
 			sourceTree = "<group>";
@@ -235,8 +235,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* FWOS.app */,
-				1A0B3A922397DA2300388BF7 /* FWOSDev.app */,
+				13B07F961A680F5B00A75B9A /* fwosDemoApp.app */,
+				1A0B3A922397DA2300388BF7 /* fwosDemoAppDev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -306,7 +306,7 @@
 			);
 			name = nativeTemplate;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* FWOS.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* fwosDemoApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1A0B3A912397DA2300388BF7 /* dev */ = {
@@ -326,7 +326,7 @@
 			);
 			name = dev;
 			productName = Dev;
-			productReference = 1A0B3A922397DA2300388BF7 /* FWOSDev.app */;
+			productReference = 1A0B3A922397DA2300388BF7 /* fwosDemoAppDev.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -380,7 +380,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				EB55620C22E0755000E19C26 /* glyphicons-halflings-regular.ttf in Resources */,
 				1A0B3AF323990C2400388BF7 /* config.xcconfig in Resources */,
-				59D591073755451898B99A26 /* native_dependencies.json in Resources */,
+				270472A010184F15863F320C /* native_dependencies.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +398,7 @@
 				1A0B3AEA2398185600388BF7 /* config.debug.xcconfig in Resources */,
 				1A0B3A9C2397DA2300388BF7 /* LaunchApp.storyboard in Resources */,
 				572D87C4D9F46E7564D1FE09 /* PrivacyInfo.xcprivacy in Resources */,
-				B484E6A482AD492696F7605A /* native_dependencies.json in Resources */,
+				98FEE6524A0A4F4A882DFA4C /* native_dependencies.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,6 +904,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_INCLUDE_PATHS = "$(inherited) ${SRCROOT}/../node_modules/@mendix/native/ios";
 				SWIFT_OBJC_BRIDGING_HEADER = "nativeTemplate-Bridging-Header.h";
@@ -958,6 +962,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_INCLUDE_PATHS = "$(inherited) ${SRCROOT}/../node_modules/@mendix/native/ios";
 				SWIFT_OBJC_BRIDGING_HEADER = "nativeTemplate-Bridging-Header.h";
@@ -1159,6 +1167,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_INCLUDE_PATHS = "$(inherited) ${SRCROOT}/../node_modules/@mendix/native/ios";
 				SWIFT_OBJC_BRIDGING_HEADER = "nativeTemplate-Bridging-Header.h";
