@@ -29,6 +29,7 @@
     "credo-ts-user-profile": "git+http://github.com/entidad/credo-ts-user-profile.git",
     "@2060.io/credo-ts-didcomm-reactions": "0.0.2",
     "@2060.io/credo-ts-didcomm-receipts": "0.0.7",
+    "@react-native-community/netinfo": "11.4.1",
     "react-native-blob-util": "0.21.2",
     "@react-native-async-storage/async-storage": "2.0.0"
 }
