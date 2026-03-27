@@ -95,6 +95,19 @@
             "name": "android.permission.SYSTEM_ALERT_WINDOW",
             "platform": "android",
             "required": true
+        },
+        {
+            "title": "Photo Library Usage",
+            "name": "NSPhotoLibraryUsageDescription",
+            "purpose": "To use that feature, the app needs access to your photo library.",
+            "platform": "ios",
+            "required": false
+        },
+        {
+            "title": "Bluetooth - Privileged",
+            "name": "android.permission.BLUETOOTH_PRIVILEGED",
+            "platform": "android",
+            "required": false
         }
     ],
     "capabilities": {
@@ -140,7 +153,7 @@
         }
     },
     "appVersion": "0.6.0",
-    "buildNumber": 22,
+    "buildNumber": 23,
     "runtimeUrl": "http://192.168.4.161:8080",
     "hermesEnabled": true,
     "cookieEncryptionEnabled": false
