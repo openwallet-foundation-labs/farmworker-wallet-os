@@ -26,7 +26,7 @@
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>23</string>
+    <string>24</string>
     <key>GoogleMapsApiKey</key>
     <string/>
     <key>LSRequiresIPhoneOS</key>
@@ -93,5 +93,9 @@
     <false/>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>To use that feature, the app needs access to your photo library.</string>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>This app may need access to your Bluetooth connection.</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>This app may need access to your Bluetooth connection.</string>
   </dict>
 </plist>

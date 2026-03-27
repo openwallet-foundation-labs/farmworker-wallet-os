@@ -108,6 +108,20 @@
             "name": "android.permission.BLUETOOTH_PRIVILEGED",
             "platform": "android",
             "required": false
+        },
+        {
+            "title": "Bluetooth - Always Usage",
+            "name": "NSBluetoothAlwaysUsageDescription",
+            "purpose": "This app may need access to your Bluetooth connection.",
+            "platform": "ios",
+            "required": false
+        },
+        {
+            "title": "Bluetooth - Peripheral Usage",
+            "name": "NSBluetoothPeripheralUsageDescription",
+            "purpose": "This app may need access to your Bluetooth connection.",
+            "platform": "ios",
+            "required": false
         }
     ],
     "capabilities": {
@@ -153,7 +167,7 @@
         }
     },
     "appVersion": "0.6.0",
-    "buildNumber": 23,
+    "buildNumber": 24,
     "runtimeUrl": "http://192.168.4.161:8080",
     "hermesEnabled": true,
     "cookieEncryptionEnabled": false
