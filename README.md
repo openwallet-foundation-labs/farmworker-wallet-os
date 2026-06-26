@@ -81,5 +81,7 @@ See [CONTRIBUTING.md](https://github.com/openwallet-foundation-labs/farmworker-w
 ## Raising problems/issues
 -   We encourage everyone to use [/issues](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) in case of any problems.
 
+## Governance
 
+The Project Charter for Farmworker Wallet OS can be found here: [https://github.com/openwallet-foundation/technical-project-charters/blob/main/OpenWallet%20Foundation%20-%20Farmworker%20Wallet%20OS%20Charter%20(FINAL%2009.06.24).pdf](https://github.com/openwallet-foundation/technical-project-charters/blob/main/OpenWallet%20Foundation%20-%20Farmworker%20Wallet%20OS%20Charter%20(FINAL%2009.06.24).pdf)
 
