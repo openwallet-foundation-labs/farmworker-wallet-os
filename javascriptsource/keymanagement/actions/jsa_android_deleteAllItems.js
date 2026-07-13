@@ -72,9 +72,9 @@ export async function jsa_android_deleteAllItems(sharedPreferencesName, touchID,
 			settings.setInvalidatedByBiometricEnrollment=setInvalidatedByBiometricEnrollment;
 			const values=await SInfo.getAllItems(settings);
 			if(typeof(values)=="object")
-				Object.keys(values).forEach(async(key)=>{
+				for(const key of Object.keys(values)){
 					await SInfo.deleteItem(key,settings);
-				});
+				}
 			resolve();
 		}catch(e){
 			reject(e.toString());

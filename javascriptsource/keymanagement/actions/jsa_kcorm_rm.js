@@ -11,6 +11,8 @@ import { Big } from "big.js";
 // BEGIN EXTRA CODE
 import {jsa_mxobj2json} from"./jsa_mxobj2json.js";
 import {jsa_uuid} from"./jsa_uuid.js";
+import {jsa_web_getItem}from"./jsa_web_getItem.js";
+import {jsa_web_setItem}from"./jsa_web_setItem.js";
 import SInfo from "react-native-sensitive-info";
 // END EXTRA CODE
 
@@ -20,17 +22,32 @@ import SInfo from "react-native-sensitive-info";
  * @param {MxObject} input
  * @param {string} idattr - optional, name of attribute containing id
  * @param {string} idval - optional, manual id value
+ * @param {string} [sharedPreferencesName]
+ * @param {string} [keychainService]
  * @returns {Promise.<boolean>}
  */
-export async function jsa_kcorm_rm(key, input, idattr, idval) {
+export async function jsa_kcorm_rm(key, input, idattr, idval, sharedPreferencesName, keychainService) {
 	// BEGIN USER CODE
 	try{
 		if(input==null)return Promise.reject("Argument input null");
 		if(key==null)return Promise.reject("Argument key null");
+		let settings={};
+		if(sharedPreferencesName!=null)settings.sharedPreferencesName=sharedPreferencesName;
+		if(keychainService!=null)settings.keychainService=keychainService;
 		let obj={};
 		try{
 			//https://mcodex.dev/react-native-sensitive-info/docs/getItem
-			let kcval=await SInfo.getItem(key,{});
+			let kcval=null;
+			if(window&&window.cordova){
+				//hybrid mobile
+				return Promise.reject("Hybrid_mobile not supported");
+			}else if (navigator && navigator.product === "ReactNative") {
+				//react native
+				kcval=await SInfo.getItem(key,settings);
+			}else {
+				//web
+				kcval=await jsa_web_getItem(sharedPreferencesName,key);
+			}
 			if(kcval!=null&&kcval!="")try{
 				obj=JSON.parse(kcval);
 				obj=typeof(obj)=="object"?obj:Array.isArray(obj)?{}:obj;
@@ -46,7 +63,7 @@ export async function jsa_kcorm_rm(key, input, idattr, idval) {
 		if(module_==null||module_=="")return Promise.reject("Invalid entity module name")
 		let entity_=input.getEntity().split(".")[1];
 		if(entity_==null||entity_=="")return Promise.reject("Invalid entity name")
-		//throw on module or entity subobjects not found 
+		//throw on module or entity subobjects not found
 		if(typeof(obj[module_])!="object")return Promise.resolve(true);//Promise.reject("Module "+module_+" not found");
 		if(typeof(obj[module_][entity_])!="object")return Promise.resolve(true);//Promise.reject("Entity "+entity_+" not found");
 		let uuid=null;
@@ -61,7 +78,7 @@ export async function jsa_kcorm_rm(key, input, idattr, idval) {
 		}else if(input.has("_id")&&input.get("_id")!=null){
 			uuid=input.get("_id");
 		}
-		// 3. by manual id value or uuid from a utility function 
+		// 3. by manual id value or uuid from a utility function
 		if(uuid==null||typeof(uuid)!="string"||uuid.length==0){
 			if(idval!=null&&typeof(idval)=="string"&&idval.length==0){
 				uuid=idval;
@@ -71,8 +88,6 @@ export async function jsa_kcorm_rm(key, input, idattr, idval) {
 		}
 		if(typeof(obj[module_][entity_][uuid])=="undefined")return Promise.resolve(true);//Promise.reject([module_,entity_,uuid].join(".")+" not found")
 		delete obj[module_][entity_][uuid];
-		//store in keychain
-		await SInfo.setItem(key,JSON.stringify(obj),{});	
 		//update mendix object keychain id field
 		if(idattr!=null&&input.has(idattr)){
 			input.set(idattr,null);
@@ -83,6 +98,17 @@ export async function jsa_kcorm_rm(key, input, idattr, idval) {
 			input.set("id_",null);
 		}else if(input.has("_id")){
 			input.set("_id",null);
+		}
+		//persist the pruned tree (do not delete the whole keychain entry - it is shared by other modules/entities/objects)
+		if(window && window.cordova){
+			//hybrid mobile
+			return Promise.reject("Hybrid_mobile not supported");
+		}else if (navigator && navigator.product === "ReactNative") {
+			//react native
+			await SInfo.setItem(key,JSON.stringify(obj),settings);
+		}else {
+			//web
+			await jsa_web_setItem(sharedPreferencesName,key,JSON.stringify(obj));
 		}
 		//todo:handle true false return values
 		return Promise.resolve(true);

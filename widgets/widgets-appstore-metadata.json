@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0",
+  "widgets": [
+    {
+      "sha-256": "82f919bd1ff2ac92166090cdec0c18e32a066559a642ce5af11e2d03be090d06",
+      "name": "Combobox",
+      "version": "1.6.1",
+      "appStoreVersionGuid": "176660e2-3618-49ed-9c6d-d3a1dcb78732"
+    },
+    {
+      "sha-256": "7d4e37867dc536c423e426e463da43e979a53ff8e05c19aa1c0914686741a8e4",
+      "name": "Document Viewer",
+      "version": "1.0.0",
+      "appStoreVersionGuid": "be2afad3-fbce-43b9-8bf9-7993a0672873"
+    },
+    {
+      "sha-256": "68344f56b25d45f9b8db15ea5f1de6fa74323c0011df11e3f27cec10ab5226d2",
+      "name": "Image",
+      "version": "1.4.3",
+      "appStoreVersionGuid": "1321ab1b-0826-4ebc-b041-bc5053b3d3f0"
+    },
+    {
+      "sha-256": "a56e63c40a3bcea8e8a8374e67bb2b9197929d9f5b9cc454c567765cdd5052c9",
+      "name": "NativeResponsiveListview",
+      "version": "3.5.0",
+      "appStoreVersionGuid": "2caa88b4-9d0f-4be5-bc84-1a7b7da8cff5"
+    },
+    {
+      "sha-256": "1ea469d9a8f95e0abaeb815058186ea030b43cdb58640878375a062ba8a5ca3f",
+      "name": "JSON",
+      "version": "1.3.0",
+      "appStoreVersionGuid": "44da059f-4074-49cf-a16c-0ae8cf0ff4b4"
+    },
+    {
+      "sha-256": "1d79d93425d0fa95e36ce3f5d11813bcf98cb9c798aa31cad4a86f3b0b9f91db",
+      "name": "QRCodeWidget",
+      "version": "1.1.0",
+      "appStoreVersionGuid": "a49fc78e-f545-45a4-87d2-0dee28b29da6"
+    }
+  ]
+}

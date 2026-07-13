@@ -49,13 +49,18 @@ async function mx_data_get_async(options){
  * @param {string} idattr - optional, name of attribute containing id
  * @param {string} idval - optional, manual id value
  * @param {string} hint - optional json string
+ * @param {string} [sharedPreferencesName]
+ * @param {string} [keychainService]
  * @returns {Promise.<string>}
  */
-export async function jsa_kcorm_put(key, input, idattr, idval, hint) {
+export async function jsa_kcorm_put(key, input, idattr, idval, hint, sharedPreferencesName, keychainService) {
 	// BEGIN USER CODE
 	try{
 		if(input==null)return Promise.reject("Argument input null");
 		if(key==null)return Promise.reject("Argument key null");
+		let settings={};
+		if(sharedPreferencesName!=null)settings.sharedPreferencesName=sharedPreferencesName;
+		if(keychainService!=null)settings.keychainService=keychainService;
 		let obj={};
 		try{
 			let kcval=null;
@@ -64,10 +69,10 @@ export async function jsa_kcorm_put(key, input, idattr, idval, hint) {
 				return Promise.reject("Hybrid_mobile not supported");
 			}else if (navigator && navigator.product === "ReactNative") {
 				//react native
-				kcval=await SInfo.getItem(key,{});
+				kcval=await SInfo.getItem(key,settings);
 			}else {
 				//web
-				kcval=await jsa_web_getItem(null,key);
+				kcval=await jsa_web_getItem(sharedPreferencesName,key);
 			}
 			//https://mcodex.dev/react-native-sensitive-info/docs/getItem
 			if(kcval!=null&&kcval!="")try{
@@ -100,7 +105,7 @@ export async function jsa_kcorm_put(key, input, idattr, idval, hint) {
 		}else if(input.has("id_")&&input.get("id_")!=null){
 			uuid=input.get("id_");
 		}
-		// 3. by manual id value or uuid from a utility function 
+		// 3. by manual id value or uuid from a utility function
 		if(uuid==null||typeof(uuid)!="string"||uuid.length==0){
 			if(idval!=null&&typeof(idval)=="string"&&idval.length==0){
 				uuid=idval;
@@ -179,11 +184,10 @@ export async function jsa_kcorm_put(key, input, idattr, idval, hint) {
 			return Promise.reject("Hybrid_mobile not supported");
 		}else if (navigator && navigator.product === "ReactNative") {
 			//react native
-			await SInfo.setItem(key,JSON.stringify(obj),{});	
+			await SInfo.setItem(key,JSON.stringify(obj),settings);
 		}else {
 			//web
-			//await jsa_web_setItem(sharedPreferencesName,key,value);
-			await jsa_web_setItem(null,key,JSON.stringify(obj));
+			await jsa_web_setItem(sharedPreferencesName,key,JSON.stringify(obj));
 		}
 		return Promise.resolve(uuid);
 	}catch(e){

@@ -25,9 +25,11 @@ import{mx_data_get_async,mx_data_createAsync,getReverseReferences}from"../suppor
  * Test function - Internal Entidad use
  * @param {MxObject} input
  * @param {string} key
+ * @param {string} [sharedPreferencesName]
+ * @param {string} [keychainService]
  * @returns {Promise.<string>}
  */
-export async function jsa_kcorm_put_recursive(input, key) {
+export async function jsa_kcorm_put_recursive(input, key, sharedPreferencesName, keychainService) {
 	// BEGIN USER CODE
 	try{
 		let ret=null;
@@ -43,7 +45,7 @@ export async function jsa_kcorm_put_recursive(input, key) {
 		}
 		*/
 		if(input==null)return Promise.reject("Invalid argument input");
-		ret=await jsa_kcorm_put(key,input,null,null,null);
+		ret=await jsa_kcorm_put(key,input,null,null,null,sharedPreferencesName,keychainService);
 		let refs=input.getReferenceAttributes();
 		input.getAttributes().forEach((k)=>{
 			if(input.isObjectReference(k)){
@@ -64,7 +66,7 @@ export async function jsa_kcorm_put_recursive(input, key) {
 			let references=input.getReferences(k);
 			for(let j=0;j<references.length;j++){
 				let o=await mx_data_get_async({guid:references[j]});
-				await jsa_kcorm_put(key,o,null,null,null);
+				await jsa_kcorm_put(key,o,null,null,null,sharedPreferencesName,keychainService);
 			}
 		}
 		//----------------------------
@@ -75,7 +77,7 @@ export async function jsa_kcorm_put_recursive(input, key) {
 			let refobjs=await mx_data_get_async({"guid":input.getGuid(),"path":ref.reference,"entity":ref.entity,"direction":"reverse"});
 			for(var j=0;j<refobjs.length;j++){
 				let refobj=refobjs[j];
-				await jsa_kcorm_put(key,refobj,null,null,null);
+				await jsa_kcorm_put(key,refobj,null,null,null,sharedPreferencesName,keychainService);
 			}
 		}
 		//----------------------------

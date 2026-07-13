@@ -5,6 +5,7 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
+import "mx-global";
 import { Big } from "big.js";
 import SInfo from "react-native-sensitive-info";
 
@@ -38,9 +39,11 @@ async function mx_data_createAsync(options){
  * @param {string} key
  * @param {string} entity
  * @param {MxObject[]} output - output list to populate
+ * @param {string} [sharedPreferencesName]
+ * @param {string} [keychainService]
  * @returns {Promise.<MxObject[]>}
  */
-export async function jsa_kcorm_get_all(key, entity, output) {
+export async function jsa_kcorm_get_all(key, entity, output, sharedPreferencesName, keychainService) {
 	// BEGIN USER CODE
 	// --------------
 	// IN PROGRESS...
@@ -48,6 +51,9 @@ export async function jsa_kcorm_get_all(key, entity, output) {
 	try{
 		if(output==null)return Promise.reject("Argument output null");
 		if(key==null)return Promise.reject("Argument key null");
+		let settings={};
+		if(sharedPreferencesName!=null)settings.sharedPreferencesName=sharedPreferencesName;
+		if(keychainService!=null)settings.keychainService=keychainService;
 		let obj={};
 		try{
 			//https://mcodex.dev/react-native-sensitive-info/docs/getItem
@@ -57,12 +63,11 @@ export async function jsa_kcorm_get_all(key, entity, output) {
 				return Promise.reject("Hybrid_mobile not supported");
 			}else if (navigator && navigator.product === "ReactNative") {
 				//react native
-				kcval=await SInfo.getItem(key,{});
+				kcval=await SInfo.getItem(key,settings);
 			}else {
 				//web
-				kcval=await jsa_web_getItem(null,key);
+				kcval=await jsa_web_getItem(sharedPreferencesName,key);
 			}
-			//let kcval=await SInfo.getItem(key,{});
 			if(kcval!=null&&kcval!="")try{
 				obj=JSON.parse(kcval);
 				obj=typeof(obj)=="object"?obj:Array.isArray(obj)?{}:obj;
@@ -78,7 +83,7 @@ export async function jsa_kcorm_get_all(key, entity, output) {
 		if(module_==null||module_=="")return Promise.reject("Invalid entity module name")
 		let entity_=entity.split(".")[1];
 		if(entity_==null||entity_=="")return Promise.reject("Invalid entity name")
-		//throw on module or entity subobjects not found 
+		//throw on module or entity subobjects not found
 		if(typeof(obj[module_])!="object")return Promise.reject("Module "+module_+" not found");
 		if(typeof(obj[module_][entity_])!="object")return Promise.reject("Entity "+entity_+" not found");
 		let keys=Object.keys(obj[module_][entity_]);
