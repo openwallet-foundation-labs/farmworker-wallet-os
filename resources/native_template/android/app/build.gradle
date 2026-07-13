@@ -67,8 +67,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "react-native-camera", "general"
-        versionCode 24
-        versionName "0.6.0"
+        versionCode 26
+        versionName "0.7.0"
         testBuildType System.getProperty("testBuildType", "debug")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resValue "string", "CODE_PUSH_APK_BUILD_TIME", String.format("\"%d\"", System.currentTimeMillis())
@@ -89,6 +89,11 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+        debug {
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a"
+            }
         }
     }
     compileOptions {
@@ -124,14 +129,14 @@ dependencies {
     implementation project(":mendixnative-release")
 
     // Explicit add okhttp
-    implementation("com.squareup.okhttp3:okhttp:4.9.1")
-    implementation("com.squareup.okhttp3:okhttp-urlconnection:4.9.1")
+    implementation("com.squareup.okhttp3:okhttp:${rootProject.ext.okhttpVersion}")
+    implementation("com.squareup.okhttp3:okhttp-urlconnection:${rootProject.ext.okhttpVersion}")
 
     // Required by MendixNative
-    implementation("com.fasterxml.jackson.core:jackson-core:2.11.3")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.11.3")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.11.3")
-    implementation "androidx.security:security-crypto:1.1.0-alpha06"
+    implementation("com.fasterxml.jackson.core:jackson-core:${rootProject.ext.jacksonVersion}")
+    implementation("com.fasterxml.jackson.core:jackson-databind:${rootProject.ext.jacksonVersion}")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:${rootProject.ext.jacksonVersion}")
+    implementation "androidx.security:security-crypto:${rootProject.ext.securityCryptoVersion}"
 
     // Required for Custom Dev Apps
     devImplementation "androidx.constraintlayout:constraintlayout:2.0.4"
@@ -139,6 +144,9 @@ dependencies {
 
     androidTestImplementation("com.wix:detox:+")  { transitive = true }
     androidTestImplementation "junit:junit:4.12"
+
+    //Required by Credo-ts
+    implementation 'net.java.dev.jna:jna:5.2.0'
 }
 
 configurations.all {
@@ -160,4 +168,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@mendix/native/androidlib/mendix.gradle"); applyMendixGradle(project)
-apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+// Fonts are already vendored in src/main/assets/fonts/, so applying fonts.gradle
+// (which copies the same .ttf files into build/intermediates and registers them as
+// an extra assets source dir) causes "Duplicate resources" merge failures.
+// apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

@@ -5,6 +5,7 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
+import "mx-global";
 import { Big } from "big.js";
 import SInfo from "react-native-sensitive-info";
 
@@ -52,10 +53,30 @@ export async function jsa_ios_getAllItems(keychainService, touchID, kSecAccessCo
 			if(touchID&&typeof(kSecUseOperationPrompt)!="undefined"&&kSecUseOperationPrompt!=null)settings.kSecUseOperationPrompt=kSecUseOperationPrompt;
 
 			const values=await SInfo.getAllItems(settings);
-			resolve(JSON.stringify(values));
+			// iOS resolves an array wrapping an array of {service,key,value} items.
+			// Unwrap the extra array level, then group by "service" into an array of
+			// {service, keyItems} entries so callers can see which keychain service
+			// each key is scoped to.
+			const items=Array.isArray(values)?(Array.isArray(values[0])?values[0]:values):[];
+			const groupsByService={};
+			const order=[];
+			items.forEach((item)=>{
+				if(!item||typeof(item.key)!="string")return;
+				const service=typeof(item.service)=="string"?item.service:"app";
+				if(typeof(groupsByService[service])!="object"){
+					groupsByService[service]={};
+					order.push(service);
+				}
+				groupsByService[service][item.key]=item.value;
+			});
+			const result=order.map((service)=>({
+				service:service,
+				keyItems:groupsByService[service]
+			}));
+			resolve(JSON.stringify(result));
 		}catch(e){
 			reject(e.toString());
 		}
-	});	
+	});
 	// END USER CODE
 }

@@ -5,6 +5,7 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
+import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
@@ -20,17 +21,22 @@ import SInfo from "react-native-sensitive-info";
  * @param {MxObject} output - object to populate
  * @param {string} idattr - optional, name of attribute containing id
  * @param {string} idval - optional, manual id value
+ * @param {string} [sharedPreferencesName]
+ * @param {string} [keychainService]
  * @returns {Promise.<boolean>}
  */
-export async function jsa_kcorm_get_one(key, output, idattr, idval) {
+export async function jsa_kcorm_get_one(key, output, idattr, idval, sharedPreferencesName, keychainService) {
 	// BEGIN USER CODE
 	try{
 		if(output==null)return Promise.reject("Argument output null");
 		if(key==null)return Promise.reject("Argument key null");
+		let settings={};
+		if(sharedPreferencesName!=null)settings.sharedPreferencesName=sharedPreferencesName;
+		if(keychainService!=null)settings.keychainService=keychainService;
 		let obj={};
 		try{
 			//https://mcodex.dev/react-native-sensitive-info/docs/getItem
-			let kcval=await SInfo.getItem(key,{});
+			let kcval=await SInfo.getItem(key,settings);
 			if(kcval!=null&&kcval!="")try{
 				obj=JSON.parse(kcval);
 				obj=typeof(obj)=="object"?obj:Array.isArray(obj)?{}:obj;
@@ -46,7 +52,7 @@ export async function jsa_kcorm_get_one(key, output, idattr, idval) {
 		if(module_==null||module_=="")return Promise.reject("Invalid entity module name")
 		let entity_=output.getEntity().split(".")[1];
 		if(entity_==null||entity_=="")return Promise.reject("Invalid entity name")
-		//throw on module or entity subobjects not found 
+		//throw on module or entity subobjects not found
 		if(typeof(obj[module_])!="object")return Promise.reject("Module "+module_+" not found");
 		if(typeof(obj[module_][entity_])!="object")return Promise.reject("Entity "+entity_+" not found");
 		let uuid=null;
@@ -57,7 +63,7 @@ export async function jsa_kcorm_get_one(key, output, idattr, idval) {
 		}else if(output.has("id_")&&output.get("id_")!=null){
 			uuid=output.get("id_");
 		}
-		// 3. by manual id value or uuid from a utility function 
+		// 3. by manual id value or uuid from a utility function
 		if(uuid==null||typeof(uuid)!="string"||uuid.length==0){
 			if(idval!=null&&typeof(idval)=="string"&&idval.length==0){
 				uuid=idval;

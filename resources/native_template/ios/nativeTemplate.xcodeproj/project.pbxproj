@@ -26,7 +26,6 @@
 		1A0B3AFD23992F8200388BF7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		1A0B83DB22E09B2600EA1E51 /* Bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1A0B83DA22E09B2500EA1E51 /* Bundle */; };
 		1AAE158923C5FEFC00F855F4 /* SwiftInterop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAE158823C5FEFC00F855F4 /* SwiftInterop.swift */; };
-		270472A010184F15863F320C /* native_dependencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 75F35D3C28124A45A7C43D58 /* native_dependencies.json */; };
 		2C4991D124C593C3008403BB /* MendixAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4991D024C593C3008403BB /* MendixAppDelegate.m */; };
 		2C4991D224C593C3008403BB /* MendixAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4991D024C593C3008403BB /* MendixAppDelegate.m */; };
 		2C887F7224B7BFFE0003DC53 /* SplashScreenPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C887F7124B7BFFE0003DC53 /* SplashScreenPresenter.m */; };
@@ -35,10 +34,10 @@
 		2C887FDB24B88A0E0003DC53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C887FD924B88A0E0003DC53 /* LaunchScreen.storyboard */; };
 		2C887FE224B8948F0003DC53 /* StoryBoardSplash.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C887FE124B8948F0003DC53 /* StoryBoardSplash.m */; };
 		2C887FE324B8948F0003DC53 /* StoryBoardSplash.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C887FE124B8948F0003DC53 /* StoryBoardSplash.m */; };
+		54DCA6C4BF514D1896E71B34 /* native_dependencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 4AE72063A92E43A4B374CE05 /* native_dependencies.json */; };
 		572D87C4D9F46E7564D1FE09 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DBB22F41E3AF5D95F9759402 /* PrivacyInfo.xcprivacy */; };
 		6EBE02112EE9B3BC00A4F24F /* Info-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EBE02102EE9B3BC00A4F24F /* Info-dev.plist */; };
 		6EBE02122EE9B3BC00A4F24F /* Info-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EBE02102EE9B3BC00A4F24F /* Info-dev.plist */; };
-		98FEE6524A0A4F4A882DFA4C /* native_dependencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 75F35D3C28124A45A7C43D58 /* native_dependencies.json */; };
 		9DF4091425A46A56E2A9A405 /* libPods-nativeTemplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F36AC2CCD37CCD4E7B1BB8 /* libPods-nativeTemplate.a */; };
 		B28D6DAD97033B55832E5853 /* libPods-dev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11502903429AC2E6E69E6482 /* libPods-dev.a */; };
 		C5A009082BE291FE00F10EC1 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C5A009072BE291FE00F10EC1 /* PrivacyInfo.xcprivacy */; };
@@ -50,6 +49,7 @@
 		EB59215B23BFA1F5001D6155 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB59215A23BFA1F5001D6155 /* main.m */; };
 		EB59215C23BFA1F5001D6155 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB59215A23BFA1F5001D6155 /* main.m */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
+		FE5B5F78636143CBA59546AE /* native_dependencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 4AE72063A92E43A4B374CE05 /* native_dependencies.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,12 +85,12 @@
 		2E683DD88AD2190EB6610BB7 /* Pods-nativeTemplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nativeTemplate.debug.xcconfig"; path = "Target Support Files/Pods-nativeTemplate/Pods-nativeTemplate.debug.xcconfig"; sourceTree = "<group>"; };
 		3A1AE629EDD2EFAEE88E17A6 /* Pods-dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dev.release.xcconfig"; path = "Target Support Files/Pods-dev/Pods-dev.release.xcconfig"; sourceTree = "<group>"; };
 		3A50E1C430A9EB98E247701D /* Pods-nativeTemplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nativeTemplate.debug.xcconfig"; path = "Target Support Files/Pods-nativeTemplate/Pods-nativeTemplate.debug.xcconfig"; sourceTree = "<group>"; };
+		4AE72063A92E43A4B374CE05 /* native_dependencies.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = native_dependencies.json; sourceTree = "<group>"; };
 		4D55DFFF6D52DC368FE13A23 /* Pods-nativeTemplate.releasedevapp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nativeTemplate.releasedevapp.xcconfig"; path = "Target Support Files/Pods-nativeTemplate/Pods-nativeTemplate.releasedevapp.xcconfig"; sourceTree = "<group>"; };
 		64F8A8A81DAAF68662AD5926 /* Pods-nativeTemplate.releasedevapp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nativeTemplate.releasedevapp.xcconfig"; path = "Target Support Files/Pods-nativeTemplate/Pods-nativeTemplate.releasedevapp.xcconfig"; sourceTree = "<group>"; };
 		6ABE4BDB54D431090249D8EC /* Pods-dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dev.release.xcconfig"; path = "Target Support Files/Pods-dev/Pods-dev.release.xcconfig"; sourceTree = "<group>"; };
 		6EBE02102EE9B3BC00A4F24F /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-dev.plist"; path = "nativeTemplate/Info-dev.plist"; sourceTree = "<group>"; };
 		73F36AC2CCD37CCD4E7B1BB8 /* libPods-nativeTemplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-nativeTemplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		75F35D3C28124A45A7C43D58 /* native_dependencies.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = native_dependencies.json; sourceTree = "<group>"; };
 		7EEDF4024CB6865C31DBA5BB /* Pods-nativeTemplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nativeTemplate.release.xcconfig"; path = "Target Support Files/Pods-nativeTemplate/Pods-nativeTemplate.release.xcconfig"; sourceTree = "<group>"; };
 		9A27E05F0AD54B417B79E303 /* Pods-dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dev.debug.xcconfig"; path = "Target Support Files/Pods-dev/Pods-dev.debug.xcconfig"; sourceTree = "<group>"; };
 		BFF2B70938A7895ADAB4177A /* Pods-dev.releasedevapp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dev.releasedevapp.xcconfig"; path = "Target Support Files/Pods-dev/Pods-dev.releasedevapp.xcconfig"; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 				1AAE158823C5FEFC00F855F4 /* SwiftInterop.swift */,
 				2C887FD924B88A0E0003DC53 /* LaunchScreen.storyboard */,
 				2C005A7823D5B1E200003E29 /* nativeTemplate.entitlements */,
-				75F35D3C28124A45A7C43D58 /* native_dependencies.json */,
+				4AE72063A92E43A4B374CE05 /* native_dependencies.json */,
 			);
 			name = NativeTemplate;
 			sourceTree = "<group>";
@@ -380,7 +380,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				EB55620C22E0755000E19C26 /* glyphicons-halflings-regular.ttf in Resources */,
 				1A0B3AF323990C2400388BF7 /* config.xcconfig in Resources */,
-				270472A010184F15863F320C /* native_dependencies.json in Resources */,
+				FE5B5F78636143CBA59546AE /* native_dependencies.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +398,7 @@
 				1A0B3AEA2398185600388BF7 /* config.debug.xcconfig in Resources */,
 				1A0B3A9C2397DA2300388BF7 /* LaunchApp.storyboard in Resources */,
 				572D87C4D9F46E7564D1FE09 /* PrivacyInfo.xcprivacy in Resources */,
-				98FEE6524A0A4F4A882DFA4C /* native_dependencies.json in Resources */,
+				54DCA6C4BF514D1896E71B34 /* native_dependencies.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

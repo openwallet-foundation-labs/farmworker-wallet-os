@@ -50,14 +50,16 @@ export async function jsa_ios_deleteAllItems(keychainService, touchID, kSecAcces
 			if(typeof(keychainService)!="undefined"&&keychainService!=null)settings.keychainService=keychainService;
 			settings.touchID=touchID;
 			if(touchID&&typeof(kSecAccessControl)!="undefined"&&kSecAccessControl!=null)settings.kSecAccessControl=kSecAccessControl;
-			settings.kSecAttrSynchronizable=kSeecAttrSynchronizable;
+			settings.kSecAttrSynchronizable=kSecAttrSynchronizable;
 			if(typeof(kLocalizedFallbackTitle)!="undefined"&&kLocalizedFallbackTitle!=null)settings.kLocalizedFallbackTitle=kLocalizedFallbackTitle;
 			if(touchID&&typeof(kSecUseOperationPrompt)!="undefined"&&kSecUseOperationPrompt!=null)settings.kSecUseOperationPrompt=kSecUseOperationPrompt;
 			const values=await SInfo.getAllItems(settings);
-			if(typeof(values)=="object")
-				Object.keys(values).forEach(async(key)=>{
-					await SInfo.deleteItem(key,settings);
-				});
+			// iOS resolves an array wrapping an array of {service,key,value} items,
+			// unlike Android which resolves a flat {key:value} map. Normalize to match.
+			const items=Array.isArray(values)?(Array.isArray(values[0])?values[0]:values):[];
+			for(const item of items){
+				if(item&&typeof(item.key)=="string")await SInfo.deleteItem(item.key,settings);
+			}
 			resolve();
 		}catch(e){
 			reject(e.toString());

@@ -22,6 +22,129 @@
   "components" : [
     {
       "type" : "library",
+      "bom-ref" : "pkg:maven/commons-logging/commons-logging@1.3.5?type=jar",
+      "group" : "commons-logging",
+      "name" : "commons-logging",
+      "version" : "1.3.5",
+      "description" : "Apache Commons Logging is a thin adapter allowing configurable bridging to other, well-known logging systems.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "9ca067b073153c86c2da350c0f2cdf70"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "a3fcc5d3c29b2b03433aa2d2f2d2c1b1638924a1"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "6d7a744e4027649fbb50895df9497d109f98c766a637062fe8d2eabbb3140ba4"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "b6d66333cec2746cc410ca3b27099c4647618a1855783bac064c75eec95c643dab184010e5c875aca3c7fa827aed144488a1820604a043bbff93116de509f915"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "bbfc26f81852dfe8df41b9cd1da6e755b223c51e824898490f96e2aaefb42e5484408f8a245b244bfe4e08170295ee72"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "5e17863103757beb582b316f90a02f57f0ea7702b2146d6b318ab0f1105a3e0190dd1dc7b031550a68c047cadd23c114"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "c01a09df81fae75d398ef61b168c8f7d70291b480961d392c59bdd1498c254cb"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "1ce4f4219542c8f1f0b52f9d2d916d8b11136f7a800bbb24ca93a28a800121e7c48af410076213d05dd715b37b110aa59a7a9609415e0cc5daed89bb13fc4668"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/commons-logging/commons-logging@1.3.5?type=jar",
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "issue-tracker",
+          "url" : "https://issues.apache.org/jira/browse/LOGGING"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://gitbox.apache.org/repos/asf/commons-logging"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.j2objc/j2objc-annotations@3.1?type=jar",
+      "group" : "com.google.j2objc",
+      "name" : "j2objc-annotations",
+      "version" : "3.1",
+      "description" : "A set of annotations that provide additional information to the J2ObjC translator to modify the result of translation.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "abe8bd3abff622b9a8b15c3a737aa741"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "a892ca9507839bbdb900d64310ac98256cab992f"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "84d3a150518485f8140ea99b8a985656749629f6433c92b80c75b36aba3b099b"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "34ee5aad57b0b507e89c897306f73043f80fa0eb02b453e54d9052feb0808a0d2ed835d888946211921d2bf733780b19ff636479ce19b9f48814ba6008733ce1"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "7b760a346a586d6a3fa4477807e2f02f091e61898fc9a6ff449e43c55b6465fbbc17720663183c84c41d4d8814085e51"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "a2166c1c08f947c0e60aa7c9167602942e7bac37ba45863d34c0132a1f352e7807a382588d350b93bdbbbbe315a3573f"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "3d4d3b8bfd2ad13351a53610aa4bf1c5a69d2bde4272c281003120ed9bcddb8c"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "0a574b379a3f8022f0b88252c87d0e6b6cfa434fdb981efd1b24387025a962d7ac4e90161e8bd048df142bf52f4fc41e4a0c1d45e4eeb872c5954aad552988e9"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.j2objc/j2objc-annotations@3.1?type=jar",
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://github.com/google/j2objc"
+        }
+      ]
+    },
+    {
+      "type" : "library",
       "bom-ref" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.41.0?type=jar",
       "group" : "com.google.errorprone",
       "name" : "error_prone_annotations",
@@ -69,131 +192,6 @@
       ],
       "purl" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.41.0?type=jar",
       "modified" : false
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/org.apache.pdfbox/pdfbox@3.0.6?type=jar",
-      "group" : "org.apache.pdfbox",
-      "name" : "pdfbox",
-      "version" : "3.0.6",
-      "description" : "The Apache PDFBox library is an open source Java tool for working with PDF documents.",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "89b29adf34031b6fb1d99a5507458e4f"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "d9d153ab13c58a6fbb2293ccab99285d7db7dfcb"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "87b9122b78f521fef83e2806d98e7e483e049f087ea6267b72d319f672019101"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "9536f4d19c216704f582e41092d884a7e72a59e5c71133ba3a8278566ef1effc7c6dad8967bae2c633dd72ccae034f2875cbb6874734b42d947a24d91fb33b80"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "cde023122f44e57754e1bf1ceacaeed7eafe3775b220f763e0c3b3a5729c22dac2cfb65d55c252a6b0a710df02c10246"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "0d623143e57083b47c0c567c6205d51e65a38ac6dcc297d2c4074a94decc7c46fe88a9d15043ed5c7083310066c6c598"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "e0b02f469e3635726b8edc5505f8764d0bc3af5da56c60d66a1b156d4af61e58"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "eecfa80a66e74c9ebeb399af072ca89a6c3d7bf2f870fa66e62576204a26637484a17fcc356dc3a7ad64700cea39b74d52171d007eb0db1fbae2cec034fc1ac9"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0",
-            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/org.apache.pdfbox/pdfbox@3.0.6?type=jar",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "vcs",
-          "url" : "https://svn.apache.org/viewvc/pdfbox/tags/3.0.6/pdfbox"
-        }
-      ]
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/org.bouncycastle/bcpg-jdk18on@1.81?type=jar",
-      "group" : "org.bouncycastle",
-      "name" : "bcpg-jdk18on",
-      "version" : "1.81",
-      "description" : "The Bouncy Castle Java APIs for the OpenPGP Protocol. The APIs are designed primarily to be used in conjunction with the BC Java provider but may also be used with other providers providing cryptographic services.",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "a374dc008c3034172bf2d8d8e015684c"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "7cd50193dd6a080a203716d993f7a246c8d94291"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "ac2ddae3a844c1e2378604616dbe7cc17c64caaf9115d8c9c3b29db8b2982411"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "7897acf8ea0d429f7cdfbd2148b7d1a444d70abc74b5447805d58ce4c774292fec30b76f6cf7b3d2e3789e875018823c56b8123c83e1b4f794b2c3bab2efc85c"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "5e58f92d367183a87e881793e74931a518c036a89dbff03028aab0a6c189deb379775dbdd8579080fb5d6895f554ce8b"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "6c2e2838d4490f2bc175190beb459a8386fb2e05fc809c475638a2fe23a9d31044816ccdc8659c4c516462cb17105f29"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "428b28bbecda934c033e77091d547ed7e926696f7b919207800b7e15759ed6dc"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "e46cb1ca7f5f446278568720abdd937361697b0e2fbeca5adc4d374a799795ab744b1b323afb85d17657894fd5fa12955b394b69ab5498be54de721af6536b2f"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "name" : "Bouncy Castle Licence",
-            "url" : "https://www.bouncycastle.org/licence.html"
-          }
-        },
-        {
-          "license" : {
-            "id" : "Apache-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/org.bouncycastle/bcpg-jdk18on@1.81?type=jar",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "issue-tracker",
-          "url" : "https://github.com/bcgit/bc-java/issues"
-        },
-        {
-          "type" : "vcs",
-          "url" : "https://github.com/bcgit/bc-java"
-        }
-      ]
     },
     {
       "type" : "library",
@@ -263,65 +261,54 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/org.bouncycastle/bcutil-jdk18on@1.81?type=jar",
-      "group" : "org.bouncycastle",
-      "name" : "bcutil-jdk18on",
-      "version" : "1.81",
-      "description" : "The Bouncy Castle Java APIs for ASN.1 extension and utility APIs used to support bcpkix and bctls. This jar contains APIs for Java 8 and later.",
+      "bom-ref" : "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+      "group" : "com.google.guava",
+      "name" : "guava",
+      "version" : "33.5.0-jre",
+      "description" : "Guava is a suite of core and expanded libraries that include utility classes, Google's collections, I/O classes, and much more.",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "c75f3409ceba35d90b00dd9d1937d9db"
+          "content" : "d9fbf39a41a5bab891348f07668e18c5"
         },
         {
           "alg" : "SHA-1",
-          "content" : "e2dd79395ab435094142b6aba219f35adcba0f01"
+          "content" : "8699de25f2f979108d6c1b804a7ba38cda1116bc"
         },
         {
           "alg" : "SHA-256",
-          "content" : "31a5fe3a7ba42e3457b83930f0ff8d679fb5b76eaadf2b51f5740c92a394bf52"
+          "content" : "1e301f0c52ac248b0b14fdc3d12283c77252d4d6f48521d572e7d8c4c2cc4ac7"
         },
         {
           "alg" : "SHA-512",
-          "content" : "e9876cf07776a2703c93a7d22a1557acc307774f00dce72dc1ff35d1bebd2c76dc625a269a803109a1ad0d473674c06662fcfc71377405c801cb2876e5b1afdb"
+          "content" : "994a4dbcbd8e528ad3b4a7acf49b631a40dcebb03d9a8f5e1d3b74351f805f77774e9a19f7233e42036cb415b7838710f207ac1e18335e4a219b7f99ea22a44f"
         },
         {
           "alg" : "SHA-384",
-          "content" : "bb10fa7dcbaad60a384caa7183a30ca83542f9c3915fd76d28998bd6aa44671ad28afee0310bdfaa325462ef285b909b"
+          "content" : "9dabff6e543ead881b20d38a533e9151aaa83999239cf0ace3e712cf678e7976c3a50d79e3f3c57afc05a3b9ff14ad90"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "88ef60e1aaaec69b7d103effb9d52eff26ce5a54d51d03d7ebceb254c403c360deb82da663d497301ad72ba36fa21408"
+          "content" : "9f65d4d942113facb2eb25229c1530b79dd3b8994574034b8d4a1c2b39ed8ee5bb4d415ec690d3d87cee0d8cb2283564"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "87f2dc00ccb78ea4654863798746e8e5c9322c038fdbc320525e86317daa0385"
+          "content" : "fedafab2279bdf6eff66314fc61b056e92312695678e66dc1e25fe1d18af5a36"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "64b23ed0f13c598c7e45ca626dafab48b6b52c3165d9ec6297437fc6e91e1e22fcb3438ddac20de5bdd40edb74b6ab3d24677fa6aa4b0d74b8675c6814d8b5b0"
+          "content" : "e64f3c49f9030358554bb0b8abdff729394988f1e3247b05a86302014eeff4a2855acf46d9bf1c683cbecc33a24173a20a103d3c82c94f8cabd6676a01b40fb6"
         }
       ],
       "licenses" : [
         {
           "license" : {
-            "name" : "Bouncy Castle Licence",
-            "url" : "https://www.bouncycastle.org/licence.html"
+            "id" : "Apache-2.0"
           }
         }
       ],
-      "purl" : "pkg:maven/org.bouncycastle/bcutil-jdk18on@1.81?type=jar",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "issue-tracker",
-          "url" : "https://github.com/bcgit/bc-java/issues"
-        },
-        {
-          "type" : "vcs",
-          "url" : "https://github.com/bcgit/bc-java"
-        }
-      ]
+      "purl" : "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+      "modified" : false
     },
     {
       "type" : "library",
@@ -376,6 +363,64 @@
     },
     {
       "type" : "library",
+      "bom-ref" : "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.7?type=jar",
+      "group" : "org.apache.pdfbox",
+      "name" : "pdfbox-io",
+      "version" : "3.0.7",
+      "description" : "The Apache PDFBox library is an open source Java tool for working with PDF documents. This artefact contains IO related classes.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "ce78b0210c28f580cbc0550673deace3"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "9ca53467e2ae49a669034c0ac377992dc26e8c20"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "b9a838291978069086efbcd1f62b81b9e4a6016e61dd2c68104ee9f4c2ff997b"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "e720d6c685cc87acb5f70e86fc425ca63a324ab4e9c0400790e4d84e385ee1b89f3d1769ccab4d1ad6705418103f68a66290b7c0be62269fb8058c2ad6cf5c9c"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "9321c186d4f0df47e116ecd51def40c49870012de5af4386e1940525eb7e5cfd24b7de634d9742b1e13ecdf70e9c167d"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "61f9414d955862e0f91ea2c1a2f04b034a5bbc15e6177d8e7bfe776e2a51f631cdb41da6889b3ae5d337bbe5876948d1"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "4ed590da377bab6c71ba39056e4a04861e6ae01990bb9c25c3ec3ad0a37f9a40"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "e36e634e56e66343db8bb62cbd6ab2568c5e19abe83e26152be2eb77249b15afd5ab6f750532d8587a33ff57afacda196bb62c0a4ed592d88e240bf259a8cd1b"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.7?type=jar",
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "vcs",
+          "url" : "https://svn.apache.org/viewvc/pdfbox/tags/3.0.7/io"
+        }
+      ]
+    },
+    {
+      "type" : "library",
       "bom-ref" : "pkg:maven/com.google.guava/failureaccess@1.0.3?type=jar",
       "group" : "com.google.guava",
       "name" : "failureaccess",
@@ -424,6 +469,130 @@
       ],
       "purl" : "pkg:maven/com.google.guava/failureaccess@1.0.3?type=jar",
       "modified" : false
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.bouncycastle/bcutil-jdk18on@1.84?type=jar",
+      "group" : "org.bouncycastle",
+      "name" : "bcutil-jdk18on",
+      "version" : "1.84",
+      "description" : "The Bouncy Castle Java APIs for ASN.1 extension and utility APIs used to support bcpkix and bctls. This jar contains APIs for Java 1.8 and later.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "7389259785516495923c3a1480cd87eb"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "79bfd1f9c6bd7431ff22e29935ec20f12f0af0d3"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "b374e16963421fb9cfb01cc20d7ad8fd2f8b8188e3eef0ec0a8965e245f7619a"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "e001b244723fb3c4d1e06862bb857512015a92d7e18650ae3447a3d258274ec8ed37b8cba958397b00f8dd73463943e9a9489dd5dbddbe24b24cd6fae5ca8a62"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "1f80326b5a8c5d602032e54fee83c2980af4cac4c927fe00474e51ca8841aa5e8bfa924555e60cd1ae9fd9f6c7731330"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "4dad4bf9f9bab98f6217fb9a0c3ee6ba2f477d0d65739d13fc05ebbd207b7e951aff1f189ac9a831c3bb58feff82506e"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "e3d95965eddc73096e3af01a799c3a3912805419d6f5e26004ab6416888f1a82"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "0e4b01c848a9fc701255bb4c067060f73981a389ce567adb91a438b7ad240e1ad07a373ec0f2e70cdbd7d2ae7c7f824359d0cb52f6a1d653dea9f541ac5f957b"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "Bouncy Castle Licence",
+            "url" : "https://www.bouncycastle.org/licence.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.bouncycastle/bcutil-jdk18on@1.84?type=jar",
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/bcgit/bc-java/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/bcgit/bc-java"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.84?type=jar",
+      "group" : "org.bouncycastle",
+      "name" : "bcprov-jdk18on",
+      "version" : "1.84",
+      "description" : "The Bouncy Castle Crypto package is a Java implementation of cryptographic algorithms. This jar contains the JCA/JCE provider and low-level API for the BC Java version 1.84 for Java 1.8 and later.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "19523b0cbcbce2fdeb98e3eaf68f602e"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "2d5651789941d2f8ae9b8771f23356de6b61e96b"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "64d6c5a6121fcd927152dd182cbed39afe0fda641a970d9bcc0c9cb1858b2731"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "4b7e5696830023bad1594d9f9766898f78018ec7d6ec34de23f2a6683b02803b92ffe8ab5d21f1a717eb4fafa8e22dcf3a4b6dd275bd86c7cb02609987fe92f5"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "1dc14ed5193ee3433be84988b81f5b352497cbb44502ed59c39305541a555d6be1c6d3f1d7b81ff21b50cd5ed427f9c6"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "57a7e519dfe3f1d1666807a280fea4c7db1ded986e88a7cc590b170578d4a88ccd8cdf1f3374ca5bf166fdb936de461f"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "f55284fe53751907ccadab64036633b4c68ad8c40c0ce5c6f4c304746617f54f"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "ed6e67ea8b52d104b5997ac54649ecfc076fa31d52116ea86cb0d8f570cb31feba0392176cd66125937ccd32bd62307e05fe5f56c578fc87f37b17e8232c16f4"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "Bouncy Castle Licence",
+            "url" : "https://www.bouncycastle.org/licence.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.84?type=jar",
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/bcgit/bc-java/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/bcgit/bc-java"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -478,43 +647,43 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/com.google.j2objc/j2objc-annotations@3.1?type=jar",
-      "group" : "com.google.j2objc",
-      "name" : "j2objc-annotations",
-      "version" : "3.1",
-      "description" : "A set of annotations that provide additional information to the J2ObjC translator to modify the result of translation.",
+      "bom-ref" : "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+      "group" : "org.jspecify",
+      "name" : "jspecify",
+      "version" : "1.0.0",
+      "description" : "An artifact of well-named and well-specified annotations to power static analysis checks",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "abe8bd3abff622b9a8b15c3a737aa741"
+          "content" : "9133aba420d0ca3b001dbb6ae9992cf6"
         },
         {
           "alg" : "SHA-1",
-          "content" : "a892ca9507839bbdb900d64310ac98256cab992f"
+          "content" : "7425a601c1c7ec76645a78d22b8c6a627edee507"
         },
         {
           "alg" : "SHA-256",
-          "content" : "84d3a150518485f8140ea99b8a985656749629f6433c92b80c75b36aba3b099b"
+          "content" : "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab"
         },
         {
           "alg" : "SHA-512",
-          "content" : "34ee5aad57b0b507e89c897306f73043f80fa0eb02b453e54d9052feb0808a0d2ed835d888946211921d2bf733780b19ff636479ce19b9f48814ba6008733ce1"
+          "content" : "efded31ef5b342f09422935076e599789076431e93a746685c0607e7de5592719ba6aacde0be670b3f064d1e85630d58d5bce6b34aed2a288fdb34f745efb7bc"
         },
         {
           "alg" : "SHA-384",
-          "content" : "7b760a346a586d6a3fa4477807e2f02f091e61898fc9a6ff449e43c55b6465fbbc17720663183c84c41d4d8814085e51"
+          "content" : "814f860e5a44ead6c457676841eef471a8b87be31b84c60a8a4477a18a9cbcb6e3c2ae700969d5c5e52309d961e0537a"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "a2166c1c08f947c0e60aa7c9167602942e7bac37ba45863d34c0132a1f352e7807a382588d350b93bdbbbbe315a3573f"
+          "content" : "c8844e5b71e5ecfbb7366097ce34af2f5863d86d5ccc3f9ec384d8ade4b60ccc8124c7fc88664f1afd2b0962fc8775bf"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "3d4d3b8bfd2ad13351a53610aa4bf1c5a69d2bde4272c281003120ed9bcddb8c"
+          "content" : "4b4f08ad7606a3ac62997779484919a302267b26d26ee19125f8a7eea60e8a71"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "0a574b379a3f8022f0b88252c87d0e6b6cfa434fdb981efd1b24387025a962d7ac4e90161e8bd048df142bf52f4fc41e4a0c1d45e4eeb872c5954aad552988e9"
+          "content" : "65c6845ebae981cb81b61107707ced39f5b377dae970b47606ef482aaf10e3729def0da40d9377c43abbfb483a5ceae039b0d51c129c50a6d36ad351a5d6b01e"
         }
       ],
       "licenses" : [
@@ -524,360 +693,14 @@
           }
         }
       ],
-      "purl" : "pkg:maven/com.google.j2objc/j2objc-annotations@3.1?type=jar",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "distribution",
-          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-        },
-        {
-          "type" : "vcs",
-          "url" : "http://github.com/google/j2objc"
-        }
-      ]
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/org.apache.pdfbox/fontbox@3.0.6?type=jar",
-      "group" : "org.apache.pdfbox",
-      "name" : "fontbox",
-      "version" : "3.0.6",
-      "description" : "The Apache FontBox library is an open source Java tool to obtain low level information from font files. FontBox is a subproject of Apache PDFBox.",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "9a4122ca3cc169c16b584e804d44d022"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "d74e1b06b31a0c7d4bdd131cb7907b9da07138a8"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "7a09fcb0c630e471ac26b347ca45a0d8aef5a969cc59aebff1c57fe92293e2b1"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "577ad1169bca1679cf4cdf0b82311f8c106b8f8108f696b56b84dec0246d1d05a1089dafcaa4547c0fed5c7c8d3a81c493cb98edb7525689ecc80e9f89bf3b8a"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "3ef8d5653e0969b6df9ecbb915886201ec20de7557931d4a5d633d70155a291b7947e3832a4a079af605b27fce31a5a6"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "c25f782b9852481d6b5475d4d1751a7639a83ebccbabe25a45b026cbb72d586bab7e984efeabba88bd6779c4f32d9979"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "c551d30b3f9292c0f2e8317c084f9203282b2a0eb8460451e4ecc8848bf1c589"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "43f639f6df3aa3b23a83d86a685703046578c76ca70945383d1d3fd59e8d2d737496921f002d72ffd8a79279ac2d319fa6dba3a05d54b05c44481b61f048d333"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0",
-            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/org.apache.pdfbox/fontbox@3.0.6?type=jar",
+      "purl" : "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
       "modified" : false,
       "externalReferences" : [
         {
           "type" : "vcs",
-          "url" : "https://svn.apache.org/viewvc/pdfbox/tags/3.0.6/fontbox"
+          "url" : "https://github.com/jspecify/jspecify/"
         }
       ]
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.6?type=jar",
-      "group" : "org.apache.pdfbox",
-      "name" : "pdfbox-io",
-      "version" : "3.0.6",
-      "description" : "The Apache PDFBox library is an open source Java tool for working with PDF documents. This artefact contains IO related classes.",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "102da7a8cf5d8be0c0786c2ffa382038"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "b5b93e32a4a9e46a0983f2ea0e211c511ec09b31"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "191eac63756ff0dbc841e397e97cfa0cbdfd2515972d60ef5639a0aa884a7e47"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "aae1cd90e10941a7419516fe6eb35bf7b34b1ba9089d8dc6502ad7c54d78391bd94a662b2ce6648bb16d6b4f82f960d80b48f1493f41aafd506fc29e2442990a"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "958789293c00ec7b0eaf1ed46adcc9c1944b6f7f552f6962d0957e63ff14087a0bd5a4da0242fb380fc2aedc9d70dfbf"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "3b7c0ccac6f530d5190444e7bd4210e5f39a2edc88ff8d96b3c6386a88f09edb7e5a96c4a296b358626c05109eaed860"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "c9da3c8b13faa89c799e9290f3b895a5091f053bb367d8fa5bd907add94d4cd0"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "c16c2f5b0b2f84cbdf9ddb050498bcb33f8a1ef84f7ee6272cfb0250b06b7f8a9c4f63f9f328c42021b8fad034de160936c987a136a395bc75eefbb905579033"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0",
-            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.6?type=jar",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "vcs",
-          "url" : "https://svn.apache.org/viewvc/pdfbox/tags/3.0.6/io"
-        }
-      ]
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/org.bouncycastle/bcpkix-jdk18on@1.81?type=jar",
-      "group" : "org.bouncycastle",
-      "name" : "bcpkix-jdk18on",
-      "version" : "1.81",
-      "description" : "The Bouncy Castle Java APIs for CMS, PKCS, EAC, TSP, CMP, CRMF, OCSP, and certificate generation. This jar contains APIs for JDK 1.8 and up. The APIs are designed primarily to be used in conjunction with the BC Java provider but may also be used with other providers providing cryptographic services.",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "a66bdc5d32d086737b86803cd87cd187"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "819fd6f5d170c8b8bf8c5acc73816e9c36574042"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "b38c604871f3690109a3c00982d9145634125de3365a817ba16eb90d88e242c9"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "830aa649f0e40c4a1e3ac808857af2465ebaf3284fd821819962bf44233f67d3b2ddb01f937be522332b63be1dc0a8735afc5ebbcc85e448a684bacdf6083432"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "c58a0e8d20f3c874dbbc0b2680409c1e9802a166c676443c14e5c3734111363050d8397bcf43b30ee1cee87c1bd14fcb"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "b625876c0da1f9f5b975e5df13c0f30d2e8faeb86a271930059fd5f5d84b0507f5e9c26c0e7fdfd23b7bfda2e34f7513"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "ee5788e24c7ea3446d938a45c320a69d526183c9250ba9b0090de875d3e69c7b"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "d33c509714a0b0eb5cac46c58582e8990160a3fb6079fefd64370fcffa7a91cf3d7b984f6aa623dabf8aee029a43a95d4fba19a9496e5745a3943158570b5ff8"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "name" : "Bouncy Castle Licence",
-            "url" : "https://www.bouncycastle.org/licence.html"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/org.bouncycastle/bcpkix-jdk18on@1.81?type=jar",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "issue-tracker",
-          "url" : "https://github.com/bcgit/bc-java/issues"
-        },
-        {
-          "type" : "vcs",
-          "url" : "https://github.com/bcgit/bc-java"
-        }
-      ]
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.81?type=jar",
-      "group" : "org.bouncycastle",
-      "name" : "bcprov-jdk18on",
-      "version" : "1.81",
-      "description" : "The Bouncy Castle Crypto package is a Java implementation of cryptographic algorithms. This jar contains the JCA/JCE provider and low-level API for the BC Java version 1.81 for Java 8 and later.",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "3913a176dc36b31e867be5360f3ee524"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "d17c094daef57dbd80af71687a475aa6df7cbe54"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "249f396412b0c0ce67f25c8197da757b241b8be3ec4199386c00704a2457459b"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "e44c612fd4658ae5ee9f451b865e4f490ed73bb229e772c4c14769b1d14ba1879b130983e87557609ee815d7c56f8b339b37e00404088e5bc5f0c3715880f4eb"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "ec82fd783817fb3634813258ba4e4c82cffa9f0d23d849ec0c1749de2b04a2e1f432e43545eb5f06acc52a9bd5c43921"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "772d4b813c9733b70d7fd1fe2c5fedbfa5fec05f0bdf21afd49c26c40777b4b7048a6fa4e662da7e7f3b8d69c5b792bf"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "472a56ef6828dab569e4d7e14c8844ddb25c35ad4be363b4ada7b1f4c02aead8"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "6c68600dbb4c6b9b32a3dd3fcf5bc056b8ce0aaba6e243fc96014dc702eb29e7236f6da1ac584bb42bd69c03b135c4d222901c4bf9bdd22d05a1b9f9a1d1ac5d"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "name" : "Bouncy Castle Licence",
-            "url" : "https://www.bouncycastle.org/licence.html"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.81?type=jar",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "issue-tracker",
-          "url" : "https://github.com/bcgit/bc-java/issues"
-        },
-        {
-          "type" : "vcs",
-          "url" : "https://github.com/bcgit/bc-java"
-        }
-      ]
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
-      "group" : "com.google.guava",
-      "name" : "guava",
-      "version" : "33.5.0-jre",
-      "description" : "Guava is a suite of core and expanded libraries that include utility classes, Google's collections, I/O classes, and much more.",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "d9fbf39a41a5bab891348f07668e18c5"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "8699de25f2f979108d6c1b804a7ba38cda1116bc"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "1e301f0c52ac248b0b14fdc3d12283c77252d4d6f48521d572e7d8c4c2cc4ac7"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "994a4dbcbd8e528ad3b4a7acf49b631a40dcebb03d9a8f5e1d3b74351f805f77774e9a19f7233e42036cb415b7838710f207ac1e18335e4a219b7f99ea22a44f"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "9dabff6e543ead881b20d38a533e9151aaa83999239cf0ace3e712cf678e7976c3a50d79e3f3c57afc05a3b9ff14ad90"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "9f65d4d942113facb2eb25229c1530b79dd3b8994574034b8d4a1c2b39ed8ee5bb4d415ec690d3d87cee0d8cb2283564"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "fedafab2279bdf6eff66314fc61b056e92312695678e66dc1e25fe1d18af5a36"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "e64f3c49f9030358554bb0b8abdff729394988f1e3247b05a86302014eeff4a2855acf46d9bf1c683cbecc33a24173a20a103d3c82c94f8cabd6676a01b40fb6"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
-      "modified" : false
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/com.googlecode.owasp-java-html-sanitizer/java8-shim@20260101.1?type=jar",
-      "group" : "com.googlecode.owasp-java-html-sanitizer",
-      "name" : "java8-shim",
-      "version" : "20260101.1",
-      "description" : "Backports @since Java 9 collection factories like List.of onto Java8 in a way that uses the real ones where available, falls back to a conforming implementation on Java8 and JIT compiles well.",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "1b6673d509941ebb985a91e83af373e7"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "beea967816d20f2cfe39ac89743c50fc33310a2c"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "b5d5b10afd2ab1899bd9a859d1d7b59b49e438dab18a7c95d85ac71c1329932a"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "2e542fc6f8b2050a1ed637920c677e96feb07ca7dd0bb7c3f36e92ff8149b9a29ef73ab85d52bda177e29f147b17097030f059b3efa824dfc27d474d676ac9be"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "df080f641b4e97b522d506f858a182dd30f61c4324e5d9308606d649c212e83470771e2a83a66220ef944eda3d647222"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "0334c70d407f968cb20caf614279ab8e33557dcc93280158a0d00efc46ceeaf5b3cdda6e5c1ee496ca2355ca21b613fe"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "a73f1dc36541f1fc9acea42f246edded40280ff77029200973667db232fd02ff"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "8b5d62deb982e1813af66e576b978696d1b79da656761e7c519fe8cb4c40f4d37746e4741f2f55dcbd9e36296e385d28a5a9049537970799b3b705213be478cb"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/com.googlecode.owasp-java-html-sanitizer/java8-shim@20260101.1?type=jar",
-      "modified" : false
     },
     {
       "type" : "library",
@@ -929,6 +752,68 @@
       ],
       "purl" : "pkg:maven/com.googlecode.owasp-java-html-sanitizer/owasp-java-html-sanitizer@20260101.1?type=jar",
       "modified" : false
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.bouncycastle/bcpkix-jdk18on@1.84?type=jar",
+      "group" : "org.bouncycastle",
+      "name" : "bcpkix-jdk18on",
+      "version" : "1.84",
+      "description" : "The Bouncy Castle Java APIs for CMS, PKCS, EAC, TSP, CMP, CRMF, OCSP, and certificate generation. This jar contains APIs for Java 1.8 and later. The APIs are designed primarily to be used in conjunction with the BC Java provider but may also be used with other providers providing cryptographic services.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "49dec53975e3a6d23d7e3979551ce3c3"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "dab889a3259e27caec6e6c2f3bde94af036b2fcc"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "c87f16ed9e5ec61bc94151e9f3646ac44e50cd448121ce84367fa4b7ec7ec1bb"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "01644d7e0c6041ea8c8629f6ad73f7206efa2797d954da1507dd43c5d262a161194ed84e960234cf5c53787033f1181aa4965e0d6ebfe82ca040de13ca307565"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "1a7e9f56a98410dc1507973650a3d068282c5c65ae6d07479faef4e3a01c73a2ef32a4ef02c052427e17f0ff6d3b1fe1"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "f9f60aeb69c7cc5f9c8134b9a93de261ebcc891c74c874f06cefc8317a7779083b24765ccf004d6361ff0e4f402000d1"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "addd7c68da3854783da8da2da09dc776592cee4abba8ab859f0a6cbd67b8c560"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "18f987c70a1c6a853173e80a0e76ccfb1c45f0b44b8c0e5f052e69949eb27faa80fa50952b0efc1d3b8d57f7e26677014ec74785aac1a95e348055484204467e"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "Bouncy Castle Licence",
+            "url" : "https://www.bouncycastle.org/licence.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.bouncycastle/bcpkix-jdk18on@1.84?type=jar",
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/bcgit/bc-java/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/bcgit/bc-java"
+        }
+      ]
     },
     {
       "type" : "library",
@@ -998,125 +883,6 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
-      "group" : "org.jspecify",
-      "name" : "jspecify",
-      "version" : "1.0.0",
-      "description" : "An artifact of well-named and well-specified annotations to power static analysis checks",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "9133aba420d0ca3b001dbb6ae9992cf6"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "7425a601c1c7ec76645a78d22b8c6a627edee507"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "efded31ef5b342f09422935076e599789076431e93a746685c0607e7de5592719ba6aacde0be670b3f064d1e85630d58d5bce6b34aed2a288fdb34f745efb7bc"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "814f860e5a44ead6c457676841eef471a8b87be31b84c60a8a4477a18a9cbcb6e3c2ae700969d5c5e52309d961e0537a"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "c8844e5b71e5ecfbb7366097ce34af2f5863d86d5ccc3f9ec384d8ade4b60ccc8124c7fc88664f1afd2b0962fc8775bf"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "4b4f08ad7606a3ac62997779484919a302267b26d26ee19125f8a7eea60e8a71"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "65c6845ebae981cb81b61107707ced39f5b377dae970b47606ef482aaf10e3729def0da40d9377c43abbfb483a5ceae039b0d51c129c50a6d36ad351a5d6b01e"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "vcs",
-          "url" : "https://github.com/jspecify/jspecify/"
-        }
-      ]
-    },
-    {
-      "type" : "library",
-      "bom-ref" : "pkg:maven/commons-logging/commons-logging@1.3.5?type=jar",
-      "group" : "commons-logging",
-      "name" : "commons-logging",
-      "version" : "1.3.5",
-      "description" : "Apache Commons Logging is a thin adapter allowing configurable bridging to other, well-known logging systems.",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "9ca067b073153c86c2da350c0f2cdf70"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "a3fcc5d3c29b2b03433aa2d2f2d2c1b1638924a1"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "6d7a744e4027649fbb50895df9497d109f98c766a637062fe8d2eabbb3140ba4"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "b6d66333cec2746cc410ca3b27099c4647618a1855783bac064c75eec95c643dab184010e5c875aca3c7fa827aed144488a1820604a043bbff93116de509f915"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "bbfc26f81852dfe8df41b9cd1da6e755b223c51e824898490f96e2aaefb42e5484408f8a245b244bfe4e08170295ee72"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "5e17863103757beb582b316f90a02f57f0ea7702b2146d6b318ab0f1105a3e0190dd1dc7b031550a68c047cadd23c114"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "c01a09df81fae75d398ef61b168c8f7d70291b480961d392c59bdd1498c254cb"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "1ce4f4219542c8f1f0b52f9d2d916d8b11136f7a800bbb24ca93a28a800121e7c48af410076213d05dd715b37b110aa59a7a9609415e0cc5daed89bb13fc4668"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0",
-            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/commons-logging/commons-logging@1.3.5?type=jar",
-      "modified" : false,
-      "externalReferences" : [
-        {
-          "type" : "issue-tracker",
-          "url" : "https://issues.apache.org/jira/browse/LOGGING"
-        },
-        {
-          "type" : "vcs",
-          "url" : "https://gitbox.apache.org/repos/asf/commons-logging"
-        }
-      ]
-    },
-    {
-      "type" : "library",
       "bom-ref" : "pkg:maven/commons-io/commons-io@2.21.0?type=jar",
       "group" : "commons-io",
       "name" : "commons-io",
@@ -1180,6 +946,240 @@
           "url" : "https://gitbox.apache.org/repos/asf?p=commons-io.git"
         }
       ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.apache.pdfbox/fontbox@3.0.7?type=jar",
+      "group" : "org.apache.pdfbox",
+      "name" : "fontbox",
+      "version" : "3.0.7",
+      "description" : "The Apache FontBox library is an open source Java tool to obtain low level information from font files. FontBox is a subproject of Apache PDFBox.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "fd7e63f326b2e92ced87c15c854bf820"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "48c70ca4297548041b7e05493a2db4780a037cf1"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "8149d9897ab504f7a3f3797d552cd8925ef58149b4de3fb470eb46d747e68f86"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "4b96f514e32b49e01de11ae8bff095f1053f800f36e44061f64d9afbc837bb875117e2340ca1586afa927ab0c4c67ae157906826b50ed60759521750838f00b1"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "efecda469cf8fe4ee8cdc05d31b3b0c60866f823ffb6cef397ab7d34e8e04d9794a83ea577aaf9293c463e536253db2d"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "2bbfdb3d0a62a1cfe58b53912c66afaa37623446363488b7ea82b2e4096dd4bb1a353d865aba6d81bbcd6a71c36c097e"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "e0b367ae4c69b35a344880bb3024fff7e3187e85d6da476a03b0812e5c4581b6"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "c205c93c314ced55b5c4ec9c15ce580618f854a5837ce09801485b873ca78c2fa2ff27f811b6895027f8fb62bbf12c99d49c7e9d474f9f74330ad09358f104b7"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.apache.pdfbox/fontbox@3.0.7?type=jar",
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "vcs",
+          "url" : "https://svn.apache.org/viewvc/pdfbox/tags/3.0.7/fontbox"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.googlecode.owasp-java-html-sanitizer/java8-shim@20260101.1?type=jar",
+      "group" : "com.googlecode.owasp-java-html-sanitizer",
+      "name" : "java8-shim",
+      "version" : "20260101.1",
+      "description" : "Backports @since Java 9 collection factories like List.of onto Java8 in a way that uses the real ones where available, falls back to a conforming implementation on Java8 and JIT compiles well.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "1b6673d509941ebb985a91e83af373e7"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "beea967816d20f2cfe39ac89743c50fc33310a2c"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "b5d5b10afd2ab1899bd9a859d1d7b59b49e438dab18a7c95d85ac71c1329932a"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "2e542fc6f8b2050a1ed637920c677e96feb07ca7dd0bb7c3f36e92ff8149b9a29ef73ab85d52bda177e29f147b17097030f059b3efa824dfc27d474d676ac9be"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "df080f641b4e97b522d506f858a182dd30f61c4324e5d9308606d649c212e83470771e2a83a66220ef944eda3d647222"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "0334c70d407f968cb20caf614279ab8e33557dcc93280158a0d00efc46ceeaf5b3cdda6e5c1ee496ca2355ca21b613fe"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "a73f1dc36541f1fc9acea42f246edded40280ff77029200973667db232fd02ff"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "8b5d62deb982e1813af66e576b978696d1b79da656761e7c519fe8cb4c40f4d37746e4741f2f55dcbd9e36296e385d28a5a9049537970799b3b705213be478cb"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.googlecode.owasp-java-html-sanitizer/java8-shim@20260101.1?type=jar",
+      "modified" : false
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.apache.pdfbox/pdfbox@3.0.7?type=jar",
+      "group" : "org.apache.pdfbox",
+      "name" : "pdfbox",
+      "version" : "3.0.7",
+      "description" : "The Apache PDFBox library is an open source Java tool for working with PDF documents.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "adeb0637e9451d49e610ee3bc16781cd"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "ecfc1bbfa656d3e330b8cc9e6996a18cde1c9bd0"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "7cefa717622330951b4343abf1e5d36bccb11f4ba245d78aaa73251d08fec623"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "318f95178539beeaa15c7e1eba9e5634d731a0a4e62eba1e2ebfb79c07c1551b66622353946777869c3b843e2ac5c387b906b4b3a98e16e7b9176bc7fae6c6d7"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "434b441750a787f8505b0028b6628e29e20fc55436a6b55c2b32868f6dd02bbf150332c5c72c912421556eb1964b3695"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "1c48124b8670350b5e00f6f31ba28faba43fd58fd4ea12d65c71f0b04282bffd99df7a309e4daaaf88596c952add30cc"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "c1f8aa6f2e6962e4e59c8165206fd09540a2f7eef6b8e17d03d51570d1b5c9b7"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "53df73a2a025150e688be28859a719d4ccb122f577b69bb5bbdd6bc464da5e3d4cd91437bbae0474f4e199ea4106ac2844e52a3a24c0e530b22be58dae376068"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.apache.pdfbox/pdfbox@3.0.7?type=jar",
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "vcs",
+          "url" : "https://svn.apache.org/viewvc/pdfbox/tags/3.0.7/pdfbox"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.bouncycastle/bcpg-jdk18on@1.84?type=jar",
+      "group" : "org.bouncycastle",
+      "name" : "bcpg-jdk18on",
+      "version" : "1.84",
+      "description" : "The Bouncy Castle Java APIs for the OpenPGP Protocol. The APIs are designed primarily to be used in conjunction with the BC Java provider but may also be used with other providers providing cryptographic services. This jar is designed to work best with Java 1.8 and later.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "a4dd7f17584c37312a48c2d7dd158d75"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "926c49f6ee952db53e5b8a593feced9bc3db000e"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "c0e6303a0d7589040f400950ecee87a14b81312e84ed15e5390ebb0c4566ddab"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "f09e80e55a96713227a5d863ed209b8fa4600b160a8f8acefb31b06eb106e539665315940f101281ac96f0b3cc5522f4b949f3d5d4c180b627fb3be30777e525"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "70f315c48ccc618b4262468b1b3a4b2de88341b80559a30feffc962985c2b54cb93a6e2a70231208cf2f5fcd3c4b1fa1"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "986dcaa4af2598f850fc4e654316f1e4863d1cc071ad9d01f8fd19a3198c50c3e6c3355b025ca9436ab38adbce12f292"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "c81ce0700a18570a945a5b5b5ed9579ee2f5b4d50a1143450e67d6fe06532f96"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "cea54d4bb34d3dd466209ebcc8ec1cb4a536ab882580cadcc132b5041aef63f07ec15b5af6e0297e20b4bcea1b8b044bc4d15c65f5e915f11c31e48c4204fc03"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "Bouncy Castle Licence",
+            "url" : "https://www.bouncycastle.org/licence.html"
+          }
+        },
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.bouncycastle/bcpg-jdk18on@1.84?type=jar",
+      "modified" : false,
+      "externalReferences" : [
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/bcgit/bc-java/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/bcgit/bc-java"
+        }
+      ]
     }
   ],
   "dependencies" : [
@@ -1234,11 +1234,11 @@
         "pkg:maven/commons-io/commons-io@2.21.0?type=jar",
         "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
         "pkg:maven/org.apache.commons/commons-text@1.14.0?type=jar",
-        "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.6?type=jar",
-        "pkg:maven/org.apache.pdfbox/pdfbox@3.0.6?type=jar",
-        "pkg:maven/org.bouncycastle/bcpg-jdk18on@1.81?type=jar",
-        "pkg:maven/org.bouncycastle/bcpkix-jdk18on@1.81?type=jar",
-        "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.81?type=jar"
+        "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.7?type=jar",
+        "pkg:maven/org.apache.pdfbox/pdfbox@3.0.7?type=jar",
+        "pkg:maven/org.bouncycastle/bcpg-jdk18on@1.84?type=jar",
+        "pkg:maven/org.bouncycastle/bcpkix-jdk18on@1.84?type=jar",
+        "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.84?type=jar"
       ]
     },
     {
@@ -1260,47 +1260,47 @@
       ]
     },
     {
-      "ref" : "pkg:maven/org.apache.pdfbox/fontbox@3.0.6?type=jar",
+      "ref" : "pkg:maven/org.apache.pdfbox/fontbox@3.0.7?type=jar",
       "dependsOn" : [
-        "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.6?type=jar",
+        "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.7?type=jar",
         "pkg:maven/commons-logging/commons-logging@1.3.5?type=jar"
       ]
     },
     {
-      "ref" : "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.6?type=jar",
+      "ref" : "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.7?type=jar",
       "dependsOn" : [
         "pkg:maven/commons-logging/commons-logging@1.3.5?type=jar"
       ]
     },
     {
-      "ref" : "pkg:maven/org.apache.pdfbox/pdfbox@3.0.6?type=jar",
+      "ref" : "pkg:maven/org.apache.pdfbox/pdfbox@3.0.7?type=jar",
       "dependsOn" : [
-        "pkg:maven/org.apache.pdfbox/fontbox@3.0.6?type=jar",
-        "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.6?type=jar",
+        "pkg:maven/org.apache.pdfbox/fontbox@3.0.7?type=jar",
+        "pkg:maven/org.apache.pdfbox/pdfbox-io@3.0.7?type=jar",
         "pkg:maven/commons-logging/commons-logging@1.3.5?type=jar"
       ]
     },
     {
-      "ref" : "pkg:maven/org.bouncycastle/bcpg-jdk18on@1.81?type=jar",
+      "ref" : "pkg:maven/org.bouncycastle/bcpg-jdk18on@1.84?type=jar",
       "dependsOn" : [
-        "pkg:maven/org.bouncycastle/bcutil-jdk18on@1.81?type=jar",
-        "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.81?type=jar"
+        "pkg:maven/org.bouncycastle/bcutil-jdk18on@1.84?type=jar",
+        "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.84?type=jar"
       ]
     },
     {
-      "ref" : "pkg:maven/org.bouncycastle/bcpkix-jdk18on@1.81?type=jar",
+      "ref" : "pkg:maven/org.bouncycastle/bcpkix-jdk18on@1.84?type=jar",
       "dependsOn" : [
-        "pkg:maven/org.bouncycastle/bcutil-jdk18on@1.81?type=jar"
+        "pkg:maven/org.bouncycastle/bcutil-jdk18on@1.84?type=jar"
       ]
     },
     {
-      "ref" : "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.81?type=jar",
+      "ref" : "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.84?type=jar",
       "dependsOn" : [ ]
     },
     {
-      "ref" : "pkg:maven/org.bouncycastle/bcutil-jdk18on@1.81?type=jar",
+      "ref" : "pkg:maven/org.bouncycastle/bcutil-jdk18on@1.84?type=jar",
       "dependsOn" : [
-        "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.81?type=jar"
+        "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.84?type=jar"
       ]
     },
     {
