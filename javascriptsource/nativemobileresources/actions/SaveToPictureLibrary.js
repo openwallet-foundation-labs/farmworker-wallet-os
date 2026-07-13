@@ -30,7 +30,7 @@ export async function SaveToPictureLibrary(picture) {
     const url = mx.data.getDocumentUrl(guid, changedDate);
     // Save the file as a photo to the camera roll.
     try {
-        const savedUri = await CameraRoll.saveToCameraRoll(url, "auto");
+        const savedUri = await CameraRoll.saveAsset(url);
         return Promise.resolve(savedUri.node.image.uri);
     }
     catch (error) {
