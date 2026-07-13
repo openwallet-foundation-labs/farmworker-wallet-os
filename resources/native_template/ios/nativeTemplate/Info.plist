@@ -22,11 +22,11 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>0.6.0</string>
+    <string>0.7.0</string>
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>24</string>
+    <string>26</string>
     <key>GoogleMapsApiKey</key>
     <string/>
     <key>LSRequiresIPhoneOS</key>
@@ -38,12 +38,18 @@
       <key>NSAllowsLocalNetworking</key>
       <false/>
     </dict>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>This app may need access to your Bluetooth connection.</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>This app may need access to your Bluetooth connection.</string>
     <key>NSCameraUsageDescription</key>
     <string>The camera can be used to open apps by scanning a QR code.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>To use that feature, the app needs access to your location.</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
     <string>To use that feature, the app needs access to your location.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>To use that feature, the app needs access to your photo library.</string>
     <key>Runtime url</key>
     <string>$(RUNTIME_URL)</string>
     <key>TargetName</key>
@@ -91,11 +97,5 @@
     <false/>
     <key>FirebaseAppDelegateProxyEnabled</key>
     <false/>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>To use that feature, the app needs access to your photo library.</string>
-    <key>NSBluetoothAlwaysUsageDescription</key>
-    <string>This app may need access to your Bluetooth connection.</string>
-    <key>NSBluetoothPeripheralUsageDescription</key>
-    <string>This app may need access to your Bluetooth connection.</string>
   </dict>
 </plist>
