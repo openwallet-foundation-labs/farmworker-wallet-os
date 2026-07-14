@@ -1,0 +1,30 @@
+diff --git a/node_modules/react-native-argon2/android/build.gradle b/node_modules/react-native-argon2/android/build.gradle
+index 85dff9f..c8a149b 100644
+--- a/node_modules/react-native-argon2/android/build.gradle
++++ b/node_modules/react-native-argon2/android/build.gradle
+@@ -15,6 +15,7 @@ buildscript {
+ }
+ 
+ android {
++    namespace 'com.poowf.argon2'
+     compileSdkVersion safeExtGet('compileSdkVersion', 30)
+     buildToolsVersion safeExtGet('buildToolsVersion', '30.0.3')
+ 
+@@ -28,7 +29,7 @@ android {
+ 
+ repositories {
+     google()
+-    jcenter()
++    mavenCentral()
+ }
+ 
+ dependencies {
+diff --git a/node_modules/react-native-argon2/android/src/main/AndroidManifest.xml b/node_modules/react-native-argon2/android/src/main/AndroidManifest.xml
+index 905ac8b..9a40236 100644
+--- a/node_modules/react-native-argon2/android/src/main/AndroidManifest.xml
++++ b/node_modules/react-native-argon2/android/src/main/AndroidManifest.xml
+@@ -1,3 +1,3 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.poowf.argon2" >
++<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+ </manifest>

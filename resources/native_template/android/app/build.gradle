@@ -91,6 +91,11 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+        debug {
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a"
+            }
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -140,6 +145,9 @@ dependencies {
     devImplementation "me.dm7.barcodescanner:zxing:1.9.8"
 
     androidTestImplementation "junit:junit:4.12"
+
+    //Required by Credo-ts
+    implementation 'net.java.dev.jna:jna:5.2.0'
 }
 
 configurations.all {

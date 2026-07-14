@@ -27,6 +27,7 @@
     "@hyperledger/anoncreds-react-native": "0.2.4",
     "@hyperledger/aries-askar-react-native": "0.2.3",
     "@hyperledger/indy-vdr-react-native": "0.2.2",
+    "@mendix/react-native-sqlite-storage": "^7.1.0",
     "@notifee/react-native": "9.1.8",
     "@op-engineering/op-sqlite": "15.2.5",
     "@react-native-async-storage/async-storage": "2.2.0",

@@ -67,13 +67,13 @@ makes it easy for any Mendix app to interoperate with open-standard technologies
 ### iOS build configuration for Xcode
 * Install Xcode 16.2
 * Install iOS dependencies
-    * For iOS builds only, Credo-ts (v0.5.13) `cd ~/resources/native_template`
-    * `npm install @mendix/react-native-sqlite-storage`
-    * Install Pods
-    ```
-    cd ios
-    pod install --repo-update
-    ```
+* For iOS builds only, Credo-ts (v0.5.13) `cd ~/resources/native_template`
+* `npm install @mendix/react-native-sqlite-storage`
+* Install Pods
+```
+cd ios
+pod install --repo-update
+```
 
 ## Contributing
 See [CONTRIBUTING.md](https://github.com/openwallet-foundation-labs/farmworker-wallet-os/blob/main/CONTRIBUTING.md).

@@ -1,7 +1,16 @@
 diff --git a/node_modules/@hyperledger/aries-askar-react-native/android/CMakeLists.txt b/node_modules/@hyperledger/aries-askar-react-native/android/CMakeLists.txt
-index 74b6aff..e5553fa 100644
+index 74b6aff..bc5b847 100644
 --- a/node_modules/@hyperledger/aries-askar-react-native/android/CMakeLists.txt
 +++ b/node_modules/@hyperledger/aries-askar-react-native/android/CMakeLists.txt
+@@ -6,7 +6,7 @@ set (LIB_NAME "ariesaskar")
+ file (GLOB LIBASKAR_DIR "${CMAKE_SOURCE_DIR}/../native/mobile/android/${ANDROID_ABI}")
+ 
+ set(CMAKE_VERBOSE_MAKEFILE ON)
+-set(CMAKE_CXX_STANDARD 14)
++set(CMAKE_CXX_STANDARD 20)
+ 
+ set (BUILD_DIR ${CMAKE_SOURCE_DIR}/build)
+ if(${REACT_NATIVE_VERSION} GREATER_EQUAL 71)
 @@ -91,7 +91,7 @@ if(${REACT_NATIVE_VERSION} GREATER_EQUAL 71)
    target_link_libraries(
      ${PACKAGE_NAME}
@@ -12,13 +21,30 @@ index 74b6aff..e5553fa 100644
    )
  elseif(${REACT_NATIVE_VERSION} LESS 66)
 diff --git a/node_modules/@hyperledger/aries-askar-react-native/android/build.gradle b/node_modules/@hyperledger/aries-askar-react-native/android/build.gradle
-index 15eeb9c..543997f 100644
+index 15eeb9c..501560e 100644
 --- a/node_modules/@hyperledger/aries-askar-react-native/android/build.gradle
 +++ b/node_modules/@hyperledger/aries-askar-react-native/android/build.gradle
-@@ -110,6 +110,7 @@ android {
+@@ -4,7 +4,6 @@ import java.nio.file.Paths
+ buildscript {
+   repositories {
+     google()
+-    jcenter()
+     mavenCentral()
+   }
+ 
+@@ -90,7 +89,7 @@ android {
+     
+     externalNativeBuild {
+         cmake {
+-            cppFlags "-fexceptions", "-frtti", "-std=c++1y", "-DONANDROID"
++            cppFlags "-fexceptions", "-frtti", "-std=c++20", "-DONANDROID"
+             abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+             arguments "-DANDROID_STL=c++_shared",
+                       "-DREACT_NATIVE_VERSION=${REACT_NATIVE_VERSION}",
+@@ -110,6 +109,7 @@ android {
      excludes = ["**/libc++_shared.so", 
                  "**/libfbjni.so", 
-                 "**/libjsi.so",
+                 "**/libjsi.so", 
 +                "**/libreactnative.so",  
                  "**/libreactnativejni.so", 
                  "**/libjscexecutor.so", 
