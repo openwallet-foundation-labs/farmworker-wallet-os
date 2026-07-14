@@ -17,52 +17,55 @@
 
         > .mx-groupbox-header {
             margin: 0;
-            color: $groupbox-default-color;
+            color: var(--groupbox-default-color);
             border-width: 1px 1px 0 1px;
             border-style: solid;
-            border-color: $groupbox-default-bg;
-            background: $groupbox-default-bg;
-            font-size: $font-size-h5;
-            border-radius: $border-radius-default $border-radius-default 0 0;
-            padding: $spacing-small * 1.5 $spacing-medium;
+            border-color: var(--groupbox-default-bg);
+            background: var(--groupbox-default-bg);
+            font-size: var(--font-size-h5);
+            border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
+            padding: calc(var(--spacing-small) * 1.5) var(--spacing-medium);
 
             .mx-groupbox-collapse-icon {
                 margin-top: 0.1em;
+            }
+            &:focus-visible {
+                @extend .focus-ring !optional;
             }
         }
 
         // Header options
         > h1.mx-groupbox-header {
-            font-size: $font-size-h1;
+            font-size: var(--font-size-h1);
         }
 
         > h2.mx-groupbox-header {
-            font-size: $font-size-h2;
+            font-size: var(--font-size-h2);
         }
 
         > h3.mx-groupbox-header {
-            font-size: $font-size-h3;
+            font-size: var(--font-size-h3);
         }
 
         > h4.mx-groupbox-header {
-            font-size: $font-size-h4;
+            font-size: var(--font-size-h4);
         }
 
         > h5.mx-groupbox-header {
-            font-size: $font-size-h5;
+            font-size: var(--font-size-h5);
         }
 
         > h6.mx-groupbox-header {
-            font-size: $font-size-h6;
+            font-size: var(--font-size-h6);
         }
 
         > .mx-groupbox-body {
-            padding: $spacing-small * 1.5 $spacing-medium;
+            padding: calc(var(--spacing-small) * 1.5) var(--spacing-medium);
             border-width: 1px;
             border-style: solid;
-            border-color: $groupbox-default-bg;
+            border-color: var(--groupbox-default-bg);
             background-color: #ffffff;
-            border-radius: $border-radius-default;
+            border-radius: var(--border-radius-default);
         }
 
         .mx-groupbox-header + .mx-groupbox-body {
@@ -75,6 +78,6 @@
 
     //With header
     .mx-groupbox-header ~ .mx-groupbox-body {
-        border-radius: 0 0 $border-radius-default $border-radius-default;
+        border-radius: 0 0 var(--border-radius-default) var(--border-radius-default);
     }
 }

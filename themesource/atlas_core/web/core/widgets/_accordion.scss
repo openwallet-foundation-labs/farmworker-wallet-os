@@ -15,17 +15,17 @@
     .widget-accordion {
         .widget-accordion-group {
             @include get-accordion-group-styles(
-                $accordion-header-default-bg,
-                $accordion-header-default-bg-hover,
-                $accordion-header-default-color,
-                $brand-primary,
-                $accordion-default-border-color
+                var(--accordion-header-default-bg),
+                var(--accordion-header-default-bg-hover),
+                var(--accordion-header-default-color),
+                var(--brand-primary),
+                var(--accordion-default-border-color)
             );
         }
 
         &.widget-accordion-preview {
             .widget-accordion-group {
-                @include get-accordion-preview-group-styles($accordion-header-default-color);
+                @include get-accordion-preview-group-styles(var(--accordion-header-default-color));
             }
         }
     }
@@ -33,28 +33,28 @@
 
 @mixin get-accordion-group-styles($background-color, $background-color-hover, $color, $color-hover, $border-color) {
     border-color: $border-color;
-    background-color: $bg-color-secondary;
+    background-color: var(--bg-color-secondary);
 
     &:first-child {
-        border-top-left-radius: $border-radius-default;
-        border-top-right-radius: $border-radius-default;
+        border-top-left-radius: var(--border-radius-default);
+        border-top-right-radius: var(--border-radius-default);
 
         > .widget-accordion-group-header > .widget-accordion-group-header-button {
-            border-top-left-radius: calc(#{$border-radius-default} - 1px);
-            border-top-right-radius: calc(#{$border-radius-default} - 1px);
+            border-top-left-radius: calc(var(--border-radius-default) - 1px);
+            border-top-right-radius: calc(var(--border-radius-default) - 1px);
         }
     }
 
     &:last-child {
-        border-bottom-left-radius: $border-radius-default;
-        border-bottom-right-radius: $border-radius-default;
+        border-bottom-left-radius: var(--border-radius-default);
+        border-bottom-right-radius: var(--border-radius-default);
     }
 
     &.widget-accordion-group-collapsed:last-child,
     &.widget-accordion-group-collapsing:last-child {
         > .widget-accordion-group-header > .widget-accordion-group-header-button {
-            border-bottom-left-radius: calc(#{$border-radius-default} - 1px);
-            border-bottom-right-radius: calc(#{$border-radius-default} - 1px);
+            border-bottom-left-radius: calc(var(--border-radius-default) - 1px);
+            border-bottom-right-radius: calc(var(--border-radius-default) - 1px);
         }
     }
 
@@ -73,11 +73,11 @@
     > .widget-accordion-group-header > .widget-accordion-group-header-button {
         cursor: auto;
         background-color: $background-color;
-        padding: $spacing-medium;
+        padding: var(--spacing-medium);
 
         > :is(h1, h2, h3, h4, h5, h6) {
-            font-size: $font-size-h5;
-            font-weight: $font-weight-header;
+            font-size: var(--font-size-h5);
+            font-weight: var(--font-weight-header);
         }
 
         > :is(h1, h2, h3, h4, h5, h6, p, span) {
@@ -107,15 +107,15 @@
 
     > .widget-accordion-group-content-wrapper > .widget-accordion-group-content {
         border-color: $border-color;
-        padding: $spacing-small $spacing-medium $spacing-large $spacing-medium;
+        padding: var(--spacing-small) var(--spacing-medium) var(--spacing-large) var(--spacing-medium);
     }
 }
 
 @mixin get-accordion-preview-group-styles($color) {
     .widget-accordion-group-header-button {
         > div > :is(h1, h2, h3, h4, h5, h6) {
-            font-size: $font-size-h5;
-            font-weight: $font-weight-header;
+            font-size: var(--font-size-h5);
+            font-weight: var(--font-weight-header);
         }
 
         > div > :is(h1, h2, h3, h4, h5, h6, p, span) {

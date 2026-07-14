@@ -30,59 +30,62 @@
 
         // Sidebar
         .region-sidebar {
-            background-color: $navsidebar-bg;
+            background: var(--navsidebar-bg);
             @if not $use-modern-client {
                 z-index: 101;
             }
-            box-shadow: 0 0 4px rgb(0 0 0 / 14%), 2px 4px 8px rgb(0 0 0 / 28%);
+            box-shadow: var(--navsidebar-shadow);
+            border-right: var(--navsidebar-border-right);
 
             .mx-scrollcontainer-wrapper {
                 display: flex;
                 flex-direction: column;
-                padding: $spacing-small 0;
+                padding: var(--spacing-small) 0;
             }
 
             .mx-navigationtree .navbar-inner > ul > li > a {
-                padding: $spacing-medium;
+                padding: var(--spacing-medium);
 
                 .glyphicon,
                 .mx-icon-lined,
                 .mx-icon-filled {
-                    margin-right: $spacing-small;
+                    margin-right: var(--spacing-small);
                 }
             }
 
-            .sidebar-heading {
-                background: $navsidebar-sub-bg;
-            }
-
             .toggle-btn {
-                margin-right: $spacing-small;
+                margin-right: var(--spacing-small);
                 border-color: transparent;
                 border-radius: 0;
                 background: transparent;
-                padding: $spacing-medium;
+                padding: var(--spacing-medium);
             }
         }
 
         // Topbar
         .region-topbar {
             position: relative;
+            align-content: center;
             z-index: 60; // Show dropshadow
-            min-height: $topbar-minimalheight;
-            background-color: $navtopbar-bg;
+            min-height: var(--topbar-minimalheight);
+            background: var(--navtopbar-bg);
+            border-bottom: var(--navtopbar-border-bottom);
+
+            // allow secondary color for different type of navbar
+            &.topbar-secondary {
+                background: var(--navtopbar-bg-secondary, --navtopbar-bg);
+            }
 
             // Topbar Content
             .topbar-content {
                 display: flex;
                 align-items: center;
-                min-height: $topbar-minimalheight;
+                min-height: var(--topbar-minimalheight);
             }
 
             // Toggle btn
             .toggle-btn {
                 padding: 0;
-                margin-right: $spacing-medium;
                 border-color: transparent;
                 border-radius: 0;
                 background: transparent;
@@ -96,29 +99,29 @@
                 padding: 0;
                 line-height: inherit;
                 font-size: 16px;
-                margin-right: $spacing-small;
+                margin-right: var(--spacing-small);
 
                 img {
                     display: inline-block;
-                    margin-right: $spacing-small;
+                    margin-right: var(--spacing-small);
                     @if $brand-logo !=false {
                         width: 0;
                         height: 0;
-                        padding: ($brand-logo-height / 2) ($brand-logo-width / 2);
-                        background-image: url($brand-logo);
+                        padding: calc(var(--brand-logo-height, $brand-logo-height) / 2)
+                            calc(var(--brand-logo-width, $brand-logo-width) / 2);
+                        background-image: url(#{$brand-logo});
                         background-repeat: no-repeat;
                         background-position: left center;
-                        background-size: $brand-logo-width;
+                        background-size: var(--brand-logo-width);
                     } @else {
                         width: auto;
-                        height: $brand-logo-height;
+                        height: var(--brand-logo-height);
                     }
                 }
 
                 a {
-                    margin-left: $spacing-small;
-                    color: $navbar-brand-name;
-                    font-size: 20px;
+                    color: var(--navbar-brand-name);
+                    font-size: var(--navtopbar-font-size);
 
                     &:hover,
                     &:focus {
@@ -128,7 +131,6 @@
             }
 
             .mx-navbar {
-                display: inline-flex;
                 vertical-align: middle;
                 background: transparent;
                 justify-content: center;

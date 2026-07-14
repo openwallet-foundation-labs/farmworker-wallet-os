@@ -1,0 +1,62 @@
+//
+// DISCLAIMER:
+// Do not change this file because it is core styling.
+// Customizing core files will make updating Atlas much more difficult in the future.
+// To customize any core styling, copy the part you want to customize to styles/web/sass/app/ so the core styling is overwritten.
+//
+
+@mixin div-container() {
+    /* ==========================================================================
+     Container
+
+     Widget styles
+  ========================================================================== */
+    :root {
+        --border-style-solid: solid;
+        --border-style-dashed: dashed;
+        --border-style-dotted: dotted;
+        --border-style-none: none;
+        --div-border-width: var(--border-width-default);
+        --div-border-color: var(--border-color-default);
+        --div-border-style: solid;
+        --overflow-auto: auto;
+        --overflow-hidden: hidden;
+        --overflow-visible: visible;
+        --none: none;
+        --column-gap: 0px;
+    }
+
+    .div-overflow-auto {
+        overflow: auto;
+    }
+    .div-overflow-hidden {
+        overflow: hidden;
+    }
+    .div-overflow-visible {
+        overflow: visible;
+    }
+
+    .div-border-toggle-all {
+        border: var(--div-border-width) var(--div-border-style) var(--div-border-color);
+    }
+    .div-border-toggle-top {
+        border-top: var(--div-border-width) var(--div-border-style) var(--div-border-color);
+    }
+    .div-border-toggle-left {
+        border-left: var(--div-border-width) var(--div-border-style) var(--div-border-color);
+    }
+    .div-border-toggle-right {
+        border-right: var(--div-border-width) var(--div-border-style) var(--div-border-color);
+    }
+    .div-border-toggle-bottom {
+        border-bottom: var(--div-border-width) var(--div-border-style) var(--div-border-color);
+    }
+    .div-border-toggle-none {
+        border: none;
+    }
+
+    .div-stretch {
+        height: 100%;
+        flex: 1;
+    }
+}

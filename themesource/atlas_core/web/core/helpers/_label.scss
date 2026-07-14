@@ -16,37 +16,37 @@
     // Color variations
     .label-secondary,
     .label-default {
-        color: $label-default-color;
-        background-color: $label-default-bg;
+        color: var(--label-default-color);
+        background-color: var(--label-default-bg);
     }
 
     .label-primary {
-        color: $label-primary-color;
-        background-color: $label-primary-bg;
+        color: var(--label-primary-color);
+        background-color: var(--label-primary-bg);
     }
 
     .label-success {
-        color: $label-success-color;
-        background-color: $label-success-bg;
+        color: var(--label-success-color);
+        background-color: var(--label-success-bg);
     }
 
     .label-inverse {
-        color: $label-inverse-color;
-        background-color: $label-inverse-bg;
+        color: var(--label-inverse-color);
+        background-color: var(--label-inverse-bg);
     }
 
     .label-info {
-        color: $label-info-color;
-        background-color: $label-info-bg;
+        color: var(--label-info-color);
+        background-color: var(--label-info-bg);
     }
 
     .label-warning {
-        color: $label-warning-color;
-        background-color: $label-warning-bg;
+        color: var(--label-warning-color);
+        background-color: var(--label-warning-bg);
     }
 
     .label-danger {
-        color: $label-danger-color;
-        background-color: $label-danger-bg;
+        color: var(--label-danger-color);
+        background-color: var(--label-danger-bg);
     }
 }

@@ -15,39 +15,41 @@
     // When used in topbar
     .region-topbar {
         .mx-navigationtree {
-            background-color: $navtopbar-bg;
+            background: var(--navtopbar-bg);
             .navbar-inner > ul {
                 & > li {
                     & > a {
-                        color: $navtopbar-color;
-                        border-color: $navtopbar-border-color;
-                        background-color: $navtopbar-bg;
-                        font-size: $navtopbar-font-size;
+                        color: var(--navtopbar-color);
+                        border-color: var(--navtopbar-border-color);
+                        background: var(--navtopbar-bg);
+                        font-size: var(--navtopbar-font-size);
                         .caret {
-                            border-top-color: $navtopbar-color;
-                            border-bottom-color: $navtopbar-color;
+                            border-top-color: var(--navtopbar-color);
+                            border-bottom-color: var(--navtopbar-color);
                         }
 
                         .glyphicon,
                         .mx-icon-lined,
                         .mx-icon-filled {
-                            font-size: $navtopbar-glyph-size;
+                            font-size: var(--navtopbar-glyph-size);
                         }
-                    }
-                    a:hover,
-                    a:focus,
-                    a.active {
-                        color: $navtopbar-color-hover;
-                        background-color: $navtopbar-bg-hover;
-                        .caret {
-                            border-top-color: $navtopbar-color-active;
-                            border-bottom-color: $navtopbar-color-active;
+                        
+                        li:focus-within > &,
+                        li:hover > &,
+                        &:hover {
+                            color: var(--navtopbar-color-hover);
+                            background: var(--navtopbar-bg-hover);
+                            .caret {
+                                border-top-color: var(--navtopbar-color-hover);
+                                border-bottom-color: var(--navtopbar-color-hover);
+                            }
                         }
-                    }
-                    a.active {
-                        color: $navtopbar-color-active;
-                        border-left-color: $navtopbar-color-active;
-                        background-color: $navtopbar-bg-active;
+                        a:active,
+                        a.active {
+                            color: var(--navtopbar-color-active);
+                            border-left-color: var(--navtopbar-color-active);
+                            background: var(--navtopbar-bg-active);
+                        }
                     }
                 }
             }
@@ -55,21 +57,22 @@
             /* Sub navigation item specific */
             li.mx-navigationtree-has-items {
                 & > ul {
-                    background-color: $navtopbar-sub-bg;
+                    background: var(--navtopbar-sub-bg);
                     li {
                         a {
-                            color: $navtopbar-sub-color;
-                            background-color: $navtopbar-sub-bg;
-                            font-size: $navtopbar-sub-font-size;
+                            color: var(--navtopbar-sub-color);
+                            background: var(--navtopbar-sub-bg);
+                            font-size: var(--navtopbar-sub-font-size);
                             &:hover,
-                            &:focus,
-                            &.active {
-                                color: $navtopbar-sub-color-hover;
-                                background-color: $navtopbar-sub-bg-hover;
+                            li:hover > &,
+                            li:focus-within > & {
+                                color: var(--navtopbar-sub-color-hover);
+                                background: var(--navtopbar-sub-bg-hover);
                             }
+                            &:active,
                             &.active {
-                                color: $navtopbar-sub-color-active;
-                                background-color: $navtopbar-sub-bg-active;
+                                color: var(--navtopbar-sub-color-active);
+                                background: var(--navtopbar-sub-bg-active);
                             }
                         }
                     }
@@ -81,39 +84,39 @@
     // When used in sidebar
     .region-sidebar {
         .mx-navigationtree {
-            background-color: $navsidebar-bg;
             .navbar-inner > ul {
-                & > li {
-                    & > a {
-                        color: $navsidebar-color;
-                        border-color: $navsidebar-border-color;
-                        background-color: $navsidebar-bg;
-                        font-size: $navsidebar-font-size;
-                        .caret {
-                            border-top-color: $navsidebar-color;
-                            border-bottom-color: $navsidebar-color;
-                        }
+                background: transparent;
+                & > li > a {
+                    color: var(--navsidebar-color);
+                    border-color: var(--navsidebar-border-color);
+                    font-size: var(--navsidebar-font-size);
+                    .caret {
+                        border-top-color: var(--navsidebar-color);
+                        border-bottom-color: var(--navsidebar-color);
+                        margin-left: var(--spacing-small);
+                        transition: transform 0.2s ease-in-out;
+                    }
 
-                        .glyphicon,
-                        .mx-icon-lined,
-                        .mx-icon-filled {
-                            font-size: $navsidebar-glyph-size;
-                        }
+                    .glyphicon,
+                    .mx-icon-lined,
+                    .mx-icon-filled {
+                        font-size: var(--navsidebar-glyph-size);
                     }
                     a:hover,
-                    a:focus,
-                    a.active {
-                        color: $navsidebar-color-hover;
-                        background-color: $navsidebar-bg-hover;
+                    li:hover > &,
+                    li:focus-within > & {
+                        color: var(--navsidebar-color-hover);
+                        background: var(--navsidebar-bg-hover);
                         .caret {
-                            border-top-color: $navsidebar-color-active;
-                            border-bottom-color: $navsidebar-color-active;
+                            border-top-color: var(--navsidebar-color-hover);
+                            border-bottom-color: var(--navsidebar-color-hover);
                         }
                     }
-                    a.active {
-                        color: $navsidebar-color-active;
-                        border-left-color: $navsidebar-color-active;
-                        background-color: $navsidebar-bg-active;
+                    &:active,
+                    &.active {
+                        color: var(--navsidebar-color-active);
+                        border-left-color: var(--navsidebar-color-active);
+                        background: var(--navsidebar-bg-active);
                     }
                 }
             }
@@ -121,24 +124,43 @@
             /* Sub navigation item specific */
             li.mx-navigationtree-has-items {
                 & > ul {
-                    background-color: $navsidebar-sub-bg;
-                    li {
-                        a {
-                            color: $navsidebar-sub-color;
-                            background-color: $navsidebar-sub-bg;
-                            font-size: $navsidebar-sub-font-size;
-                            &:hover,
-                            &:focus,
-                            &.active {
-                                color: $navsidebar-sub-color-hover;
-                                background-color: $navsidebar-sub-bg-hover;
-                            }
-                            &.active {
-                                color: $navsidebar-sub-color-active;
-                                background-color: $navsidebar-sub-bg-active;
-                            }
+                    position: relative;
+                    border-radius: var(--navsidebar-border-radius);
+                    li > a {
+                        border-radius: var(--navsidebar-border-radius);
+                        color: var(--navsidebar-sub-color);
+                        font-size: var(--navsidebar-sub-font-size);
+                        &:hover,
+                        li:hover > &,
+                        li:focus-within > & {
+                            color: var(--navsidebar-sub-color-hover);
+                            background: var(--navsidebar-sub-bg-hover);
+                        }
+                        &:active,
+                        &.active {
+                            color: var(--navsidebar-sub-color-active);
+                            background: var(--navsidebar-sub-bg-active);
                         }
                     }
+                }
+                &:not(.mx-navigationtree-collapsed) {
+                    .caret {
+                        transform: rotate(180deg);
+                        transition: transform 0.2s ease-in-out;
+                    }
+                }
+            }
+        }
+    }
+    .mx-scrollcontainer:not(.mx-scrollcontainer-open) {
+        .region-sidebar {
+            .mx-navigationtree {
+                .navbar-inner > ul > li > a {
+                    border-radius: 0;
+                }
+                li.mx-navigationtree-has-items > ul {
+                    // sub-menu when sidebar is collapsed needs a non-transparent bg
+                    background: var(--navsidebar-sub-bg-collapsed);
                 }
             }
         }

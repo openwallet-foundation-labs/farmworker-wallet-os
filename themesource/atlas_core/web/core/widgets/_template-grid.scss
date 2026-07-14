@@ -18,16 +18,17 @@
         }
 
         .mx-templategrid-item {
-            padding: $grid-padding-top $grid-padding-right $grid-padding-bottom $grid-padding-left;
+            padding: var(--grid-padding-top) var(--grid-padding-right) var(--grid-padding-bottom)
+                var(--grid-padding-left);
             cursor: default;
-            background-color: $grid-bg;
+            background-color: var(--grid-bg);
 
             &:hover {
                 background-color: transparent;
             }
 
             &.selected {
-                background-color: $grid-bg-selected !important;
+                background-color: var(--grid-bg-selected) !important;
             }
         }
 

@@ -1,0 +1,95 @@
+//
+// DISCLAIMER:
+// Do not change this file because it is core styling.
+// Customizing core files will make updating Atlas much more difficult in the future.
+// To customize any core styling, copy the part you want to customize to styles/web/sass/app/ so the core styling is overwritten.
+//
+
+@mixin demo-user-switcher() {
+    /* ==========================================================================
+       Demo user switcher widget
+    ========================================================================== */
+
+    .mx-demouserswitcher {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 360px;
+        height: 100%;
+        z-index: 20000;
+        box-shadow: -1px 0 5px rgba(28, 59, 86, 0.2);
+    }
+
+    .mx-demouserswitcher-content {
+        padding: 48px 0 48px;
+        height: 100%;
+        color: var(--font-color-contrast);
+        font-size: var(--font-size-default);
+        overflow: auto;
+        background: var(--sidebar-bg);
+    }
+
+    .mx-demouserswitcher ul {
+        padding: 0;
+        margin: 48px 1px;
+        list-style-type: none;
+    }
+
+    .mx-demouserswitcher a {
+        display: block;
+        padding: 10px 0;
+        color: var(--font-color-contrast);
+        &:hover {
+            background: var(--navsidebar-bg-hover);
+            text-decoration: none;
+        }
+    }
+
+    .mx-demouserswitcher h2 {
+        margin: 0px 24px 5px;
+        color: var(--font-color-contrast);
+        font-size: var(--font-size-h2);
+    }
+
+    .mx-demouserswitcher h3 {
+        margin: 0 24px 2px;
+        color: var(--font-color-contrast);
+        font-size: var(--font-size-default);
+        font-weight: bold;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .mx-demouserswitcher .active {
+        border-left: 4px solid rgba(255, 255, 255, 0.8);
+        background: var(--navsidebar-bg-active);
+    }
+
+    .mx-demouserswitcher p {
+        margin-left: 24px;
+        margin-bottom: 0;
+        font-size: var(--font-size-small);
+        .active {
+            background: var(--navsidebar-bg-active);
+        }
+    }
+
+    .mx-demouserswitcher-toggle {
+        position: absolute;
+        top: 25%;
+        left: -35px;
+        width: 35px;
+        height: 38px;
+        margin-top: -40px;
+        cursor: pointer;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        box-shadow: -1px 0 5px rgba(28, 59, 86, 0.2);
+        background: url(resources/switcher-toggle.png) center center no-repeat var(--brand-primary);
+
+        &:hover {
+            background-color: var(--brand-primary-600);
+        }
+    }
+}

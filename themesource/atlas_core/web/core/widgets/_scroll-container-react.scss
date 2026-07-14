@@ -37,51 +37,46 @@
     // This is a duplication because we need to be able to use that value in calculation on
     // other levels of scroll container while --sidebar-size is available on the region level and not higher
 
-    $sidebar-animation-duration: 250ms;
-
     .mx-page {
         display: flex;
         flex-direction: column;
     }
 
+    .mx-window-body:has(> .mx-scrollcontainer:only-child) {
+        display: flex;
+    }
+
     .mx-scrollcontainer {
-        flex-shrink: 0;
-        flex-grow: 1;
-        flex-basis: 0;
-
-        &:not(.mx-scrollcontainer-fixed) {
-            // Make scroll container use full width and grow outside of it's parent
-            // this makes it fully scrollable without individual regions having scroll containers
-            min-height: auto;
-        }
-
-        &.mx-scrollcontainer-fixed {
-            // Make scroll container scrollable per region
-            // For this we fix height to stay withing the size of the parent,
-            // so that regions of the scroll container can't stretch the scroll container
-            // even if they are higher than the screen
-            max-height: 100%;
-            min-height: 100%;
-        }
+        flex: 1 0 0;
+        display: flex;
     }
 
     .mx-scrollcontainer-horizontal {
-        display: flex;
         flex-direction: row;
     }
 
     .mx-scrollcontainer-vertical {
-        display: flex;
         flex-direction: column;
     }
 
     .mx-scrollcontainer-fixed {
-        // for scroll per region, regions should overflow if they have long content
+        // this class is added when scroll container has to scroll per region (fixed toolbar)
+        // to make this happen scroll container regions have to be able to shrink smaller than their children
+        // for this we set min-height: 0;
+        // this allows regions to have overflow instead of always growing for their children
+        min-height: 0;
+
         .mx-scrollcontainer-left,
         .mx-scrollcontainer-right,
         .mx-scrollcontainer-center,
         .mx-scrollcontainer-middle {
+            min-height: 0;
+            // make those regions overflow, those are scrolling point
             overflow: auto;
+        }
+
+        .mx-scrollcontainer-nested {
+            min-height: 0;
         }
     }
 
@@ -90,21 +85,27 @@
     .mx-scrollcontainer-right,
     .mx-scrollcontainer-top,
     .mx-scrollcontainer-bottom {
-        flex-grow: 0;
-        flex-shrink: 0;
-    }
-    // center region should fill available space
-    .mx-scrollcontainer-middle,
-    .mx-scrollcontainer-center {
-        flex-grow: 1;
+        flex: 0 0 auto;
     }
 
-    // if there is a nested scroll container we always want
-    // outer scroll container to stay withing available height
-    // and don't allow inner scroll container to grow
+    // center regions should fill available space
+    .mx-scrollcontainer-middle,
+    .mx-scrollcontainer-center {
+        flex: 1 1 auto;
+
+        // wrappers inside those elements are also positioned with flex
+        display: flex;
+        flex-direction: column;
+    }
+
+    // wrappers inside regions should fill available space
+    .mx-scrollcontainer-wrapper {
+        flex: 1 1 auto;
+    }
+
     .mx-scrollcontainer-nested {
-        height: 100%;
         padding: 0;
+        display: flex;
     }
 
     // SIDEBAR TOGGLE STYLES
@@ -122,8 +123,9 @@
     // Animate transitions for toggleable sidebars
     .mx-scrollcontainer-left.mx-scrollcontainer-toggleable,
     .mx-scrollcontainer-right.mx-scrollcontainer-toggleable {
-        transition: flex-basis $sidebar-animation-duration ease-in, margin-right $sidebar-animation-duration ease-in,
-            margin-left $sidebar-animation-duration ease-in;
+        transition: flex-basis var(--navsidebar-animation-duration) var(--navsidebar-animation-function),
+            margin-right var(--navsidebar-animation-duration) var(--navsidebar-animation-function),
+            margin-left var(--navsidebar-animation-duration) var(--navsidebar-animation-function);
         z-index: 1;
     }
 
@@ -168,7 +170,7 @@
 
     // Push content aside animation
     .mx-scrollcontainer-push > :not(.mx-scrollcontainer-toggleable) {
-        transition: transform $sidebar-animation-duration ease-in;
+        transition: transform var(--navsidebar-animation-duration) var(--navsidebar-animation-function);
     }
 
     .mx-scrollcontainer-push.mx-scrollcontainer-open > :not(.mx-scrollcontainer-toggleable) {
@@ -205,7 +207,8 @@
         pointer-events: auto;
     }
 
-    .mx-scrollcontainer-center {
+    .mx-scrollcontainer-center,
+    .mx-scrollcontainer-middle {
         .mx-layoutgrid,
         .mx-layoutgrid-fluid {
             @include layout-spacing($type: padding, $direction: all, $device: responsive);
@@ -217,27 +220,26 @@
         }
     }
 
-
-    // make the first child of the MAIN part of the scroll container to grow full height
+    // make the first child of the MAIN part of the scroll container to grow full height and allow it to shrink
+    // this is a custom case when a data view is the only child of the scroll region, it's footer must stick to the top
+    // in order to achieve this we have to make the element and the wrapper shrinkable
     .region-content {
-        display: flex;
-        flex-direction: column;
-
-        & > .mx-scrollcontainer-wrapper{
-            height: 100%;
-            flex: 1;
+        & > .mx-scrollcontainer-wrapper {
+            flex: 1 1 auto;
+            min-height: 0;
             display: flex;
             flex-direction: column;
 
-            & > .mx-placeholder{
-                height: 100%;
-                flex-grow: 1;
+            & > .mx-placeholder {
+                flex: 1 1 auto;
+                min-height: 0;
                 display: flex;
                 flex-direction: column;
 
-                & > *:only-child{
-                    height: 100%;
-                    flex-grow: 1;
+                // this implies that this only child here is top level data view
+                & > *:only-child {
+                    flex: 1 1 auto;
+                    min-height: 0;
                 }
             }
         }

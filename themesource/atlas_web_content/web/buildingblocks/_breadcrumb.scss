@@ -8,8 +8,8 @@
     padding: 0;
     border-radius: 0;
     background-color: transparent;
-    font-size: $font-size-default;
-    margin-bottom: $spacing-large;
+    font-size: var(--font-size-default);
+    margin-bottom: var(--spacing-large);
 }
 
 //== Elements
@@ -18,7 +18,7 @@
     display: inline-block;
     margin: 0;
     &:last-child {
-        color: $font-color-default;
+        color: var(--font-color-default);
         a {
             text-decoration: none;
         }
@@ -27,19 +27,19 @@
 .breadcrumb-item + .breadcrumb-item {
     &::before {
         display: inline-block;
-        padding-right: $spacing-small;
-        padding-left: $spacing-small;
+        padding-right: var(--spacing-small);
+        padding-left: var(--spacing-small);
         content: "/";
-        color: $gray-light;
+        color: var(--gray-300);
     }
 }
 
 //== Variations
 //-------------------------------------------------------------------------------------------------------------------//
 .breadcrumb-large {
-    font-size: $font-size-h3;
+    font-size: var(--font-size-h3);
 }
 .breadcrumb-underline {
-    padding-bottom: $spacing-medium;
-    border-bottom: 1px solid $border-color-default;
+    padding-bottom: var(--spacing-medium);
+    border-bottom: var(--border-default);
 }

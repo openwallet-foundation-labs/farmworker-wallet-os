@@ -22,7 +22,7 @@
                 > td {
                     border-width: 1px 0;
                     border-style: solid;
-                    border-color: $grid-border-color;
+                    border-color: var(--grid-border-color);
                 }
             }
         }
@@ -39,7 +39,7 @@
                 > td {
                     border-width: 1px;
                     border-style: solid;
-                    border-color: $grid-border-color;
+                    border-color: var(--grid-border-color);
                 }
             }
         }

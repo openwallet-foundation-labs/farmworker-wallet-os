@@ -26,7 +26,7 @@
     .mx-tooltip {
         .dijitTooltipContainer {
             border-width: 1px;
-            border-color: $gray-light;
+            border-color: var(--gray-300);
             border-radius: 4px;
             background: #ffffff;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -47,7 +47,7 @@
             border-width: 10px 10px 10px 0;
             border-style: solid;
             border-color: transparent;
-            border-right-color: $gray-light;
+            border-right-color: var(--gray-300);
         }
     }
 
@@ -141,7 +141,7 @@
             margin-top: 0; // No top margin because there is no parent with margin bottom
             padding: 12px 8px;
             border-radius: 3px;
-            background: $brand-inverse;
+            background: var(--brand-primary-600);
 
             &:after {
                 position: absolute;
@@ -154,7 +154,7 @@
                 pointer-events: none;
                 border: medium solid transparent;
                 border-width: 8px;
-                border-bottom-color: $brand-inverse;
+                border-bottom-color: var(--brand-primary-600);
             }
 
             // Menu item
@@ -176,7 +176,7 @@
                     background: none;
 
                     .dijitMenuItemLabel {
-                        background: $brand-primary;
+                        background: var(--brand-primary);
                     }
                 }
             }
@@ -184,7 +184,7 @@
             // New label
             .tg_newlabelmenuitem {
                 .dijitMenuItemLabel {
-                    font-weight: $font-weight-bold;
+                    font-weight: var(--font-weight-bold);
                 }
             }
 

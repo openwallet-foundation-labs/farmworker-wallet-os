@@ -25,8 +25,8 @@
         transition: width 0.6s ease;
         text-align: center;
         color: #ffffff;
-        border-radius: $border-radius-default;
-        font-weight: $font-weight-semibold;
+        border-radius: var(--border-radius-default);
+        font-weight: var(--font-weight-semibold);
     }
 
     .progress-striped .progress-bar,

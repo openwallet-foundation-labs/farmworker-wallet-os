@@ -15,44 +15,46 @@
         margin: 0;
         border-style: none;
         border-radius: 0;
-        background-color: $navigation-bg;
+        background: var(--navigation-bg);
 
         ul.nav {
             margin: 0; // weird -margin if screen gets small (bootstrap)
             /* Navigation item */
             & > li.mx-navbar-item > a {
                 display: flex;
+                column-gap: var(--spacing-small);
                 align-items: center;
-                padding: $navigation-item-padding;
+                padding: var(--navigation-item-padding);
+                margin: var(--spacing-smaller);
                 vertical-align: middle;
-                color: $navigation-color;
+                color: var(--navigation-color);
                 border-radius: 0;
-                font-size: $navigation-font-size;
-                font-weight: $font-weight-normal;
-                border-radius: $border-radius-default;
+                font-size: var(--navigation-font-size);
+                font-weight: var(--font-weight-normal);
+                border-radius: var(--navigation-border-radius);
 
                 /* Dropdown arrow */
                 .caret {
-                    border-top-color: $navigation-color;
-                    border-bottom-color: $navigation-color;
+                    border-top-color: var(--navigation-color);
+                    border-bottom-color: var(--navigation-color);
                 }
 
                 &:hover,
                 &:focus,
                 &.active {
                     text-decoration: none;
-                    color: $navigation-color-hover;
-                    background-color: $navigation-bg-hover;
+                    color: var(--navigation-color-hover);
+                    background: var(--navigation-bg-hover);
 
                     .caret {
-                        border-top-color: $navigation-color-active;
-                        border-bottom-color: $navigation-color-active;
+                        border-top-color: var(--navigation-color-active);
+                        border-bottom-color: var(--navigation-color-active);
                     }
                 }
 
                 &.active {
-                    color: $navigation-color-active;
-                    background-color: $navigation-bg-active;
+                    color: var(--navigation-color-active);
+                    background: var(--navigation-bg-active);
                     opacity: 1;
                 }
 
@@ -67,28 +69,27 @@
                     transform: rotate(360deg);
                     border-width: 0 9px 9px 9px;
                     border-style: solid;
-                    border-color: transparent transparent $navigation-border-color transparent;
+                    border-color: transparent transparent var(--navigation-border-color) transparent;
                 }
 
                 // Image
                 img {
                     width: 20px; // Default size (so it looks good)
                     height: auto;
-                    margin-right: 0.5em;
                 }
 
                 .glyphicon,
                 .mx-icon-lined,
                 .mx-icon-filled {
                     top: 0;
-                    margin-right: 0.5em;
                     vertical-align: middle;
-                    font-size: $navigation-glyph-size;
+                    font-size: var(--navigation-glyph-size);
                 }
             }
 
             & > .mx-navbar-item.active a {
-                color: $navigation-color-active;
+                color: var(--navigation-color-active);
+                background-color: var(--navigation-bg-active);
             }
 
             /* When hovering or the dropdown is open */
@@ -98,22 +99,22 @@
             & > .mx-navbar-item.open > a:hover,
             & > .mx-navbar-item.open > a:focus {
                 text-decoration: none;
-                color: $navigation-color-hover;
-                background-color: $navigation-bg-hover;
+                color: var(--navigation-color-hover);
+                background: var(--navigation-bg-hover);
 
                 .caret {
-                    border-top-color: $navigation-color-hover;
-                    border-bottom-color: $navigation-color-hover;
+                    border-top-color: var(--navigation-color-hover);
+                    border-bottom-color: var(--navigation-color-hover);
                 }
             }
 
             & > .mx-navbar-item.open .dropdown-menu > li.mx-navbar-subitem.active a {
-                color: $navigation-sub-color-active;
-                background-color: $navigation-sub-bg-active;
+                color: var(--navigation-sub-color-active);
+                background: var(--navigation-sub-bg-active);
 
                 .caret {
-                    border-top-color: $navigation-sub-color-active;
-                    border-bottom-color: $navigation-sub-color-active;
+                    border-top-color: var(--navigation-sub-color-active);
+                    border-bottom-color: var(--navigation-sub-color-active);
                 }
             }
         }
@@ -124,24 +125,24 @@
             .mx-navbar-item.open .dropdown-menu {
                 padding: 0;
                 border-radius: 0;
-                background-color: $navigation-sub-bg;
+                background: var(--navigation-sub-bg);
 
                 & > li.mx-navbar-subitem > a {
                     padding: 10px 24px;
-                    color: $navigation-sub-color;
+                    color: var(--navigation-sub-color);
                     border-radius: 0;
-                    font-size: $navigation-sub-font-size;
-                    font-weight: $font-weight-normal;
+                    font-size: var(--navigation-sub-font-size);
+                    font-weight: var(--font-weight-normal);
 
                     &:hover,
                     &:focus {
-                        color: $navigation-sub-color-hover;
-                        background-color: $navigation-sub-bg-hover;
+                        color: var(--navigation-sub-color-hover);
+                        background: var(--navigation-sub-bg-hover);
                     }
 
                     &.active {
-                        color: $navigation-sub-color-active;
-                        background-color: $navigation-sub-bg-active;
+                        color: var(--navigation-sub-color-active);
+                        background: var(--navigation-sub-bg-active);
                     }
                 }
             }

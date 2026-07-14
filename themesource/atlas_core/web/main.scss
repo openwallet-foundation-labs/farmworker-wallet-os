@@ -2,14 +2,22 @@
 @import "exclusion-variables-defaults";
 @import "../../../theme/web/exclusion-variables";
 @import "generated-exclusion-variables";
+@import "themes/theme-default";
+@import "color-variants";
 @import "../../../theme/web/custom-variables";
-@import "variables";
-@import "variables-css-mappings";
+@import "variables"; // support for legacy modules using sass variables
+
+// support for legacy themes using sass variables
+@import "css-variables-mappings";
+@if not $use-css-variables {
+    @include legacy-variables();
+}
 
 // Font Family Import
 @if $font-family-import != false {
     @import url($font-family-import);
 }
+@import "./poppins";
 
 //=============================== Bootstrap ================================\\
 
@@ -53,6 +61,14 @@
 @import "core/base/login";
 @if not $exclude-login {
     @include login();
+}
+@import "core/base/card";
+@if not $exclude-card {
+    @include card();
+}
+@import "core/base/focus-ring";
+@if not $exclude-focus-ring {
+    @include focus-ring();
 }
 
 // Widgets
@@ -134,6 +150,16 @@
 @import "core/widgets/date-picker";
 @if not $exclude-data-picker {
     @include date-picker();
+}
+
+@import "core/widgets/demo-user-switcher";
+@if not $exclude-demo-user-switcher {
+    @include demo-user-switcher();
+}
+
+@import "core/widgets/div-container";
+@if not $exclude-div-container {
+    @include div-container();
 }
 
 @import "core/widgets/header";
@@ -284,6 +310,11 @@
 @import "core/widgets/progress";
 @if not $exclude-progress {
     @include progress();
+}
+
+@import "core/widgets/combobox";
+@if not $exclude-combobox {
+    @include combobox();
 }
 
 @import "core/widgets/progress-bar";

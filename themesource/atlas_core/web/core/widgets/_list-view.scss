@@ -16,7 +16,7 @@
         padding: 0;
         /* Clear search button (overrides load more button stying) */
         & > ul {
-            margin: 0 0 $spacing-medium;
+            margin: 0 0 var(--gutter-size);
 
             .mx-listview-empty {
                 border-style: none;
@@ -25,12 +25,12 @@
 
             & > li {
                 @include transition();
-                background-color: #fff;
-                padding: $spacing-medium;
-                border-top: 1px solid $grid-border-color;
+                background-color: var(--bg-color-secondary);
+                padding: var(--spacing-medium);
+                border-top: 1px solid var(--grid-border-color);
 
                 &:last-child {
-                    border-bottom: 1px solid $grid-border-color;
+                    border-bottom: 1px solid var(--grid-border-color);
                 }
 
                 &:focus,
@@ -41,7 +41,7 @@
         }
 
         .selected {
-            background: $color-primary-light;
+            background: var(--brand-primary-100);
         }
 
         .mx-layoutgrid {
@@ -51,7 +51,7 @@
 
     // Search bar
     .mx-listview-searchbar {
-        margin-bottom: $spacing-medium;
+        margin-bottom: var(--spacing-medium);
 
         .btn {
             width: auto;
@@ -61,7 +61,7 @@
     /* Load more button */
     .btn.mx-listview-loadMore {
         width: 100%;
-        margin: 0 0 $spacing-medium;
+        margin: 0 0 var(--spacing-medium);
     }
 
     //== Phone specific
@@ -69,7 +69,7 @@
     .profile-phone .mx-listview {
         .mx-listview-searchbar {
             margin-bottom: 3px;
-            background: #ffffff;
+            background: var(--bg-color-secondary);
             box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
 
             input {

@@ -36,6 +36,18 @@
       "name": "QRCodeWidget",
       "version": "1.1.0",
       "appStoreVersionGuid": "a49fc78e-f545-45a4-87d2-0dee28b29da6"
+    },
+    {
+      "sha-256": "703565e7c57c67cedca4043f4a8174b1f6519682de1f1ac3d18c4b2b0c3d761c",
+      "name": "QR Code Generator",
+      "version": "2.1.0",
+      "appStoreVersionGuid": "9b4cefff-9a5d-448e-b0db-1be8dfef4d09"
+    },
+    {
+      "sha-256": "770309fa496f2d139f0c8d8e1261899db6ea60e47cbd0f04653649ab7b5cf72b",
+      "name": "JSON View Lite widget",
+      "version": "2.0.0",
+      "appStoreVersionGuid": "ff675ff5-ec6e-4ead-b1d7-97b530597e99"
     }
   ]
 }
