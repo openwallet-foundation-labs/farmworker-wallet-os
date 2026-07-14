@@ -5,8 +5,6 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
-import { Big } from "big.js";
-
 // BEGIN EXTRA CODE
 const COUNTER_STORE = "idCounter";
 let locked = false;
@@ -38,13 +36,12 @@ async function setItem(key, value) {
     throw new Error("No storage API available");
 }
 // END EXTRA CODE
-
 /**
  * Generates a unique ID based on the current session.
  * @returns {Promise.<string>}
  */
-export async function GenerateUniqueID() {
-	// BEGIN USER CODE
+async function GenerateUniqueID() {
+    // BEGIN USER CODE
     const sessionId = mx.session.getConfig("sessionObjectId");
     const rnd = Math.round(Math.random() * 10000);
     // eslint-disable-next-line no-unmodified-loop-condition
@@ -58,5 +55,7 @@ export async function GenerateUniqueID() {
     await setItem(COUNTER_STORE, JSON.stringify(++currentCounter));
     locked = false;
     return `${sessionId}:${currentCounter}:${rnd}`;
-	// END USER CODE
+    // END USER CODE
 }
+
+export { GenerateUniqueID };

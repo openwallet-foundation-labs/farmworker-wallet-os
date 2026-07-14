@@ -5,17 +5,12 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
-import { Big } from "big.js";
-
-// BEGIN EXTRA CODE
-// END EXTRA CODE
-
 /**
  * Get the client platform (NanoflowCommons.Platform) where the action is running.
  * @returns {Promise.<"NanoflowCommons.Platform.Web"|"NanoflowCommons.Platform.Native_mobile"|"NanoflowCommons.Platform.Hybrid_mobile">}
  */
-export async function GetPlatform() {
-	// BEGIN USER CODE
+async function GetPlatform() {
+    // BEGIN USER CODE
     if (window && window.cordova) {
         return Promise.resolve("Hybrid_mobile");
     }
@@ -25,5 +20,7 @@ export async function GetPlatform() {
     else {
         return Promise.resolve("Web");
     }
-	// END USER CODE
+    // END USER CODE
 }
+
+export { GetPlatform };

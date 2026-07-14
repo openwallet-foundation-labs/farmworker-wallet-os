@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["esnext"],
+    "allowJs": false,
+    "jsx": "react-native",
+    "declaration": true,
+    "sourceMap": true,
+    "listEmittedFiles": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "removeComments": false,
+    "isolatedModules": false,
+    "strict": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "./src/__mocks__"],
+  "include": ["./src"]
+}
