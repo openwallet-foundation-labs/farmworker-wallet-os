@@ -5,19 +5,21 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
+import { Big } from "big.js";
+
 // BEGIN EXTRA CODE
 // END EXTRA CODE
+
 /**
+ * Reloads web and native applications.
  * @returns {Promise.<void>}
  */
-async function Reload() {
-    // BEGIN USER CODE
+export async function Reload() {
+	// BEGIN USER CODE
     mx.reload();
     return new Promise(() => {
         // Never resolve this pormise to ensure that the next action in the nanoflow (if any)
         // will not be executed before the actual reload is happended.
     });
-    // END USER CODE
+	// END USER CODE
 }
-
-export { Reload };

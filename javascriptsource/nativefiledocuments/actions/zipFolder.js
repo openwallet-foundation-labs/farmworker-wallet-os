@@ -22,9 +22,9 @@ import { zip, zipWithPassword } from "react-native-zip-archive";
  * 
  * Specify the password if the archive is to be password protected.
  * @param {string} sourcePath - The folder to zip
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} sourcePathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} sourcePathType
  * @param {string} destPath - The path to the destination file to zip the folder into.
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} destPathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} destPathType
  * @param {boolean} writeToLog
  * @param {string} password - Optional. Set a password to create a password protected archive.
  * @returns {Promise.<void>}

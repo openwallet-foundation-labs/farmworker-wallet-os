@@ -2,11 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>mailto</string>
-      <string>tel</string>
-    </array>
+    <key>CADisableMinimumFrameDurationOnPhone</key>
+    <true/>
     <key>CFBundleDevelopmentRegion</key>
     <string>en</string>
     <key>CFBundleDisplayName</key>
@@ -22,13 +19,18 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>0.7.0</string>
+    <string>0.8.0</string>
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>26</string>
+    <string>27</string>
     <key>GoogleMapsApiKey</key>
     <string/>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>mailto</string>
+      <string>tel</string>
+    </array>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSAppTransportSecurity</key>
@@ -44,12 +46,14 @@
     <string>This app may need access to your Bluetooth connection.</string>
     <key>NSCameraUsageDescription</key>
     <string>The camera can be used to open apps by scanning a QR code.</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>To use that feature, the app needs access to your location.</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>To use that feature, the app needs access to your location.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
     <string>To use that feature, the app needs access to your location.</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>To use that feature, the app needs access to your photo library.</string>
+    <key>RCTNewArchEnabled</key>
+    <true/>
     <key>Runtime url</key>
     <string>$(RUNTIME_URL)</string>
     <key>TargetName</key>

@@ -5,18 +5,20 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
+import { Big } from "big.js";
+
 // BEGIN EXTRA CODE
 // END EXTRA CODE
+
 /**
+ * Clears saved session data from the local storage for offline native and PWAs.
  * @returns {Promise.<void>}
  */
-async function ClearCachedSessionData() {
-    // BEGIN USER CODE
+export async function ClearCachedSessionData() {
+	// BEGIN USER CODE
     if (mx.session && mx.session.clearCachedSessionData === undefined) {
         return Promise.reject(new Error("JS action 'Clear cached session data' is not supported prior to Mendix client v9.14"));
     }
     await mx.session.clearCachedSessionData();
-    // END USER CODE
+	// END USER CODE
 }
-
-export { ClearCachedSessionData };

@@ -1,10 +1,10 @@
 buildscript {
     ext {
-        buildToolsVersion = "35.0.0"
-        minSdkVersion = 24
-        compileSdkVersion = 35
-        targetSdkVersion = 35
-        kotlinVersion = "1.9.24"
+        buildToolsVersion = "36.0.0"
+        minSdkVersion = 29
+        compileSdkVersion = 36
+        targetSdkVersion = 36
+        kotlinVersion = "2.1.20"
         excludeAppGlideModule = true
         androidx_lifecycle_version = "2.8.6"
         playServicesVersion = "18+"
@@ -29,16 +29,17 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:8.8.2"
+        classpath 'com.android.tools.build:gradle'
         classpath "com.facebook.react:react-native-gradle-plugin"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath 'org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.0.21'
-        apply from: file("../node_modules/@mendix/native/androidlib/mendix.gradle"); applyMendixClassPaths(project)
+        classpath 'org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.2.10'
+        apply from: file("../node_modules/mendix-native/android/mendix.gradle"); applyMendixClassPaths(project)
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+
 
 project.ext {
     set('react-native', [
@@ -57,50 +58,81 @@ project.ext {
 
 allprojects {
     repositories {
-        all { repo ->
-            println repo.url.toString()
-            if (repo.url.toString().contains("jcenter.bintray.com") || repo.url.toString().contains("jitpack.io")) {
-                project.logger.warn "Repository ${repo.url} removed."
-                remove repo
-                google()
-                mavenCentral()
+        google()
+        mavenCentral()
+
+        // Notifee local libs - ONLY for app.notifee
+        maven {
+            url "$rootDir/../node_modules/@notifee/react-native/android/libs"
+            content {
+                includeGroup "app.notifee"
             }
         }
-        maven {
-            url "$rootDir/../node_modules/detox/Detox-android"
-        }
-        google()
+
         maven {
             url "https://maven.fabric.io/public"
         }
-        maven { url "https://www.jitpack.io" }
-        maven { url "https://packages.rnd.mendix.com/jcenter" }
-    }
 
-    // Build all modules with Android 16KB pages enabled
-    plugins.withId('com.android.application') {
-        android {
-            defaultConfig {
-                externalNativeBuild {
-                    cmake {
-                        arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+        maven {
+            url "https://packages.rnd.mendix.com/jcenter"
+        }
+
+        // Build all modules with Android 16KB pages enabled
+        plugins.withId('com.android.application') {
+            android {
+                defaultConfig {
+                    externalNativeBuild {
+                        cmake {
+                            arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+                        }
+                    }
+                }
+            }
+        }
+
+        plugins.withId('com.android.library') {
+            android {
+                defaultConfig {
+                    externalNativeBuild {
+                        cmake {
+                            arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+                        }
                     }
                 }
             }
         }
     }
+}
 
-    plugins.withId('com.android.library') {
-        android {
-            defaultConfig {
-                externalNativeBuild {
-                    cmake {
-                        arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
-                    }
-                }
+// Clean up phase: remove auto-added repositories and re-add JitPack correctly
+afterEvaluate { project ->
+    def jitpackRemoved = false
+
+    project.repositories.removeAll { repo ->
+        def repoUrl = repo.url.toString()
+
+        // Remove deprecated JCenter
+        if (repoUrl.contains("jcenter.bintray.com")) {
+            return true
+        }
+
+        // Remove auto-added JitPack (re-added below)
+        if (repoUrl.contains("jitpack.io")) {
+            jitpackRemoved = true
+            return true
+        }
+
+        return false
+    }
+
+    if (jitpackRemoved) {
+        project.repositories {
+            maven {
+                url "https://www.jitpack.io"
             }
         }
     }
+
 }
 
 apply plugin: "com.facebook.react.rootproject"

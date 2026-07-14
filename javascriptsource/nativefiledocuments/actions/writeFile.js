@@ -19,7 +19,7 @@ import { Platform } from 'react-native';
 /**
  * Write base64 encoded contents to file.
  * @param {string} filepath - The path to the file or directory.
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} pathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} pathType
  * @param {string} base64Data
  * @param {boolean} writeToLog
  * @returns {Promise.<void>}

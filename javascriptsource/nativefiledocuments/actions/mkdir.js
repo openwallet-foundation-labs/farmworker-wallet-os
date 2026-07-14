@@ -21,7 +21,7 @@ import { Platform } from 'react-native';
  * 
  * For iOS only, the excludeFromBackup property can be set to exclude the directory from all backups of app data. Be aware that allowing backups may violate company policies even if the backup is encrypted. As we download files from the Mendix backend it is usually safe to turn this on.
  * @param {string} dirpath - Path to create
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} pathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} pathType
  * @param {boolean} excludeFromBackup - Exclude directory from all backups of app data. See JS action docs for more details.
  * @param {boolean} writeToLog
  * @returns {Promise.<boolean>}

@@ -39,7 +39,7 @@ import support from"../support/entidad";
  * @param {string} agent_key - mandatory
  * @param {string} id_ - mandatory
  * @param {string} key - mandatory
- * @param {"Agent_SDK.enum_aries_KeyDerivationMethod.Argon2IMod"|"Agent_SDK.enum_aries_KeyDerivationMethod.Argon2Int"|"Agent_SDK.enum_aries_KeyDerivationMethod.Raw"} keyDerivationMethod - optional
+ * @param {undefined|"Argon2IMod"|"Argon2Int"|"Raw"} keyDerivationMethod - optional
  * @param {string} storage_type - optional
  * @param {string} path - mandatory
  * @returns {Promise.<void>}

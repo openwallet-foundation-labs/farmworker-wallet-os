@@ -25,7 +25,7 @@ import support from"../support/entidad";
  * @returns
  * @param {string} agent_key
  * @param {string} mediator - json?
- * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"|"Agent_SDK.enum_aries_MediatorPickupStrategy.None"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2LiveMode"} pickupStrategy
+ * @param {undefined|"PickUpV1"|"PickUpV2"|"Implicit"|"None"|"PickUpV2LiveMode"} pickupStrategy
  * @returns {Promise.<void>}
  */
 export async function jsa_aries_agent_mediationRecipient_initiateMessagePickup(agent_key, mediator, pickupStrategy) {

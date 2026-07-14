@@ -166,8 +166,8 @@
             "enabled": false
         }
     },
-    "appVersion": "0.7.0",
-    "buildNumber": 26,
+    "appVersion": "0.8.0",
+    "buildNumber": 27,
     "runtimeUrl": "http://localhost:8080",
     "hermesEnabled": true,
     "cookieEncryptionEnabled": false

@@ -5,13 +5,16 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
+import { Big } from "big.js";
+
 // BEGIN EXTRA CODE
 // END EXTRA CODE
+
 /**
  * @returns {Promise.<boolean>}
  */
-async function IsConnectedToServer() {
-    // BEGIN USER CODE
+export async function IsConnectedToServer() {
+	// BEGIN USER CODE
     try {
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
@@ -29,7 +32,5 @@ async function IsConnectedToServer() {
         console.error(err);
         return false;
     }
-    // END USER CODE
+	// END USER CODE
 }
-
-export { IsConnectedToServer };

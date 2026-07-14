@@ -1,10 +1,13 @@
 {
     "react-native-vision-camera": "4.7.3",
     "json-query": "^2.2.2",
-    "react-native-sensitive-info": "6.0.0-alpha.9",
-    "react-native-argon2": "^2.0.1",
+    "big-integer": "^1.6.52",
+    "text-encoding": "^0.7.0",
+    "react-native-sensitive-info": "6.1.4",
+    "react-native-nitro-modules": "0.35.6",
+    "react-native-argon2": "4.0.0",
     "react-native-crypto": "^2.2.0",
-    "react-native-localize": "3.2.1",
+    "react-native-localize": "3.7.0",
     "@animo-id/react-native-ble-didcomm": "0.9.3",
     "@credo-ts/anoncreds": "0.5.13",
     "@credo-ts/askar": "0.5.13",
@@ -21,7 +24,6 @@
     "credo-ts-didweb-anoncreds": "0.0.1-alpha.14",
     "react-native-fs": "2.20.0",
     "react-native-get-random-values": "1.11.0",
-    "text-encoding": "0.7.0",
     "@credo-ts/drpc": "0.5.13",
     "@stablelib/sha256": "^2.0.0",
     "@entidad/credo-ts-survey": "git+http://github.com/entidad/credo-ts-survey.git",
@@ -29,7 +31,7 @@
     "credo-ts-user-profile": "git+http://github.com/entidad/credo-ts-user-profile.git",
     "@2060.io/credo-ts-didcomm-reactions": "0.0.2",
     "@2060.io/credo-ts-didcomm-receipts": "0.0.7",
-    "@react-native-community/netinfo": "11.4.1",
+    "@react-native-community/netinfo": "11.5.2",
     "react-native-blob-util": "0.21.2",
-    "@react-native-async-storage/async-storage": "2.0.0"
+    "@react-native-async-storage/async-storage": "2.2.0"
 }

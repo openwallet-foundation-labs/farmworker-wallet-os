@@ -21,9 +21,9 @@ import { Platform } from 'react-native';
  * 
  * Note: On Android copyFile will overwrite destPath if it already exists. On iOS an error will be thrown if the file already exists.
  * @param {string} filepath - The file to copy
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} filepathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} filepathType
  * @param {string} destPath - The destination to copy to
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} destPathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} destPathType
  * @param {boolean} writeToLog
  * @returns {Promise.<void>}
  */

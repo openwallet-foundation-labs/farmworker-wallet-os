@@ -17,7 +17,7 @@ import support from "../support/entidad";
 
 /**
  * @param {string} agent_key
- * @param {"Agent_SDK.enum_aries_OutboundTransport.WsOutboundTransport"|"Agent_SDK.enum_aries_OutboundTransport.HttpOutboundTransport"} outboundTransport
+ * @param {undefined|"WsOutboundTransport"|"HttpOutboundTransport"} outboundTransport
  * @returns {Promise.<void>}
  */
 export async function jsa_aries_agent_registerOutboundTransport(agent_key, outboundTransport) {

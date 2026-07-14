@@ -6,61 +6,108 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-- We removed the fallback scijava Maven repositories.
+- We fixed an issue that could cause iOS apps to restart repeatedly after an OTA update.
 
-## [14.1.17] - 2026-05-04
+## [19.1.0] - 2026-06-03
+
+- We updated the react-native to v0.84.1
+
+## [19.0.5] - 2026-05-12
+
+- We fixed the CocoaPods installation issue that was caused by object version 70.
+
+## [19.0.4] - 2026-05-04
 
 - We updated vulnerable `okhttp`, `jackson`, and `security-crypto` dependencies.
 
-## [14.1.16] - 2026-04-29
+## [19.0.3] - 2026-04-29
 
 - We resolved an issue that version logs events are not getting recorded in firebase for Android
-- We fix an issue occurring when building apps in Xcode 26.4 or newer
+- We fixed an issue occurring when building apps in Xcode 26.4 or newer
 
-## [14.1.15] - 2026-04-22
+## [19.0.2] - 2026-04-22
 
-- We updated `@mendix/native` to v9.3.1, strengthening Android cookie encryption by migrating from `AES/CBC/PKCS7Padding` to `AES/GCM/NoPadding`.
+- We updated `mendix-native` to v0.4.1, strengthening Android cookie encryption by migrating from `AES/CBC/PKCS7Padding` to `AES/GCM/NoPadding`.
 
-## [14.1.14] - 2026-02-25
+## [19.0.1] - 2026-04-22
 
+- We fixed an iOS build issue introduced by the React Native `0.83.4` upgrade by removing the incorrect `override` keyword from AppDelegate application lifecycle methods.
+
+## [19.0.0] - 2026-04-20
+
+- We upgraded the core stack to React Native `0.83.4` and aligned related React dependencies.
+- We upgraded multiple React Native ecosystem dependencies for compatibility and stability (including CLI, navigation, animation, media, and platform modules).
+- We migrated from `react-native-vector-icons` to the scoped `@react-native-vector-icons/*` package set.
 - We updated `.gitignore` to more precisely exclude `node_modules` directories in specific locations.
+- We added a new dependency for `@shopify/flash-list` to support the migration from FlatList to FlashList.
+- We upgraded `react-native-tab-view` from 3.5.2 to 4.3.0.
+- Fix the iOS builds crashing when building with Xcode 26.
 - We resolved an issue that version logs events are not getting recorded in firebase for Android.
 
-## [14.1.13] - 2026-02-24
-
-- We fixed an iOS crash in encrypted storage by correcting native error handling, so Keychain failures no longer trigger an unrecognized selector abort.
-- We changed iOS Keychain item accessibility to After First Unlock for encrypted storage and persisted session cookies.
-- We added a required one-time Keychain migration to update existing stored items; for compatibility, this Native Template version still works with older Studio Pro 10.24.x, but migration support requires Studio Pro 10.24.16 or newer plus a new iOS app build and rollout. Without migration, the original Keychain accessibility issue can still occur, although improved error handling reduces crash impact.
-
-## [14.1.12] - 2026-01-22
+## [17.0.4] - 2026-01-22
 
 - We added the `LocationWhenInUse` permission to the iOS configuration to support react-native-permissions.
- 
-## [14.1.11] - 2026-01-12
 
-- We updated `@mendix/native` to v9.2.2, enabling session cookie persistence and restoration on iOS.
+## [17.0.3] - 2026-01-15
 
-## [14.1.10] - 2025-12-18
+- We removed leftover Detox references from the Android build files. This fixes an issue where generating Android APKs would fail due to Detox dependencies not being found.
 
-- We changed `NSAppTransportSecurity` in **production** versions of projects to false. For **dev** testing, we added **Info-dev.plist**.
+## [17.0.2] - 2026-01-12
 
-## [14.1.9] - 2025-12-03
+- We updated mendix-native to v0.3.1, enabling session cookie persistence and restoration on iOS.
 
-- We improved the styling when edge-to-edge mode is enabled.
+## [17.0.1] - 2025-12-24
 
-## [14.1.8] - 2025-11-21
+- We changed NSAppTransportSecurity of the production version of the project to false. For dev testing, we added Info-dev.plist.
 
-- We added a new property to gradle.properties for scanning QR codes.
-- We have migrated to react-native-vision-camera to fix barcode scanner issues on Android.
-- We updated the react-native-firebase to v20.1.0 with BOM v33.1.1, adding support for 16KB page size alignment.
+## [17.0.0] - 2025-12-22
 
-## [14.1.0] - 2025-04-02
+- We updated the native-template for compatibility with React v19 and React Native v0.78.2. This brings performance, stability improvements, and new features.
+- We updated the version of mendix-native to v0.3.0 to fix iOS native file system issue.
 
-## [14.1.0] - 2025-11-30
+## [16.1.0] - 2025-11-30
 
 - We have improved the styling where edge-to-edge mode is enabled.
 
+## [16.0.0] - 2025-11-20
+
+- We have updated native template to support react native new architecture.
+
+## [15.4.4] - 2025-11-10
+
+- We updated version of op-sqlite to 15.0.7
+- We updated version of @mendix/native to 10.3.1
+- We have migrated from `react-native-splash-screen@3.2.0` to `react-native-bootsplash@^7.7.0` for better splash screen support and autolinking compatibility.
+
+## [15.4.3] - 2025-11-05
+
+- We updated the version of @mendix/native to 10.3.0 to fix the components.json errors.
+
+## [15.4.2] - 2025-11-27
+
+- We have installed react-native-edge-to-edge to fix issues in android 15+
+
+## [15.4.1] - 2025-10-07
+
+- We added a new property to gradle.properties for scanning QR codes.
+
+## [15.4.0] - 2025-10-02
+
+- We have migrated from react-native-push-notification to @notifee/react-native for better new architecture compatibility and enhanced push notification features
+
+- We have upgraded `react-native-permissions` to version 5.4.2
+
+- We have removed `react-native-schedule-exact-alarm-permission` dependency
+
+- We have added a USE_BIOMETRIC permission in Android.
+
+- We have migrated from react-native-fast-image to @d11/react-native-fast-image for new architecture compatibility.
+
+- We have upgraded react-native-reanimated to v3.16.7.
+
 ## Fixes
+
+- We have removed USE_EXACT_ALARM permission from the manifest to comply with updated Google Play policies.
 
 - We have upgraded `@mendix/native` to version 9.0.1
 
@@ -82,10 +129,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - We have updated React Navigation to V7
 - We have updated the following additional dependencies:
-    react-native-reanimated to 3.16.1
-    react-native-screens to 4.4.0
-    react-native-image-picker to 7.2.3
-    @react-native-community/netinfo to 11.4.1
+  react-native-reanimated to 3.16.1
+  react-native-screens to 4.4.0
+  react-native-image-picker to 7.2.3
+  @react-native-community/netinfo to 11.4.1
 - We're now using @gorhom/bottom-sheet for bottom sheet implementation
 - We have added the option to enable or disable cookie encryption for Android devices.
 

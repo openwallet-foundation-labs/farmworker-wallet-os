@@ -5,16 +5,19 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
+import { Big } from "big.js";
+
 // BEGIN EXTRA CODE
 // END EXTRA CODE
+
 /**
  * @param {MxObject} file - File object which will be downloaded.
  * @param {boolean} showFileInBrowser - Set to True to let the browser open the file in a new tab.
- * Set to False if the file only needs to be downloaded to the device storage.
+Set to False if the file only needs to be downloaded to the device storage.
  * @returns {Promise.<void>}
  */
-async function DownloadWebFile(file, showFileInBrowser) {
-    // BEGIN USER CODE
+export async function DownloadWebFile(file, showFileInBrowser) {
+	// BEGIN USER CODE
     if (!file) {
         return Promise.reject(new Error("Input parameter 'file' is required"));
     }
@@ -29,7 +32,5 @@ async function DownloadWebFile(file, showFileInBrowser) {
             .then(resolve)
             .catch(reject);
     });
-    // END USER CODE
+	// END USER CODE
 }
-
-export { DownloadWebFile };

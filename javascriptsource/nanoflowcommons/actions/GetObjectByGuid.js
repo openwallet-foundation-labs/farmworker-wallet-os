@@ -5,16 +5,19 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
+import { Big } from "big.js";
+
 // BEGIN EXTRA CODE
 // END EXTRA CODE
+
 /**
  * Get a Mendix object by its GUID.
  * @param {string} entity - This field is required.
  * @param {string} objectGuid - This field is required.
  * @returns {Promise.<MxObject>}
  */
-async function GetObjectByGuid(entity, objectGuid) {
-    // BEGIN USER CODE
+export async function GetObjectByGuid(entity, objectGuid) {
+	// BEGIN USER CODE
     if (!entity) {
         return Promise.reject(new Error("Input parameter 'Entity' is required."));
     }
@@ -34,7 +37,5 @@ async function GetObjectByGuid(entity, objectGuid) {
             }
         });
     });
-    // END USER CODE
+	// END USER CODE
 }
-
-export { GetObjectByGuid };
