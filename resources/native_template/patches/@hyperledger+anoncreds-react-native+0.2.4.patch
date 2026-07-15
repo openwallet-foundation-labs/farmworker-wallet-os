@@ -49,3 +49,20 @@ index 5b71c84..1feadc7 100644
                  "**/libreactnativejni.so", 
                  "**/libjscexecutor.so", 
      ]
+diff --git a/node_modules/@hyperledger/anoncreds-react-native/ios/Anoncreds.mm b/node_modules/@hyperledger/anoncreds-react-native/ios/Anoncreds.mm
+index 1111111..2222222 100644
+--- a/node_modules/@hyperledger/anoncreds-react-native/ios/Anoncreds.mm
++++ b/node_modules/@hyperledger/anoncreds-react-native/ios/Anoncreds.mm
+@@ -11,9 +11,11 @@
+ @implementation Anoncreds
+ 
++@synthesize bridge = _bridge;
++
+ RCT_EXPORT_MODULE()
+ 
+ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(install)
+ {
+-    RCTBridge* bridge = [RCTBridge currentBridge];
++    RCTBridge* bridge = _bridge ?: [RCTBridge currentBridge];
+     RCTCxxBridge* cxxBridge = (RCTCxxBridge*)bridge;
+     if (cxxBridge == nil) {

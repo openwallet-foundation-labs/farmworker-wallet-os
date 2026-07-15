@@ -49,3 +49,20 @@ index 15eeb9c..501560e 100644
                  "**/libreactnativejni.so", 
                  "**/libjscexecutor.so", 
      ]
+diff --git a/node_modules/@hyperledger/aries-askar-react-native/ios/AriesAskar.mm b/node_modules/@hyperledger/aries-askar-react-native/ios/AriesAskar.mm
+index 1111111..2222222 100644
+--- a/node_modules/@hyperledger/aries-askar-react-native/ios/AriesAskar.mm
++++ b/node_modules/@hyperledger/aries-askar-react-native/ios/AriesAskar.mm
+@@ -11,9 +11,11 @@
+ @implementation AriesAskar 
+ 
++@synthesize bridge = _bridge;
++
+ RCT_EXPORT_MODULE()
+ 
+ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(install)
+ {
+-    RCTBridge* bridge = [RCTBridge currentBridge];
++    RCTBridge* bridge = _bridge ?: [RCTBridge currentBridge];
+     RCTCxxBridge* cxxBridge = (RCTCxxBridge*)bridge;
+     if (cxxBridge == nil) {

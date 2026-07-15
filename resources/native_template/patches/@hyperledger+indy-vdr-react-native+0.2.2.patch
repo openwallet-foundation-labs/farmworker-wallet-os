@@ -66,3 +66,20 @@ index 9017d77..af79029 100644
                  "**/libreactnativejni.so", 
                  "**/libjscexecutor.so", 
      ]
+diff --git a/node_modules/@hyperledger/indy-vdr-react-native/ios/IndyVdr.mm b/node_modules/@hyperledger/indy-vdr-react-native/ios/IndyVdr.mm
+index 1111111..2222222 100644
+--- a/node_modules/@hyperledger/indy-vdr-react-native/ios/IndyVdr.mm
++++ b/node_modules/@hyperledger/indy-vdr-react-native/ios/IndyVdr.mm
+@@ -11,9 +11,11 @@
+ @implementation IndyVdr
+ 
++@synthesize bridge = _bridge;
++
+ RCT_EXPORT_MODULE()
+ 
+ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(install)
+ {
+-    RCTBridge* bridge = [RCTBridge currentBridge];
++    RCTBridge* bridge = _bridge ?: [RCTBridge currentBridge];
+     RCTCxxBridge* cxxBridge = (RCTCxxBridge*)bridge;
+     if (cxxBridge == nil) {
