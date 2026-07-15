@@ -1,7 +1,7 @@
 {
     "configVersion": 2,
     "appIdentifier": "io.entidad.app.fwos",
-    "appName": "fwos-demo-app",
+    "appName": "demoFWOS",
     "bundleName": {
         "main": "fwosDemoApp",
         "dev": "fwosDemoAppDev"
