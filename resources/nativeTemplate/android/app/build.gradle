@@ -148,6 +148,10 @@ dependencies {
 
     //Required by Credo-ts
     implementation 'net.java.dev.jna:jna:5.2.0'
+
+    //Android legacy key migration bridge from earlier implementation of
+    //react-native-sensitive-info@6.0.0-alpha.9
+    implementation "androidx.biometric:biometric:1.1.0"
 }
 
 configurations.all {
