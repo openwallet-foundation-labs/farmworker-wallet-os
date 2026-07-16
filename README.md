@@ -10,16 +10,16 @@ makes it easy for any Mendix app to interoperate with open-standard technologies
 * Clone this project
 * Navigate to the project root from a command line Terminal e.g. `cd ~/Workspaces/Github/farmworker-wallet-os`
 * Run `./install.sh`
-* Download [Studio Pro 10.24.15](https://marketplace.mendix.com/link/studiopro/)
+* Download [Studio Pro 11.12](https://marketplace.mendix.com/link/studiopro/)
 * Open `fwos-demo-app.mpr` from Studio Pro
 * Run the project from Studio Pro by clicking Run / Run Locally
-* Create a custom React Native application from Native Template `./resources/native_template`
+* Create a custom React Native application from Native Template `./resources/nativeTemplate`
 * Install and run the application on your mobile device
 * Log in using user name, for example `Alice` or  `Bob`
 
 ## Run Native app
 * `cd ~/resources/native_template`
-* Install Node v22 `nvm install 22`
+* Install Node v24 `nvm install 24`
 * Install npm dependencies 
     * `npm i --legacy-peer-deps`
     * `npm run configure`
@@ -54,21 +54,11 @@ makes it easy for any Mendix app to interoperate with open-standard technologies
     }
     ...
     ```
-* Edit `app/src/dev/AndroidManifest.xml` 
-    * Enable http (unencrypted) traffic for developerApp distribution. This step is required if you are deploying the LOCALDEV distribution via Google Play Store.
-    ```
-    ...
-        <application
-            android:name="com.mendix.nativetemplate.DevApplication"
-            tools:replace="android:name"
-            android:usesCleartextTraffic="true">
-    ...
-    ```
 ### iOS build configuration for Xcode
 * Install Xcode 16.2
 * Install iOS dependencies
 * For iOS builds only, Credo-ts (v0.5.13) `cd ~/resources/native_template`
-* `npm install @mendix/react-native-sqlite-storage`
+** `npm install @mendix/react-native-sqlite-storage`
 * Install Pods
 ```
 cd ios

@@ -1,7 +1,7 @@
 {
     "configVersion": 2,
     "appIdentifier": "io.entidad.app.fwos",
-    "appName": "demoFWOS",
+    "appName": "fwos-demo-app",
     "bundleName": {
         "main": "fwosDemoApp",
         "dev": "fwosDemoAppDev"
@@ -167,7 +167,7 @@
         }
     },
     "appVersion": "0.8.0",
-    "buildNumber": 27,
+    "buildNumber": 28,
     "runtimeUrl": "http://localhost:8080",
     "hermesEnabled": true,
     "cookieEncryptionEnabled": false
