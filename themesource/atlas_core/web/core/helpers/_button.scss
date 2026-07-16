@@ -15,47 +15,47 @@
     // Color variations
     .btn,
     .btn-default {
-        @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border-color, $btn-default-bg-hover);
+        @include button-variant(var(--btn-default-color), var(--btn-default-bg), var(--btn-default-border-color), var(--btn-default-bg-hover), var(--btn-default-bg-active), var(--brand-default));
     }
 
     .btn-primary {
-        @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border-color, $btn-primary-bg-hover);
+        @include button-variant(var(--btn-primary-color), var(--btn-primary-bg), var(--btn-primary-border-color), var(--btn-primary-bg-hover), var(--btn-primary-bg-active), var(--brand-primary));
     }
 
     .btn-inverse {
-        @include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border-color, $btn-inverse-bg-hover);
+        @include button-variant(var(--btn-inverse-color), var(--btn-inverse-bg), var(--btn-inverse-border-color), var(--btn-inverse-bg-hover), var(--btn-inverse-bg-active), var(--brand-inverse));
     }
 
     .btn-success {
-        @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border-color, $btn-success-bg-hover);
+        @include button-variant(var(--btn-success-color), var(--btn-success-bg), var(--btn-success-border-color), var(--btn-success-bg-hover), var(--btn-success-bg-active), var(--brand-success));
     }
 
     .btn-info {
-        @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border-color, $btn-info-bg-hover);
+        @include button-variant(var(--btn-info-color), var(--btn-info-bg), var(--btn-info-border-color), var(--btn-info-bg-hover), var(--btn-info-bg-active), var(--brand-info));
     }
 
     .btn-warning {
-        @include button-variant($btn-warning-color, $btn-warning-bg, $btn-warning-border-color, $btn-warning-bg-hover);
+        @include button-variant(var(--btn-warning-color), var(--btn-warning-bg), var(--btn-warning-border-color), var(--btn-warning-bg-hover), var(--btn-warning-bg-active), var(--brand-warning));
     }
 
     .btn-danger {
-        @include button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border-color, $btn-danger-bg-hover);
+        @include button-variant(var(--btn-danger-color), var(--btn-danger-bg), var(--btn-danger-border-color), var(--btn-danger-bg-hover), var(--btn-danger-bg-active), var(--brand-danger));
     }
 
     // Button Sizes
     .btn-lg {
-        font-size: $font-size-large;
+        font-size: var(--font-size-large);
 
         img {
-            height: calc(#{$font-size-small} + 4px);
+            height: calc(var(--font-size-small) + 4px);
         }
     }
 
     .btn-sm {
-        font-size: $font-size-small;
+        font-size: var(--font-size-small);
 
         img {
-            height: calc(#{$font-size-small} + 4px);
+            height: calc(var(--font-size-small) + 4px);
         }
     }
 
@@ -117,8 +117,17 @@
     .btn-icon-only {
         @extend .btn-icon;
         padding: 0;
-        color: $btn-default-icon-color;
+        color: var(--btn-default-icon-color);
         border: none;
+    }
+
+    .btn-style-icon {
+        @extend .btn-icon;
+        font-size: x-large;
+        border-radius: 100%;
+        border: none;
+        padding: 12px;
+        display: flex;
     }
 
     .btn-block {

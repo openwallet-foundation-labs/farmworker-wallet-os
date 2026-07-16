@@ -12,13 +12,13 @@ import { StatusBar, Platform } from 'react-native';
 // END EXTRA CODE
 
 /**
- * @param {"NativeMobileResources.StatusBarStyle.DefaultStyle"|"NativeMobileResources.StatusBarStyle.LightContentStyle"|"NativeMobileResources.StatusBarStyle.DarkContentStyle"} style - If empty, the current style is not changed.
+ * @param {undefined|"DefaultStyle"|"LightContentStyle"|"DarkContentStyle"} style - If empty, the current style is not changed.
  * @param {boolean} hidden
  * @param {boolean} animateChanges
  * @param {string} backgroundColor - If empty, the current background color is not changed.
  * @param {boolean} translucent
  * @param {boolean} networkActivityIndicatorVisible
- * @param {"NativeMobileResources.StatusBarHideShowAnimation.none"|"NativeMobileResources.StatusBarHideShowAnimation.fade"|"NativeMobileResources.StatusBarHideShowAnimation.slide"} animateHideShow - If empty, the default value 'none' is used.
+ * @param {undefined|"none"|"fade"|"slide"} animateHideShow - If empty, the default value 'none' is used.
  * @returns {Promise.<void>}
  */
 export async function ChangeStatusBar(style, hidden, animateChanges, backgroundColor, translucent, networkActivityIndicatorVisible, animateHideShow) {

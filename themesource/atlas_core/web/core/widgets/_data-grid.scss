@@ -19,13 +19,14 @@
             /* Table header */
             th {
                 border-style: solid;
-                border-color: $grid-border-color;
+                border-color: var(--grid-border-color);
                 border-top-width: 0;
                 border-right: 0;
                 border-bottom-width: 1px;
                 border-left: 0;
-                background-color: $grid-bg-header;
-                padding: $grid-padding-top $grid-padding-right $grid-padding-bottom $grid-padding-left;
+                background-color: var(--grid-bg-header);
+                padding: var(--grid-padding-top) var(--grid-padding-right) var(--grid-padding-bottom)
+                    var(--grid-padding-left);
                 vertical-align: middle;
 
                 .mx-datagrid-head-caption {
@@ -37,13 +38,14 @@
             tbody tr {
                 td {
                     @include transition();
-                    padding: $grid-padding-top $grid-padding-right $grid-padding-bottom $grid-padding-left;
+                    padding: var(--grid-padding-top) var(--grid-padding-right) var(--grid-padding-bottom)
+                        var(--grid-padding-left);
                     vertical-align: middle;
                     border-width: 0;
-                    border-color: $grid-border-color;
+                    border-color: var(--grid-border-color);
                     border-bottom-width: 1px;
                     border-bottom-style: solid;
-                    background-color: $grid-bg;
+                    background-color: var(--grid-bg);
 
                     &:focus {
                         outline: none;
@@ -57,24 +59,26 @@
 
                 &.selected td,
                 &.selected:hover td {
-                    color: $grid-selected-color;
-                    background-color: $grid-bg-selected !important;
+                    color: var(--grid-selected-color);
+                    background-color: var(--grid-bg-selected) !important;
                 }
             }
 
             /* Table Footer */
             tfoot {
                 > tr > th {
-                    padding: $grid-padding-top $grid-padding-right $grid-padding-bottom $grid-padding-left;
+                    padding: var(--grid-padding-top) var(--grid-padding-right) var(--grid-padding-bottom)
+                        var(--grid-padding-left);
                     border-width: 0;
-                    background-color: $grid-footer-bg;
+                    background-color: var(--grid-footer-bg);
                 }
 
                 > tr > td {
-                    padding: $grid-padding-top $grid-padding-right $grid-padding-bottom $grid-padding-left;
+                    padding: var(--grid-padding-top) var(--grid-padding-right) var(--grid-padding-bottom)
+                        var(--grid-padding-left);
                     border-width: 0;
-                    background-color: $grid-bg;
-                    font-weight: $font-weight-bold;
+                    background-color: var(--grid-bg);
+                    font-weight: var(--font-weight-bold);
                 }
             }
 

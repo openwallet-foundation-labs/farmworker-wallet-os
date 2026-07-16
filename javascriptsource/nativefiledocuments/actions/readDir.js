@@ -21,7 +21,7 @@ import { create } from "mx-api/data";
 /**
  * Reads the contents of dirpath.
  * @param {string} dirpath - Reads the contents of path.
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} pathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} pathType
  * @param {boolean} writeToLog
  * @returns {Promise.<MxObject[]>}
  */

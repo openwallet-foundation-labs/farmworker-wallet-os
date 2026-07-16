@@ -16,7 +16,7 @@ import LogListener from "../LogListener";
 
 /**
  * Get the default log level
- * @returns {Promise.<"NativeFileDocuments.LogLevel.trace"|"NativeFileDocuments.LogLevel.debug"|"NativeFileDocuments.LogLevel.info"|"NativeFileDocuments.LogLevel.warning"|"NativeFileDocuments.LogLevel.error"|"NativeFileDocuments.LogLevel.critical"|"NativeFileDocuments.LogLevel.none">}
+ * @returns {Promise.<undefined|"trace"|"debug"|"info"|"warning"|"error"|"critical"|"none">}
  */
 export async function getDefaultLogLevel() {
 	// BEGIN USER CODE

@@ -9,7 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import SInfo from "react-native-sensitive-info";
+import * as SInfo from "react-native-sensitive-info";
 import {jsa_json2mxobj} from"./jsa_json2mxobj.js";
 import {jsa_kcorm_get_all_recursive} from"./jsa_kcorm_get_all_recursive.js";
 import{default as jsonQuery}from"json-query";
@@ -24,11 +24,10 @@ import{mx_data_get_async,mx_data_createAsync,getReverseReferences}from"../suppor
  * @param {string} query - e.g. Age=42
  * @param {string} entity
  * @param {MxObject[]} output - output list to populate
- * @param {string} [sharedPreferencesName]
- * @param {string} [keychainService]
+ * @param {string} [service] - Logical namespace for secrets. Defaults to "KeyManagement" when null.
  * @returns {Promise.<MxObject[]>}
  */
-export async function jsa_kcorm_query_recursive(key, query, entity, output, sharedPreferencesName, keychainService) {
+export async function jsa_kcorm_query_recursive(key, query, entity, output, service) {
 	// BEGIN USER CODE
 	// --------------
 	// IN PROGRESS...
@@ -36,14 +35,14 @@ export async function jsa_kcorm_query_recursive(key, query, entity, output, shar
 	try{
 		if(output==null)return Promise.reject("Argument output null");
 		if(key==null)return Promise.reject("Argument key null");
-		if(query==null||query.length==0)return jsa_kcorm_get_all_recursive(key,entity,output,sharedPreferencesName,keychainService);//Promise.reject("Argument query null");
-		let settings={};
-		if(sharedPreferencesName!=null)settings.sharedPreferencesName=sharedPreferencesName;
-		if(keychainService!=null)settings.keychainService=keychainService;
+		if(query==null||query.length==0)return jsa_kcorm_get_all_recursive(key,entity,output,service);//Promise.reject("Argument query null");
+		//6.1.x: unified cross-platform service scope. accessControl is a write-only policy and is not passed to reads.
+		let settings={service:(service!=null&&service!=""?service:"KeyManagement")};
 		let obj={};
 		try{
 			//https://mcodex.dev/react-native-sensitive-info/docs/getItem
-			let kcval=await SInfo.getItem(key,settings);
+			let __item=await SInfo.getItem(key,settings);
+			let kcval=__item!=null?__item.value:null;
 			if(kcval!=null&&kcval!="")try{
 				obj=JSON.parse(kcval);
 				obj=typeof(obj)=="object"?obj:Array.isArray(obj)?{}:obj;

@@ -719,6 +719,11 @@ export interface ReactNativeBlobUtilConfig {
     wifiOnly?: boolean;
 
     /**
+     * Set this property to search for the WiFi interface that uses this targetHostIp
+     */
+    targetHostIp?: string;
+
+    /**
      * Set this property so redirects are not automatically followed.
      */
     followRedirect?: boolean;

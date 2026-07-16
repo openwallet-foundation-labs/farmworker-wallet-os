@@ -37,6 +37,7 @@ export async function OpenURL(url) {
     }
     // Web platform
     if (window) {
+        await mx.data.closeDbConnection();
         window.location.href = url;
         return Promise.resolve(true);
     }

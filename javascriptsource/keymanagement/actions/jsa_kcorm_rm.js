@@ -13,7 +13,7 @@ import {jsa_mxobj2json} from"./jsa_mxobj2json.js";
 import {jsa_uuid} from"./jsa_uuid.js";
 import {jsa_web_getItem}from"./jsa_web_getItem.js";
 import {jsa_web_setItem}from"./jsa_web_setItem.js";
-import SInfo from "react-native-sensitive-info";
+import * as SInfo from "react-native-sensitive-info";
 // END EXTRA CODE
 
 /**
@@ -22,18 +22,17 @@ import SInfo from "react-native-sensitive-info";
  * @param {MxObject} input
  * @param {string} idattr - optional, name of attribute containing id
  * @param {string} idval - optional, manual id value
- * @param {string} [sharedPreferencesName]
- * @param {string} [keychainService]
+ * @param {string} [service] - Logical namespace for secrets. Defaults to "KeyManagement" when null.
  * @returns {Promise.<boolean>}
  */
-export async function jsa_kcorm_rm(key, input, idattr, idval, sharedPreferencesName, keychainService) {
+export async function jsa_kcorm_rm(key, input, idattr, idval, service) {
 	// BEGIN USER CODE
 	try{
 		if(input==null)return Promise.reject("Argument input null");
 		if(key==null)return Promise.reject("Argument key null");
-		let settings={};
-		if(sharedPreferencesName!=null)settings.sharedPreferencesName=sharedPreferencesName;
-		if(keychainService!=null)settings.keychainService=keychainService;
+		//6.1.x: unified cross-platform service scope. accessControl:"none" is added at the setItem write below
+		//(no biometric gating, which keeps reads promptless); reads take service scope only.
+		let settings={service:(service!=null&&service!=""?service:"KeyManagement")};
 		let obj={};
 		try{
 			//https://mcodex.dev/react-native-sensitive-info/docs/getItem
@@ -43,10 +42,11 @@ export async function jsa_kcorm_rm(key, input, idattr, idval, sharedPreferencesN
 				return Promise.reject("Hybrid_mobile not supported");
 			}else if (navigator && navigator.product === "ReactNative") {
 				//react native
-				kcval=await SInfo.getItem(key,settings);
+				const __item=await SInfo.getItem(key,settings);
+				kcval=__item!=null?__item.value:null;
 			}else {
 				//web
-				kcval=await jsa_web_getItem(sharedPreferencesName,key);
+				kcval=await jsa_web_getItem(service,key);
 			}
 			if(kcval!=null&&kcval!="")try{
 				obj=JSON.parse(kcval);
@@ -105,10 +105,10 @@ export async function jsa_kcorm_rm(key, input, idattr, idval, sharedPreferencesN
 			return Promise.reject("Hybrid_mobile not supported");
 		}else if (navigator && navigator.product === "ReactNative") {
 			//react native
-			await SInfo.setItem(key,JSON.stringify(obj),settings);
+			await SInfo.setItem(key,JSON.stringify(obj),{...settings,accessControl:"none"});
 		}else {
 			//web
-			await jsa_web_setItem(sharedPreferencesName,key,JSON.stringify(obj));
+			await jsa_web_setItem(service,key,JSON.stringify(obj));
 		}
 		//todo:handle true false return values
 		return Promise.resolve(true);

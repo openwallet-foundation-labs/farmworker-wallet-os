@@ -13,7 +13,7 @@ import {jsa_mxobj2json}from"./jsa_mxobj2json.js";
 import {jsa_web_setItem}from"./jsa_web_setItem.js";
 import {jsa_web_getItem}from"./jsa_web_getItem.js";
 import {jsa_uuid}from"./jsa_uuid.js";
-import SInfo from "react-native-sensitive-info";
+import * as SInfo from "react-native-sensitive-info";
 async function mx_data_get_async(options){
 	return new Promise((resolve,reject)=>{
 		options.callback=(o)=>{
@@ -49,18 +49,17 @@ async function mx_data_get_async(options){
  * @param {string} idattr - optional, name of attribute containing id
  * @param {string} idval - optional, manual id value
  * @param {string} hint - optional json string
- * @param {string} [sharedPreferencesName]
- * @param {string} [keychainService]
+ * @param {string} [service] - Logical namespace for secrets. Defaults to "KeyManagement" when null.
  * @returns {Promise.<string>}
  */
-export async function jsa_kcorm_put(key, input, idattr, idval, hint, sharedPreferencesName, keychainService) {
+export async function jsa_kcorm_put(key, input, idattr, idval, hint, service) {
 	// BEGIN USER CODE
 	try{
 		if(input==null)return Promise.reject("Argument input null");
 		if(key==null)return Promise.reject("Argument key null");
-		let settings={};
-		if(sharedPreferencesName!=null)settings.sharedPreferencesName=sharedPreferencesName;
-		if(keychainService!=null)settings.keychainService=keychainService;
+		//6.1.x: unified cross-platform service scope. accessControl:"none" is added at the setItem write below
+		//(no biometric gating, which keeps reads promptless); reads take service scope only.
+		let settings={service:(service!=null&&service!=""?service:"KeyManagement")};
 		let obj={};
 		try{
 			let kcval=null;
@@ -69,10 +68,11 @@ export async function jsa_kcorm_put(key, input, idattr, idval, hint, sharedPrefe
 				return Promise.reject("Hybrid_mobile not supported");
 			}else if (navigator && navigator.product === "ReactNative") {
 				//react native
-				kcval=await SInfo.getItem(key,settings);
+				const __item=await SInfo.getItem(key,settings);
+				kcval=__item!=null?__item.value:null;
 			}else {
 				//web
-				kcval=await jsa_web_getItem(sharedPreferencesName,key);
+				kcval=await jsa_web_getItem(service,key);
 			}
 			//https://mcodex.dev/react-native-sensitive-info/docs/getItem
 			if(kcval!=null&&kcval!="")try{
@@ -184,10 +184,10 @@ export async function jsa_kcorm_put(key, input, idattr, idval, hint, sharedPrefe
 			return Promise.reject("Hybrid_mobile not supported");
 		}else if (navigator && navigator.product === "ReactNative") {
 			//react native
-			await SInfo.setItem(key,JSON.stringify(obj),settings);
+			await SInfo.setItem(key,JSON.stringify(obj),{...settings,accessControl:"none"});
 		}else {
 			//web
-			await jsa_web_setItem(sharedPreferencesName,key,JSON.stringify(obj));
+			await jsa_web_setItem(service,key,JSON.stringify(obj));
 		}
 		return Promise.resolve(uuid);
 	}catch(e){

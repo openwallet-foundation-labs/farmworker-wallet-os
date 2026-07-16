@@ -14,7 +14,7 @@ import { Platform } from "react-native";
 
 /**
  * Get the platform: iOS or Android
- * @returns {Promise.<"NativeFileDocuments.Platform.android"|"NativeFileDocuments.Platform.ios">}
+ * @returns {Promise.<undefined|"android"|"ios">}
  */
 export async function getPlatform() {
 	// BEGIN USER CODE

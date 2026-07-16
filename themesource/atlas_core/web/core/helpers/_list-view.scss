@@ -16,14 +16,14 @@
     // List items lined
     .listview-lined.mx-listview {
         & > ul > li {
-            border-top: 1px solid $grid-border-color;
+            border-top: 1px solid var(--grid-border-color);
 
             &:first-child {
-                border-top: 1px solid $grid-border-color;
+                border-top: 1px solid var(--grid-border-color);
             }
 
             &:last-child {
-                border-bottom: 1px solid $grid-border-color;
+                border-bottom: 1px solid var(--grid-border-color);
             }
         }
     }
@@ -31,11 +31,11 @@
     //List items Bordered
     .listview-bordered.mx-listview {
         & > ul > li {
-            border: 1px solid $grid-border-color;
+            border: 1px solid var(--grid-border-color);
             border-top: 0;
 
             &:first-child {
-                border-top: 1px solid $grid-border-color;
+                border-top: 1px solid var(--grid-border-color);
             }
 
             &:last-child {
@@ -46,16 +46,16 @@
     // List items striped
     .listview-striped.mx-listview {
         & > ul > li:nth-child(2n + 1) {
-            background-color: $grid-bg-striped;
+            background-color: var(--grid-bg-striped);
         }
     }
 
     // Items as seperated blocks
     .listview-seperated.mx-listview {
         & > ul > li {
-            margin-bottom: $spacing-medium;
-            border: 1px solid $grid-border-color;
-            border-radius: $border-radius-default;
+            margin-bottom: var(--spacing-medium);
+            border: 1px solid var(--grid-border-color);
+            border-radius: var(--border-radius-default);
         }
     }
 
@@ -93,14 +93,14 @@
             &:hover,
             &:focus,
             &:active {
-                background-color: $grid-bg-hover;
+                background-color: var(--grid-bg-hover);
             }
 
             &.selected {
                 &:hover,
                 &:focus,
                 &:active {
-                    background-color: $grid-bg-selected-hover;
+                    background-color: var(--grid-bg-selected-hover);
                 }
             }
         }
@@ -110,13 +110,13 @@
 
     .listview-sm.mx-listview {
         & > ul > li {
-            padding: $spacing-small;
+            padding: var(--spacing-small);
         }
     }
 
     .listview-lg.mx-listview {
         & > ul > li {
-            padding: $spacing-large;
+            padding: var(--spacing-large);
         }
     }
 
@@ -126,8 +126,8 @@
         & > ul {
             display: flex; // normal a table
             flex-wrap: wrap;
-            margin-right: -1 * $gutter-size;
-            margin-left: -1 * $gutter-size;
+            margin-right: calc(-1 * var(--gutter-size));
+            margin-left: calc(-1 * var(--gutter-size));
 
             &::before,
             &::after {
@@ -141,8 +141,8 @@
                 // bootstrap col
                 position: relative;
                 min-height: 1px;
-                padding-right: $gutter-size;
-                padding-left: $gutter-size;
+                padding-right: var(--gutter-size);
+                padding-left: var(--gutter-size);
                 border: 0;
                 @media (max-width: $screen-md-max) {
                     width: 100% !important;

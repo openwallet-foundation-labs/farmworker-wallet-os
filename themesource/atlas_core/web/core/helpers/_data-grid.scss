@@ -25,7 +25,7 @@
                 }
 
                 &:nth-child(odd) td {
-                    background-color: $grid-bg-striped;
+                    background-color: var(--grid-bg-striped);
                 }
             }
         }
@@ -37,12 +37,12 @@
             border: 1px solid;
 
             th {
-                border: 1px solid $grid-border-color;
+                border: 1px solid var(--grid-border-color);
             }
 
             tbody tr {
                 td {
-                    border: 1px solid $grid-border-color;
+                    border: 1px solid var(--grid-border-color);
                 }
             }
         }
@@ -50,7 +50,7 @@
         tfoot {
             > tr > th {
                 border-width: 0;
-                background-color: $grid-footer-bg;
+                background-color: var(--grid-footer-bg);
             }
 
             > tr > td {
@@ -81,11 +81,11 @@
         table {
             tbody tr {
                 &:hover td {
-                    background-color: $grid-bg-hover !important;
+                    background-color: var(--grid-bg-hover) !important;
                 }
 
                 &.selected:hover td {
-                    background-color: $grid-bg-selected-hover !important;
+                    background-color: var(--grid-bg-selected-hover) !important;
                 }
             }
         }
@@ -95,14 +95,14 @@
     .datagrid-lg.mx-datagrid {
         table {
             th {
-                padding: ($grid-padding-top * 2) ($grid-padding-right * 2) ($grid-padding-bottom * 2)
-                    ($grid-padding-left * 2);
+                padding: calc(var(--grid-padding-top) * 2) calc(var(--grid-padding-right) * 2)
+                    calc(var(--grid-padding-bottom) * 2) calc(var(--grid-padding-left) * 2);
             }
 
             tbody tr {
                 td {
-                    padding: ($grid-padding-top * 2) ($grid-padding-right * 2) ($grid-padding-bottom * 2)
-                        ($grid-padding-left * 2);
+                    padding: calc(var(--grid-padding-top) * 2) calc(var(--grid-padding-right) * 2)
+                        calc(var(--grid-padding-bottom) * 2) calc(var(--grid-padding-left) * 2);
                 }
             }
         }
@@ -111,14 +111,14 @@
     .datagrid-sm.mx-datagrid {
         table {
             th {
-                padding: ($grid-padding-top / 2) ($grid-padding-right / 2) ($grid-padding-bottom / 2)
-                    ($grid-padding-left / 2);
+                padding: calc(var(--grid-padding-top) / 2) calc(var(--grid-padding-right) / 2)
+                    calc(var(--grid-padding-bottom) / 2) calc(var(--grid-padding-left) / 2);
             }
 
             tbody tr {
                 td {
-                    padding: ($grid-padding-top / 2) ($grid-padding-right / 2) ($grid-padding-bottom / 2)
-                        ($grid-padding-left/ 2);
+                    padding: calc(var(--grid-padding-top) / 2) calc(var(--grid-padding-right) / 2)
+                        calc(var(--grid-padding-bottom) / 2) calc(var(--grid-padding-left) / 2);
                 }
             }
         }

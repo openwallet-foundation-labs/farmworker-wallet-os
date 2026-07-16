@@ -20,7 +20,7 @@ import { Platform } from 'react-native';
  * Read contents from file as UTF 8 string.
  * Note that this can be slow and cause high memory usage with large files!
  * @param {string} filepath - The path to the file or directory.
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} pathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} pathType
  * @param {boolean} writeToLog
  * @returns {Promise.<string>}
  */

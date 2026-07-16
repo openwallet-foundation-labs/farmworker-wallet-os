@@ -21,7 +21,7 @@ import { Platform } from 'react-native';
  * 
  * Note that you cannot write content directly to a Mendix file document. You can use the writeFile action to write base64 encoded content to a file and then call this action to save the contents in the Mendix object.
  * @param {string} filepath - The path to the file or directory.
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} pathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} pathType
  * @param {MxObject} fileDocument
  * @param {string} fileName
  * @param {boolean} writeToLog

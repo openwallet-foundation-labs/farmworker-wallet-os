@@ -18,18 +18,18 @@
             border: 0;
 
             & > li {
-                margin-bottom: $spacing-small;
+                margin-bottom: var(--spacing-small);
             }
 
             & > li > a {
-                margin-right: $spacing-small;
-                color: $tabs-color;
-                border-radius: $border-radius-default;
-                background-color: $tabs-bg-pills;
+                margin-right: var(--spacing-small);
+                color: var(--tabs-color);
+                border-radius: var(--border-radius-default);
+                background-color: var(--tabs-bg-pills);
 
                 &:hover,
                 &:focus {
-                    background-color: $tabs-bg-hover;
+                    background-color: var(--tabs-bg-hover);
                 }
             }
 
@@ -37,8 +37,8 @@
             & > li.active > a:hover,
             & > li.active > a:focus {
                 color: #ffffff;
-                border-color: $tabs-bg-active;
-                background-color: $tabs-bg-active;
+                border-color: var(--tabs-bg-active);
+                background-color: var(--tabs-bg-active);
             }
         }
     }
@@ -49,18 +49,18 @@
             border-width: 1px;
 
             li {
-                margin-right: $spacing-large;
+                margin-right: var(--spacing-large);
 
                 & > a {
-                    padding: $spacing-medium 0 ($spacing-medium - $tabs-lined-border-width) 0; // border is 3px
-                    color: $tabs-color;
+                    padding: var(--spacing-medium) 0 calc(var(--spacing-medium) - var(--tabs-lined-border-width)) 0; // border is 3px
+                    color: var(--tabs-color);
                     border: 0;
-                    border-bottom: $tabs-lined-border-width solid transparent;
+                    border-bottom: var(--tabs-lined-border-width) solid transparent;
                     border-radius: 0;
 
                     &:hover,
                     &:focus {
-                        color: $tabs-color;
+                        color: var(--tabs-color);
                         border: 0;
                         border-color: transparent;
                         background: transparent;
@@ -70,9 +70,9 @@
                 &.active > a,
                 &.active > a:hover,
                 &.active > a:focus {
-                    color: $tabs-lined-color-active;
+                    color: var(--tabs-lined-color-active);
                     border: 0;
-                    border-bottom: $tabs-lined-border-width solid $tabs-lined-border-color;
+                    border-bottom: var(--tabs-lined-border-width) solid var(--tabs-lined-border-color);
                     background-color: transparent;
                 }
             }
@@ -109,10 +109,10 @@
         }
 
         & > .mx-tabcontainer-content {
-            padding: $spacing-small;
+            padding: var(--spacing-small);
             border-width: 0 1px 1px 1px;
             border-style: solid;
-            border-color: $tabs-border-color;
+            border-color: var(--tabs-border-color);
             background-color: transparent;
         }
     }
@@ -127,12 +127,12 @@
 
             &::before {
                 position: absolute;
-                top: $spacing-medium;
+                top: var(--spacing-medium);
                 display: block;
                 width: 100%;
                 height: 1px;
                 content: "";
-                background-color: $tabs-border-color;
+                background-color: var(--tabs-border-color);
             }
 
             & > li {
@@ -142,16 +142,16 @@
                 text-align: center;
 
                 & > a {
-                    width: calc((#{$spacing-medium} * 2) + 1px);
-                    height: calc((#{$spacing-medium} * 2) + 1px);
+                    width: calc((var(--spacing-medium) * 2) + 1px);
+                    height: calc((var(--spacing-medium) * 2) + 1px);
                     margin: auto;
                     padding: 0;
                     text-align: center;
-                    color: $brand-primary;
-                    border: 1px solid $tabs-border-color;
+                    color: var(--brand-primary);
+                    border: 1px solid var(--tabs-border-color);
                     border-radius: 100%;
-                    background-color: $bg-color;
-                    font-size: $font-size-large;
+                    background-color: var(--bg-color);
+                    font-size: var(--font-size-large);
                     font-weight: bold;
                     display: flex;
                     justify-content: center;
@@ -163,8 +163,8 @@
                     & > a:hover,
                     & > a:focus {
                         color: #ffffff;
-                        border-color: $tabs-bg-active;
-                        background-color: $tabs-bg-active;
+                        border-color: var(--tabs-bg-active);
+                        background-color: var(--tabs-bg-active);
                     }
                 }
             }

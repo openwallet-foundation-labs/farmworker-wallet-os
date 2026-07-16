@@ -17,51 +17,51 @@
         .widget-accordion-group {
             &.widget-accordion-brand-primary {
                 @include get-accordion-group-styles(
-                    $accordion-header-primary-bg,
-                    $accordion-header-primary-bg-hover,
-                    $accordion-header-primary-color,
-                    $accordion-header-primary-color,
-                    $accordion-primary-border-color
+                    var(--accordion-header-primary-bg),
+                    var(--accordion-header-primary-bg-hover),
+                    var(--accordion-header-primary-color),
+                    var(--accordion-header-primary-color),
+                    var(--accordion-primary-border-color)
                 );
             }
 
             &.widget-accordion-brand-secondary {
                 @include get-accordion-group-styles(
-                    $accordion-header-secondary-bg,
-                    $accordion-header-secondary-bg-hover,
-                    $accordion-header-secondary-color,
-                    $accordion-header-secondary-color,
-                    $accordion-secondary-border-color
+                    var(--accordion-header-secondary-bg),
+                    var(--accordion-header-secondary-bg-hover),
+                    var(--accordion-header-secondary-color),
+                    var(--accordion-header-secondary-color),
+                    var(--accordion-secondary-border-color)
                 );
             }
 
             &.widget-accordion-brand-success {
                 @include get-accordion-group-styles(
-                    $accordion-header-success-bg,
-                    $accordion-header-success-bg-hover,
-                    $accordion-header-success-color,
-                    $accordion-header-success-color,
-                    $accordion-success-border-color
+                    var(--accordion-header-success-bg),
+                    var(--accordion-header-success-bg-hover),
+                    var(--accordion-header-success-color),
+                    var(--accordion-header-success-color),
+                    var(--accordion-success-border-color)
                 );
             }
 
             &.widget-accordion-brand-warning {
                 @include get-accordion-group-styles(
-                    $accordion-header-warning-bg,
-                    $accordion-header-warning-bg-hover,
-                    $accordion-header-warning-color,
-                    $accordion-header-warning-color,
-                    $accordion-warning-border-color
+                    var(--accordion-header-warning-bg),
+                    var(--accordion-header-warning-bg-hover),
+                    var(--accordion-header-warning-color),
+                    var(--accordion-header-warning-color),
+                    var(--accordion-warning-border-color)
                 );
             }
 
             &.widget-accordion-brand-danger {
                 @include get-accordion-group-styles(
-                    $accordion-header-danger-bg,
-                    $accordion-header-danger-bg-hover,
-                    $accordion-header-danger-color,
-                    $accordion-header-danger-color,
-                    $accordion-danger-border-color
+                    var(--accordion-header-danger-bg),
+                    var(--accordion-header-danger-bg-hover),
+                    var(--accordion-header-danger-color),
+                    var(--accordion-header-danger-color),
+                    var(--accordion-danger-border-color)
                 );
             }
         }
@@ -69,23 +69,23 @@
         &.widget-accordion-preview {
             .widget-accordion-group {
                 &.widget-accordion-brand-primary {
-                    @include get-accordion-preview-group-styles($accordion-header-primary-color);
+                    @include get-accordion-preview-group-styles(var(--accordion-header-primary-color));
                 }
 
                 &.widget-accordion-brand-secondary {
-                    @include get-accordion-preview-group-styles($accordion-header-secondary-color);
+                    @include get-accordion-preview-group-styles(var(--accordion-header-secondary-color));
                 }
 
                 &.widget-accordion-brand-success {
-                    @include get-accordion-preview-group-styles($accordion-header-success-color);
+                    @include get-accordion-preview-group-styles(var(--accordion-header-success-color));
                 }
 
                 &.widget-accordion-brand-warning {
-                    @include get-accordion-preview-group-styles($accordion-header-warning-color);
+                    @include get-accordion-preview-group-styles(var(--accordion-header-warning-color));
                 }
 
                 &.widget-accordion-brand-danger {
-                    @include get-accordion-preview-group-styles($accordion-header-danger-color);
+                    @include get-accordion-preview-group-styles(var(--accordion-header-danger-color));
                 }
             }
         }
@@ -119,19 +119,19 @@
             > .widget-accordion-group:not(:is(.widget-accordion-brand-primary, .widget-accordion-brand-secondary, .widget-accordion-brand-success, .widget-accordion-brand-warning, .widget-accordion-brand-danger)):nth-child(2n
                     + 1) {
                 > .widget-accordion-group-header > .widget-accordion-group-header-button {
-                    background-color: $accordion-bg-striped;
+                    background-color: var(--accordion-bg-striped);
 
                     &.widget-accordion-group-header-button-clickable {
                         &:hover,
                         &:focus,
                         &:active {
-                            background-color: $accordion-bg-striped-hover;
+                            background-color: var(--accordion-bg-striped-hover);
                         }
                     }
                 }
 
                 > .widget-accordion-group-content {
-                    background-color: $accordion-bg-striped;
+                    background-color: var(--accordion-bg-striped);
                 }
             }
         }
@@ -139,11 +139,11 @@
         &.widget-accordion-compact {
             > .widget-accordion-group {
                 > .widget-accordion-group-header > .widget-accordion-group-header-button {
-                    padding: $spacing-smaller $spacing-small;
+                    padding: var(--spacing-smaller) var(--spacing-small);
                 }
 
                 > .widget-accordion-group-content {
-                    padding: $spacing-smaller $spacing-small $spacing-medium $spacing-small;
+                    padding: var(--spacing-smaller) var(--spacing-small) var(--spacing-medium) var(--spacing-small);
                 }
             }
         }

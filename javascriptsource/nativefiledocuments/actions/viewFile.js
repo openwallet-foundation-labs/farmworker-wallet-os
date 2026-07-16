@@ -20,7 +20,7 @@ import { Platform } from 'react-native';
 /**
  * View document. Returns immediately after opening the file.
  * @param {string} filepath - The path to the file
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} pathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} pathType
  * @param {boolean} writeToLog
  * @returns {Promise.<boolean>}
  */

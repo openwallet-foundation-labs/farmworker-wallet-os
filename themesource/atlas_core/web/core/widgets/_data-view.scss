@@ -22,7 +22,7 @@
             .mx-placeholder > &{
                 overflow-y: auto;
             }
-            
+
             > .mx-container-nested {
                 > .row {
                     margin-right: 0;
@@ -33,33 +33,19 @@
 
         /* Dataview empty message */
         .mx-dataview-message {
-            color: $dataview-emptymessage-color;
-            background: $dataview-emptymessage-bg;
+            color: var(--dataview-emptymessage-color);
+            background: var(--dataview-emptymessage-bg);
         }
     }
 
     .mx-dataview-controls {
-        padding: $spacing-medium 0 0;
-        border-top: 1px solid $dataview-controls-border-color;
+        padding: var(--spacing-medium) 0 0;
+        border-top: 1px solid var(--dataview-controls-border-color);
         border-radius: 0;
-        background-color: $dataview-controls-bg;
-        /* Buttons */
-        .mx-button {
-            margin-right: $spacing-small;
-            margin-bottom: 0;
-
-            &:last-child {
-                margin-right: 0;
-            }
-        }
-
-        /* Fix for Dojo rendering in react client */
-        [id^="mxui_widget_Wrapper"]:has(> .mx-button) {
-            .mx-button {
-                margin-right: $spacing-small;
-            }
-        }
-
-        background-color: inherit;
+        background-color: var(--dataview-controls-bg);
+        display: flex;
+        gap: var(--gutter-size);
+        margin-bottom: 0;
+        text-align: var(--dataview-controls-alignment);
     }
 }

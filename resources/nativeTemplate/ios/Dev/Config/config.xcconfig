@@ -1,0 +1,7 @@
+#include "../../Config/config.xcconfig"
+
+MAIN_STORY_BOARD = LaunchApp
+BUNDLE_DISPLAY_NAME = Dev-fwos-demo-app
+BUNDLE_IDENTIFIER_APPEND = .developerapp
+
+PRODUCT_NAME = fwosDemoAppDev

@@ -19,9 +19,9 @@ import { Platform } from 'react-native';
 /**
  * Moves the file located at filepath to destPath. Also allows renaming a file.
  * @param {string} filepath - The file to copy
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} filepathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} filepathType
  * @param {string} destPath - The destination to copy to
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} destPathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} destPathType
  * @param {boolean} writeToLog
  * @returns {Promise.<void>}
  */

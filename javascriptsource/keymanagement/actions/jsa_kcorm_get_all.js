@@ -7,7 +7,7 @@
 // Other code you write will be lost the next time you deploy the project.
 import "mx-global";
 import { Big } from "big.js";
-import SInfo from "react-native-sensitive-info";
+import * as SInfo from "react-native-sensitive-info";
 
 // BEGIN EXTRA CODE
 import {jsa_json2mxobj} from"./jsa_json2mxobj.js";
@@ -39,11 +39,10 @@ async function mx_data_createAsync(options){
  * @param {string} key
  * @param {string} entity
  * @param {MxObject[]} output - output list to populate
- * @param {string} [sharedPreferencesName]
- * @param {string} [keychainService]
+ * @param {string} [service] - Logical namespace for secrets. Defaults to "KeyManagement" when null.
  * @returns {Promise.<MxObject[]>}
  */
-export async function jsa_kcorm_get_all(key, entity, output, sharedPreferencesName, keychainService) {
+export async function jsa_kcorm_get_all(key, entity, output, service) {
 	// BEGIN USER CODE
 	// --------------
 	// IN PROGRESS...
@@ -51,9 +50,8 @@ export async function jsa_kcorm_get_all(key, entity, output, sharedPreferencesNa
 	try{
 		if(output==null)return Promise.reject("Argument output null");
 		if(key==null)return Promise.reject("Argument key null");
-		let settings={};
-		if(sharedPreferencesName!=null)settings.sharedPreferencesName=sharedPreferencesName;
-		if(keychainService!=null)settings.keychainService=keychainService;
+		//6.1.x: unified cross-platform service scope. accessControl is a write-only policy and is not passed to reads.
+		let settings={service:(service!=null&&service!=""?service:"KeyManagement")};
 		let obj={};
 		try{
 			//https://mcodex.dev/react-native-sensitive-info/docs/getItem
@@ -63,10 +61,11 @@ export async function jsa_kcorm_get_all(key, entity, output, sharedPreferencesNa
 				return Promise.reject("Hybrid_mobile not supported");
 			}else if (navigator && navigator.product === "ReactNative") {
 				//react native
-				kcval=await SInfo.getItem(key,settings);
+				const __item=await SInfo.getItem(key,settings);
+				kcval=__item!=null?__item.value:null;
 			}else {
 				//web
-				kcval=await jsa_web_getItem(sharedPreferencesName,key);
+				kcval=await jsa_web_getItem(service,key);
 			}
 			if(kcval!=null&&kcval!="")try{
 				obj=JSON.parse(kcval);

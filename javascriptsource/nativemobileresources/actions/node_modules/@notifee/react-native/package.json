@@ -1,0 +1,73 @@
+{
+  "name": "@notifee/react-native",
+  "version": "9.1.8",
+  "author": "Invertase <oss@invertase.io> (http://invertase.io)",
+  "description": "Notifee - a feature rich notifications library for React Native.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "validate:all:js": "eslint . --ext .js,.jsx,.ts,.tsx --resolve-plugins-relative-to .",
+    "validate:all:ts": "tsc --project ./",
+    "build": "genversion --es6 --semi src/version.ts && tsc",
+    "build:clean": "rimraf android/libs && rimraf android/build && rimraf ios/build && rimraf dist",
+    "build:watch": "tsc --watch",
+    "prepare": "yarn run build",
+    "prepublishOnly": "cd ../.. && yarn run build:core && yarn gen:reference",
+    "format:android": "google-java-format --replace -i $(find . -type f -name \"*.java\" ! -path \"*/node_modules/*\" ! -path \"*/generated/*\")",
+    "format:android:check": "google-java-format --set-exit-if-changed --replace -i $(find . -type f -name \"*.java\" ! -path \"*/node_modules/*\" ! -path \"*/generated/*\")",
+    "format:ios": "npm_config_yes=true npx clang-format -i --glob=\"ios/**/*.{h,cpp,m,mm}\" --style=Google",
+    "format:ios:check": "npm_config_yes=true npx clang-format --glob=\"ios/**/*.{h,cpp,m,mm}\" --style=Google -n -Werror"
+  },
+  "devDependencies": {
+    "@types/react-native": "0.67.2",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "genversion": "^3.0.2",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^5.7.2"
+  },
+  "peerDependencies": {
+    "react-native": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/invertase/notifee.git"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "react",
+    "react-native",
+    "scheduling",
+    "channels",
+    "android",
+    "ios",
+    "firebase",
+    "fcm",
+    "notifee",
+    "notifications",
+    "onesignal"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "/android",
+    "!/android/build",
+    "/ios",
+    "/src",
+    "!/src/__mocks__",
+    "/dist",
+    "/lib",
+    "/*.podspec",
+    "/jest-mock.js",
+    "/react-native.config.js",
+    "tsconfig.json"
+  ]
+}

@@ -63,7 +63,7 @@
         }
 
         .btn {
-            border-radius: $border-radius-default;
+            border-radius: var(--border-radius-default);
         }
 
         // Form label + input
@@ -77,11 +77,11 @@
             .control-label {
                 flex: 4;
                 margin-bottom: 0;
-                font-size: $font-size-default;
+                font-size: var(--font-size-default);
                 font-weight: 500;
                 @media only screen and (max-width: $screen-sm-max) {
                     flex: 1;
-                    margin-bottom: $spacing-small;
+                    margin-bottom: var(--spacing-small);
                 }
             }
 
@@ -102,23 +102,23 @@
 
                     position: absolute;
                     top: 50%;
-                    left: $form-input-padding-x;
+                    left: var(--form-input-padding-x);
                     transform: translateY(-50%);
 
                     &-eye-open:hover,
                     &-eye-close:hover {
                         cursor: pointer;
-                        color: $brand-primary;
+                        color: var(--brand-primary);
                     }
                 }
 
                 .form-control {
-                    padding: $form-input-padding-y $form-input-padding-x $form-input-padding-y 45px;
+                    padding: var(--form-input-padding-y) var(--form-input-padding-x) var(--form-input-padding-y) 45px;
                     width: 100%;
                 }
 
                 .form-control:focus ~ .glyphicon:before {
-                    color: $brand-primary;
+                    color: var(--brand-primary);
                 }
             }
         }
@@ -168,7 +168,7 @@
             height: 100%;
             animation: makePointer 1s ease-out both;
             background: left / cover no-repeat
-                    linear-gradient(to right, rgba($brand-primary, 0.9) 0%, rgba($brand-primary, 0.6) 100%),
+                    linear-gradient(to right, color-mix(in srgb, var(--brand-primary) 90%, transparent) 0%, color-mix(in srgb, var(--brand-primary) 60%, transparent) 100%),
                 left / cover no-repeat url("./resources/work-do-more.jpeg");
             -webkit-clip-path: polygon(0% 0%, 100% 0, 100% 50%, 100% 100%, 0% 100%);
             clip-path: polygon(0% 0%, 100% 0, 100% 50%, 100% 100%, 0% 100%);

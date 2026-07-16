@@ -6,8 +6,8 @@
 .controlgroup {
     .btn,
     .btn-group {
-        margin-right: $spacing-small;
-        margin-bottom: $spacing-small;
+        margin-right: var(--spacing-small);
+        margin-bottom: var(--spacing-small);
 
         &:last-child {
             margin-right: 0;

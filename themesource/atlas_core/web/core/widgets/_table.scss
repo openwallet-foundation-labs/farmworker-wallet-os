@@ -13,7 +13,7 @@
     ========================================================================== */
 
     th {
-        font-weight: $font-weight-bold;
+        font-weight: var(--font-weight-bold);
     }
 
     html body .mx-page table.mx-table {
@@ -31,13 +31,13 @@
             > tr {
                 /* Table header */
                 > th {
-                    padding: $padding-table-cell-top $padding-table-cell-right $padding-table-cell-bottom
-                        $padding-table-cell-left;
+                    padding: var(--padding-table-cell-top) var(--padding-table-cell-right)
+                        var(--padding-table-cell-bottom) var(--padding-table-cell-left);
 
                     s * {
-                        color: $form-label-color;
-                        font-weight: $font-weight-bold;
-                        font-weight: $form-label-weight;
+                        color: var(--form-label-color);
+                        font-weight: var(--font-weight-bold);
+                        font-weight: var(--form-label-weight);
                     }
 
                     > label {
@@ -48,8 +48,8 @@
 
                 /* Table cells */
                 > td {
-                    padding: $padding-table-cell-top $padding-table-cell-right $padding-table-cell-bottom
-                        $padding-table-cell-left;
+                    padding: var(--padding-table-cell-top) var(--padding-table-cell-right)
+                        var(--padding-table-cell-bottom) var(--padding-table-cell-left);
 
                     > div > label,
                     .mx-referenceselector-input-wrapper label {
@@ -67,8 +67,8 @@
             > tr {
                 > th,
                 > td {
-                    padding: $padding-table-cell-top $padding-table-cell-right $padding-table-cell-bottom
-                        $padding-table-cell-left;
+                    padding: var(--padding-table-cell-top) var(--padding-table-cell-right)
+                        var(--padding-table-cell-bottom) var(--padding-table-cell-left);
                 }
             }
         }
@@ -80,8 +80,8 @@
             > tr {
                 > th,
                 > td {
-                    padding: $padding-table-cell-top $padding-table-cell-right $padding-table-cell-bottom
-                        $padding-table-cell-left;
+                    padding: var(--padding-table-cell-top) var(--padding-table-cell-right)
+                        var(--padding-table-cell-bottom) var(--padding-table-cell-left);
                 }
             }
         }

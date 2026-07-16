@@ -1,6 +1,123 @@
 {
+    "FormBase": [
+        {
+            "name": "Screen width",
+            "type": "ToggleButtonGroup",
+            "property": "--max-screen-width",
+            "options": [
+                {
+                    "name": "XXL",
+                    "variable": "--screen-xxl"
+                },
+                {
+                    "name": "XL",
+                    "variable": "--screen-xl"
+                },
+                {
+                    "name": "L",
+                    "variable": "--screen-lg"
+                },
+                {
+                    "name": "M",
+                    "variable": "--screen-md"
+                },
+                {
+                    "name": "S",
+                    "variable": "--screen-sm"
+                }
+            ]
+        },
+        {
+            "name": "Default item gap",
+            "type": "ToggleButtonGroup",
+            "property": "--gutter-size",
+            "options": [
+                {
+                    "name": "S",
+                    "variable": "--spacing-small"
+                },
+                {
+                    "name": "M",
+                    "variable": "--spacing-medium"
+                },
+                {
+                    "name": "L",
+                    "variable": "--spacing-large"
+                }
+            ]
+        },
+        {
+            "category": "Form",
+            "name": "Form orientation",
+            "description": "Determines the form orientation of input fields on the page.",
+            "type": "ToggleButtonGroup",
+            "options": [
+                {
+                    "name": "Vertical",
+                    "class": "page-form-vertical"
+                },
+                {
+                    "name": "Horizontal",
+                    "class": "page-form-horizontal"
+                }
+            ]
+        },
+        {
+            "category": "Form",
+            "name": "Label width",
+            "description": "Determines the width of the input fields on the page.",
+            "type": "Dropdown",
+            "options": [
+                {
+                    "name": "1",
+                    "class": "form-label-width-1"
+                },
+                {
+                    "name": "2",
+                    "class": "form-label-width-2"
+                },
+                {
+                    "name": "3",
+                    "class": "form-label-width-3"
+                },
+                {
+                    "name": "4",
+                    "class": "form-label-width-4"
+                },
+                {
+                    "name": "5",
+                    "class": "form-label-width-5"
+                },
+                {
+                    "name": "6",
+                    "class": "form-label-width-6"
+                },
+                {
+                    "name": "7",
+                    "class": "form-label-width-7"
+                },
+                {
+                    "name": "8",
+                    "class": "form-label-width-8"
+                },
+                {
+                    "name": "9",
+                    "class": "form-label-width-9"
+                },
+                {
+                    "name": "10",
+                    "class": "form-label-width-10"
+                },
+                {
+                    "name": "11",
+                    "class": "form-label-width-11"
+                }
+            ]
+        }
+    ],
     "Widget": [
         {
+            "category": "Appearance",
             "name": "Spacing",
             "type": "Spacing",
             "description": "The spacing around a widget",
@@ -208,43 +325,279 @@
     ],
     "DivContainer": [
         {
-            "name": "Align content",
-            "type": "Dropdown",
-            "description": "Align content of this element left, right or center it. Align elements inside the container as a row or as a column.",
+            "category": "Flex",
+            "name": "Flex container",
+            "type": "ToggleButtonGroup",
+            "description": "Sets the display type of the container to flex to align and distributes child elements within a flexible container.",
             "options": [
                 {
-                    "name": "Left align as a row",
-                    "oldNames": ["Left align as row"],
-                    "class": "row-left"
+                    "name": "Horizontal (row)",
+                    "class": "flex-row",
+                    "icon": "Atlas_Core.Atlas_Styling.direction-horizontal"
                 },
                 {
-                    "name": "Center align as a row",
-                    "oldNames": ["Center align as row"],
-                    "class": "row-center"
-                },
-                {
-                    "name": "Right align as a row",
-                    "oldNames": ["Right align as row"],
-                    "class": "row-right"
-                },
-                {
-                    "name": "Left align as a column",
-                    "oldNames": ["Left align as column"],
-                    "class": "col-left"
-                },
-                {
-                    "name": "Center align as a column",
-                    "oldNames": ["Center align as column"],
-                    "class": "col-center"
-                },
-                {
-                    "name": "Right align as a column",
-                    "oldNames": ["Right align as column"],
-                    "class": "col-right"
+                    "name": "Vertical (column)",
+                    "class": "flex-column",
+                    "icon": "Atlas_Core.Atlas_Styling.direction-vertical"
                 }
             ]
         },
         {
+            "category": "Flex",
+            "name": "Item gap",
+            "property": "--flex-gap",
+            "type": "ToggleButtonGroup",
+            "description": "Adjust the space between items inside the flex container.",
+            "options": [
+                {
+                    "name": "None",
+                    "variable": "--none"
+                },
+                {
+                    "name": "Small",
+                    "variable": "--spacing-small"
+                },
+                {
+                    "name": "Medium",
+                    "variable": "--spacing-medium"
+                },
+                {
+                    "name": "Large",
+                    "variable": "--spacing-large"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Align items X",
+            "type": "ToggleButtonGroup",
+            "description": "Distributes space between and around content items along the X axis.",
+            "options": [
+                {
+                    "name": "Left",
+                    "class": "align-x-left",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-left"
+                },
+                {
+                    "name": "Center",
+                    "class": "align-x-center",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-center"
+                },
+                {
+                    "name": "Right",
+                    "class": "align-x-right",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-right"
+                },
+                {
+                    "name": "Space between (only for horizontal containers)",
+                    "class": "align-x-between",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-space-between"
+                },
+                {
+                    "name": "Space around (only for horizontal containers)",
+                    "class": "align-x-around",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-space-around"
+                },
+                {
+                    "name": "Space evenly (only for horizontal containers)",
+                    "class": "align-x-evenly",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-space-even"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Align items Y",
+            "type": "ToggleButtonGroup",
+            "description": "Distributes space between and around content items along the Y axis.",
+            "options": [
+                {
+                    "name": "Top",
+                    "class": "align-y-top",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-top"
+                },
+                {
+                    "name": "Center",
+                    "class": "align-y-center",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-center"
+                },
+                {
+                    "name": "Bottom",
+                    "class": "align-y-bottom",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-bottom"
+                },
+                {
+                    "name": "Space between (only for vertical containers)",
+                    "class": "align-y-between",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-space-between"
+                },
+                {
+                    "name": "Space around (only for vertical containers)",
+                    "class": "align-y-around",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-space-around"
+                },
+                {
+                    "name": "Space evenly (only for vertical containers)",
+                    "class": "align-y-evenly",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-space-even"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Grow / shrink items",
+            "type": "ToggleButtonGroup",
+            "description": "Sets a responsive minimum width for its flex items.",
+            "options": [
+                {
+                    "name": "Fill container (only grow)",
+                    "class": "flex-items-grow",
+                    "icon": "Atlas_Core.Atlas_Styling.grow-shrink-auto-fill"
+                },
+                {
+                    "name": "Hug content (only shrink)",
+                    "class": "flex-items-shrink",
+                    "icon": "Atlas_Core.Atlas_Styling.grow-shrink-auto-fit"
+                },
+                {
+                    "name": "Auto (grow or shrink)",
+                    "class": "flex-items-auto",
+                    "icon": "Atlas_Core.Atlas.text-font"
+                },
+                {
+                    "name": "Fixed (neither shrink nor grow)",
+                    "class": "flex-items-fixed",
+                    "icon": "Atlas_Core.Atlas_Styling.grow-shrink-none-fixed"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Grow / shrink (self)",
+            "type": "Dropdown",
+            "property": "flex",
+            "description": "Defines whether it grows / shrinks relative to its parent based on available space. Use numbers to set a width relative to its siblings.",
+            "options": [
+                {
+                    "name": "Fill container (only grow)",
+                    "variable": "--flex-grow",
+                    "icon": "Atlas_Core.Atlas_Styling.grow-shrink-auto-fill"
+                },
+                {
+                    "name": "Hug content (only shrink)",
+                    "variable": "--flex-shrink",
+                    "icon": "Atlas_Core.Atlas_Styling.grow-shrink-auto-fit"
+                },
+                {
+                    "name": "Fixed (neither shrink nor grow)",
+                    "variable": "--none",
+                    "icon": "Atlas_Core.Atlas_Styling.grow-shrink-none-fixed"
+                },
+                {
+                    "name": "1 (auto)",
+                    "variable": "--flex-1"
+                },
+                {
+                    "name": "2",
+                    "variable": "--flex-2"
+                },
+                {
+                    "name": "3",
+                    "variable": "--flex-3"
+                },
+                {
+                    "name": "4",
+                    "variable": "--flex-4"
+                },
+                {
+                    "name": "5",
+                    "variable": "--flex-5"
+                },
+                {
+                    "name": "6",
+                    "variable": "--flex-6"
+                },
+                {
+                    "name": "7",
+                    "variable": "--flex-7"
+                },
+                {
+                    "name": "8",
+                    "variable": "--flex-8"
+                },
+                {
+                    "name": "9",
+                    "variable": "--flex-9"
+                },
+                {
+                    "name": "10",
+                    "variable": "--flex-10"
+                },
+                {
+                    "name": "11",
+                    "variable": "--flex-11"
+                },
+                {
+                    "name": "12",
+                    "variable": "--flex-12"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Default item size",
+            "type": "ToggleButtonGroup",
+            "description": "Sets a preferred responsive size (flex-basis and minimum width) for its flex items.",
+            "options": [
+                {
+                    "name": "Small",
+                    "class": "flex-width flex-items-small"
+                },
+                {
+                    "name": "Medium",
+                    "class": "flex-width flex-items-medium"
+                },
+                {
+                    "name": "Large",
+                    "class": "flex-width flex-items-large"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Preferred size (self)",
+            "type": "ToggleButtonGroup",
+            "description": "Sets a preferred responsive size (flex-basis and minimum width) for itself.",
+            "options": [
+                {
+                    "name": "Small",
+                    "class": "flex-width flex-small"
+                },
+                {
+                    "name": "Medium",
+                    "class": "flex-width flex-medium"
+                },
+                {
+                    "name": "Large",
+                    "class": "flex-width flex-large"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Disable row wrap",
+            "type": "Toggle",
+            "class": "flex-nowrap"
+        },
+        {
+            "category": "Appearance",
+            "name": "Card style",
+            "type": "Toggle",
+            "description": "Render container as card",
+            "class": "card"
+        },
+        {
+            "category": "Appearance",
             "name": "Background color",
             "type": "ColorPicker",
             "description": "Change the background color of the container.",
@@ -290,35 +643,221 @@
                     "oldNames": ["Danger"],
                     "preview": "--brand-danger",
                     "class": "background-danger"
-                },
-                {
-                    "name": "Brand Gradient",
-                    "preview": "--brand-gradient",
-                    "class": "background-brand-gradient"
                 }
             ]
         },
         {
+            "category": "Appearance",
             "name": "Shade",
-            "type": "ToggleButtonGroup",
-            "description": "Apply a shade to your background color",
+            "type": "ColorPicker",
             "options": [
                 {
-                    "name": "Light",
-                    "class": "background-light"
+                    "name": "50 (lightest)",
+                    "class": "shade-50",
+                    "preview": "--gray-50"
                 },
                 {
-                    "name": "Dark",
-                    "class": "background-dark"
+                    "name": "100",
+                    "class": "shade-100",
+                    "preview": "--gray-100"
+                },
+                {
+                    "name": "200",
+                    "class": "shade-200",
+                    "oldNames": ["Light"],
+                    "preview": "--gray-200"
+                },
+                {
+                    "name": "300",
+                    "class": "shade-300",
+                    "preview": "--gray-300"
+                },
+                {
+                    "name": "400",
+                    "class": "shade-400",
+                    "preview": "--gray-400"
+                },
+                {
+                    "name": "500 (medium)",
+                    "class": "shade-500",
+                    "preview": "--gray-500"
+                },
+                {
+                    "name": "600",
+                    "class": "shade-600",
+                    "oldNames": ["Dark"],
+                    "preview": "--gray-600"
+                },
+                {
+                    "name": "700",
+                    "class": "shade-700",
+                    "preview": "--gray-700"
+                },
+                {
+                    "name": "800",
+                    "class": "shade-800",
+                    "preview": "--gray-800"
+                },
+                {
+                    "name": "900 (darkest)",
+                    "class": "shade-900",
+                    "preview": "--gray-900"
                 }
             ]
         },
         {
+            "category": "Borders",
+            "name": "Borders",
+            "type": "ToggleButtonGroup",
+            "multiSelect": true,
+            "description": "Show a border on specific sides only",
+            "options": [
+                {
+                    "name": "None",
+                    "class": "div-border-toggle-none",
+                    "icon": "Atlas_Core.Atlas_Styling.none"
+                },
+                {
+                    "name": "All",
+                    "class": "div-border-toggle-all",
+                    "icon": "Atlas_Core.Atlas_Styling.borders-all"
+                },
+                {
+                    "name": "Top",
+                    "class": "div-border-toggle-top",
+                    "icon": "Atlas_Core.Atlas_Styling.borders-top"
+                },
+                {
+                    "name": "Right",
+                    "class": "div-border-toggle-right",
+                    "icon": "Atlas_Core.Atlas_Styling.borders-right"
+                },
+                {
+                    "name": "Left",
+                    "class": "div-border-toggle-left",
+                    "icon": "Atlas_Core.Atlas_Styling.borders-left"
+                },
+                {
+                    "name": "Bottom",
+                    "class": "div-border-toggle-bottom",
+                    "icon": "Atlas_Core.Atlas_Styling.borders-bottom"
+                }
+            ]
+        },
+        {
+            "category": "Borders",
+            "name": "Border style",
+            "property": "--div-border-style",
+            "type": "ToggleButtonGroup",
+            "options": [
+                {
+                    "name": "Solid",
+                    "variable": "--border-style-solid",
+                    "icon": "Atlas_Core.Atlas_Styling.border-style-solid"
+                },
+                {
+                    "name": "Dashed",
+                    "variable": "--border-style-dashed",
+                    "icon": "Atlas_Core.Atlas_Styling.border-style-dashed"
+                },
+                {
+                    "name": "Dotted",
+                    "variable": "--border-style-dotted",
+                    "icon": "Atlas_Core.Atlas_Styling.border-style-dotted"
+                }
+            ]
+        },
+        {
+            "category": "Borders",
+            "name": "Border width",
+            "type": "ToggleButtonGroup",
+            "property": "border-width",
+            "options": [
+                {
+                    "name": "Thin",
+                    "variable": "--border-width-thin",
+                    "icon": "Atlas_Core.Atlas_Styling.border-width-thin"
+                },
+                {
+                    "name": "Medium",
+                    "variable": "--border-width-medium",
+                    "icon": "Atlas_Core.Atlas_Styling.border-width-medium"
+                },
+                {
+                    "name": "Thick",
+                    "variable": "--border-width-thick",
+                    "icon": "Atlas_Core.Atlas_Styling.border-width-thick"
+                }
+            ]
+        },
+        {
+            "category": "Borders",
+            "name": "Border color",
+            "type": "ColorPicker",
+            "property": "border-color",
+            "options": [
+                {
+                    "name": "Default",
+                    "variable": "--border-color-default"
+                },
+                {
+                    "name": "Primary",
+                    "variable": "--brand-primary"
+                },
+                {
+                    "name": "Success",
+                    "variable": "--brand-success"
+                },
+                {
+                    "name": "Warning",
+                    "variable": "--brand-warning"
+                },
+                {
+                    "name": "Danger",
+                    "variable": "--brand-danger"
+                }
+            ]
+        },
+        {
+            "category": "Borders",
+            "name": "Border radius",
+            "type": "ToggleButtonGroup",
+            "description": "Set a border radius for rounded borders",
+            "property": "border-radius",
+            "options": [
+                {
+                    "name": "None",
+                    "variable": "--none",
+                    "icon": "Atlas_Core.Atlas_Styling.none"
+                },
+                {
+                    "name": "Small",
+                    "variable": "--border-radius-s",
+                    "icon": "Atlas_Core.Atlas_Styling.border-radius-small"
+                },
+                {
+                    "name": "Medium",
+                    "variable": "--border-radius-m",
+                    "icon": "Atlas_Core.Atlas_Styling.border-radius-medium"
+                },
+                {
+                    "name": "Large",
+                    "variable": "--border-radius-l",
+                    "icon": "Atlas_Core.Atlas_Styling.border-radius-large"
+                }
+            ]
+        },
+        {
+            "category": "Appearance",
             "name": "Shadow",
             "oldNames": ["Add shadow"],
             "type": "ToggleButtonGroup",
             "description": "Add a shadow to this element",
             "options": [
+                {
+                    "name": "None",
+                    "class": "shadow-none"
+                },
                 {
                     "name": "Small",
                     "class": "shadow-small"
@@ -332,10 +871,67 @@
                     "class": "shadow-large"
                 }
             ]
+        },
+        {
+            "name": "Overflow",
+            "type": "ToggleButtonGroup",
+            "options": [
+                {
+                    "name": "Visible",
+                    "class": "div-overflow-visible"
+                },
+                {
+                    "name": "Hidden",
+                    "class": "div-overflow-hidden"
+                },
+                {
+                    "name": "Auto",
+                    "class": "div-overflow-auto"
+                }
+            ]
+        },
+        {
+            "name": "Align content (deprecated)",
+            "type": "Dropdown",
+            "oldNames": ["Align content"],
+            "description": "Align content of this element left, right or center it. Align elements inside the container as a row or as a column.",
+            "options": [
+                {
+                    "name": "Left align as a row",
+                    "oldNames": ["Left align as row"],
+                    "class": "row-left"
+                },
+                {
+                    "name": "Center align as a row",
+                    "oldNames": ["Center align as row"],
+                    "class": "row-center"
+                },
+                {
+                    "name": "Right align as a row",
+                    "oldNames": ["Right align as row"],
+                    "class": "row-right"
+                },
+                {
+                    "name": "Left align as a column",
+                    "oldNames": ["Left align as column"],
+                    "class": "col-left"
+                },
+                {
+                    "name": "Center align as a column",
+                    "oldNames": ["Center align as column"],
+                    "class": "col-center"
+                },
+                {
+                    "name": "Right align as a column",
+                    "oldNames": ["Right align as column"],
+                    "class": "col-right"
+                }
+            ]
         }
     ],
     "Button": [
         {
+            "category": "Appearance",
             "name": "Size",
             "type": "ToggleButtonGroup",
             "description": "Size of the buttons",
@@ -353,6 +949,32 @@
             ]
         },
         {
+            "category": "Appearance",
+            "name": "Weight",
+            "oldNames": ["Font Weight"],
+            "type": "ToggleButtonGroup",
+            "description": "Emphasize the text with a heavier or lighter font weight",
+            "options": [
+                {
+                    "name": "Light",
+                    "class": "text-light"
+                },
+                {
+                    "name": "Normal",
+                    "class": "text-normal"
+                },
+                {
+                    "name": "Semibold",
+                    "class": "text-semibold"
+                },
+                {
+                    "name": "Bold",
+                    "class": "text-bold"
+                }
+            ]
+        },
+        {
+            "category": "Appearance",
             "name": "Align icon",
             "type": "ToggleButtonGroup",
             "description": "Place the icon to the right or on top of the button.",
@@ -370,12 +992,26 @@
             ]
         },
         {
+            "category": "Appearance",
+            "name": "Style",
+            "type": "ToggleButtonGroup",
+            "description": "Set button style",
+            "options": [
+                {
+                    "name": "Icon button",
+                    "class": "btn-style-icon"
+                }
+            ]
+        },
+        {
+            "category": "Appearance",
             "name": "Full width",
             "type": "Toggle",
             "description": "Extend the button to the full width of the container it is placed in.",
             "class": "btn-block"
         },
         {
+            "category": "Appearance",
             "name": "Border",
             "oldNames": ["Bordered"],
             "type": "Toggle",
@@ -433,8 +1069,1055 @@
             ]
         }
     ],
+    "LayoutGrid": [
+        {
+            "category": "Column style",
+            "name": "Card style",
+            "type": "ToggleButtonGroup",
+            "description": "Makes the columns appear as cards.",
+            "multiSelect": true,
+            "options": [
+                {
+                    "name": "Single",
+                    "class": "card-grid"
+                },
+                {
+                    "name": "Multi",
+                    "oldNames": ["Cards style"],
+                    "class": "cards"
+                }
+            ]
+        },
+        {
+            "category": "Column style",
+            "name": "Background color",
+            "oldNames": [
+                "Column background"
+            ],
+            "type": "ColorPicker",
+            "property": "--layoutgrid-column-bg",
+            "description": "Change the background color of the columns.",
+            "options": [
+                {
+                    "name": "Background Primary",
+                    "variable": "--bg-color"
+                },
+                {
+                    "name": "Background Secondary",
+                    "variable": "--bg-color-secondary"
+                },
+                {
+                    "name": "Brand Primary",
+                    "variable": "--brand-primary"
+                },
+                {
+                    "name": "Brand Secondary",
+                    "variable": "--brand-default"
+                },
+                {
+                    "name": "Brand Success",
+                    "variable": "--brand-success"
+                },
+                {
+                    "name": "Brand Warning",
+                    "variable": "--brand-warning"
+                },
+                {
+                    "name": "Brand Danger",
+                    "variable": "--brand-danger"
+                }
+            ]
+        },
+        {
+            "category": "Gap",
+            "name": "Column gap",
+            "property": "--layoutgrid-column-gap",
+            "type": "ToggleButtonGroup",
+            "description": "Sets a gap between the layout grid columns.",
+            "options": [
+                {
+                    "name": "None",
+                    "variable": "--spacing-none"
+                },
+                {
+                    "name": "Small",
+                    "variable": "--spacing-small"
+                },
+                {
+                    "name": "Medium",
+                    "variable": "--spacing-medium"
+                },
+                {
+                    "name": "Large",
+                    "variable": "--spacing-large"
+                }
+            ]
+        },
+        {
+            "category": "Gap",
+            "name": "Row gap",
+            "property": "--layoutgrid-row-gap",
+            "type": "ToggleButtonGroup",
+            "description": "Sets a gap between the layout grid rows.",
+            "options": [
+                {
+                    "name": "None",
+                    "variable": "--none"
+                },
+                {
+                    "name": "Small",
+                    "variable": "--spacing-small"
+                },
+                {
+                    "name": "Medium",
+                    "variable": "--spacing-medium"
+                },
+                {
+                    "name": "Large",
+                    "variable": "--spacing-large"
+                }
+            ]
+        }
+    ],
+    "LayoutGridRow": [
+        {
+            "category": "Appearance",
+            "name": "Spacing",
+            "type": "Spacing",
+            "description": "The spacing around a widget",
+            "margin": [
+                {
+                    "name": "None",
+                    "top": {
+                        "class": "spacing-outer-top-none"
+                    },
+                    "right": {
+                        "class": "spacing-outer-right-none"
+                    },
+                    "bottom": {
+                        "class": "spacing-outer-bottom-none"
+                    },
+                    "left": {
+                        "class": "spacing-outer-left-none"
+                    }
+                },
+                {
+                    "name": "S",
+                    "top": {
+                        "class": "spacing-outer-top"
+                    },
+                    "right": {
+                        "class": "spacing-outer-right"
+                    },
+                    "bottom": {
+                        "class": "spacing-outer-bottom"
+                    },
+                    "left": {
+                        "class": "spacing-outer-left"
+                    }
+                },
+                {
+                    "name": "M",
+                    "top": {
+                        "class": "spacing-outer-top-medium"
+                    },
+                    "right": {
+                        "class": "spacing-outer-right-medium"
+                    },
+                    "bottom": {
+                        "class": "spacing-outer-bottom-medium"
+                    },
+                    "left": {
+                        "class": "spacing-outer-left-medium"
+                    }
+                },
+                {
+                    "name": "L",
+                    "top": {
+                        "class": "spacing-outer-top-large"
+                    },
+                    "right": {
+                        "class": "spacing-outer-right-large"
+                    },
+                    "bottom": {
+                        "class": "spacing-outer-bottom-large"
+                    },
+                    "left": {
+                        "class": "spacing-outer-left-large"
+                    }
+                }
+            ],
+            "padding": [
+                {
+                    "name": "None",
+                    "top": {
+                        "class": "spacing-inner-top-none"
+                    },
+                    "right": {
+                        "class": "spacing-inner-right-none"
+                    },
+                    "bottom": {
+                        "class": "spacing-inner-bottom-none"
+                    },
+                    "left": {
+                        "class": "spacing-inner-left-none"
+                    }
+                },
+                {
+                    "name": "S",
+                    "top": {
+                        "class": "spacing-inner-top"
+                    },
+                    "right": {
+                        "class": "spacing-inner-right"
+                    },
+                    "bottom": {
+                        "class": "spacing-inner-bottom"
+                    },
+                    "left": {
+                        "class": "spacing-inner-left"
+                    }
+                },
+                {
+                    "name": "M",
+                    "top": {
+                        "class": "spacing-inner-top-medium"
+                    },
+                    "right": {
+                        "class": "spacing-inner-right-medium"
+                    },
+                    "bottom": {
+                        "class": "spacing-inner-bottom-medium"
+                    },
+                    "left": {
+                        "class": "spacing-inner-left-medium"
+                    }
+                },
+                {
+                    "name": "L",
+                    "top": {
+                        "class": "spacing-inner-top-large"
+                    },
+                    "right": {
+                        "class": "spacing-inner-right-large"
+                    },
+                    "bottom": {
+                        "class": "spacing-inner-bottom-large"
+                    },
+                    "left": {
+                        "class": "spacing-inner-left-large"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Hide on",
+            "description": "Hide on device type",
+            "multiSelect": true,
+            "type": "ToggleButtonGroup",
+            "options": [
+                {
+                    "name": "Phone",
+                    "icon": "Atlas_Core.Atlas.mobile-phone",
+                    "class": "hide-phone"
+                },
+                {
+                    "name": "Tablet",
+                    "icon": "Atlas_Core.Atlas.tablet",
+                    "class": "hide-tablet"
+                },
+                {
+                    "name": "Desktop",
+                    "icon": "Atlas_Core.Atlas.desktop",
+                    "class": "hide-desktop"
+                }
+            ]
+        },
+        {
+            "category": "Column style",
+            "name": "Cards style",
+            "type": "Toggle",
+            "description": "Makes the columns appear as cards.",
+            "class": "cards"
+        },
+        {
+            "category": "Column style",
+            "name": "Background color",
+            "type": "ColorPicker",
+            "property": "--layoutgrid-column-bg",
+            "description": "Change the background color of the columns.",
+            "options": [
+                {
+                    "name": "Background Primary",
+                    "variable": "--bg-color"
+                },
+                {
+                    "name": "Background Secondary",
+                    "variable": "--bg-color-secondary"
+                },
+                {
+                    "name": "Brand Primary",
+                    "variable": "--brand-primary"
+                },
+                {
+                    "name": "Brand Secondary",
+                    "variable": "--brand-default"
+                },
+                {
+                    "name": "Brand Success",
+                    "variable": "--brand-success"
+                },
+                {
+                    "name": "Brand Warning",
+                    "variable": "--brand-warning"
+                },
+                {
+                    "name": "Brand Danger",
+                    "variable": "--brand-danger"
+                }
+            ]
+        },
+        {
+            "category": "Gap",
+            "name": "Column gap",
+            "property": "--layoutgrid-column-gap",
+            "type": "ToggleButtonGroup",
+            "description": "Sets a gap between the layout grid columns.",
+            "options": [
+                {
+                    "name": "None",
+                    "variable": "--spacing-none"
+                },
+                {
+                    "name": "Small",
+                    "variable": "--spacing-small"
+                },
+                {
+                    "name": "Medium",
+                    "variable": "--spacing-medium"
+                },
+                {
+                    "name": "Large",
+                    "variable": "--spacing-large"
+                }
+            ]
+        }
+    ],
+    "LayoutGridColumn": [
+        {
+            "category": "Appearance",
+            "name": "Spacing",
+            "type": "Spacing",
+            "description": "The spacing around a widget",
+            "margin": [
+                {
+                    "name": "None",
+                    "top": {
+                        "class": "spacing-outer-top-none"
+                    },
+                    "right": {
+                        "class": "spacing-outer-right-none"
+                    },
+                    "bottom": {
+                        "class": "spacing-outer-bottom-none"
+                    },
+                    "left": {
+                        "class": "spacing-outer-left-none"
+                    }
+                },
+                {
+                    "name": "S",
+                    "top": {
+                        "class": "spacing-outer-top"
+                    },
+                    "right": {
+                        "class": "spacing-outer-right"
+                    },
+                    "bottom": {
+                        "class": "spacing-outer-bottom"
+                    },
+                    "left": {
+                        "class": "spacing-outer-left"
+                    }
+                },
+                {
+                    "name": "M",
+                    "top": {
+                        "class": "spacing-outer-top-medium"
+                    },
+                    "right": {
+                        "class": "spacing-outer-right-medium"
+                    },
+                    "bottom": {
+                        "class": "spacing-outer-bottom-medium"
+                    },
+                    "left": {
+                        "class": "spacing-outer-left-medium"
+                    }
+                },
+                {
+                    "name": "L",
+                    "top": {
+                        "class": "spacing-outer-top-large"
+                    },
+                    "right": {
+                        "class": "spacing-outer-right-large"
+                    },
+                    "bottom": {
+                        "class": "spacing-outer-bottom-large"
+                    },
+                    "left": {
+                        "class": "spacing-outer-left-large"
+                    }
+                }
+            ],
+            "padding": [
+                {
+                    "name": "None",
+                    "top": {
+                        "class": "spacing-inner-top-none"
+                    },
+                    "right": {
+                        "class": "spacing-inner-right-none"
+                    },
+                    "bottom": {
+                        "class": "spacing-inner-bottom-none"
+                    },
+                    "left": {
+                        "class": "spacing-inner-left-none"
+                    }
+                },
+                {
+                    "name": "S",
+                    "top": {
+                        "class": "spacing-inner-top"
+                    },
+                    "right": {
+                        "class": "spacing-inner-right"
+                    },
+                    "bottom": {
+                        "class": "spacing-inner-bottom"
+                    },
+                    "left": {
+                        "class": "spacing-inner-left"
+                    }
+                },
+                {
+                    "name": "M",
+                    "top": {
+                        "class": "spacing-inner-top-medium"
+                    },
+                    "right": {
+                        "class": "spacing-inner-right-medium"
+                    },
+                    "bottom": {
+                        "class": "spacing-inner-bottom-medium"
+                    },
+                    "left": {
+                        "class": "spacing-inner-left-medium"
+                    }
+                },
+                {
+                    "name": "L",
+                    "top": {
+                        "class": "spacing-inner-top-large"
+                    },
+                    "right": {
+                        "class": "spacing-inner-right-large"
+                    },
+                    "bottom": {
+                        "class": "spacing-inner-bottom-large"
+                    },
+                    "left": {
+                        "class": "spacing-inner-left-large"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Hide on",
+            "description": "Hide on device type",
+            "multiSelect": true,
+            "type": "ToggleButtonGroup",
+            "options": [
+                {
+                    "name": "Phone",
+                    "icon": "Atlas_Core.Atlas.mobile-phone",
+                    "class": "hide-phone"
+                },
+                {
+                    "name": "Tablet",
+                    "icon": "Atlas_Core.Atlas.tablet",
+                    "class": "hide-tablet"
+                },
+                {
+                    "name": "Desktop",
+                    "icon": "Atlas_Core.Atlas.desktop",
+                    "class": "hide-desktop"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Flex container",
+            "type": "ToggleButtonGroup",
+            "description": "Sets the display type of the container to flex to align and distributes child elements within a flexible container.",
+            "options": [
+                {
+                    "name": "Horizontal (row)",
+                    "class": "flex-row",
+                    "icon": "Atlas_Core.Atlas_Styling.direction-horizontal"
+                },
+                {
+                    "name": "Vertical (column)",
+                    "class": "flex-column",
+                    "icon": "Atlas_Core.Atlas_Styling.direction-vertical"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Item gap",
+            "property": "--flex-gap",
+            "type": "ToggleButtonGroup",
+            "description": "Adjust the space between items inside the flex container.",
+            "options": [
+                {
+                    "name": "None",
+                    "variable": "--none"
+                },
+                {
+                    "name": "Small",
+                    "variable": "--spacing-small"
+                },
+                {
+                    "name": "Medium",
+                    "variable": "--spacing-medium"
+                },
+                {
+                    "name": "Large",
+                    "variable": "--spacing-large"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Align items X",
+            "type": "ToggleButtonGroup",
+            "description": "Distributes space between and around content items along the X axis.",
+            "options": [
+                {
+                    "name": "Left",
+                    "class": "align-x-left",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-left"
+                },
+                {
+                    "name": "Center",
+                    "class": "align-x-center",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-center"
+                },
+                {
+                    "name": "Right",
+                    "class": "align-x-right",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-right"
+                },
+                {
+                    "name": "Space between (only for horizontal containers)",
+                    "class": "align-x-between",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-space-between"
+                },
+                {
+                    "name": "Space around (only for horizontal containers)",
+                    "class": "align-x-around",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-space-around"
+                },
+                {
+                    "name": "Space evenly (only for horizontal containers)",
+                    "class": "align-x-evenly",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-horizontal-space-even"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Align items Y",
+            "type": "ToggleButtonGroup",
+            "description": "Distributes space between and around content items along the Y axis.",
+            "options": [
+                {
+                    "name": "Top",
+                    "class": "align-y-top",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-top"
+                },
+                {
+                    "name": "Center",
+                    "class": "align-y-center",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-center"
+                },
+                {
+                    "name": "Bottom",
+                    "class": "align-y-bottom",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-bottom"
+                },
+                {
+                    "name": "Space between (only for vertical containers)",
+                    "class": "align-y-between",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-space-between"
+                },
+                {
+                    "name": "Space around (only for vertical containers)",
+                    "class": "align-y-around",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-space-around"
+                },
+                {
+                    "name": "Space evenly (only for vertical containers)",
+                    "class": "align-y-evenly",
+                    "icon": "Atlas_Core.Atlas_Styling.aligncontent-vertical-space-even"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Grow / shrink",
+            "type": "ToggleButtonGroup",
+            "description": "Sets a responsive minimum width for its flex items.",
+            "options": [
+                {
+                    "name": "Fill container (only grow)",
+                    "class": "flex-items-grow",
+                    "icon": "Atlas_Core.Atlas_Styling.grow-shrink-auto-fill"
+                },
+                {
+                    "name": "Hug content (only shrink)",
+                    "class": "flex-items-shrink",
+                    "icon": "Atlas_Core.Atlas_Styling.grow-shrink-auto-fit"
+                },
+                {
+                    "name": "Auto (grow or shrink)",
+                    "class": "flex-items-auto",
+                    "icon": "Atlas_Core.Atlas.text-font"
+                },
+                {
+                    "name": "Fixed (neither shrink nor grow)",
+                    "class": "flex-items-fixed",
+                    "icon": "Atlas_Core.Atlas_Styling.grow-shrink-none-fixed"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Default item size",
+            "type": "ToggleButtonGroup",
+            "description": "Sets a preferred responsive size (flex-basis and minimum width) for its flex items.",
+            "options": [
+                {
+                    "name": "Small",
+                    "class": "flex-width flex-items-small"
+                },
+                {
+                    "name": "Medium",
+                    "class": "flex-width flex-items-medium"
+                },
+                {
+                    "name": "Large",
+                    "class": "flex-width flex-items-large"
+                }
+            ]
+        },
+        {
+            "category": "Flex",
+            "name": "Disable row wrap",
+            "type": "Toggle",
+            "class": "flex-nowrap"
+        },
+        {
+            "category": "Appearance",
+            "name": "Card style",
+            "type": "Toggle",
+            "description": "Render container as card",
+            "class": "card"
+        },
+        {
+            "category": "Appearance",
+            "name": "Background color",
+            "type": "ColorPicker",
+            "property": "--layoutgrid-column-bg",
+            "description": "Change the background color of the columns.",
+            "options": [
+                {
+                    "name": "Background Primary",
+                    "variable": "--bg-color"
+                },
+                {
+                    "name": "Background Secondary",
+                    "variable": "--bg-color-secondary"
+                },
+                {
+                    "name": "Brand Primary",
+                    "variable": "--brand-primary"
+                },
+                {
+                    "name": "Brand Secondary",
+                    "variable": "--brand-default"
+                },
+                {
+                    "name": "Brand Success",
+                    "variable": "--brand-success"
+                },
+                {
+                    "name": "Brand Warning",
+                    "variable": "--brand-warning"
+                },
+                {
+                    "name": "Brand Danger",
+                    "variable": "--brand-danger"
+                }
+            ]
+        },
+        {
+            "category": "Borders",
+            "name": "Borders",
+            "type": "ToggleButtonGroup",
+            "multiSelect": true,
+            "description": "Show a border on specific sides only",
+            "options": [
+                {
+                    "name": "None",
+                    "class": "div-border-toggle-none",
+                    "icon": "Atlas_Core.Atlas_Styling.none"
+                },
+                {
+                    "name": "All",
+                    "class": "div-border-toggle-all",
+                    "icon": "Atlas_Core.Atlas_Styling.borders-all"
+                },
+                {
+                    "name": "Top",
+                    "class": "div-border-toggle-top",
+                    "icon": "Atlas_Core.Atlas_Styling.borders-top"
+                },
+                {
+                    "name": "Right",
+                    "class": "div-border-toggle-right",
+                    "icon": "Atlas_Core.Atlas_Styling.borders-right"
+                },
+                {
+                    "name": "Left",
+                    "class": "div-border-toggle-left",
+                    "icon": "Atlas_Core.Atlas_Styling.borders-left"
+                },
+                {
+                    "name": "Bottom",
+                    "class": "div-border-toggle-bottom",
+                    "icon": "Atlas_Core.Atlas_Styling.borders-bottom"
+                }
+            ]
+        },
+        {
+            "category": "Borders",
+            "name": "Border style",
+            "property": "--div-border-style",
+            "type": "ToggleButtonGroup",
+            "options": [
+                {
+                    "name": "Solid",
+                    "variable": "--border-style-solid",
+                    "icon": "Atlas_Core.Atlas_Styling.border-style-solid"
+                },
+                {
+                    "name": "Dashed",
+                    "variable": "--border-style-dashed",
+                    "icon": "Atlas_Core.Atlas_Styling.border-style-dashed"
+                },
+                {
+                    "name": "Dotted",
+                    "variable": "--border-style-dotted",
+                    "icon": "Atlas_Core.Atlas_Styling.border-style-dotted"
+                }
+            ]
+        },
+        {
+            "category": "Borders",
+            "name": "Border width",
+            "type": "ToggleButtonGroup",
+            "property": "border-width",
+            "options": [
+                {
+                    "name": "Thin",
+                    "variable": "--border-width-thin",
+                    "icon": "Atlas_Core.Atlas_Styling.border-width-thin"
+                },
+                {
+                    "name": "Medium",
+                    "variable": "--border-width-medium",
+                    "icon": "Atlas_Core.Atlas_Styling.border-width-medium"
+                },
+                {
+                    "name": "Thick",
+                    "variable": "--border-width-thick",
+                    "icon": "Atlas_Core.Atlas_Styling.border-width-thick"
+                }
+            ]
+        },
+        {
+            "category": "Borders",
+            "name": "Border color",
+            "type": "ColorPicker",
+            "property": "border-color",
+            "options": [
+                {
+                    "name": "Default",
+                    "variable": "--border-color-default"
+                },
+                {
+                    "name": "Primary",
+                    "variable": "--brand-primary"
+                },
+                {
+                    "name": "Success",
+                    "variable": "--brand-success"
+                },
+                {
+                    "name": "Warning",
+                    "variable": "--brand-warning"
+                },
+                {
+                    "name": "Danger",
+                    "variable": "--brand-danger"
+                }
+            ]
+        },
+        {
+            "category": "Borders",
+            "name": "Border radius",
+            "type": "ToggleButtonGroup",
+            "description": "Set a border radius for rounded borders",
+            "property": "border-radius",
+            "options": [
+                {
+                    "name": "None",
+                    "variable": "--none",
+                    "icon": "Atlas_Core.Atlas_Styling.none"
+                },
+                {
+                    "name": "Small",
+                    "variable": "--border-radius-s",
+                    "icon": "Atlas_Core.Atlas_Styling.border-radius-small"
+                },
+                {
+                    "name": "Medium",
+                    "variable": "--border-radius-m",
+                    "icon": "Atlas_Core.Atlas_Styling.border-radius-medium"
+                },
+                {
+                    "name": "Large",
+                    "variable": "--border-radius-l",
+                    "icon": "Atlas_Core.Atlas_Styling.border-radius-large"
+                }
+            ]
+        },
+        {
+            "category": "Appearance",
+            "name": "Shadow",
+            "type": "ToggleButtonGroup",
+            "description": "Add a shadow to this element",
+            "options": [
+                {
+                    "name": "None",
+                    "class": "shadow-none"
+                },
+                {
+                    "name": "Small",
+                    "class": "shadow-small"
+                },
+                {
+                    "name": "Medium",
+                    "class": "shadow-medium"
+                },
+                {
+                    "name": "Large",
+                    "class": "shadow-large"
+                }
+            ]
+        },
+        {
+            "name": "Overflow",
+            "type": "ToggleButtonGroup",
+            "options": [
+                {
+                    "name": "Visible",
+                    "class": "div-overflow-visible"
+                },
+                {
+                    "name": "Hidden",
+                    "class": "div-overflow-hidden"
+                },
+                {
+                    "name": "Auto",
+                    "class": "div-overflow-auto"
+                }
+            ]
+        }
+    ],
+    "DataView": [
+        {
+            "category": "Appearance",
+            "name": "Background color",
+            "type": "ColorPicker",
+            "description": "Change the background color of the main container.",
+            "options": [
+                {
+                    "name": "Background Primary",
+                    "oldNames": ["Background Default"],
+                    "preview": "--bg-color",
+                    "class": "background-main"
+                },
+                {
+                    "name": "Background Secondary",
+                    "oldNames": ["Background Dashboard"],
+                    "preview": "--bg-color-secondary",
+                    "class": "background-secondary"
+                },
+                {
+                    "name": "Brand Primary",
+                    "oldNames": ["Primary"],
+                    "preview": "--brand-primary",
+                    "class": "background-primary"
+                },
+                {
+                    "name": "Brand Secondary",
+                    "oldNames": ["Default", "Brand Default"],
+                    "class": "background-default",
+                    "preview": "--brand-default"
+                },
+                {
+                    "name": "Brand Success",
+                    "oldNames": ["Success"],
+                    "preview": "--brand-success",
+                    "class": "background-success"
+                },
+                {
+                    "name": "Brand Warning",
+                    "oldNames": ["Warning"],
+                    "preview": "--brand-warning",
+                    "class": "background-warning"
+                },
+                {
+                    "name": "Brand Danger",
+                    "oldNames": ["Danger"],
+                    "preview": "--brand-danger",
+                    "class": "background-danger"
+                }
+            ]
+        },
+        {
+            "category": "Appearance",
+            "name": "Shade",
+            "type": "ColorPicker",
+            "options": [
+                {
+                    "name": "50 (lightest)",
+                    "class": "shade-50",
+                    "preview": "--gray-50"
+                },
+                {
+                    "name": "100",
+                    "class": "shade-100",
+                    "preview": "--gray-100"
+                },
+                {
+                    "name": "200",
+                    "class": "shade-200",
+                    "oldNames": ["Light"],
+                    "preview": "--gray-200"
+                },
+                {
+                    "name": "300",
+                    "class": "shade-300",
+                    "preview": "--gray-300"
+                },
+                {
+                    "name": "400",
+                    "class": "shade-400",
+                    "preview": "--gray-400"
+                },
+                {
+                    "name": "500 (medium)",
+                    "class": "shade-500",
+                    "preview": "--gray-500"
+                },
+                {
+                    "name": "600",
+                    "class": "shade-600",
+                    "oldNames": ["Dark"],
+                    "preview": "--gray-600"
+                },
+                {
+                    "name": "700",
+                    "class": "shade-700",
+                    "preview": "--gray-700"
+                },
+                {
+                    "name": "800",
+                    "class": "shade-800",
+                    "preview": "--gray-800"
+                },
+                {
+                    "name": "900 (darkest)",
+                    "class": "shade-900",
+                    "preview": "--gray-900"
+                }
+            ]
+        },
+        {
+            "category": "Appearance",
+            "name": "Background footer",
+            "type": "ColorPicker",
+            "oldNames": ["Background color footer"],
+            "property": "--dataview-controls-bg",
+            "description": "Change the background color of the footer.",
+            "options": [
+                {
+                    "name": "Background Primary",
+                    "oldNames": ["Background Default"],
+                    "variable": "--bg-color"
+                },
+                {
+                    "name": "Background Secondary",
+                    "oldNames": ["Background Dashboard"],
+                    "variable": "--bg-color-secondary"
+                },
+                {
+                    "name": "Brand Primary",
+                    "oldNames": ["Primary"],
+                    "variable": "--brand-primary"
+                },
+                {
+                    "name": "Brand Secondary",
+                    "oldNames": ["Default", "Brand Default"],
+                    "variable": "--background-default"
+                },
+                {
+                    "name": "Brand Success",
+                    "oldNames": ["Success"],
+                    "variable": "--brand-success"
+                },
+                {
+                    "name": "Brand Warning",
+                    "oldNames": ["Warning"],
+                    "variable": "--brand-warning"
+                },
+                {
+                    "name": "Brand Danger",
+                    "oldNames": ["Danger"],
+                    "variable": "--bg-danger"
+                }
+            ]
+        }
+    ],
     "DataGrid": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ToggleButtonGroup",
             "description": "Choose one of the following styles to change the appearance of the data grid.",
@@ -454,12 +2137,14 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Hover style",
             "type": "Toggle",
             "description": "Enable data grid hover to make the rows hoverable.",
             "class": "datagrid-hover"
         },
         {
+            "category": "Appearance",
             "name": "Row size",
             "type": "ToggleButtonGroup",
             "description": "Increase or decrease the row spacing of the data grid row.",
@@ -479,6 +2164,7 @@
     ],
     "TemplateGrid": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ToggleButtonGroup",
             "description": "Choose one of the following styles to change the appearance of the template grid.",
@@ -502,6 +2188,7 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Hover style",
             "type": "Toggle",
             "description": "Enable template grid hover to make the rows hoverable.",
@@ -510,6 +2197,7 @@
     ],
     "GroupBox": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ColorPicker",
             "description": "Choose one of the following styles to change the appearance of the groupbox.",
@@ -552,6 +2240,7 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Callout style",
             "type": "Toggle",
             "description": "Enable the groupbox callout functionality to highlight the importance of the groupbox.",
@@ -560,6 +2249,7 @@
     ],
     "StaticImageViewer": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ToggleButtonGroup",
             "description": "Choose the style of your image.",
@@ -579,12 +2269,14 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Center",
             "type": "Toggle",
             "description": "Align the image in the center of an element.",
             "class": "img-center"
         },
         {
+            "category": "Appearance",
             "name": "Fit",
             "type": "Dropdown",
             "description": "Choose the image fit.",
@@ -610,6 +2302,7 @@
     ],
     "DynamicImageViewer": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ToggleButtonGroup",
             "description": "Choose the style of your image.",
@@ -629,12 +2322,14 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Center",
             "type": "Toggle",
             "description": "Align the image in the center of an element.",
             "class": "img-center"
         },
         {
+            "category": "Appearance",
             "name": "Fit",
             "type": "Dropdown",
             "description": "Choose the image fit.",
@@ -660,6 +2355,7 @@
     ],
     "Label": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ColorPicker",
             "description": "Change the appearance of a label.",
@@ -699,6 +2395,7 @@
     ],
     "TabContainer": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ToggleButtonGroup",
             "description": "Change the appearance of the tab container",
@@ -722,6 +2419,7 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Tab position",
             "oldNames": ["Tab Position"],
             "type": "ToggleButtonGroup",
@@ -745,6 +2443,7 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Justify",
             "type": "Toggle",
             "description": "Justify the tabs to 100%",
@@ -753,6 +2452,7 @@
     ],
     "DynamicText": [
         {
+            "category": "Typography",
             "name": "Size",
             "type": "ToggleButtonGroup",
             "description": "Make the text smaller or larger.",
@@ -770,6 +2470,7 @@
             ]
         },
         {
+            "category": "Typography",
             "name": "Weight",
             "oldNames": ["Font Weight"],
             "type": "ToggleButtonGroup",
@@ -794,6 +2495,7 @@
             ]
         },
         {
+            "category": "Typography",
             "name": "Color",
             "type": "ColorPicker",
             "description": "Change the color of text.",
@@ -815,9 +2517,9 @@
                     "preview": "--brand-primary"
                 },
                 {
-                    "name": "Brand Secondary",
-                    "oldNames": ["Default", "Brand Default"],
-                    "class": "text-secondary",
+                    "name": "Default",
+                    "oldNames": ["Default", "Brand Default", "Brand Secondary"],
+                    "class": "text-default",
                     "preview": "--font-color-default"
                 },
                 {
@@ -839,13 +2541,68 @@
                     "preview": "--brand-danger"
                 },
                 {
-                    "name": "White",
+                    "name": "Contrast",
                     "class": "text-white",
-                    "preview": "white"
+                    "preview": "--font-color-contrast",
+                    "oldNames": ["White"]
                 }
             ]
         },
         {
+            "category": "Typography",
+            "name": "Color shade",
+            "type": "ColorPicker",
+            "description": "Set the shade of the brand color.",
+            "options": [
+                {
+                    "name": "100",
+                    "class": "shade-100",
+                    "preview": "--gray-100"
+                },
+                {
+                    "name": "200",
+                    "class": "shade-200",
+                    "preview": "--gray-200"
+                },
+                {
+                    "name": "300",
+                    "class": "shade-300",
+                    "preview": "--gray-300"
+                },
+                {
+                    "name": "400",
+                    "class": "shade-400",
+                    "preview": "--gray-400"
+                },
+                {
+                    "name": "500",
+                    "class": "shade-500",
+                    "preview": "--gray-500"
+                },
+                {
+                    "name": "600",
+                    "class": "shade-600",
+                    "preview": "--gray-600"
+                },
+                {
+                    "name": "700",
+                    "class": "shade-700",
+                    "preview": "--gray-700"
+                },
+                {
+                    "name": "800",
+                    "class": "shade-800",
+                    "preview": "--gray-800"
+                },
+                {
+                    "name": "900",
+                    "class": "shade-900",
+                    "preview": "--gray-900"
+                }
+            ]
+        },
+        {
+            "category": "Typography",
             "name": "Alignment",
             "type": "ToggleButtonGroup",
             "description": "Align the text.",
@@ -868,6 +2625,7 @@
             ]
         },
         {
+            "category": "Typography",
             "name": "Letter case",
             "oldNames": ["Transform"],
             "type": "ToggleButtonGroup",
@@ -890,6 +2648,7 @@
             ]
         },
         {
+            "category": "Typography",
             "name": "Wrap options",
             "type": "ToggleButtonGroup",
             "description": "Break long words and sentences into multiple lines.",
@@ -908,6 +2667,7 @@
     ],
     "Table": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ToggleButtonGroup",
             "description": "Change the appearance of cells in the table.",
@@ -923,6 +2683,7 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Compact",
             "type": "Toggle",
             "description": "Change the spacing between cells to be compact.",
@@ -931,6 +2692,7 @@
     ],
     "com.mendix.widget.custom.badge.Badge": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ColorPicker",
             "description": "The brand style affecting this element's appearance.",
@@ -965,12 +2727,14 @@
     ],
     "com.mendix.widget.custom.progressbar.ProgressBar": [
         {
+            "category": "Appearance",
             "name": "Striped bar",
             "type": "Toggle",
             "description": "Striped progress bar",
             "class": "progress-striped"
         },
         {
+            "category": "Appearance",
             "name": "Bar color",
             "type": "ColorPicker",
             "description": "Color of the progress bar",
@@ -998,6 +2762,7 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Size",
             "type": "ToggleButtonGroup",
             "description": "Size of the progress bar",
@@ -1019,6 +2784,7 @@
     ],
     "com.mendix.widget.custom.badgebutton.BadgeButton": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ColorPicker",
             "description": "The brand style affecting this element's appearance.",
@@ -1051,6 +2817,7 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Size",
             "type": "ToggleButtonGroup",
             "description": "Size of the buttons",
@@ -1068,12 +2835,14 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Full width",
             "type": "Toggle",
             "description": "Extend the button to the full width of the container it is placed in.",
             "class": "btn-block"
         },
         {
+            "category": "Appearance",
             "name": "Border",
             "oldNames": ["Bordered"],
             "type": "Toggle",
@@ -1083,6 +2852,7 @@
     ],
     "com.mendix.widget.custom.progresscircle.ProgressCircle": [
         {
+            "category": "Appearance",
             "name": "Bar color",
             "type": "ColorPicker",
             "description": "Color of the progress bar",
@@ -1110,6 +2880,7 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Size",
             "type": "ToggleButtonGroup",
             "description": "Thickness of the progress circle",
@@ -1131,6 +2902,7 @@
     ],
     "com.mendix.widget.custom.switch.Switch": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ColorPicker",
             "description": "The brand style affecting this element's appearance.",
@@ -1163,6 +2935,7 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Device style",
             "type": "ToggleButtonGroup",
             "description": "The general appearance of the switch. When no option selected iOS styles are applied",
@@ -1204,6 +2977,7 @@
     ],
     "com.mendix.widget.custom.starrating.StarRating": [
         {
+            "category": "Appearance",
             "name": "Size",
             "type": "ToggleButtonGroup",
             "description": "Change size of the rating icon/image. Default is medium.",
@@ -1223,6 +2997,7 @@
     ],
     "com.mendix.widget.web.accordion.Accordion": [
         {
+            "category": "Appearance",
             "name": "Borders",
             "type": "ToggleButtonGroup",
             "description": "Change the border appearance. By default, only horizontal borders between groups are applied.",
@@ -1242,12 +3017,14 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Striped",
             "type": "Toggle",
             "description": "Add alternating background colors to groups in the accordion.",
             "class": "widget-accordion-striped"
         },
         {
+            "category": "Appearance",
             "name": "Compact",
             "type": "Toggle",
             "description": "Make groups in the accordion more compact.",
@@ -1256,6 +3033,7 @@
     ],
     "com.mendix.widget.web.image.Image": [
         {
+            "category": "Appearance",
             "name": "Align content",
             "type": "Dropdown",
             "description": "Align content of this element left, right or center it. Align elements inside the container as a row or as a column.",
@@ -1287,6 +3065,7 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Image style",
             "type": "ToggleButtonGroup",
             "description": "Change the image style.",
@@ -1306,12 +3085,14 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Center image",
             "type": "Toggle",
             "description": "Center the image.",
             "class": "img-center"
         },
         {
+            "category": "Appearance",
             "name": "Image fit",
             "type": "Dropdown",
             "description": "Change the fit of the image.",
@@ -1339,6 +3120,7 @@
             ]
         },
         {
+            "category": "Appearance",
             "name": "Opacity",
             "type": "ToggleButtonGroup",
             "description": "Change the opacity of the image.",
@@ -1356,10 +3138,40 @@
                     "class": "img-opacity-high"
                 }
             ]
+        },
+        {
+            "category": "Icon",
+            "name": "Icon color",
+            "type": "ColorPicker",
+            "property": "color",
+            "description": "Sets the color of icons.",
+            "options": [
+                {
+                    "name": "Brand Primary",
+                    "variable": "--brand-primary"
+                },
+                {
+                    "name": "Brand Success",
+                    "variable": "--brand-success"
+                },
+                {
+                    "name": "Brand Warning",
+                    "variable": "--brand-warning"
+                },
+                {
+                    "name": "Brand Danger",
+                    "variable": "--brand-danger"
+                },
+                {
+                    "name": "Link color",
+                    "variable": "--link-color"
+                }
+            ]
         }
     ],
     "com.mendix.widget.custom.slider.Slider": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ColorPicker",
             "description": "The brand style affecting this element's appearance.",
@@ -1397,6 +3209,7 @@
     ],
     "com.mendix.widget.custom.RangeSlider.RangeSlider": [
         {
+            "category": "Appearance",
             "name": "Style",
             "type": "ColorPicker",
             "description": "The brand style affecting this element's appearance.",
@@ -1420,6 +3233,52 @@
                     "name": "Brand Danger",
                     "class": "widget-range-slider-danger",
                     "preview": "--brand-danger"
+                }
+            ]
+        }
+    ],
+    "com.mendix.widget.web.combobox.Combobox": [
+        {
+            "name": "Hide background",
+            "type": "Toggle",
+            "class": "hide-bg"
+        },
+        {
+            "name": "Color",
+            "type": "ColorPicker",
+            "property": "--cb-text-color",
+            "options": [
+                {
+                    "name": "Header color",
+                    "variable": "--font-color-header"
+                },
+                {
+                    "name": "Detail color",
+                    "variable": "--font-color-detail"
+                },
+                {
+                    "name": "Brand Primary",
+                    "variable": "--brand-primary"
+                },
+                {
+                    "name": "Default",
+                    "variable": "--font-color-default"
+                },
+                {
+                    "name": "Brand Success",
+                    "variable": "--brand-success"
+                },
+                {
+                    "name": "Brand Warning",
+                    "variable": "--brand-warning"
+                },
+                {
+                    "name": "Brand Danger",
+                    "variable": "--brand-danger"
+                },
+                {
+                    "name": "Contrast",
+                    "variable": "--font-color-contrast"
                 }
             ]
         }

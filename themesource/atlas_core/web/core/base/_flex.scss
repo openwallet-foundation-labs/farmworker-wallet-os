@@ -10,55 +10,155 @@
    Flex classes
 ========================================================================== */
 @mixin flex() {
+    :root {
+        --flex-shrink: 0 1 auto;
+        --flex-auto: 1;
+        --flex-grow: 1 0 auto;
+        @for $i from 1 through 12 {
+            --flex-#{$i}: #{$i};
+        }
+        --flex-gap: var(--gutter-size);
+    }
+
     $important-flex-value: if($important-flex, " !important", "");
 
     // Flex layout
     .flexcontainer {
-        display: flex;
-        overflow: hidden;
-        flex: 1;
-        flex-direction: row;
-
-        .flexitem {
-            margin-right: $gutter-size;
-
-            &:last-child {
-                margin-right: 0;
-            }
-        }
-
-        .flexitem-main {
-            overflow: hidden;
-            flex: 1;
-        }
+        display: flex #{$important-flex-value};
+        gap: var(--flex-gap) #{$important-flex-value};
     }
 
     // These classes define the order of the children
     .flex-row {
-        flex-direction: row #{$important-flex-value};
+        @extend .flexcontainer;
+        @extend .row-alignments;
+        flex-flow: row #{$important-flex-value};
+        flex-wrap: wrap;
     }
 
     .flex-column {
+        @extend .flexcontainer;
+        @extend .column-alignments;
         flex-direction: column #{$important-flex-value};
     }
 
     .flex-row-reverse {
+        @extend .flexcontainer;
+        @extend .row-alignments;
         flex-direction: row-reverse #{$important-flex-value};
     }
 
     .flex-column-reverse {
+        @extend .flexcontainer;
+        @extend .column-alignments;
         flex-direction: column-reverse #{$important-flex-value};
     }
 
+    .row-alignments {
+        &.align-x-left {
+            @extend .justify-start;
+        }
+        &.align-x-center {
+            @extend .justify-center;
+        }
+        &.align-x-right {
+            @extend .justify-end;
+        }
+        &.align-x-stretch {
+            @extend .justify-stretch;
+        }
+        &.align-x-between {
+            @extend .justify-between;
+        }
+        &.align-x-around {
+            @extend .justify-around;
+        }
+        &.align-x-evenly {
+            @extend .justify-evenly;
+        }
+        &.align-y-top {
+            @extend .align-children-start;
+        }
+        &.align-y-center {
+            @extend .align-children-center;
+        }
+        &.align-y-bottom {
+            @extend .align-children-end;
+        }
+        &.align-y-stretch {
+            @extend .align-children-stretch;
+        }
+        &.align-y-baseline {
+            @extend .align-children-baseline;
+        }
+    }
+
+    .column-alignments {
+        &.align-x-left {
+            @extend .align-children-start;
+        }
+        &.align-x-center {
+            @extend .align-children-center;
+        }
+        &.align-x-right {
+            @extend .align-children-end;
+        }
+        &.align-x-stretch {
+            @extend .align-children-stretch;
+        }
+        &.align-x-baseline {
+            @extend .align-children-baseline;
+        }
+        &.align-y-top {
+            @extend .justify-start;
+        }
+        &.align-y-center {
+            @extend .justify-center;
+        }
+        &.align-y-bottom {
+            @extend .justify-end;
+        }
+        &.align-y-stretch {
+            @extend .justify-stretch;
+        }
+        &.align-y-between {
+            @extend .justify-between;
+        }
+        &.align-y-around {
+            @extend .justify-around;
+        }
+        &.align-y-evenly {
+            @extend .justify-evenly;
+        }
+    }
+
+    .flex-align-left {
+        align-items: center #{$important-flex-value};
+        justify-content: flex-start #{$important-flex-value};
+    }
+
+    .flex-align-center {
+        align-items: center #{$important-flex-value};
+        justify-content: flex-start #{$important-flex-value};
+    }
+
+    .flex-align-right {
+        align-items: center #{$important-flex-value};
+        justify-content: flex-start #{$important-flex-value};
+    }
+
     .flex-wrap {
+        @extend .flexcontainer;
         flex-wrap: wrap #{$important-flex-value};
     }
 
     .flex-nowrap {
+        @extend .flexcontainer;
         flex-wrap: nowrap #{$important-flex-value};
     }
 
     .flex-wrap-reverse {
+        @extend .flexcontainer;
         flex-wrap: wrap-reverse #{$important-flex-value};
     }
 
@@ -69,32 +169,32 @@
     }
 
     // These classes define the alignment of the children
-    .justify-content-start {
+    .justify-start {
         justify-content: flex-start #{$important-flex-value};
     }
 
-    .justify-content-end {
+    .justify-end {
         justify-content: flex-end #{$important-flex-value};
     }
 
-    .justify-content-center {
+    .justify-center {
         justify-content: center #{$important-flex-value};
     }
 
-    .justify-content-between {
+    .justify-between {
         justify-content: space-between #{$important-flex-value};
     }
 
-    .justify-content-around {
+    .justify-around {
         justify-content: space-around #{$important-flex-value};
     }
 
-    .justify-content-evenly {
+    .justify-evenly {
         // Not Supported in IE11
         justify-content: space-evenly #{$important-flex-value};
     }
 
-    .justify-content-stretch {
+    .justify-stretch {
         justify-content: stretch #{$important-flex-value};
     }
 
@@ -132,6 +232,10 @@
         align-content: center #{$important-flex-value};
     }
 
+    .align-content-baseline {
+        align-content: baseline #{$important-flex-value};
+    }
+
     .align-content-between {
         align-content: space-between #{$important-flex-value};
     }
@@ -167,6 +271,131 @@
 
     .align-self-stretch {
         align-self: stretch #{$important-flex-value};
+    }
+
+    .flex-width {
+        --flex-gap-parent: var(--flex-gap);
+        $flex-2-columns: calc(50% - var(--flex-gap) / 2);
+        $flex-items-2-columns: calc(50% - var(--flex-gap-parent) / 2);
+        $flex-3-columns: calc(33.33% - 2 * var(--flex-gap) / 3);
+        $flex-items-3-columns: calc(33.33% - 2 * var(--flex-gap-parent) / 3);
+        $flex-4-columns: calc(25% - 3 * var(--flex-gap) / 4);
+        $flex-items-4-columns: calc(25% - 3 * var(--flex-gap-parent) / 4);
+
+        &.flex-small,
+        &.flex-medium,
+        &.flex-large,
+        &.flex-items-small > *,
+        &.flex-items-medium > *,
+        &.flex-items-large > * {
+            flex-basis: 100%;
+            min-width: 0;
+        }
+
+        @media (min-width: $screen-sm) {
+            &.flex-small > {
+                flex-basis: $flex-2-columns;
+                min-width: 240px;
+            }
+            &.flex-items-small > * {
+                flex-basis: $flex-items-2-columns;
+                min-width: 240px;
+            }
+        }
+
+        @media (min-width: $screen-md) {
+            &.flex-small {
+                flex-basis: $flex-2-columns;
+                min-width: 240px;
+            }
+            &.flex-medium {
+                flex-basis: $flex-2-columns;
+                min-width: 300px;
+            }
+            &.flex-large {
+                flex-basis: 100%;
+                min-width: 400px;
+            }
+            &.flex-items-small > * {
+                flex-basis: $flex-items-2-columns;
+                min-width: 240px;
+            }
+            &.flex-items-medium > * {
+                flex-basis: $flex-items-2-columns;
+                min-width: 300px;
+            }
+            &.flex-items-large > * {
+                flex-basis: 100%;
+                min-width: 400px;
+            }
+        }
+
+        @media (min-width: $screen-lg) {
+            &.flex-small {
+                flex-basis: $flex-3-columns;
+                min-width: 240px;
+            }
+            &.flex-medium {
+                flex-basis: $flex-2-columns;
+                min-width: 300px;
+            }
+            &.flex-large {
+                flex-basis: 100%;
+                min-width: 400px;
+            }
+            &.flex-items-small > * {
+                flex-basis: $flex-items-4-columns;
+                min-width: 240px;
+            }
+            &.flex-items-medium > * {
+                flex-basis: $flex-items-2-columns;
+                min-width: 300px;
+            }
+            &.flex-items-large > * {
+                flex-basis: 100%;
+                min-width: 400px;
+            }
+        }
+
+        @media (min-width: $screen-xl) {
+            &.flex-small {
+                flex-basis: $flex-4-columns;
+                min-width: 240px;
+            }
+            &.flex-medium {
+                flex-basis: $flex-3-columns;
+                min-width: 300px;
+            }
+            &.flex-large {
+                flex-basis: $flex-2-columns;
+                min-width: 400px;
+            }
+            &.flex-items-small > * {
+                flex-basis: $flex-items-4-columns;
+                min-width: 240px;
+            }
+            &.flex-items-medium > * {
+                flex-basis: $flex-items-3-columns;
+                min-width: 300px;
+            }
+            &.flex-items-large > * {
+                flex-basis: $flex-items-2-columns;
+                min-width: 400px;
+            }
+        }
+    }
+
+    .flex-items-shrink > * {
+        flex: var(--flex-shrink);
+    }
+    .flex-items-auto > * {
+        flex: var(--flex-auto);
+    }
+    .flex-items-grow > * {
+        flex: var(--flex-grow);
+    }
+    .flex-items-fixed > * {
+        flex: none;
     }
 
     @include flex-items($number: 12);

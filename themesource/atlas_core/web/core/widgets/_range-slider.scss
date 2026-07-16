@@ -18,13 +18,13 @@
         padding: 5px 10px;
 
         .rc-slider-handle {
-            border-color: $brand-default;
+            border-color: var(--brand-default);
         }
 
         .rc-slider.rc-slider-with-marks {
             padding-bottom: 25px;
         }
 
-        @include slider-color-variant($brand-primary);
+        @include slider-color-variant(var(--brand-primary));
     }
 }

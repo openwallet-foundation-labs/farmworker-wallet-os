@@ -15,7 +15,7 @@
     .badge {
         display: inline-block;
         margin: 0;
-        padding: $spacing-smaller $spacing-small;
+        padding: var(--spacing-smaller) var(--spacing-small);
         text-align: center;
         vertical-align: baseline;
         white-space: nowrap;
@@ -24,7 +24,7 @@
         line-height: 1;
 
         .form-control-static {
-            font-weight: $font-weight-normal;
+            font-weight: var(--font-weight-normal);
             all: unset;
         }
     }
@@ -36,8 +36,8 @@
     ========================================================================== */
 
     .widget-badge {
-        color: $label-primary-color;
-        background-color: $label-primary-bg;
+        color: var(--label-primary-color);
+        background-color: var(--label-primary-bg);
     }
 
     .widget-badge-clickable {
@@ -47,12 +47,12 @@
     .widget-badge.badge:empty {
         display: initial;
         /* Fix padding to stay round */
-        padding: $spacing-smaller calc(#{$spacing-small} + 2px);
+        padding: var(--spacing-smaller) calc(var(--spacing-small) + 2px);
     }
 
     .widget-badge.label:empty {
         display: initial;
         /* Fix padding to stay square */
-        padding: $spacing-smaller calc(#{$spacing-small} + 2px);
+        padding: var(--spacing-smaller) calc(var(--spacing-small) + 2px);
     }
 }

@@ -39,7 +39,7 @@ export default class ReactNativeBlobUtilSession {
 
   remove(path:string):ReactNativeBlobUtilSession {
     let list = sessions[this.name];
-    for (let i of list) {
+    for (let i = 0; i < list.length; i++) {
       if (list[i] === path) {
         sessions[this.name].splice(i, 1);
         break;

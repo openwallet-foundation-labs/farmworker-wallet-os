@@ -35,7 +35,7 @@ import support from"../support/entidad";
  * @param {string} proofRecordId - mandatory
  * @param {string} proofFormats - json, mandatory
  * @param {string} comment - optional
- * @param {"Agent_SDK.enum_aries_AutoAcceptProof.Never"|"Agent_SDK.enum_aries_AutoAcceptProof.ContentApproved"|"Agent_SDK.enum_aries_AutoAcceptProof.Always"} autoAcceptProof - optional, default never?
+ * @param {undefined|"Never"|"ContentApproved"|"Always"} autoAcceptProof - optional, default never?
  * @returns {Promise.<string>}
  */
 export async function jsa_aries_agent_proofs_negotiateRequest(agent_key, proofRecordId, proofFormats, comment, autoAcceptProof) {

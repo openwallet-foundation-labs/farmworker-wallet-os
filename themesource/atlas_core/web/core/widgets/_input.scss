@@ -15,17 +15,17 @@
         display: flex;
         flex: 1;
         min-width: 50px;
-        height: $form-input-height;
-        padding: $form-input-padding-y $form-input-padding-x;
+        height: var(--form-input-height);
+        padding: var(--form-input-padding-y) var(--form-input-padding-x);
         transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-        color: $form-input-color;
-        border: 1px solid $form-input-border-color;
-        border-radius: $form-input-border-radius;
-        background-color: $form-input-bg;
+        color: var(--form-input-color);
+        border: var(--border-width-default) solid var(--form-input-border-color);
+        border-radius: var(--form-input-border-radius);
+        background-color: var(--form-input-bg);
         background-image: none;
         box-shadow: none;
-        font-size: $form-input-font-size;
-        line-height: $form-input-line-height;
+        font-size: var(--form-input-font-size);
+        line-height: var(--form-input-line-height);
         appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;
@@ -34,17 +34,20 @@
         }
 
         &::placeholder {
-            color: $form-input-placeholder-color;
+            color: var(--form-input-placeholder-color);
         }
     }
 
     .form-control:not([readonly]) {
         &:focus,
         &:focus-within {
-            border-color: $form-input-border-focus-color;
-            outline: 0;
-            background-color: $form-input-bg-focus;
+            background-color: var(--form-input-bg-focus);
             box-shadow: none;
+            @extend .focus-ring !optional;
+        }
+        &:hover:not(:focus):not([disabled]) {
+            border-color: var(--form-input-border-hover-color);
+            background-color: var(--form-input-bg-hover);
         }
     }
 
@@ -52,7 +55,7 @@
     .form-control[readonly],
     fieldset[disabled] .form-control {
         opacity: 1;
-        background-color: $form-input-bg-disabled;
+        background-color: var(--form-input-bg-disabled);
     }
 
     .form-control[disabled],
@@ -63,7 +66,7 @@
     // Lined
     .form-control-lined {
         border: 0;
-        border-bottom: 1px solid $form-input-border-color;
+        border-bottom: var(--border-width-default) solid var(--form-input-border-color);
         border-radius: 0;
         background-color: transparent;
 
@@ -77,13 +80,12 @@
         overflow: hidden;
         flex: 1;
         min-height: auto;
-        padding: $form-input-static-padding-y $form-input-static-padding-x;
-        //border-bottom: 1px solid $form-input-static-border-color;
-        font-size: $form-input-font-size;
-        line-height: $form-input-line-height;
+        padding: var(--form-input-static-padding-y) var(--form-input-static-padding-x);
+        font-size: var(--form-input-font-size);
+        line-height: var(--form-input-line-height);
 
         & + .control-label {
-            margin-left: $form-label-gutter;
+            margin-left: var(--form-label-gutter);
         }
     }
 
@@ -93,7 +95,7 @@
         padding-right: 30px;
         background-image: url($arrow);
         background-repeat: no-repeat;
-        background-position: calc(100% - #{$form-input-padding-x}) center;
+        background-position: calc(100% - var(--form-input-padding-x)) center;
         appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;
@@ -105,6 +107,11 @@
         justify-content: space-between;
     }
 
+    // Text box widget should stay in the middle horizontally
+    .form-group.mx-textbox:not(.no-columns) .form-control {
+        align-self: center;
+    }
+
     // Not editable textarea, textarea will be rendered as a label
     .mx-textarea .control-label {
         height: auto;
@@ -114,7 +121,7 @@
         display: block;
         width: 100%;
         text-align: right;
-        margin-top: $spacing-small;
+        margin-top: var(--spacing-small);
     }
 
     textarea.form-control {
@@ -126,9 +133,10 @@
         flex: 1;
         flex-wrap: wrap;
         max-width: 100%;
+        align-items: center;
 
         .btn {
-            margin-left: $spacing-small;
+            margin-left: var(--spacing-small);
         }
 
         .mx-validation-message {
@@ -138,29 +146,23 @@
     }
 
     .has-error .mx-validation-message {
-        margin-top: $spacing-small;
+        margin-top: var(--spacing-small);
         margin-bottom: 0;
-        padding: $spacing-small;
-        color: $alert-danger-color;
-        border-color: $alert-danger-border-color;
-        background-color: $alert-danger-bg;
+        padding: var(--spacing-small);
+        color: var(--alert-danger-color);
+        border-color: var(--alert-danger-border-color);
+        background-color: var(--alert-danger-bg);
     }
 
     // Form Group
     .form-group {
         display: flex;
         flex-direction: row;
-        margin-bottom: $form-group-margin-bottom;
+        margin-bottom: var(--form-group-margin-bottom);
 
         & > div[class*="col-"] {
             display: flex;
-            align-items: center;
             flex-wrap: wrap;
-        }
-
-        & > [class*="col-"] {
-            padding-right: $form-group-gutter;
-            padding-left: $form-group-gutter;
         }
 
         // Alignment content
@@ -174,10 +176,11 @@
         .control-label {
             overflow: hidden;
             margin-bottom: 4px;
+            text-align: left;
             text-overflow: ellipsis;
-            color: $form-label-color;
-            font-size: $form-label-size;
-            font-weight: $form-label-weight;
+            color: var(--form-label-color);
+            font-size: var(--form-label-size);
+            font-weight: var(--form-label-weight);
         }
 
         .mx-validation-message {
@@ -186,6 +189,41 @@
 
         &.no-columns:not(.label-after) {
             flex-direction: column;
+        }
+    }
+
+    .page-form-vertical {
+        @extend .form-vertical;
+        .form-group:not(.label-after) {
+            flex-direction: column;
+        }
+    }
+
+    .page-form-horizontal {
+        @extend .form-horizontal;
+        @media not screen and (max-width: $screen-sm-max) {
+            .form-group.no-columns:not(.label-after) {
+                // overwrite default no-columns behavior when
+                // page form orientation is set to horizontal
+                flex-direction: row;
+            }
+        }
+
+        $label-breakpoints: sm, md, lg, xl, xxl;
+        @each $bp in $label-breakpoints {
+            &:not([class*="form-label-width-"]) {
+                // default label width 3 if none specified
+                .form-group > label {
+                    @extend .col-#{$bp}-3;
+                }
+            }
+            @for $i from 1 through 11 {
+                &.form-label-width-#{$i} {
+                    .form-group > label {
+                        @extend .col-#{$bp}-#{$i};
+                    }
+                }
+            }
         }
     }
 
@@ -207,10 +245,10 @@
 
     // Targets only webkit iOS devices
     .dj_webkit.dj_ios .form-control {
-        transform: translate3d(0,0,0);
-        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
 
-         &.widget-dropdown-filter{
+        &.widget-dropdown-filter {
             transform: inherit;
             -webkit-transform: inherit;
         }
@@ -220,9 +258,10 @@
         .form-horizontal {
             .control-label {
                 margin-bottom: 0;
-                padding-top: $form-input-padding-y;
-                padding-bottom: $form-input-padding-y;
-                line-height: $form-input-line-height;
+                padding-top: var(--form-input-padding-y);
+                padding-bottom: var(--form-input-padding-y);
+                padding-right: var(--form-label-gutter);
+                line-height: var(--form-input-line-height);
             }
         }
     }
@@ -270,11 +309,11 @@
         select.form-control {
             padding-right: 30px;
             padding-left: 0;
-            background-position: #{$form-input-padding-x} center;
+            background-position: var(--form-input-padding-x) center;
         }
 
         .mx-compound-control .btn {
-            margin-right: $spacing-small;
+            margin-right: var(--spacing-small);
             margin-left: 0;
         }
     }

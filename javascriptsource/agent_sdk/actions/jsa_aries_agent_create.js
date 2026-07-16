@@ -65,23 +65,23 @@ import { ReceiptsModule } from '@2060.io/credo-ts-didcomm-receipts'; //https://g
  * @param {string} label
  * @param {string} walletConfig_id
  * @param {string} walletConfig_key
- * @param {"Agent_SDK.enum_aries_KeyDerivationMethod.Argon2IMod"|"Agent_SDK.enum_aries_KeyDerivationMethod.Argon2Int"|"Agent_SDK.enum_aries_KeyDerivationMethod.Raw"} walletConfig_KeyDerivationMethod
+ * @param {undefined|"Argon2IMod"|"Argon2Int"|"Raw"} walletConfig_KeyDerivationMethod
  * @param {string} walletConfig_storage
  * @param {string} endpoints
  * @param {string} publicDidSeed
  * @param {boolean} connectToIndyLedgerOnStartup
- * @param {"Agent_SDK.enum_aries_Logger.Console"|"Agent_SDK.enum_aries_Logger.DefaultLogger"} logger
- * @param {"Agent_SDK.enum_aries_Loglevel.debug"|"Agent_SDK.enum_aries_Loglevel.error"|"Agent_SDK.enum_aries_Loglevel.fatal"|"Agent_SDK.enum_aries_Loglevel.info"|"Agent_SDK.enum_aries_Loglevel.off"|"Agent_SDK.enum_aries_Loglevel.test"|"Agent_SDK.enum_aries_Loglevel.trace"|"Agent_SDK.enum_aries_Loglevel.warn"} loglevel
- * @param {"Agent_SDK.enum_aries_DidCommMimeType.v0"|"Agent_SDK.enum_aries_DidCommMimeType.v1"} didCommMimeType
- * @param {"Agent_SDK.enum_aries_AutoAcceptCredential.Never"|"Agent_SDK.enum_aries_AutoAcceptCredential.ContentApproved"|"Agent_SDK.enum_aries_AutoAcceptCredential.Always"} autoAcceptCredentials
- * @param {"Agent_SDK.enum_aries_AutoAcceptProof.Never"|"Agent_SDK.enum_aries_AutoAcceptProof.ContentApproved"|"Agent_SDK.enum_aries_AutoAcceptProof.Always"} autoAcceptProofs
+ * @param {undefined|"Console"|"DefaultLogger"} logger
+ * @param {undefined|"debug"|"error"|"fatal"|"info"|"off"|"test"|"trace"|"warn"} loglevel
+ * @param {undefined|"v0"|"v1"} didCommMimeType
+ * @param {undefined|"Never"|"ContentApproved"|"Always"} autoAcceptCredentials
+ * @param {undefined|"Never"|"ContentApproved"|"Always"} autoAcceptProofs
  * @param {boolean} autoAcceptMediationRequests
  * @param {boolean} useMediationRecipient
  * @param {boolean} clearDefaultMediator
  * @param {string} configDefaultMediatorId
  * @param {string} configMediationConnectionsInvitation
  * @param {Big} configMediatorPollingInterval
- * @param {"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV1"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2"|"Agent_SDK.enum_aries_MediatorPickupStrategy.Implicit"|"Agent_SDK.enum_aries_MediatorPickupStrategy.None"|"Agent_SDK.enum_aries_MediatorPickupStrategy.PickUpV2LiveMode"} configMediatorPickupStrategy
+ * @param {undefined|"PickUpV1"|"PickUpV2"|"Implicit"|"None"|"PickUpV2LiveMode"} configMediatorPickupStrategy
  * @param {Big} configMaximumMessagePickup
  * @param {boolean} useLegacyDidSovPrefix
  * @param {string} connectionImageUrl
