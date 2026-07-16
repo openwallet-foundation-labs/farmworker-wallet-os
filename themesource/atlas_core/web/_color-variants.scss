@@ -1,0 +1,59 @@
+// Color variations
+// Function to convert to HSL and adjust
+@function adjust-color-lightness($color, $adjustment) {
+    @if $adjustment > 0 {
+        @return color-mix(in srgb, $color, var(--color-base) $adjustment);
+    } @else {
+        @return color-mix(in srgb, $color, var(--color-contrast) calc($adjustment * -1));
+    }
+}
+
+$brand-colors: (
+    "brand-primary" "background-primary" "text-primary" var(--brand-primary),
+    "brand-success" "background-success" "text-success" var(--brand-success),
+    "brand-warning" "background-warning" "text-warning" var(--brand-warning),
+    "brand-danger" "background-danger" "text-danger" var(--brand-danger),
+    "brand-default" "background-default" "text-default" var(--brand-default),
+    "gray" "" "" var(--gray)
+);
+$lightness-steps: (
+    50: 90%,
+    100: 80%,
+    200: 60%,
+    300: 40%,
+    400: 20%,
+    500: 0%,
+    600: -20%,
+    700: -40%,
+    800: -50%,
+    900: -60%
+);
+
+// generate corresponding CSS variables
+:root {
+    @each $name, $bg-class, $text-class, $base-color in $brand-colors {
+        @each $shade, $adjustment in $lightness-steps {
+            --#{$name}-#{$shade}: #{adjust-color-lightness($base-color, $adjustment)};
+        }
+
+        @if ($bg-class != "") {
+            .#{$bg-class} {
+                @each $shade, $adjustment in $lightness-steps {
+                    &.shade-#{$shade} {
+                        background-color: adjust-color-lightness($base-color, $adjustment);
+                    }
+                }
+            }
+        }
+
+        @if ($text-class != "") {
+            .#{$text-class} {
+                @each $shade, $adjustment in $lightness-steps {
+                    &.shade-#{$shade} {
+                        color: adjust-color-lightness($base-color, $adjustment);
+                    }
+                }
+            }
+        }
+    }
+}

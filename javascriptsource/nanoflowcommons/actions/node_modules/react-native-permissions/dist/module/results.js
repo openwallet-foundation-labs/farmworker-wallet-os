@@ -1,3 +1,5 @@
+"use strict";
+
 export const RESULTS = Object.freeze({
   UNAVAILABLE: 'unavailable',
   BLOCKED: 'blocked',

@@ -1,0 +1,85 @@
+diff --git a/node_modules/@hyperledger/indy-vdr-react-native/android/CMakeLists.txt b/node_modules/@hyperledger/indy-vdr-react-native/android/CMakeLists.txt
+index c84556e..a831a7e 100644
+--- a/node_modules/@hyperledger/indy-vdr-react-native/android/CMakeLists.txt
++++ b/node_modules/@hyperledger/indy-vdr-react-native/android/CMakeLists.txt
+@@ -6,7 +6,7 @@ set (LIB_NAME "indyvdr")
+ file (GLOB LIBINDY_VDR_DIR "${CMAKE_SOURCE_DIR}/../native/mobile/android/${ANDROID_ABI}")
+ 
+ set(CMAKE_VERBOSE_MAKEFILE ON)
+-set(CMAKE_CXX_STANDARD 14)
++set(CMAKE_CXX_STANDARD 20)
+ 
+ set (BUILD_DIR ${CMAKE_SOURCE_DIR}/build)
+ if(${REACT_NATIVE_VERSION} GREATER_EQUAL 71)
+@@ -91,7 +91,7 @@ if(${REACT_NATIVE_VERSION} GREATER_EQUAL 71)
+   target_link_libraries(
+     ${PACKAGE_NAME}
+     ReactAndroid::jsi
+-    ReactAndroid::reactnativejni
++    ReactAndroid::reactnative
+     fbjni::fbjni
+   )
+ elseif(${REACT_NATIVE_VERSION} LESS 66)
+diff --git a/node_modules/@hyperledger/indy-vdr-react-native/android/build.gradle b/node_modules/@hyperledger/indy-vdr-react-native/android/build.gradle
+index 9017d77..af79029 100644
+--- a/node_modules/@hyperledger/indy-vdr-react-native/android/build.gradle
++++ b/node_modules/@hyperledger/indy-vdr-react-native/android/build.gradle
+@@ -4,7 +4,6 @@ import java.nio.file.Paths
+ buildscript {
+   repositories {
+     google()
+-    jcenter()
+     mavenCentral()
+   }
+ 
+@@ -59,6 +58,10 @@ def getExt(name) {
+   return rootProject.ext.get(name)
+ }
+ 
++def getExtWithFallback(prop, fallback) {
++  return rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
++}
++
+ def resolveBuildType() {
+     def buildType = "debug"
+     tasks.all({ task ->
+@@ -81,12 +84,12 @@ android {
+   }
+   
+   defaultConfig {
+-    minSdkVersion 21 
++    minSdkVersion getExtWithFallback('minSdkVersion', '21') 
+     targetSdkVersion getExt('targetSdkVersion')
+     
+     externalNativeBuild {
+         cmake {
+-            cppFlags "-fexceptions", "-frtti", "-std=c++1y", "-DONANDROID"
++            cppFlags "-fexceptions", "-frtti", "-std=c++20", "-DONANDROID"
+             abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+             arguments "-DANDROID_STL=c++_shared",
+                       "-DREACT_NATIVE_VERSION=${REACT_NATIVE_VERSION}",
+@@ -106,6 +109,7 @@ android {
+     excludes = ["**/libc++_shared.so", 
+                 "**/libfbjni.so", 
+                 "**/libjsi.so", 
++                "**/libreactnative.so",
+                 "**/libreactnativejni.so", 
+                 "**/libjscexecutor.so", 
+     ]
+diff --git a/node_modules/@hyperledger/indy-vdr-react-native/ios/IndyVdr.mm b/node_modules/@hyperledger/indy-vdr-react-native/ios/IndyVdr.mm
+index 1111111..2222222 100644
+--- a/node_modules/@hyperledger/indy-vdr-react-native/ios/IndyVdr.mm
++++ b/node_modules/@hyperledger/indy-vdr-react-native/ios/IndyVdr.mm
+@@ -11,9 +11,11 @@
+ @implementation IndyVdr
+ 
++@synthesize bridge = _bridge;
++
+ RCT_EXPORT_MODULE()
+ 
+ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(install)
+ {
+-    RCTBridge* bridge = [RCTBridge currentBridge];
++    RCTBridge* bridge = _bridge ?: [RCTBridge currentBridge];
+     RCTCxxBridge* cxxBridge = (RCTCxxBridge*)bridge;
+     if (cxxBridge == nil) {

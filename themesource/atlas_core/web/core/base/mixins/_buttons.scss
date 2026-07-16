@@ -5,20 +5,25 @@
 // To customize any core styling, copy the part you want to customize to styles/web/sass/app/ so the core styling is overwritten.
 //
 
-@mixin button-variant($color, $background, $border, $hover) {
+@mixin button-variant($color, $background, $border, $hover, $active, $accent) {
     @if not $exclude-button {
         color: $color;
         border-color: $border;
         background-color: $background;
 
         &:hover,
-        &:focus,
+        .open > &.dropdown-toggle {
+            color: $color;
+            background-color: $hover;
+            border-color: $border;
+            @if $color == var(--btn-default-color) {
+                border-color: $color;
+            }
+        }
         &:active,
         &.active,
         .open > &.dropdown-toggle {
-            color: $color;
-            border-color: $hover;
-            background-color: $hover;
+            background-color: $active;
         }
         &:active,
         &.active,
@@ -31,28 +36,57 @@
         fieldset[disabled] {
             &,
             &:hover,
-            &:focus,
             &:active,
             &.active {
-                border-color: $border;
                 background-color: $background;
             }
         }
-        // Button bordered
-        &.btn-bordered {
-            background-color: transparent;
-            @if $color != $btn-default-color {
-                color: $border;
+        &.btn-style-icon {
+            @if $color != var(--btn-default-color) {
+                color: $accent;
+                background: color-mix(in srgb, white, $background 15%);
             }
 
             &:hover,
-            &:focus,
+            .open > &.dropdown-toggle {
+                color: $color;
+                background-color: $border;
+                border-color: $border;
+                @if $color == var(--btn-default-color) {
+                    border-color: $color;
+                }
+            }
+            
             &:active,
             &.active,
             .open > &.dropdown-toggle {
                 color: $color;
+                background-color: $active;
                 border-color: $border;
+            }
+        }
+
+        // Button bordered
+        &.btn-bordered {
+            background-color: transparent;
+            @if $color != var(--btn-default-color) {
+                color: $border;
+            }
+
+            &:hover,
+            .open > &.dropdown-toggle {
+                color: $color;
                 background-color: $border;
+                border-color: $border;
+                @if $color == var(--btn-default-color) {
+                    border-color: $color;
+                }
+            }
+            &:active,
+            &.active,
+            .open > &.dropdown-toggle {
+                color: $color;
+                background-color: $active;
             }
         }
         // Button as link
@@ -60,13 +94,13 @@
             text-decoration: none;
             border-color: transparent;
             background-color: transparent;
-            @if $color != $btn-default-color {
+            @if $color != var(--btn-default-color) {
                 color: $background;
             }
 
             &:hover {
-                border-color: $btn-link-bg-hover;
-                background-color: $btn-link-bg-hover;
+                border-color: var(--btn-link-bg-hover);
+                background-color: var(--btn-link-bg-hover);
             }
         }
     }

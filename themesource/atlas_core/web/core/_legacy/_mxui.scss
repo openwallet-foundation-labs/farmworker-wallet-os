@@ -2352,19 +2352,8 @@ Main class hierarchy:
         display: inline-block;
     }
 
-    .form-horizontal .form-group.no-columns {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    .mx-radiobuttons.inline .radio {
-        display: inline-block;
-        margin-right: 20px;
-    }
-
     .mx-radiobuttons .radio input[type="radio"] {
         /* Reset bootstrap rules */
-        position: static;
         margin-right: 8px;
         margin-left: 0;
     }
@@ -2379,19 +2368,6 @@ Main class hierarchy:
         margin-bottom: 10px;
         white-space: pre-line;
     }
-
-    //.mx-compound-control {
-    //    display: flex;
-    //}
-
-    //.mx-compound-control button {
-    //    margin-left: 5px;
-    //}
-    //
-    //[dir="rtl"] .mx-compound-control button {
-    //    margin-left: 0;
-    //    margin-right: 5px;
-    //}
 
     .mx-tooltip {
         margin: 10px;
@@ -2617,9 +2593,6 @@ Main class hierarchy:
     .mx-datagrid tbody tr:first-child td {
         border-top: none;
     }
-    //.mx-datagrid tbody tr:nth-child(2n+1) td {
-    //    background-color: #f9f9f9;
-    //}
     .mx-datagrid tbody .selected td {
         background-color: #eee;
     }
@@ -2708,12 +2681,6 @@ Main class hierarchy:
     .mx-navigationtree ul {
         list-style: none;
     }
-    //.mx-navigationtree ul li {
-    //    border-bottom: 1px solid #dfe6ea;
-    //}
-    //.mx-navigationtree li:last-child {
-    //    border-style: none;
-    //}
     .mx-navigationtree a {
         display: block;
         padding: 5px 10px;
@@ -2724,7 +2691,6 @@ Main class hierarchy:
     .mx-navigationtree a.active {
         color: #fff;
         text-shadow: none;
-        background: #3498db;
         border-radius: 3px;
     }
     .mx-navigationtree .mx-navigationtree-collapsed ul {
@@ -2734,9 +2700,6 @@ Main class hierarchy:
         margin: 0;
         padding: 0;
     }
-    //.mx-navigationtree ul li {
-    //    padding: 5px 0;
-    //}
     .mx-navigationtree ul li ul {
         padding: 0;
         margin-left: 10px;
@@ -2803,23 +2766,6 @@ Main class hierarchy:
     }
     [dir="rtl"] .mx-groupbox-collapse-icon {
         float: left;
-    }
-
-    .mx-dataview {
-        position: relative;
-    }
-    .mx-dataview-controls {
-        padding: 19px 20px 12px;
-        background-color: #f5f5f5;
-        border-top: 1px solid #eee;
-    }
-
-    .mx-dataview-controls .mx-button {
-        margin-bottom: 8px;
-    }
-
-    .mx-dataview-controls .mx-button + .mx-button {
-        margin-left: 0.3em;
     }
 
     .mx-dataview-message {
@@ -2973,31 +2919,6 @@ Main class hierarchy:
         padding: 0px;
         list-style: none;
     }
-    // .mx-listview > ul > li {
-    //     padding: 5px 10px 10px;
-    //     border: 1px #ddd;
-    //     border-style: solid solid none;
-    //     background-color: #fff;
-    //     outline: none;
-    // }
-    // .mx-listview > ul > li:first-child {
-    //     border-top-left-radius: 4px;
-    //     border-top-right-radius: 4px;
-    // }
-    // .mx-listview > ul > li:last-child {
-    //     border-bottom-style: solid;
-    //     border-bottom-left-radius: 4px;
-    //     border-bottom-right-radius: 4px;
-    // }
-    //.mx-listview li:nth-child(2n+1) {
-    //    background: #f9f9f9;
-    //}
-    //.mx-listview li:nth-child(2n+1):hover {
-    //    background: #f5f5f5;
-    //}
-    .mx-listview > ul > li.selected {
-        //    background: #eee;
-    }
     .mx-listview-clickable > ul > li {
         cursor: pointer;
     }
@@ -3071,7 +2992,6 @@ Main class hierarchy:
     .mx-navigationlist li:focus,
     .mx-navigationlist li.active {
         color: #fff;
-        background-color: #3498db;
     }
     .mx-navigationlist * {
         cursor: pointer;
@@ -3265,79 +3185,6 @@ Main class hierarchy:
     }
     .mx-dropdown .selected {
         background: #f8f8f8;
-    }
-    //.mx-selectbox {
-    //    text-align: left;
-    //}
-    //.mx-selectbox-caret-wrapper {
-    //    float: right;
-    //    height: 100%;
-    //}
-
-    .mx-demouserswitcher {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 360px;
-        height: 100%;
-        z-index: 20000;
-        box-shadow: -1px 0 5px rgba(28, 59, 86, 0.2);
-    }
-    .mx-demouserswitcher-content {
-        padding: 80px 40px 20px;
-        height: 100%;
-        color: #387ea2;
-        font-size: 14px;
-        overflow: auto;
-        background: url(resources/switcher.png) top right no-repeat #1b3149;
-        /* background-attachement local is not supported on IE8
-     * when this is part of background the complete background is ignored */
-        background-attachment: local;
-    }
-    .mx-demouserswitcher ul {
-        padding: 0;
-        margin-top: 25px;
-        list-style-type: none;
-        border-top: 1px solid #496076;
-    }
-    .mx-demouserswitcher a {
-        display: block;
-        padding: 10px 0;
-        color: #387ea2;
-        border-bottom: 1px solid #496076;
-    }
-    .mx-demouserswitcher h2 {
-        margin: 20px 0 5px;
-        color: #5bc4fe;
-        font-size: 28px;
-    }
-    .mx-demouserswitcher h3 {
-        margin: 0 0 2px;
-        color: #5bc4fe;
-        font-size: 18px;
-        font-weight: normal;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-    .mx-demouserswitcher .active h3 {
-        color: #11efdb;
-    }
-    .mx-demouserswitcher p {
-        margin-bottom: 0;
-    }
-    .mx-demouserswitcher-toggle {
-        position: absolute;
-        top: 25%;
-        left: -35px;
-        width: 35px;
-        height: 38px;
-        margin-top: -40px;
-        cursor: pointer;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-        box-shadow: -1px 0 5px rgba(28, 59, 86, 0.2);
-        background: url(resources/switcher-toggle.png) center center no-repeat #1b3149;
     }
 
     /* master details screen for mobile */

@@ -21,14 +21,14 @@ import { create } from "mx-api/data";
 /**
  * Resize an image using the specified parameters to a new file or base64 encoded image data.
  * @param {string} filepath - The path to the file.
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} pathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} pathType
  * @param {Big} maxWidth
  * @param {Big} maxHeight
- * @param {"NativeFileDocuments.ResizeImageCompressionFormat.JPEG"|"NativeFileDocuments.ResizeImageCompressionFormat.PNG"|"NativeFileDocuments.ResizeImageCompressionFormat.WEBP"} compressFormat - Can be either JPEG, PNG or WEBP (android only).
+ * @param {undefined|"JPEG"|"PNG"|"WEBP"} compressFormat - Can be either JPEG, PNG or WEBP (android only).
  * @param {Big} quality - A number between 0 and 100. Used for the JPEG compression.
  * @param {Big} rotation - Rotation to apply to the image, in degrees, for android. On iOS, rotation is limited (and rounded) to multiples of 90 degrees. Specify 0 for no rotation.
  * @param {boolean} keepMeta - If true, will attempt to preserve all file metadata/exif info, except the orientation value since the resizing also does rotation correction to the original image. Defaults to false, which means all metadata is lost. Note: This can only be true for JPEG images.
- * @param {"NativeFileDocuments.ResizeImageMode.contain"|"NativeFileDocuments.ResizeImageMode.cover"|"NativeFileDocuments.ResizeImageMode.stretch"} resizeMode - Resize mode, either contain, cover, or stretch. contain will fit the image within width and height, preserving its ratio. cover preserves the aspect ratio, and makes sure the image is at least width wide or height tall. stretch will resize the image to exactly width and height.
+ * @param {undefined|"contain"|"cover"|"stretch"} resizeMode - Resize mode, either contain, cover, or stretch. contain will fit the image within width and height, preserving its ratio. cover preserves the aspect ratio, and makes sure the image is at least width wide or height tall. stretch will resize the image to exactly width and height.
  * @param {boolean} onlyScaleDown - If true, will never enlarge the image, and will only make it smaller.
  * @param {boolean} writeToLog
  * @returns {Promise.<MxObject>}

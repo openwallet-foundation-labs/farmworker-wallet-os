@@ -24,10 +24,10 @@
         height: auto;
         padding: 4px;
         transition: all 0.2s ease-in-out;
-        border: 1px solid $brand-default;
+        border: var(--border-default);
         border-radius: 4px;
-        background-color: #ffffff;
-        line-height: $line-height-base;
+        background-color: var(--bg-color-secondary);
+        line-height: var(--line-height-base);
     }
 
     img.img-circle,

@@ -13,7 +13,7 @@ import {jsa_mxobj2json} from"./jsa_mxobj2json.js";
 import {jsa_json2mxobj} from"./jsa_json2mxobj.js";
 import {jsa_uuid} from"./jsa_uuid.js";
 import {jsa_web_getItem} from"./jsa_web_getItem.js";
-import SInfo from "react-native-sensitive-info";
+import * as SInfo from "react-native-sensitive-info";
 import{mx_data_get_async,mx_data_createAsync,getReverseReferences}from"../support/entidad.js";
 // END EXTRA CODE
 
@@ -22,27 +22,26 @@ import{mx_data_get_async,mx_data_createAsync,getReverseReferences}from"../suppor
  * @param {string} key
  * @param {string} idval
  * @param {MxObject[]} template - output template
- * @param {string} [sharedPreferencesName]
- * @param {string} [keychainService]
+ * @param {string} [service] - Logical namespace for secrets. Defaults to "KeyManagement" when null.
  * @returns {Promise.<MxObject>}
  */
-export async function jsa_kcorm_get_one_recursive(key, idval, template, sharedPreferencesName, keychainService) {
+export async function jsa_kcorm_get_one_recursive(key, idval, template, service) {
 	// BEGIN USER CODE
 	try{
 		//if(output==null)return Promise.reject("Argument output null");
 		if(key==null)return Promise.reject("Argument key null");
-		let settings={};
-		if(sharedPreferencesName!=null)settings.sharedPreferencesName=sharedPreferencesName;
-		if(keychainService!=null)settings.keychainService=keychainService;
+		//6.1.x: unified cross-platform service scope. accessControl is a write-only policy and is not passed to reads.
+		let settings={service:(service!=null&&service!=""?service:"KeyManagement")};
 		let obj={};
 		try{
 			let kcval=null;
 			if(window&&window.cordova){
 				return Promise.reject("Hybrid_mobile not supported");
 			}else if(navigator&&navigator.product==="ReactNative"){
-				kcval=await SInfo.getItem(key,settings);
+				const __item=await SInfo.getItem(key,settings);
+				kcval=__item!=null?__item.value:null;
 			}else{
-				kcval=await jsa_web_getItem(sharedPreferencesName,key);
+				kcval=await jsa_web_getItem(service,key);
 			}
 			if(kcval!=null&&kcval!="")try{
 				obj=JSON.parse(kcval);

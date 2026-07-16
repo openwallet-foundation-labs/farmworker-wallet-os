@@ -17,9 +17,9 @@
         z-index: 10010 !important;
         padding: 8px;
         font-size: 12px;
-        background: $bg-color;
-        border-radius: $border-radius-default;
-        border: 1px solid $border-color-default;
+        background: var(--bg-color);
+        border-radius: var(--border-radius-default);
+        border: var(--border-default);
         box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.06);
 
         .mx-calendar-month-header {
@@ -40,7 +40,7 @@
         .mx-calendar-month-next,
         .mx-calendar-month-previous {
             &:hover {
-                color: $brand-primary;
+                color: var(--brand-primary);
             }
         }
 
@@ -56,7 +56,7 @@
         }
 
         th {
-            color: $brand-primary;
+            color: var(--brand-primary);
         }
 
         th,
@@ -67,26 +67,26 @@
         }
 
         td {
-            color: $font-color-default;
+            color: var(--font-color-default);
 
             &:hover {
                 cursor: pointer;
                 border-radius: 50%;
-                color: $brand-primary;
-                background-color: $brand-default;
+                color: var(--brand-primary);
+                background-color: var(--brand-default);
             }
         }
 
         .mx-calendar-day-month-next,
         .mx-calendar-day-month-previous {
-            color: lighten($font-color-default, 45%);
+            color: var(--brand-primary-300);
         }
 
         .mx-calendar-day-selected,
         .mx-calendar-day-selected:hover {
             color: #fff;
             border-radius: 50%;
-            background: $brand-primary;
+            background: var(--brand-primary);
         }
 
         //
@@ -94,10 +94,10 @@
         .mx-calendar-year-switcher {
             text-align: center;
             margin-top: 10px;
-            color: lighten($brand-primary, 30%);
+            color: var(--brand-primary-300);
 
             span.mx-calendar-year-selected {
-                color: $brand-primary;
+                color: var(--brand-primary);
                 margin-left: 10px;
                 margin-right: 10px;
             }
@@ -116,8 +116,8 @@
         position: absolute;
         top: 25px;
         padding: 2px 10px;
-        border-radius: $border-radius-default;
-        background-color: $bg-color;
+        border-radius: var(--border-radius-default);
+        background-color: var(--bg-color);
 
         div {
             cursor: pointer;
@@ -126,7 +126,7 @@
 
             &:hover,
             &:focus {
-                color: $brand-primary;
+                color: var(--brand-primary);
             }
         }
     }

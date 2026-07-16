@@ -21,7 +21,7 @@ import { Buffer } from '@credo-ts/core';
  * 
  * https://github.com/openwallet-foundation/credo-ts/blob/59c7e15259af0d258cb07996d76cc0b2742c88ad/packages/core/src/crypto/keyUtils.ts
  * @param {string} seed
- * @param {"Agent_SDK.enum_aries_KeyType.Bls12381g1"|"Agent_SDK.enum_aries_KeyType.Bls12381g1g2"|"Agent_SDK.enum_aries_KeyType.Bls12381g2"|"Agent_SDK.enum_aries_KeyType.Ed25519"|"Agent_SDK.enum_aries_KeyType.X25519"|"Agent_SDK.enum_aries_KeyType.K256"|"Agent_SDK.enum_aries_KeyType.P256"|"Agent_SDK.enum_aries_KeyType.P384"|"Agent_SDK.enum_aries_KeyType.P521"} keyType
+ * @param {undefined|"Bls12381g1"|"Bls12381g1g2"|"Bls12381g2"|"Ed25519"|"X25519"|"K256"|"P256"|"P384"|"P521"} keyType
  * @returns {Promise.<boolean>}
  */
 export async function jsa_aries_core_utils_crypto_keyUtils_isValidSeed(seed, keyType) {

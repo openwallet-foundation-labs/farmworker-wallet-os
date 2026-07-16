@@ -4,18 +4,47 @@
    Extra styling for responsive layouts
 ========================================================================== */
 @mixin layout-atlas-responsive() {
-    $sidebar-icon-height: 52px;
-    $sidebar-icon-width: 52px;
+    :root {
+        --closed-sidebar-width: 0px;
+    }
+    
+    .layout-atlas {
+        .mx-scrollcontainer {
+            &:not(.mx-scrollcontainer-open) {
+                .region-sidebar {
+                    .mx-scrollcontainer-wrapper {
+                        transition: padding var(--navsidebar-animation-duration) var(--navsidebar-animation-function);
+                        --navsidebar-sub-bg-header: transparent;
+                        --navigation-sub-bg: transparent;
+                    }
+                }
+            }
+            &.mx-scrollcontainer-open {
+                .region-sidebar {
+                    .mx-scrollcontainer-wrapper {
+                        padding-left: var(--spacing-medium);
+                        padding-right: var(--spacing-medium);
+                        transition: padding var(--navsidebar-animation-duration) var(--navsidebar-animation-function);
+                    }
+                }
+            }
+        }
+    }
 
     .layout-atlas-responsive,
-    .layout-atlas-responsive-default {
+    .layout-atlas-responsive-default,
+    .layout-atlas-responsive-sidebar,
+    .layout-atlas-responsive-topbar {
+        &:not(.layout-atlas-responsive-topbar) {
+            // hidden when closed for topbar layout
+            --closed-sidebar-width: var(--navsidebar-width-closed);
+        }
         @media (min-width: $screen-md) {
-            --closed-sidebar-width: #{$navsidebar-width-closed};
             .mx-scrollcontainer-shrink:not(.mx-scrollcontainer-open) > .region-sidebar,
             .mx-scrollcontainer-push:not(.mx-scrollcontainer-open) > .region-sidebar,
             .mx-scrollcontainer-slide:not(.mx-scrollcontainer-open) > .region-sidebar {
                 @if (not $use-modern-client) {
-                    width: $navsidebar-width-closed !important;
+                    width: var(--closed-sidebar-width) !important;
                 }
 
                 .mx-scrollcontainer-wrapper .mx-navigationtree ul li {
@@ -23,26 +52,36 @@
                         white-space: nowrap;
                     }
 
+                    &.mx-navigationtree-has-items:focus-within > ul,
                     &.mx-navigationtree-has-items:hover > ul {
                         position: absolute;
                         z-index: 100;
-                        top: $topbar-minimalheight;
+                        top: var(--topbar-minimalheight);
                         bottom: 0;
-                        left: $sidebar-icon-width;
+                        left: var(--closed-sidebar-width);
                         display: block;
                         min-width: auto;
-                        padding: $spacing-small 0;
+                        padding: var(--spacing-small) 0;
 
+                        & > li.mx-navigationtree-has-items:focus-within > ul,
                         & > li.mx-navigationtree-has-items:hover > ul {
                             top: 0;
                             left: 100%;
                         }
                     }
 
-                    &.mx-navigationtree-collapsed,
-                    &.mx-navigationtree-has-items {
+                    &.mx-navigationtree-has-items,
+                    &.mx-navigationtree-collapsed {
                         ul {
                             display: none;
+                        }
+                    }
+
+                    & > a {
+                        .glyphicon,
+                        .mx-icon-lined,
+                        .mx-icon-filled {
+                            flex-basis: var(--closed-sidebar-width);
                         }
                     }
                 }
@@ -50,22 +89,23 @@
 
             .widget-sidebar:not(.widget-sidebar-expanded) {
                 .mx-navigationtree ul li {
+                    &.mx-navigationtree-has-items:focus-within,
                     &.mx-navigationtree-has-items:hover {
                         ul {
                             position: absolute;
                             z-index: 100;
                             top: 0;
                             bottom: 0;
-                            left: $sidebar-icon-width;
+                            left: var(--navsidebar-icon-width);
                             display: block;
                             overflow-y: auto;
                             min-width: auto;
-                            padding: $spacing-small 0;
+                            padding: var(--spacing-small) 0;
                         }
                     }
 
-                    &.mx-navigationtree-collapsed,
-                    &.mx-navigationtree-has-items {
+                    &.mx-navigationtree-has-items,
+                    .mx-navigationtree-collapsed {
                         ul {
                             display: none;
                         }
@@ -81,7 +121,7 @@
                 }
 
                 &.mx-scrollcontainer-open > .region-sidebar {
-                    width: $navsidebar-width-closed !important;
+                    width: var(--closed-sidebar-width) !important;
 
                     & > .mx-scrollcontainer-wrapper {
                         position: relative;
@@ -90,7 +130,7 @@
 
                 .region-sidebar > .mx-scrollcontainer-wrapper {
                     z-index: 2;
-                    left: -$navsidebar-width-closed;
+                    left: calc(-1 * var(--closed-sidebar-width));
                     background-color: inherit;
                 }
             }
@@ -109,8 +149,13 @@
 
         // Sidebar
         .region-sidebar {
+            scrollbar-color: transparent transparent;
+            &:hover {
+                scrollbar-color: var(--navigation-scrollbar-color);
+            }
+
             .toggle-btn {
-                width: $sidebar-icon-width;
+                width: var(--navsidebar-icon-width);
                 border-color: transparent;
                 border-radius: 0;
                 background: transparent;
@@ -119,14 +164,14 @@
             .mx-scrollcontainer-wrapper {
                 .toggle-btn-wrapper {
                     display: flex;
-                    padding: $spacing-small;
+                    padding: var(--spacing-small);
                     align-items: center;
-                    min-height: calc(#{$topbar-minimalheight} + 4px);
-                    background: $navsidebar-sub-bg;
+                    min-height: calc(var(--topbar-minimalheight) + 4px);
+                    background: var(--navsidebar-sub-bg);
                 }
 
                 .toggle-btn {
-                    padding: $spacing-medium;
+                    padding: var(--spacing-medium);
 
                     img {
                         width: 24px;
@@ -141,30 +186,46 @@
 
                 .mx-navigationtree .navbar-inner > ul > li {
                     & > a {
-                        height: $sidebar-icon-height;
-                        padding: $spacing-small 0;
+                        height: var(--navsidebar-icon-height);
+                        padding: var(--spacing-small) 0;
+                        margin: var(--spacing-smaller) 0 0 0;
                         white-space: nowrap;
                         overflow: hidden;
+                        border-radius: var(--navsidebar-border-radius);
                         // Glyph icon
                         .glyphicon,
                         .mx-icon-lined,
                         .mx-icon-filled {
                             display: flex;
                             align-items: center;
+                            flex-shrink: 0;
                             justify-content: center;
-                            width: $sidebar-icon-width;
-                            height: $sidebar-icon-height;
-                            padding: $spacing-small $spacing-medium;
-                            border-radius: $border-radius-default;
+                            flex-basis: var(--navsidebar-icon-width);
+                            height: var(--navsidebar-icon-height);
+                            padding: var(--spacing-small) var(--spacing-medium);
+                            border-radius: var(--navsidebar-border-radius);
+                            transition: flex-basis var(--navsidebar-animation-duration) var(--navsidebar-animation-function);
                         }
+                        img {
+                            width: var(--navsidebar-icon-width);
+                            padding: var(--spacing-small) var(--spacing-medium);
+                        }
+                    }
+                    &.mx-navigationtree-has-items:not(.mx-navigationtree-collapsed) > a {
+                        border-radius: var(--navsidebar-border-radius) var(--navigation-border-radius) 0 0;
+                        background-color: var(--navsidebar-sub-bg-header);
                     }
                 }
             }
         }
+    }
 
+    .layout-atlas-responsive,
+    .layout-atlas-responsive-default,
+    .layout-atlas-responsive-sidebar {
         // Topbar
         .region-topbar {
-            padding: 0 $spacing-small;
+            padding: 0 var(--spacing-small);
 
             .toggle-btn {
                 padding: 0;
@@ -176,7 +237,7 @@
 
             .mx-icon-filled,
             .mx-icon-lined {
-                font-size: 20px;
+                font-size: 18px;
             }
         }
     }
@@ -184,21 +245,138 @@
     // Topbar variant
     .layout-atlas-responsive-topbar {
         .region-topbar {
-            padding: 0 $spacing-medium;
+            padding: 0 var(--spacing-medium);
             @media (max-width: $screen-sm-max) {
-                padding: 0 $spacing-small;
+                padding: 0 var(--spacing-small);
+            }
+            .topbar-wrapper {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                align-items: center;
+            }
+        }
+
+        .mx-scrollcontainer-slide {
+            &:not(.mx-scrollcontainer-open) > .region-sidebar {
+                overflow: hidden;
             }
 
-            .mx-scrollcontainer-wrapper {
-                .mx-layoutgrid,
-                .mx-layoutgrid-fluid {
-                    padding: 0 $gutter-size;
+            .region-sidebar {
+                z-index: 100;
+            }
+        }
+
+        @if (not $use-modern-client) {
+            .mx-scrollcontainer-slide {
+                &:not(.mx-scrollcontainer-open) > .region-sidebar {
+                    overflow: hidden;
+                }
+
+                &.mx-scrollcontainer-open > .region-sidebar {
+                    & > .mx-scrollcontainer-wrapper {
+                        position: relative;
+                        background: var(--sidebar-bg);
+                        width: var(--navsidebar-width-open);
+                        z-index: 100;
+                    }
                 }
             }
 
-            .mx-icon-filled,
-            .mx-icon-lined {
-                font-size: 20px;
+            // Push aside for mobile
+            @media (max-width: $screen-sm-max) {
+                .mx-scrollcontainer-open:not(.mx-scrollcontainer-slide) {
+                    width: 1100px;
+                }
+
+                .mx-scrollcontainer-slide .toggle-btn {
+                    display: inline-block !important;
+                }
+            }
+        }
+    }
+
+    .layout-atlas-responsive-sidebar {
+        .sidebar-wrapper {
+            padding: var(--spacing-medium) 0 var(--spacing-medium) 0;
+            transition: padding var(--navsidebar-animation-duration) var(--navsidebar-animation-function);
+        }
+
+        .mx-scrollcontainer-shrink,
+        .mx-scrollcontainer-slide,
+        .mx-scrollcontainer-push {
+            .toggle-btn-sidebar {
+                width: var(--navsidebar-toggle-size);
+                height: var(--navsidebar-toggle-size);
+                border: 1px solid var(--border-color-default);
+                opacity: 0;
+                padding: 0;
+                overflow: hidden;
+                position: absolute;
+                background: var(--color-base);
+                border-radius: 100%;
+                transition: all var(--navsidebar-animation-duration) var(--navsidebar-animation-function);
+                color: var(--font-color-header);
+                top: 26px;
+                left: calc(var(--closed-sidebar-width) - var(--navsidebar-toggle-size) / 2);
+                .mx-icon-filled,
+                .mx-icon-lined {
+                    line-height: var(--line-height-base);
+                }
+                &:focus-visible {
+                    opacity: 1;
+                }
+            }
+
+            .region-sidebar:hover {
+                .toggle-btn-sidebar {
+                    opacity: 1;
+                    &:hover {
+                        background-color: var(--brand-primary);
+                        color: var(--font-color-contrast);
+                        transform: scale(1.1);
+                        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+                    }
+                }
+            }
+
+            &.mx-scrollcontainer-open {
+                .toggle-btn-sidebar {
+                    left: calc(var(--sidebar-size, var(--navsidebar-width-open)) - var(--navsidebar-toggle-size) / 2);
+                    rotate: 180deg;
+                }
+                .sidebar-brand-logo {
+                    padding: 0 var(--spacing-small);
+                    transition: padding var(--navsidebar-animation-duration) var(--navsidebar-animation-function);
+                }
+            }
+            &:not(.mx-scrollcontainer-open) {
+                .sidebar-brand-logo {
+                    padding: 0 calc((var(--closed-sidebar-width) - var(--brand-logo-width)) / 2);
+                    transition: padding var(--navsidebar-animation-duration) var(--navsidebar-animation-function);
+                }
+            }
+
+            @media (max-width: $screen-sm-max) {
+                :not(&.mx-scrollcontainer-open) {
+                    .toggle-btn-sidebar-mobile {
+                        // shown only for mobile
+                        color: var(--brand-primary-800);
+                        background: transparent;
+                        border: 0;
+                    }
+                }
+            }
+        }
+
+        .widget-language-selector {
+            .current-language-text {
+                color: var(--font-color-header);
+            }
+            .language-arrow {
+                color: var(--font-color-header);
+                .arrow-image {
+                    filter: none;
+                }
             }
         }
     }

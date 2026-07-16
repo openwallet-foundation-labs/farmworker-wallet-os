@@ -24,13 +24,13 @@
         .mx-grid-content {
             border-top-width: 2px;
             border-top-style: solid;
-            border-top-color: $grid-border-color;
+            border-top-color: var(--grid-border-color);
         }
 
         .mx-templategrid-item {
-            border-top: 1px solid $grid-border-color;
+            border-top: 1px solid var(--grid-border-color);
             border-right: none;
-            border-bottom: 1px solid $grid-border-color;
+            border-bottom: 1px solid var(--grid-border-color);
             border-left: none;
         }
     }
@@ -76,14 +76,14 @@
     .templategrid-hover.mx-templategrid {
         .mx-templategrid-item {
             &:hover {
-                background-color: $grid-bg-hover !important;
+                background-color: var(--grid-bg-hover) !important;
             }
 
             &.selected {
-                background-color: $grid-bg-selected !important;
+                background-color: var(--grid-bg-selected) !important;
 
                 &:hover {
-                    background-color: $grid-bg-selected-hover !important;
+                    background-color: var(--grid-bg-selected-hover) !important;
                 }
             }
         }
@@ -92,15 +92,15 @@
     // Templategrid Row Sizes
     .templategrid-lg.mx-templategrid {
         .mx-templategrid-item {
-            padding: ($grid-padding-top * 2) ($grid-padding-right * 2) ($grid-padding-bottom * 2)
-                ($grid-padding-left * 2);
+            padding: calc(var(--grid-padding-top) * 2) calc(var(--grid-padding-right) * 2)
+                calc(var(--grid-padding-bottom) * 2) calc(var(--grid-padding-left) * 2);
         }
     }
 
     .templategrid-sm.mx-templategrid {
         .mx-templategrid-item {
-            padding: ($grid-padding-top / 2) ($grid-padding-right / 2) ($grid-padding-bottom / 2)
-                ($grid-padding-left / 2);
+            padding: (var(--grid-padding-top) / 2) (var(--grid-padding-right) / 2) (var(--grid-padding-bottom) / 2)
+                (var(--grid-padding-left) / 2);
         }
     }
 
@@ -113,8 +113,8 @@
 
         .mx-templategrid-row {
             display: block;
-            margin-right: -1 * $gutter-size;
-            margin-left: -1 * $gutter-size;
+            margin-right: calc(-1 * var(--gutter-size));
+            margin-left: calc(-1 * var(--gutter-size));
 
             &::before,
             &::after {
@@ -131,8 +131,8 @@
             display: block;
             float: left;
             min-height: 1px;
-            padding-right: $gutter-size;
-            padding-left: $gutter-size;
+            padding-right: var(--gutter-size);
+            padding-left: var(--gutter-size);
             border: 0;
             @media (max-width: 992px) {
                 width: 100% !important;

@@ -24,14 +24,14 @@
                 /* Buttons */
                 .mx-button {
                     padding: 8px;
-                    color: $grid-paging-color;
-                    border-color: $grid-paging-border-color;
-                    background-color: $grid-paging-bg;
+                    color: var(--grid-paging-color);
+                    border-color: var(--grid-paging-border-color);
+                    background-color: var(--grid-paging-bg);
 
                     &:hover {
-                        color: $grid-paging-color-hover;
-                        border-color: $grid-paging-border-color-hover;
-                        background-color: $grid-paging-bg-hover;
+                        color: var(--grid-paging-color-hover);
+                        border-color: var(--grid-paging-border-color-hover);
+                        background-color: var(--grid-paging-bg-hover);
                     }
                 }
 

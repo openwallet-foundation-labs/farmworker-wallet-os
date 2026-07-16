@@ -20,7 +20,7 @@ import { Platform } from 'react-native';
  * Write text to a file.
  * As this is intended for use as logging, there is no writeToLog parameter.
  * @param {string} filepath - The path to the file or directory.
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} pathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} pathType
  * @param {string} textData
  * @param {boolean} append - Append to the existing file contents or write as only file contents.
  * @param {boolean} writeToLog

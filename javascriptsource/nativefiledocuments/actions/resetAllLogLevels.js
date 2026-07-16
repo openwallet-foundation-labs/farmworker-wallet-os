@@ -16,7 +16,7 @@ import LogListener from "../LogListener";
 
 /**
  * Reset all log levels to the specified level.
- * @param {"NativeFileDocuments.LogLevel.trace"|"NativeFileDocuments.LogLevel.debug"|"NativeFileDocuments.LogLevel.info"|"NativeFileDocuments.LogLevel.warning"|"NativeFileDocuments.LogLevel.error"|"NativeFileDocuments.LogLevel.critical"|"NativeFileDocuments.LogLevel.none"} logLevel
+ * @param {undefined|"trace"|"debug"|"info"|"warning"|"error"|"critical"|"none"} logLevel
  * @returns {Promise.<void>}
  */
 export async function resetAllLogLevels(logLevel) {

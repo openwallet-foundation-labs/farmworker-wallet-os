@@ -17,8 +17,8 @@
         width: 100%;
 
         .progress {
-            border-radius: $border-radius-default;
-            background-color: $bg-color;
+            border-radius: var(--border-radius-default);
+            background-color: var(--bg-color);
         }
     }
 
@@ -26,7 +26,7 @@
     .progress-bar-medium .progress-bar {
         height: 16px;
         line-height: 16px;
-        font-size: $font-size-small;
+        font-size: var(--font-size-small);
     }
 
     .progress-bar-small .progress,
@@ -45,7 +45,7 @@
     .progress-bar-large .progress-bar {
         height: 24px;
         line-height: 24px;
-        font-size: $font-size-default;
+        font-size: var(--font-size-default);
     }
 
     .widget-progress-bar-clickable:hover {
@@ -53,27 +53,27 @@
     }
 
     .widget-progress-bar.progress-bar-primary .progress-bar {
-        background-color: $brand-primary;
+        background-color: var(--brand-primary);
     }
 
     .widget-progress-bar.progress-bar-success .progress-bar {
-        background-color: $brand-success;
+        background-color: var(--brand-success);
     }
 
     .widget-progress-bar.progress-bar-warning .progress-bar {
-        background-color: $brand-warning;
+        background-color: var(--brand-warning);
     }
 
     .widget-progress-bar.progress-bar-danger .progress-bar {
-        background-color: $brand-danger;
+        background-color: var(--brand-danger);
     }
 
     .widget-progress-bar-alert.widget-progress-bar-text-contrast .progress-bar {
-        color: $color-danger-darker;
+        color: var(--brand-danger-700);
     }
 
     .widget-progress-bar-text-contrast .progress-bar {
-        color: $font-color-default;
+        color: var(--font-color-default);
     }
 
     .widget-progress-bar-negative {

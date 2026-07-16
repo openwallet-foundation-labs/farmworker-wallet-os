@@ -24,7 +24,7 @@ function kmToNauticalMile(km) {
  * @param {Big} longitudePoint1
  * @param {Big} latitudePoint2
  * @param {Big} longitudePoint2
- * @param {"NanoflowCommons.Enum_DistanceUnit.KILOMETER"|"NanoflowCommons.Enum_DistanceUnit.STATUTE_MILE"|"NanoflowCommons.Enum_DistanceUnit.NAUTICAL_MILE"} unit
+ * @param {undefined|"KILOMETER"|"STATUTE_MILE"|"NAUTICAL_MILE"} unit
  * @returns {Promise.<Big>}
  */
 export async function GetStraightLineDistance(latitudePoint1, longitudePoint1, latitudePoint2, longitudePoint2, unit) {

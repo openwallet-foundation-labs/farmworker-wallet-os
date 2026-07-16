@@ -17,6 +17,6 @@
     }
 
     .widget-progress-circle-trail-path {
-        stroke: $bg-color;
+        stroke: var(--bg-color);
     }
 }

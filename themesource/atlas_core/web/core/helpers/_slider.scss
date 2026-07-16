@@ -15,18 +15,18 @@
     ========================================================================== */
 
     .widget-slider-primary {
-        @include slider-color-variant($brand-primary);
+        @include slider-color-variant(var(--brand-primary));
     }
 
     .widget-slider-success {
-        @include slider-color-variant($brand-success);
+        @include slider-color-variant(var(--brand-success));
     }
 
     .widget-slider-warning {
-        @include slider-color-variant($brand-warning);
+        @include slider-color-variant(var(--brand-warning));
     }
 
     .widget-slider-danger {
-        @include slider-color-variant($brand-danger);
+        @include slider-color-variant(var(--brand-danger));
     }
 }

@@ -49,7 +49,7 @@ import { V2OfferCredentialMessage, V2RequestPresentationMessage } from "@credo-t
  * // the legacy did sov prefix.
  * const isIncomingMessageTypeSupported = supportsIncomingMessageType(incomingMessageType, expectedMessageType
  * @param {string} incomingMessageType - json
- * @param {"Agent_SDK.enum_aries_MessageType.V1OfferCredentialMessage"|"Agent_SDK.enum_aries_MessageType.V2OfferCredentialMessage"|"Agent_SDK.enum_aries_MessageType.V1RequestPresentationMessage"|"Agent_SDK.enum_aries_MessageType.V2RequestPresentationMessage"} expectedMessageType
+ * @param {undefined|"V1OfferCredentialMessage"|"V2OfferCredentialMessage"|"V1RequestPresentationMessage"|"V2RequestPresentationMessage"} expectedMessageType
  * @returns {Promise.<boolean>}
  */
 export async function jsa_aries_core_build_utils_messageType_supportsIncomingMessageType(incomingMessageType, expectedMessageType) {

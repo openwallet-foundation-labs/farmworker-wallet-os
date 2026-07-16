@@ -11,7 +11,7 @@ import { Big } from "big.js";
 // END EXTRA CODE
 
 /**
- * @returns {Promise.<"KeyManagement.enum_platform.Hybrid_mobile"|"KeyManagement.enum_platform.Native_mobile"|"KeyManagement.enum_platform.Web">}
+ * @returns {Promise.<undefined|"Hybrid_mobile"|"Native_mobile"|"Web">}
  */
 export async function jsa_getplatform() {
 	// BEGIN USER CODE

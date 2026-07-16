@@ -1,0 +1,138 @@
+package com.ReactNativeBlobUtil;
+
+import android.net.Uri;
+import android.util.Base64;
+
+import com.ReactNativeBlobUtil.Utils.PathResolver;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
+
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.util.Locale;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import okhttp3.OkHttpClient;
+
+public class ReactNativeBlobUtilUtils {
+
+    public static X509TrustManager sharedTrustManager;
+
+    public static String getMD5(String input) {
+        String result = null;
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(input.getBytes());
+            byte[] digest = md.digest();
+
+            StringBuilder sb = new StringBuilder();
+
+            for (byte b : digest) {
+                sb.append(String.format(Locale.ROOT, "%02x", b & 0xff));
+            }
+
+            result = sb.toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            // TODO: Is discarding errors the intent? (https://www.owasp.org/index.php/Return_Inside_Finally_Block)
+            return result;
+        }
+
+    }
+
+    public static void emitWarningEvent(String data) {
+        WritableMap args = Arguments.createMap();
+        args.putString("event", "warn");
+        args.putString("detail", data);
+
+        // emit event to js context
+        ReactNativeBlobUtilImpl.RCTContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit(ReactNativeBlobUtilConst.EVENT_MESSAGE, args);
+    }
+
+    public static OkHttpClient.Builder getUnsafeOkHttpClient(OkHttpClient client) {
+        try {
+
+            if (sharedTrustManager == null) throw new IllegalStateException("Use of own trust manager but none defined");
+
+            final TrustManager[] trustAllCerts = new TrustManager[]{sharedTrustManager};
+
+            // Install the all-trusting trust manager
+            final SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+            // Create an ssl socLket factory with our all-trusting manager
+            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+            OkHttpClient.Builder builder = client.newBuilder();
+            builder.sslSocketFactory(sslSocketFactory, sharedTrustManager);
+            builder.hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+
+            return builder;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * String to byte converter method
+     *
+     * @param data     Raw data in string format
+     * @param encoding Decoder name
+     * @return Converted data byte array
+     */
+    public static byte[] stringToBytes(String data, String encoding) {
+        if (encoding.equalsIgnoreCase("ascii")) {
+            return data.getBytes(Charset.forName("US-ASCII"));
+        } else if (encoding.toLowerCase(Locale.ROOT).contains("base64")) {
+            return Base64.decode(data, Base64.NO_WRAP);
+
+        } else if (encoding.equalsIgnoreCase("utf8")) {
+            return data.getBytes(Charset.forName("UTF-8"));
+        }
+        return data.getBytes(Charset.forName("US-ASCII"));
+    }
+
+    /**
+     * Normalize the path, remove URI scheme (xxx://) so that we can handle it.
+     *
+     * @param path URI string.
+     * @return Normalized string
+     */
+    public static String normalizePath(String path) {
+        if (path == null)
+            return null;
+        if (!path.matches("\\w+\\:.*"))
+            return path;
+        if (path.startsWith("file://")) {
+            return path.replace("file://", "");
+        }
+
+        Uri uri = Uri.parse(path);
+        if (path.startsWith(ReactNativeBlobUtilConst.FILE_PREFIX_BUNDLE_ASSET)) {
+            return path;
+        } else
+            return PathResolver.getRealPathFromURI(ReactNativeBlobUtilImpl.RCTContext, uri);
+    }
+
+    public static boolean isAsset(String path) {
+        return path != null && path.startsWith(ReactNativeBlobUtilConst.FILE_PREFIX_BUNDLE_ASSET);
+    }
+
+    public static boolean isContentUri(String path) {
+        return path != null && path.startsWith(ReactNativeBlobUtilConst.FILE_PREFIX_CONTENT);
+    }
+}

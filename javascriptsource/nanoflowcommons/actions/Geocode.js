@@ -14,7 +14,7 @@ import Geodecoder from 'react-native-geocoder';
 /**
  * Geocoding is the process of converting addresses (like a street address) into geographic coordinates (latitude and longitude), which you can use to place markers on a map, or position the map.
  * @param {string} address - This field is required.
- * @param {"NanoflowCommons.GeocodingProvider.Google"|"NanoflowCommons.GeocodingProvider.Geocodio"|"NanoflowCommons.GeocodingProvider.LocationIQ"|"NanoflowCommons.GeocodingProvider.MapQuest"} geocodingProvider - This field is required for use on web.
+ * @param {undefined|"Google"|"Geocodio"|"LocationIQ"|"MapQuest"} geocodingProvider - This field is required for use on web.
  * @param {string} providerApiKey - This field is required for use on web. Note that the keys are accessible by the end users and should be protected in other ways; for example restricted domain name.
  * @returns {Promise.<MxObject>}
  */

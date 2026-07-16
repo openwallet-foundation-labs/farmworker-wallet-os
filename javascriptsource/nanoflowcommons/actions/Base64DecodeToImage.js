@@ -48,10 +48,10 @@ export async function Base64DecodeToImage(base64, image) {
             const blob = await res.blob();
             return new Promise((resolve, reject) => {
                 mx.data.saveDocument(image.getGuid(), "camera image", {}, blob, () => {
-                    RNBlobUtil.fs.unlink(tempPath).catch(() => { });
+                    RNBlobUtil.fs.unlink(tempPath).catch(e => console.info("Temp file cleanup failed:", e));
                     resolve(true);
                 }, error => {
-                    RNBlobUtil.fs.unlink(tempPath).catch(() => { });
+                    RNBlobUtil.fs.unlink(tempPath).catch(e => console.info("Temp file cleanup failed:", e));
                     reject(error);
                 });
             });
@@ -62,7 +62,10 @@ export async function Base64DecodeToImage(base64, image) {
         }
     }
     // Other platforms
-    const blob = new Blob([Base64.toUint8Array(base64)], { type: "image/png" });
+    const bytes = Base64.toUint8Array(base64);
+    const buffer = new ArrayBuffer(bytes.byteLength);
+    new Uint8Array(buffer).set(bytes);
+    const blob = new Blob([buffer], { type: "image/png" });
     return new Promise((resolve, reject) => {
         mx.data.saveDocument(image.getGuid(), "camera image", {}, blob, () => resolve(true), reject);
     });

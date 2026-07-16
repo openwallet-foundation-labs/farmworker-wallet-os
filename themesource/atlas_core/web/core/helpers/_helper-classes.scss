@@ -166,27 +166,32 @@
         justify-content: center #{$important-helpers-value};
     }
 
+    .shadow-none {
+        box-shadow: none;
+    }
+
     .shadow-small {
-        box-shadow: $shadow-small $shadow-color;
+        box-shadow: var(--shadow-small) var(--shadow-color);
         margin-bottom: 5px;
         border-width: 1px #{$important-helpers-value};
         border-style: solid;
-        border-color: $shadow-color-border;
+        border-color: var(--shadow-color-border);
     }
+
     .shadow-medium {
-        box-shadow: $shadow-medium $shadow-color;
+        box-shadow: var(--shadow-medium) var(--shadow-color);
         margin-bottom: 15px;
         border-width: 1px #{$important-helpers-value};
         border-style: solid;
-        border-color: $shadow-color-border;
+        border-color: var(--shadow-color-border);
     }
 
     .shadow-large {
-        box-shadow: $shadow-large $shadow-color;
+        box-shadow: var(--shadow-large) var(--shadow-color);
         margin-bottom: 25px;
         border-width: 1px #{$important-helpers-value};
         border-style: solid;
-        border-color: $shadow-color-border;
+        border-color: var(--shadow-color-border);
     }
 
     // Media
@@ -204,12 +209,16 @@
             display: none #{$important-helpers-value};
         }
     }
+
+    // force hide everything that should be hidden only on mid-size screen
+    // to be also hidden on tablet with big screen width.
     .profile-tablet .hide-tablet {
         display: none #{$important-helpers-value};
     }
 
     @media (min-width: $screen-lg) {
-        .hide-desktop {
+        // due to force hidden, this is needed to only be hidden on desktop with profile-desktop.
+        .profile-desktop .hide-desktop {
             display: none #{$important-helpers-value};
         }
     }
@@ -342,6 +351,38 @@
         }
     }
 
+    @media (min-width: $screen-xl) and (max-width: $screen-xxl) {
+        .hide-xl,
+        .hidden-xl,
+        .d-xl-none {
+            display: none #{$important-helpers-value};
+        }
+        .d-xl-flex {
+            display: flex #{$important-helpers-value};
+        }
+        .d-xl-inline-flex {
+            display: inline-flex #{$important-helpers-value};
+        }
+        .d-xl-inline {
+            display: inline #{$important-helpers-value};
+        }
+        .d-xl-inline-block {
+            display: inline-block #{$important-helpers-value};
+        }
+        .d-xl-block {
+            display: block #{$important-helpers-value};
+        }
+        .d-xl-table {
+            display: table #{$important-helpers-value};
+        }
+        .d-xl-table-row {
+            display: table-row #{$important-helpers-value};
+        }
+        .d-xl-table-cell {
+            display: table-cell #{$important-helpers-value};
+        }
+    }
+
     @media (min-width: $screen-xl) {
         .hide-xl,
         .hidden-xl,
@@ -418,26 +459,26 @@
 
     //Border helpers
     .border {
-        border: 1px solid $border-color-default #{$important-helpers-value};
+        border: var(--border-default) #{$important-helpers-value};
     }
 
     .border-top {
-        border-top: 1px solid $border-color-default #{$important-helpers-value};
+        border-top: var(--border-default) #{$important-helpers-value};
     }
 
     .border-bottom {
-        border-bottom: 1px solid $border-color-default #{$important-helpers-value};
+        border-bottom: var(--border-default) #{$important-helpers-value};
     }
 
     .border-left {
-        border-left: 1px solid $border-color-default #{$important-helpers-value};
+        border-left: var(--border-default) #{$important-helpers-value};
     }
 
     .border-right {
-        border-right: 1px solid $border-color-default #{$important-helpers-value};
+        border-right: var(--border-default) #{$important-helpers-value};
     }
 
     .border-rounded {
-        border-radius: $border-radius-default #{$important-helpers-value};
+        border-radius: var(--border-radius-default) #{$important-helpers-value};
     }
 }

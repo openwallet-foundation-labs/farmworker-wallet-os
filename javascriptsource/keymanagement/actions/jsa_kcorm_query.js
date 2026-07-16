@@ -9,7 +9,7 @@ import "mx-global";
 import { Big } from "big.js";
 
 // BEGIN EXTRA CODE
-import SInfo from "react-native-sensitive-info";
+import * as SInfo from "react-native-sensitive-info";
 import {jsa_json2mxobj} from"./jsa_json2mxobj.js";
 import{default as jsonQuery}from"json-query";
 async function mx_data_createAsync(options){
@@ -41,11 +41,10 @@ async function mx_data_createAsync(options){
  * @param {string} query - e.g. Age=42
  * @param {string} entity
  * @param {MxObject[]} output - output list to populate
- * @param {string} [sharedPreferencesName]
- * @param {string} [keychainService]
+ * @param {string} [service]
  * @returns {Promise.<MxObject[]>}
  */
-export async function jsa_kcorm_query(key, query, entity, output, sharedPreferencesName, keychainService) {
+export async function jsa_kcorm_query(key, query, entity, output, service) {
 	// BEGIN USER CODE
 	// --------------
 	// IN PROGRESS...
@@ -54,13 +53,13 @@ export async function jsa_kcorm_query(key, query, entity, output, sharedPreferen
 		if(output==null)return Promise.reject("Argument output null");
 		if(key==null)return Promise.reject("Argument key null");
 		if(query==null||query.length==0)return Promise.reject("Argument query null");
-		let settings={};
-		if(sharedPreferencesName!=null)settings.sharedPreferencesName=sharedPreferencesName;
-		if(keychainService!=null)settings.keychainService=keychainService;
+		//6.1.x: unified cross-platform service scope. accessControl is a write-only policy and is not passed to reads.
+		let settings={service:(service!=null&&service!=""?service:"KeyManagement")};
 		let obj={};
 		try{
 			//https://mcodex.dev/react-native-sensitive-info/docs/getItem
-			let kcval=await SInfo.getItem(key,settings);
+			let __item=await SInfo.getItem(key,settings);
+			let kcval=__item!=null?__item.value:null;
 			if(kcval!=null&&kcval!="")try{
 				obj=JSON.parse(kcval);
 				obj=typeof(obj)=="object"?obj:Array.isArray(obj)?{}:obj;

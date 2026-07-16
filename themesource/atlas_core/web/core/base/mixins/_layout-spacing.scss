@@ -14,78 +14,78 @@
         @if $device==responsive {
             @if $direction==all {
                 @media (max-width: $screen-sm-max) {
-                    #{$type}: #{$m-layout-spacing}#{$suffix};
+                    #{$type}: var(--m-layout-spacing) #{$suffix};
                 }
                 @media (min-width: $screen-md) {
-                    #{$type}: #{$t-layout-spacing}#{$suffix};
+                    #{$type}: var(--t-layout-spacing) #{$suffix};
                 }
                 @media (min-width: $screen-lg) {
-                    #{$type}: #{$layout-spacing}#{$suffix};
+                    #{$type}: var(--layout-spacing) #{$suffix};
                 }
             } @else if $direction==top {
                 @media (max-width: $screen-sm-max) {
-                    #{$type}-top: #{$m-layout-spacing-top}#{$suffix};
+                    #{$type}-top: var(--m-layout-spacing-top) #{$suffix};
                 }
                 @media (min-width: $screen-md) {
-                    #{$type}-top: #{$t-layout-spacing-top}#{$suffix};
+                    #{$type}-top: var(--t-layout-spacing-top) #{$suffix};
                 }
                 @media (min-width: $screen-lg) {
-                    #{$type}-top: #{$layout-spacing-top}#{$suffix};
+                    #{$type}-top: var(--layout-spacing-top) #{$suffix};
                 }
             } @else if $direction==right {
                 @media (max-width: $screen-sm-max) {
-                    #{$type}-right: #{$m-layout-spacing-right}#{$suffix};
+                    #{$type}-right: var(--m-layout-spacing-right) #{$suffix};
                 }
                 @media (min-width: $screen-md) {
-                    #{$type}-right: #{$t-layout-spacing-right}#{$suffix};
+                    #{$type}-right: var(--t-layout-spacing-right) #{$suffix};
                 }
                 @media (min-width: $screen-lg) {
-                    #{$type}-right: #{$layout-spacing-right}#{$suffix};
+                    #{$type}-right: var(--layout-spacing-right) #{$suffix};
                 }
             } @else if $direction==bottom {
                 @media (max-width: $screen-sm-max) {
-                    #{$type}-bottom: #{$m-layout-spacing-bottom}#{$suffix};
+                    #{$type}-bottom: var(--m-layout-spacing-bottom) #{$suffix};
                 }
                 @media (min-width: $screen-md) {
-                    #{$type}-bottom: #{$t-layout-spacing-bottom}#{$suffix};
+                    #{$type}-bottom: var(--t-layout-spacing-bottom) #{$suffix};
                 }
                 @media (min-width: $screen-lg) {
-                    #{$type}-bottom: #{$layout-spacing-bottom}#{$suffix};
+                    #{$type}-bottom: var(--layout-spacing-bottom) #{$suffix};
                 }
             } @else if $direction==left {
                 @media (max-width: $screen-sm-max) {
-                    #{$type}-left: #{$m-layout-spacing-left}#{$suffix};
+                    #{$type}-left: var(--m-layout-spacing-left) #{$suffix};
                 }
                 @media (min-width: $screen-md) {
-                    #{$type}-left: #{$t-layout-spacing-left}#{$suffix};
+                    #{$type}-left: var(--t-layout-spacing-left) #{$suffix};
                 }
                 @media (min-width: $screen-lg) {
-                    #{$type}-left: #{$layout-spacing-left}#{$suffix};
+                    #{$type}-left: var(--layout-spacing-left) #{$suffix};
                 }
             }
         } @else if $device==tablet {
             @if $direction==all {
-                #{$type}: #{$t-layout-spacing}#{$suffix};
+                #{$type}: var(--t-layout-spacing) #{$suffix};
             } @else if $direction==top {
-                #{$type}-top: #{$t-layout-spacing-top}#{$suffix};
+                #{$type}-top: var(--t-layout-spacing-top) #{$suffix};
             } @else if $direction==right {
-                #{$type}-right: #{$t-layout-spacing-right}#{$suffix};
+                #{$type}-right: var(--t-layout-spacing-right) #{$suffix};
             } @else if $direction==bottom {
-                #{$type}-bottom: #{$t-layout-spacing-bottom}#{$suffix};
+                #{$type}-bottom: var(--t-layout-spacing-bottom) #{$suffix};
             } @else if $direction==left {
-                #{$type}-left: #{$t-layout-spacing-left}#{$suffix};
+                #{$type}-left: var(--t-layout-spacing-left) #{$suffix};
             }
         } @else if $device==mobile {
             @if $direction==all {
-                #{$type}: #{$m-layout-spacing}#{$suffix};
+                #{$type}: var(--m-layout-spacing) #{$suffix};
             } @else if $direction==top {
-                #{$type}-top: #{$m-layout-spacing-top}#{$suffix};
+                #{$type}-top: var(--m-layout-spacing-top) #{$suffix};
             } @else if $direction==right {
-                #{$type}-right: #{$m-layout-spacing-right}#{$suffix};
+                #{$type}-right: var(--m-layout-spacing-right) #{$suffix};
             } @else if $direction==bottom {
-                #{$type}-bottom: #{$m-layout-spacing-bottom}#{$suffix};
+                #{$type}-bottom: var(--m-layout-spacing-bottom) #{$suffix};
             } @else if $direction==left {
-                #{$type}-left: #{$m-layout-spacing-left}#{$suffix};
+                #{$type}-left: var(--m-layout-spacing-left) #{$suffix};
             }
         }
     }

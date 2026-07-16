@@ -13,14 +13,14 @@
 
 .alert {
     margin-top: 0;
-    padding: $spacing-medium;
-    border: 1px solid;
-    border-radius: $border-radius-default;
-    padding: $spacing-medium;
+    padding: var(--spacing-medium);
+    border: var(--border-width-default) solid;
+    border-radius: var(--border-radius-default);
+    padding: var(--spacing-medium);
 }
 
 .alert-icon {
-    font-size: $font-size-h3;
+    font-size: var(--font-size-h3);
 }
 
 .alert-title {
@@ -35,40 +35,34 @@
 
 .alert-primary,
 .alert {
-    color: $alert-primary-color;
-    border-color: $alert-primary-border-color;
-    background-color: $alert-primary-bg;
-}
-
-.alert-secondary {
-    color: $alert-secondary-color;
-    border-color: $alert-secondary-border-color;
-    background-color: $alert-secondary-bg;
+    color: var(--alert-primary-color);
+    border-color: var(--alert-primary-border-color);
+    background-color: var(--alert-primary-bg);
 }
 
 // Semantic variations
 .alert-success {
-    color: $alert-success-color;
-    border-color: $alert-success-border-color;
-    background-color: $alert-success-bg;
+    color: var(--alert-success-color);
+    border-color: var(--alert-success-border-color);
+    background-color: var(--alert-success-bg);
 }
 
 .alert-warning {
-    color: $alert-warning-color;
-    border-color: $alert-warning-border-color;
-    background-color: $alert-warning-bg;
+    color: var(--alert-warning-color);
+    border-color: var(--alert-warning-border-color);
+    background-color: var(--alert-warning-bg);
 }
 
 .alert-danger {
-    color: $alert-danger-color;
-    border-color: $alert-danger-border-color;
-    background-color: $alert-danger-bg;
+    color: var(--alert-danger-color);
+    border-color: var(--alert-danger-border-color);
+    background-color: var(--alert-danger-bg);
 }
 
 //== State
 //## Styling when component is in certain state
 //-------------------------------------------------------------------------------------------------------------------//
 .has-error .alert {
-    margin-top: $spacing-small;
+    margin-top: var(--spacing-small);
     margin-bottom: 0;
 }

@@ -1,0 +1,88 @@
+{
+    "deepLink": {
+        "ios": {
+            "AppDelegate": {
+                "imports": [
+                    "import React"
+                ],
+                "boolean_openURLWithOptions": [
+                    "return RCTLinkingManager.application(application, open: url, options: options)"
+                ]
+            }
+        }
+    },
+    "crashlytics": {
+        "android": {
+            "gradle": {
+                "classpaths": [
+                    "com.google.firebase:firebase-crashlytics-gradle:2.2.0"
+                ],
+                "plugins": [
+                    "com.google.firebase.crashlytics"
+                ]
+            },
+            "externalDependencies": [
+                "com.google.firebase:firebase-analytics"
+            ]
+        },
+        "ios": {
+            "pods": {
+                "Firebase/Analytics": {}
+            }
+        }
+    },
+    "localNotifications": {
+        "android": {
+            "externalDependencies": [
+                "me.leolin:ShortcutBadger:1.1.22@aar"
+            ]
+        }
+    },
+    "firebaseAndroid": {
+        "android": {
+            "gradle": {
+                "classpaths": [
+                    "com.google.gms:google-services:4.3.3"
+                ],
+                "plugins": [
+                    "com.google.gms.google-services"
+                ]
+            },
+            "externalDependencies": [
+                "com.google.firebase:firebase-analytics"
+            ]
+        }
+    },
+    "firebaseIos": {
+        "ios": {
+            "AppDelegate": {
+                "imports": [
+                    "import FirebaseCore"
+                ],
+                "didFinishLaunchingWithOptions": [
+                    "FirebaseApp.configure()"
+                ]
+            }
+        }
+    },
+    "maps": {},
+    "mapsIos": {
+        "ios": {
+            "AppDelegate": {
+                "imports": [
+                    "import GoogleMaps"
+                ],
+                "didFinishLaunchingWithOptions": [
+                    "GMSServices.provideAPIKey(Bundle.main.object(forInfoDictionaryKey: \"GoogleMapsApiKey\") as? String ?? \"\")"
+                ]
+            },
+            "pods": {
+                "react-native-google-maps": {
+                    "path": "react-native-maps"
+                },
+                "GoogleMaps": {},
+                "Google-Maps-iOS-Utils": {}
+            }
+        }
+    }
+}

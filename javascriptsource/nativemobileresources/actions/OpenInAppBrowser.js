@@ -14,7 +14,7 @@ import { openBrowser } from '@swan-io/react-native-browser';
 /**
  * @param {string} url - This field is required.
  * @param {string} toolbarColor - An optional custom background color for the browser toolbar. For example: 'red' or '#6200EE'.
- * @param {"NativeMobileResources.InAppBrowserDismissButtonStyle.done"|"NativeMobileResources.InAppBrowserDismissButtonStyle.close"|"NativeMobileResources.InAppBrowserDismissButtonStyle.cancel"} iosDismissButtonStyle - iOS only setting. The text that should be used for the button that closes the in app browser. Set to empty to use default value 'close'.
+ * @param {undefined|"done"|"close"|"cancel"} iosDismissButtonStyle - iOS only setting. The text that should be used for the button that closes the in app browser. Set to empty to use default value 'close'.
  * @param {boolean} androidShowTitle - Android only setting. Set to true to show the title of the web page in the toolbar.
  * @returns {Promise.<void>}
  */
@@ -25,9 +25,9 @@ export async function OpenInAppBrowser(url, toolbarColor, iosDismissButtonStyle,
         return Promise.reject(new Error("Input parameter 'url' is required"));
     }
     const options = {
-        barTintColor: toolbarColor,
-        controlTintColor: toolbarColor,
-        dismissButtonStyle: iosDismissButtonStyle,
+        barTintColor: toolbarColor, // iOS toolbar color
+        controlTintColor: toolbarColor, // iOS control buttons color
+        dismissButtonStyle: iosDismissButtonStyle, // iOS dismiss button style
         showTitle: androidShowTitle // Android show title
     };
     try {

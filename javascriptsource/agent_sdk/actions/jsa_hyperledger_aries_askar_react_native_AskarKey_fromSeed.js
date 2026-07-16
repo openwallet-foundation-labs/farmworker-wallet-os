@@ -18,8 +18,8 @@ import { Buffer } from '@credo-ts/core';
  * AskarKey.fromSeed({ method, algorithm, seed, }: { algorithm: KeyAlgs; seed: Uint8Array; method?: KeyMethod; }): AskarKey
  * 
  * https://github.com/hyperledger/aries-askar/blob/3a4d5044b01d529e77b788cbe08313d0c7b758e6/wrappers/javascript/packages/aries-askar-shared/src/crypto/Key.ts
- * @param {"Agent_SDK.enum_keyMethod.None"|"Agent_SDK.enum_keyMethod.BlsKeygen"} method - optional
- * @param {"Agent_SDK.enum_keyalgo.AesA128CbcHs256"|"Agent_SDK.enum_keyalgo.AesA128Gcm"|"Agent_SDK.enum_keyalgo.AesA128Kw"|"Agent_SDK.enum_keyalgo.AesA256CbcHs512"|"Agent_SDK.enum_keyalgo.AesA256Gcm"|"Agent_SDK.enum_keyalgo.AesA256Kw"|"Agent_SDK.enum_keyalgo.Bls12381G1"|"Agent_SDK.enum_keyalgo.Bls12381G1G2"|"Agent_SDK.enum_keyalgo.Bls12381G2"|"Agent_SDK.enum_keyalgo.Chacha20C20P"|"Agent_SDK.enum_keyalgo.Chacha20XC20P"|"Agent_SDK.enum_keyalgo.EcSecp256k1"|"Agent_SDK.enum_keyalgo.EcSecp256r1"|"Agent_SDK.enum_keyalgo.EcSecp384r1"|"Agent_SDK.enum_keyalgo.Ed25519"|"Agent_SDK.enum_keyalgo.X25519"} algorithm - optional json array
+ * @param {undefined|"None"|"BlsKeygen"} method - optional
+ * @param {undefined|"AesA128CbcHs256"|"AesA128Gcm"|"AesA128Kw"|"AesA256CbcHs512"|"AesA256Gcm"|"AesA256Kw"|"Bls12381G1"|"Bls12381G1G2"|"Bls12381G2"|"Chacha20C20P"|"Chacha20XC20P"|"EcSecp256k1"|"EcSecp256r1"|"EcSecp384r1"|"Ed25519"|"X25519"} algorithm - optional json array
  * @param {string} seed
  * @returns {Promise.<string>}
  */

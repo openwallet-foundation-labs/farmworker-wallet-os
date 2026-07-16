@@ -21,7 +21,7 @@ import { Platform } from 'react-native';
  * 
  * Also recursively deletes directories (works like Linux rm -rf).
  * @param {string} filepath - The path to the file or directory.
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} pathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} pathType
  * @param {boolean} writeToLog
  * @returns {Promise.<boolean>}
  */

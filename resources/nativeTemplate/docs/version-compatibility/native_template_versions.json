@@ -1,0 +1,123 @@
+{
+    ">=11.11.0": {
+        "max": "19.*.*",
+        "min": "19.1.0",
+        "androidSdk": {
+            "min": "29",
+            "compile": "36",
+            "target": "36"
+        },
+        "gradle": null,
+        "iosMinSdk": "15.5"
+    },
+    ">=11.10.0": {
+        "max": "19.*.*",
+        "min": "19.0.0",
+        "androidSdk": {
+            "min": "29",
+            "compile": "36",
+            "target": "36"
+        },
+        "gradle": null,
+        "iosMinSdk": "15.5"
+    },
+    ">=11.9.0": {
+        "max": "18.*.*",
+        "min": "18.0.0",
+        "androidSdk": {
+            "min": "24",
+            "compile": "35",
+            "target": "35"
+        },
+        "gradle": "8.8.2",
+        "iosMinSdk": "15.5"
+    },
+    ">=11.6.0": {
+        "max": "17.*.*",
+        "min": "17.0.0",
+        "androidSdk": {
+            "min": "24",
+            "compile": "35",
+            "target": "35"
+        },
+        "gradle": "8.8.2",
+        "iosMinSdk": "15.5"
+    },
+    ">=11.5.0": {
+        "max": "*",
+        "min": "16.0.0",
+        "androidSdk": {
+            "min": "24",
+            "compile": "35",
+            "target": "35"
+        },
+        "gradle": "8.8.2",
+        "iosMinSdk": "15.5"
+    },
+    ">=11.0.0": {
+        "max": "*",
+        "min": "15.0.0",
+        "androidSdk": {
+            "min": "24",
+            "compile": "35",
+            "target": "35"
+        },
+        "gradle": "7.4.2",
+        "iosMinSdk": "15.5"
+    },
+    ">=10.22.0": {
+        "max": "*",
+        "min": "14.0.0",
+        "androidSdk": {
+            "min": "24",
+            "compile": "35",
+            "target": "35"
+        },
+        "gradle": "7.4.2",
+        "iosMinSdk": "15.5"
+    },
+    ">=10.21.0": {
+        "max": "*",
+        "min": "13.0.0",
+        "androidSdk": {
+            "min": "23",
+            "compile": "35",
+            "target": "35"
+        },
+        "gradle": "7.4.0",
+        "iosMinSdk": "13.4"
+    },
+    ">=10.19.0": {
+        "max": "12.*.*",
+        "min": "12.0.0",
+        "androidSdk": {
+            "min": "23",
+            "compile": "35",
+            "target": "35"
+        },
+        "gradle": "7.4.0",
+        "iosMinSdk": "13.4"
+    },
+    ">=10.18.0": {
+        "max": "11.*.*",
+        "min": "11.0.0",
+        "androidSdk": {
+            "min": "23",
+            "compile": "35",
+            "target": "35"
+        },
+        "gradle": "7.4.0",
+        "iosMinSdk": "13.4"
+    },
+    ">=10.17.0": {
+        "max": "10.*.*",
+        "min": "10.0.0",
+        "androidSdk": {
+            "min": "23",
+            "compile": "35",
+            "target": "35"
+        },
+        "gradle": "7.4.0",
+        "iosMinSdk": "13.4"
+    }
+}

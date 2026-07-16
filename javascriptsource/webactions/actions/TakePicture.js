@@ -14,7 +14,7 @@ import { Big } from "big.js";
  * Take a picture using the device's camera.
  * @param {MxObject} picture - This is required.
  * @param {boolean} showConfirmationScreen
- * @param {"WebActions.PictureQuality.original"|"WebActions.PictureQuality.low"|"WebActions.PictureQuality.medium"|"WebActions.PictureQuality.high"|"WebActions.PictureQuality.custom"} pictureQuality - The default picture quality is 'Medium'.
+ * @param {undefined|"original"|"low"|"medium"|"high"|"custom"} pictureQuality - The default picture quality is 'Medium'.
  * @param {Big} maximumWidth - The picture will be scaled to this maximum pixel width, while maintaining the aspect ratio.
  * @param {Big} maximumHeight - The picture will be scaled to this maximum pixel height, while maintaining the aspect ratio.
  * @returns {Promise.<boolean>}
@@ -55,6 +55,7 @@ export async function TakePicture(picture, showConfirmationScreen, pictureQualit
         let stream;
         let videoIsReady = false;
         let shouldFaceEnvironment = true;
+        let retryAttempt = 0;
         const {
             video,
             wrapper,
@@ -83,13 +84,32 @@ export async function TakePicture(picture, showConfirmationScreen, pictureQualit
             resolve(false);
         });
         switchControl.addEventListener("click", switchControlHandler);
-        actionControl.addEventListener("click", () => {
+        actionControl.addEventListener("click", actionControlClicked);
+        video.addEventListener("loadedmetadata", () => (videoIsReady = true));
+        function actionControlClicked() {
+             if(!videoIsReady){
+                actionControl.disabled = true;
+                // reload video if not ready yet (some devices need this extra step)
+                if(retryAttempt < 3){
+                    retryAttempt++;
+                } else {
+                    mx.ui.error(getUserText("Media not available.", "Media niet beschikbaar."));
+                    return;
+                }
+                video.load();
+                setTimeout(() => {
+                    actionControlClicked();
+                }, 50);
+                return;
+            }
+
             removeAllControlButtons();
             if (showConfirmationScreen) {
                 // Delay the `takePictureHandler` to the next cycle so the UI preparations can go first. Otherwise, the control-buttons are not removed while the second screen is being set up.
                 setTimeout(() => {
                     takePictureHandler(() => {
                         addAllControlButtons();
+                        retryAttempt = 0;
                         video.play();
                     });
                 }, 0);
@@ -101,8 +121,9 @@ export async function TakePicture(picture, showConfirmationScreen, pictureQualit
                     closeControlHandler();
                 });
             }
-        });
-        video.addEventListener("loadedmetadata", () => (videoIsReady = true));
+
+            actionControl.disabled = false;
+        }
         function getVideoCanvas() {
             const videoCanvas = document.createElement("canvas");
             videoCanvas.height = video.videoHeight;

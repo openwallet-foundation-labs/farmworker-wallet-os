@@ -6,8 +6,8 @@
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
 import { Big } from "big.js";
-import { Platform, NativeModules } from 'react-native';
-import PushNotification from 'react-native-push-notification';
+import { Platform } from 'react-native';
+import notifee, { TriggerType, AlarmType, AndroidImportance } from '@notifee/react-native';
 
 // BEGIN EXTRA CODE
 // END EXTRA CODE
@@ -28,50 +28,51 @@ import PushNotification from 'react-native-push-notification';
  */
 export async function ScheduleNotification(date, body, title, subtitle, playSound, notificationId, actionName, actionGuid) {
 	// BEGIN USER CODE
-    // Documentation https://github.com/zo0r/react-native-push-notification
-    const isIOS = Platform.OS === "ios";
-    if (NativeModules && isIOS && !NativeModules.RNCPushNotificationIOS) {
-        return Promise.reject(new Error("Notifications module is not available in your app"));
-    }
+    const channelId = playSound ? "mendix-local-notifications-withsound" : "mendix-local-notifications";
+    await createNotificationChannelIfNeeded(channelId);
     if (!body) {
-        return Promise.reject(new Error("Input parameter 'Body' is required"));
+        throw new Error("Input parameter 'Body' is required");
     }
-    const notification = { message: body };
-    const notificationIdNumber = Number(notificationId);
-    if (!isIOS) {
-        const channelId = "mendix-local-notifications";
-        const channelExists = await new Promise(resolve => PushNotification.channelExists(channelId, (exists) => resolve(exists)));
-        if (!channelExists) {
-            const channel = await new Promise(resolve => PushNotification.createChannel({
-                channelId,
-                channelName: "Local notifications"
-            }, created => resolve(created)));
-            if (!channel) {
-                return Promise.reject(new Error("Could not create the local notifications channel"));
-            }
+    if (!date || !date.getTime()) {
+        throw new Error("Input parameter 'Date' is required and must be a valid Date object");
+    }
+    const trigger = {
+        type: TriggerType.TIMESTAMP,
+        timestamp: date.getTime(),
+        alarmManager: { allowWhileIdle: true, type: AlarmType.SET_EXACT_AND_ALLOW_WHILE_IDLE }
+    };
+    const notification = {
+        id: notificationId || undefined,
+        title: title || undefined,
+        body,
+        android: {
+            channelId
         }
-        notification.channelId = channelId;
+    };
+    if (subtitle && Platform.OS === "ios") {
+        notification.subtitle = subtitle;
     }
-    if (notificationIdNumber) {
-        notification.id = notificationIdNumber;
-    }
-    if (title) {
-        notification.title = title;
-    }
-    if (subtitle && !isIOS) {
-        notification.subText = subtitle;
-    }
-    notification.playSound = !!playSound;
     if (actionName || actionGuid) {
-        notification.userInfo = {
-            actionName,
-            guid: actionGuid
+        notification.data = {
+            actionName: actionName !== null && actionName !== void 0 ? actionName : "",
+            guid: actionGuid !== null && actionGuid !== void 0 ? actionGuid : ""
         };
     }
-    if (date && date.getTime()) {
-        notification.date = date;
+    async function createNotificationChannelIfNeeded(channelId) {
+        if (Platform.OS === "ios") {
+            return;
+        }
+        const existingChannel = await notifee.getChannel(channelId);
+        const channel = {
+            id: channelId,
+            name: "Local Notifications",
+            importance: AndroidImportance.HIGH,
+            ...(playSound ? { sound: "default" } : {})
+        };
+        if (existingChannel === null) {
+            await notifee.createChannel(channel);
+        }
     }
-    PushNotification.localNotificationSchedule(notification);
-    return Promise.resolve();
+    await notifee.createTriggerNotification(notification, trigger);
 	// END USER CODE
 }

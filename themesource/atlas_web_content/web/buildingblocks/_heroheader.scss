@@ -5,22 +5,22 @@
 
 .headerhero {
     width: 100%;
-    min-height: $header-min-height;
-    background-color: $header-bg-color;
+    min-height: var(--header-min-height);
+    background-color: var(--header-bg-color);
     position: relative;
     overflow: hidden;
-    padding: $spacing-large;
-    margin-bottom: $spacing-large;
+    padding: var(--spacing-large);
+    margin-bottom: var(--spacing-large);
 }
 
 //== Elements
 //-------------------------------------------------------------------------------------------------------------------//
 .headerhero-title {
-    color: $header-text-color;
+    color: var(--header-text-color);
 }
 
 .headerhero-subtitle {
-    color: $header-text-color;
+    color: var(--header-text-color);
 }
 
 .headerhero-backgroundimage {
@@ -29,11 +29,11 @@
     top: 0;
     height: 100%;
     width: 100%;
-    filter: $header-bgimage-filter;
+    filter: var(--header-bgimage-filter);
 }
 
 .btn.headerhero-action {
-    color: $header-text-color;
+    color: var(--header-text-color);
 }
 
 .heroheader-overlay {

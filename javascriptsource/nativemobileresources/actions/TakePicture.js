@@ -15,8 +15,8 @@ import { getLocales } from 'react-native-localize';
 
 /**
  * @param {MxObject} picture - This field is required.
- * @param {"NativeMobileResources.PictureSource.camera"|"NativeMobileResources.PictureSource.imageLibrary"} pictureSource - Select a picture from the library or the camera. The default is to let the user decide.
- * @param {"NativeMobileResources.PictureQuality.original"|"NativeMobileResources.PictureQuality.low"|"NativeMobileResources.PictureQuality.medium"|"NativeMobileResources.PictureQuality.high"|"NativeMobileResources.PictureQuality.custom"} pictureQuality - Set to empty to use default value 'medium'.
+ * @param {undefined|"camera"|"imageLibrary"} pictureSource - Select a picture from the library or the camera. The default is to let the user decide.
+ * @param {undefined|"original"|"low"|"medium"|"high"|"custom"} pictureQuality - Set to empty to use default value 'medium'.
  * @param {Big} maximumWidth - The picture will be scaled to this maximum pixel width, while maintaing the aspect ratio.
  * @param {Big} maximumHeight - The picture will be scaled to this maximum pixel height, while maintaing the aspect ratio.
  * @returns {Promise.<boolean>}
@@ -87,7 +87,7 @@ export async function TakePicture(picture, pictureSource, pictureQuality, maximu
                 const filename = /[^\/]*$/.exec(uri)[0];
                 const filePathWithoutFileScheme = uri.replace("file://", "");
                 mx.data.saveDocument(imageObject.getGuid(), filename, {}, blob, async () => {
-                    await NativeModules.NativeFsModule.remove(filePathWithoutFileScheme);
+                    await NativeModules.MendixNative.fsRemove(filePathWithoutFileScheme);
                     imageObject.set("Name", filename);
                     mx.data.commit({
                         mxobj: imageObject,
@@ -95,7 +95,7 @@ export async function TakePicture(picture, pictureSource, pictureQuality, maximu
                         error: (error) => reject(error)
                     });
                 }, async (error) => {
-                    await NativeModules.NativeFsModule.remove(filePathWithoutFileScheme);
+                    await NativeModules.MendixNative.fsRemove(filePathWithoutFileScheme);
                     reject(error);
                 });
             })
@@ -236,7 +236,6 @@ export async function TakePicture(picture, pictureSource, pictureQuality, maximu
         ], { cancelable: false });
     }
     function handleImagePickerV4Error(errorCode, errorMessage) {
-        var _a;
         switch (errorCode) {
             case "camera_unavailable":
                 showAlert("The camera is unavailable", "");
@@ -245,7 +244,9 @@ export async function TakePicture(picture, pictureSource, pictureQuality, maximu
                 showAlert("This app does not have access to your photo library or camera", "To enable access, tap Settings and turn on Camera and Photos.");
                 break;
             case "others":
-                showAlert("Something went wrong.", (_a = `${errorMessage}.`) !== null && _a !== void 0 ? _a : "Something went wrong while trying to access your Camera or photo library.");
+                showAlert("Something went wrong.", errorMessage
+                    ? `${errorMessage}.`
+                    : "Something went wrong while trying to access your Camera or photo library.");
                 break;
             default:
                 showAlert("Something went wrong.", "Something went wrong while trying to access your Camera or photo library.");

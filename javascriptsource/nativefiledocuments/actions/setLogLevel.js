@@ -16,7 +16,7 @@ import LogListener from "../LogListener";
 
 /**
  * @param {string} logNode
- * @param {"NativeFileDocuments.LogLevel.trace"|"NativeFileDocuments.LogLevel.debug"|"NativeFileDocuments.LogLevel.info"|"NativeFileDocuments.LogLevel.warning"|"NativeFileDocuments.LogLevel.error"|"NativeFileDocuments.LogLevel.critical"|"NativeFileDocuments.LogLevel.none"} logLevel
+ * @param {undefined|"trace"|"debug"|"info"|"warning"|"error"|"critical"|"none"} logLevel
  * @returns {Promise.<void>}
  */
 export async function setLogLevel(logNode, logLevel) {

@@ -8,7 +8,7 @@
 import { Big } from "big.js";
 import { Platform } from 'react-native';
 import RNBlobUtil from 'react-native-blob-util';
-import FileViewer from 'react-native-file-viewer';
+import { open } from 'react-native-file-viewer-turbo';
 import mimeTypes from 'mime';
 
 // BEGIN EXTRA CODE
@@ -54,7 +54,7 @@ export async function DownloadFile(file, openWithOS) {
     const fileName = file.get("Name");
     const sanitizedFileName = sanitizeFileName(fileName);
     const baseDir = Platform.OS === "ios" ? dirs.DocumentDir : dirs.DownloadDir;
-    const filePath = mx.data.getDocumentUrl(file.getGuid(), Number(file.get("changedDate")));
+    const filePath = await mx.data.getDocumentUrl(file.getGuid(), Number(file.get("changedDate")));
     let accessiblePath;
     if (Platform.OS === "ios") {
         accessiblePath = await getUniqueFilePath(baseDir, sanitizedFileName);
@@ -77,7 +77,7 @@ export async function DownloadFile(file, openWithOS) {
         }
     }
     if (openWithOS) {
-        await FileViewer.open(accessiblePath, {
+        await open(accessiblePath, {
             showOpenWithDialog: true,
             showAppsSuggestions: true
         });

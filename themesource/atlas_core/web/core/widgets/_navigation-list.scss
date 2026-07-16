@@ -18,22 +18,25 @@
 
         li.mx-navigationlist-item {
             @include transition();
-            padding: $spacing-medium;
+            padding: var(--spacing-medium);
             border-width: 1px;
             border-style: none none solid none;
-            border-color: $grid-border-color;
+            border-color: var(--grid-border-color);
             border-radius: 0;
-            background-color: $grid-bg;
+            background-color: var(--grid-bg);
 
             &:hover,
             &:focus {
                 color: inherit;
-                background-color: $grid-bg-hover;
+                background-color: var(--grid-bg-hover);
+            }
+            &:focus-visible {
+                @extend .focus-ring !optional;
             }
 
             &.active {
                 color: inherit;
-                background-color: $grid-bg-selected;
+                background-color: var(--grid-bg-selected);
             }
         }
     }

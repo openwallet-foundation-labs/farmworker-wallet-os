@@ -23,9 +23,9 @@ import { unzip, unzipWithPassword } from "react-native-zip-archive";
  * 
  * Specify the password if the archive is password protected.
  * @param {string} filepath - The archive file
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} filepathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} filepathType
  * @param {string} destPath - The destination to unzip to
- * @param {"NativeFileDocuments.PathType.FullPath"|"NativeFileDocuments.PathType.DocumentsDirectory"} destPathType
+ * @param {undefined|"FullPath"|"DocumentsDirectory"} destPathType
  * @param {boolean} writeToLog
  * @param {string} password - Archive password. Leave empty if archive has no password
  * @returns {Promise.<void>}

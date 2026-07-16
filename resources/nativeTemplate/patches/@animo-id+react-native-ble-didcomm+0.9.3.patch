@@ -1,0 +1,46 @@
+diff --git a/node_modules/@animo-id/react-native-ble-didcomm/react-native-ble-didcomm.podspec b/node_modules/@animo-id/react-native-ble-didcomm/react-native-ble-didcomm.podspec
+index 9021d8b..6af4b28 100644
+--- a/node_modules/@animo-id/react-native-ble-didcomm/react-native-ble-didcomm.podspec
++++ b/node_modules/@animo-id/react-native-ble-didcomm/react-native-ble-didcomm.podspec
+@@ -16,20 +16,28 @@ Pod::Spec.new do |s|
+ 
+   s.source_files = "ios/**/*.{h,m,mm,swift}"
+ 
+-  s.dependency "React-Core"
++  # On RN >= 0.71 the `install_modules_dependencies` helper wires up the correct
++  # React dependencies for the active architecture (folly/codegen/turbomodule and,
++  # on RN 0.81+, the prebuilt ReactNativeDependencies pod that replaces the
++  # standalone `RCT-Folly` pod). Fall back to the legacy hardcoded list otherwise.
++  if respond_to?(:install_modules_dependencies, true)
++    install_modules_dependencies(s)
++  else
++    s.dependency "React-Core"
+ 
+-  # Don't install the dependencies when we run `pod install` in the old architecture.
+-  if ENV['RCT_NEW_ARCH_ENABLED'] == '1' then
+-    s.compiler_flags = folly_compiler_flags + " -DRCT_NEW_ARCH_ENABLED=1"
+-    s.pod_target_xcconfig    = {
+-        "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\"",
+-        "CLANG_CXX_LANGUAGE_STANDARD" => "c++17"
+-    }
++    # Don't install the dependencies when we run `pod install` in the old architecture.
++    if ENV['RCT_NEW_ARCH_ENABLED'] == '1' then
++      s.compiler_flags = folly_compiler_flags + " -DRCT_NEW_ARCH_ENABLED=1"
++      s.pod_target_xcconfig    = {
++          "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\"",
++          "CLANG_CXX_LANGUAGE_STANDARD" => "c++17"
++      }
+ 
+-    s.dependency "React-Codegen"
+-    s.dependency "RCT-Folly"
+-    s.dependency "RCTRequired"
+-    s.dependency "RCTTypeSafety"
+-    s.dependency "ReactCommon/turbomodule/core"
++      s.dependency "React-Codegen"
++      s.dependency "RCT-Folly"
++      s.dependency "RCTRequired"
++      s.dependency "RCTTypeSafety"
++      s.dependency "ReactCommon/turbomodule/core"
++    end
+   end
+ end

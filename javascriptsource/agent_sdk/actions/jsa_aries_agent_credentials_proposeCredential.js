@@ -49,7 +49,7 @@ import support from"../support/entidad";
  * 
  * @param {string} agent_key
  * @param {string} connectionId - mandatory
- * @param {"Agent_SDK.enum_aries_ProtocolVersion.v1"|"Agent_SDK.enum_aries_ProtocolVersion.v2"} protocolVersion - mandatory
+ * @param {undefined|"v1"|"v2"} protocolVersion - mandatory
  * @param {string} credentialFormats_jsonld - optional?
  * @param {string} comment - optional?
  * @returns {Promise.<string>}

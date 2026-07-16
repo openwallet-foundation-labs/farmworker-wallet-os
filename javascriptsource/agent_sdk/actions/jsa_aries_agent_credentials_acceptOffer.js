@@ -41,7 +41,7 @@ import support from"../support/entidad";
  * 
  * @param {string} agent_key
  * @param {string} credentialRecordId
- * @param {"Agent_SDK.enum_aries_AutoAcceptCredential.Never"|"Agent_SDK.enum_aries_AutoAcceptCredential.ContentApproved"|"Agent_SDK.enum_aries_AutoAcceptCredential.Always"} autoAcceptCredential - optional
+ * @param {undefined|"Never"|"ContentApproved"|"Always"} autoAcceptCredential - optional
  * @param {string} credentialFormats - optional json
  * @param {string} comment - optional
  * @returns {Promise.<string>}

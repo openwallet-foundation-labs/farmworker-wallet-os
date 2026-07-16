@@ -49,7 +49,7 @@ function findKey(k, o) {
  * @param userData custom user data parameter value, usually the Agent
  * @param eventTypeParameterName event type parameter name, will pass in the event type, optional. Internally this action will attempt to find the '@type' of the message and populate the argument with the value if found. Not all message types have the '@type' specified, and in those cases it will be empty
  * @param {string} agent_key
- * @param {"Agent_SDK.enum_aries_EventType.ConnectionStateChanged"|"Agent_SDK.enum_aries_EventType.BasicMessageStateChanged"|"Agent_SDK.enum_aries_EventType.CredentialStateChanged"|"Agent_SDK.enum_aries_EventType.RevocationNotificationReceived"|"Agent_SDK.enum_aries_EventType.ProofStateChanged"|"Agent_SDK.enum_aries_EventType.AgentMessageReceived"|"Agent_SDK.enum_aries_EventType.AgentMessageProcessed"|"Agent_SDK.enum_aries_EventType.AgentMessageSent"} eventType
+ * @param {undefined|"ConnectionStateChanged"|"BasicMessageStateChanged"|"CredentialStateChanged"|"RevocationNotificationReceived"|"ProofStateChanged"|"AgentMessageReceived"|"AgentMessageProcessed"|"AgentMessageSent"} eventType
  * @param {string} messageType
  * @param {Nanoflow} [callback]
  * @param {string} payloadParameterName - optional

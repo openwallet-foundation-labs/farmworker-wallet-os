@@ -15,47 +15,52 @@
     // When used in topbar
     .region-topbar {
         .mx-navbar {
-            background-color: $navtopbar-bg;
+            background: var(--navtopbar-bg);
             min-height: auto;
             ul.nav {
+                display: flex;
+                flex-flow: wrap;
+                align-items: center;
+                justify-content: center;
+                
                 > .mx-navbar-item {
-                    margin-left: $spacing-small;
+                    margin-left: var(--spacing-small);
                 }
                 /* Navigation item */
                 & > li.mx-navbar-item > a {
-                    color: $navtopbar-color;
-                    font-size: $navtopbar-font-size;
+                    color: var(--navtopbar-color);
+                    font-size: var(--navtopbar-font-size);
                     line-height: 1.2;
                     /* Dropdown arrow */
                     .caret {
-                        border-top-color: $navtopbar-color;
-                        border-bottom-color: $navtopbar-color;
+                        border-top-color: var(--navtopbar-color);
+                        border-bottom-color: var(--navtopbar-color);
                     }
                     &:hover,
                     &:focus,
                     &.active {
-                        color: $navtopbar-color-hover;
-                        background-color: $navtopbar-bg-hover;
+                        color: var(--navtopbar-color-hover);
+                        background: var(--navtopbar-bg-hover);
                         .caret {
-                            border-top-color: $navtopbar-color-active;
-                            border-bottom-color: $navtopbar-color-active;
+                            border-top-color: var(--navtopbar-color-active);
+                            border-bottom-color: var(--navtopbar-color-active);
                         }
                     }
                     &.active {
-                        color: $navtopbar-color-active;
-                        background-color: $navtopbar-bg-active;
+                        color: var(--navtopbar-color-active);
+                        background: var(--navtopbar-bg-active);
                     }
 
                     /* Dropdown */
                     .mx-navbar-submenu::before {
-                        border-color: transparent transparent $navtopbar-border-color transparent;
+                        border-color: transparent transparent var(--navtopbar-border-color) transparent;
                     }
 
                     // Image
                     .glyphicon,
                     .mx-icon-lined,
                     .mx-icon-filled {
-                        font-size: $navtopbar-glyph-size;
+                        font-size: var(--navtopbar-glyph-size);
                     }
                 }
 
@@ -66,41 +71,39 @@
                 & > .mx-navbar-item.open > a,
                 & > .mx-navbar-item.open > a:hover,
                 & > .mx-navbar-item.open > a:focus {
-                    color: $navtopbar-color-hover;
-                    background-color: $navtopbar-bg-hover;
+                    color: var(--navtopbar-color-hover);
+                    background: var(--navtopbar-bg-active);
                     .caret {
-                        border-top-color: $navtopbar-color-hover;
-                        border-bottom-color: $navtopbar-color-hover;
+                        border-top-color: var(--navtopbar-color-hover);
+                        border-bottom-color: var(--navtopbar-color-hover);
                     }
                 }
 
                 & > .mx-navbar-item.open .dropdown-menu {
-                    border-radius: $border-radius-default;
-                    background-color: $navtopbar-sub-bg;
-                    padding: $spacing-small $spacing-small 0;
+                    border-radius: var(--navtopbar-border-radius);
+                    background: var(--navtopbar-sub-bg);
+                    padding: 0;
                     margin: 0;
                     border: 0;
                     box-shadow: 0px 2px 2px rgba(194, 196, 201, 0.30354);
                     & > li.mx-navbar-subitem a {
-                        border-radius: $border-radius-default;
-                        color: $navtopbar-color;
-                        font-size: $navtopbar-sub-font-size;
+                        padding: var(--spacing-medium);
+                        color: var(--navtopbar-color);
+                        border-radius: var(--navtopbar-border-radius);
                         line-height: 1.2;
-                        margin: 0 0 $spacing-small;
-                        padding: $spacing-small;
                         &:hover,
                         &:focus {
-                            color: $navtopbar-color-hover;
-                            background-color: $navtopbar-sub-bg-hover;
+                            color: var(--navtopbar-color-hover);
+                            background: var(--navtopbar-sub-bg-hover);
                         }
                     }
                 }
                 & > .mx-navbar-item.open .dropdown-menu > li.mx-navbar-subitem.active a {
-                    color: $navtopbar-sub-color-active;
-                    background-color: $navtopbar-sub-bg-active;
+                    color: var(--navtopbar-sub-color-active);
+                    background: var(--navtopbar-sub-bg-active);
                     .caret {
-                        border-top-color: $navtopbar-sub-color-active;
-                        border-bottom-color: $navtopbar-sub-color-active;
+                        border-top-color: var(--navtopbar-sub-color-active);
+                        border-bottom-color: var(--navtopbar-sub-color-active);
                     }
                 }
             }
@@ -108,18 +111,18 @@
                 ul.nav > li.mx-navbar-item > a {
                 }
                 .mx-navbar-item.open .dropdown-menu {
-                    background-color: $navtopbar-sub-bg;
+                    background: var(--navtopbar-sub-bg);
                     & > li.mx-navbar-subitem > a {
-                        color: $navtopbar-sub-color;
-                        font-size: $navtopbar-sub-font-size;
+                        color: var(--navtopbar-sub-color);
+                        font-size: var(--navtopbar-sub-font-size);
                         &:hover,
                         &:focus {
-                            color: $navtopbar-sub-color-hover;
-                            background-color: $navtopbar-sub-bg-hover;
+                            color: var(--navtopbar-sub-color-hover);
+                            background: var(--navtopbar-sub-bg-hover);
                         }
                         &.active {
-                            color: $navtopbar-sub-color-active;
-                            background-color: $navtopbar-sub-bg-active;
+                            color: var(--navtopbar-sub-color-active);
+                            background: var(--navtopbar-sub-bg-active);
                         }
                     }
                 }
@@ -130,43 +133,43 @@
     // When used in sidebar
     .region-sidebar {
         .mx-navbar {
-            background-color: $navsidebar-bg;
+            background: var(--navsidebar-bg);
             ul.nav {
                 /* Navigation item */
                 & > li.mx-navbar-item > a {
-                    color: $navsidebar-color;
-                    font-size: $navsidebar-font-size;
+                    color: var(--navsidebar-color);
+                    font-size: var(--navsidebar-font-size);
 
                     /* Dropdown arrow */
                     .caret {
-                        border-top-color: $navsidebar-color;
-                        border-bottom-color: $navsidebar-color;
+                        border-top-color: var(--navsidebar-color);
+                        border-bottom-color: var(--navsidebar-color);
                     }
                     &:hover,
                     &:focus,
                     &.active {
-                        color: $navsidebar-color-hover;
-                        background-color: $navsidebar-bg-hover;
+                        color: var(--navsidebar-color-hover);
+                        background: var(--navsidebar-bg-hover);
                         .caret {
-                            border-top-color: $navsidebar-color-active;
-                            border-bottom-color: $navsidebar-color-active;
+                            border-top-color: var(--navsidebar-color-active);
+                            border-bottom-color: var(--navsidebar-color-active);
                         }
                     }
                     &.active {
-                        color: $navsidebar-color-active;
-                        background-color: $navsidebar-bg-active;
+                        color: var(--navsidebar-color-active);
+                        background: var(--navsidebar-bg-active);
                     }
 
                     /* Dropdown */
                     .mx-navbar-submenu::before {
-                        border-color: transparent transparent $navsidebar-border-color transparent;
+                        border-color: transparent transparent var(--navsidebar-border-color) transparent;
                     }
 
                     // Image
                     .glyphicon,
                     .mx-icon-lined,
                     .mx-icon-filled {
-                        font-size: $navsidebar-glyph-size;
+                        font-size: var(--navsidebar-glyph-size);
                     }
                 }
 
@@ -177,19 +180,19 @@
                 & > .mx-navbar-item.open > a,
                 & > .mx-navbar-item.open > a:hover,
                 & > .mx-navbar-item.open > a:focus {
-                    color: $navsidebar-color-hover;
-                    background-color: $navsidebar-bg-hover;
+                    color: var(--navsidebar-color-hover);
+                    background: var(--navsidebar-bg-hover);
                     .caret {
-                        border-top-color: $navsidebar-color-hover;
-                        border-bottom-color: $navsidebar-color-hover;
+                        border-top-color: var(--navsidebar-color-hover);
+                        border-bottom-color: var(--navsidebar-color-hover);
                     }
                 }
                 & > .mx-navbar-item.open .dropdown-menu > li.mx-navbar-subitem.active a {
-                    color: $navsidebar-sub-color-active;
-                    background-color: $navsidebar-sub-bg-active;
+                    color: var(--navsidebar-sub-color-active);
+                    background: var(--navsidebar-sub-bg-active);
                     .caret {
-                        border-top-color: $navsidebar-sub-color-active;
-                        border-bottom-color: $navsidebar-sub-color-active;
+                        border-top-color: var(--navsidebar-sub-color-active);
+                        border-bottom-color: var(--navsidebar-sub-color-active);
                     }
                 }
             }
@@ -197,18 +200,18 @@
                 ul.nav > li.mx-navbar-item > a {
                 }
                 .mx-navbar-item.open .dropdown-menu {
-                    background-color: $navtopbar-sub-bg;
+                    background: var(--navtopbar-sub-bg);
                     & > li.mx-navbar-subitem > a {
-                        color: $navsidebar-sub-color;
-                        font-size: $navsidebar-sub-font-size;
+                        color: var(--navsidebar-sub-color);
+                        font-size: var(--navsidebar-sub-font-size);
                         &:hover,
                         &:focus {
-                            color: $navsidebar-sub-color-hover;
-                            background-color: $navsidebar-sub-bg-hover;
+                            color: var(--navsidebar-sub-color-hover);
+                            background: var(--navsidebar-sub-bg-hover);
                         }
                         &.active {
-                            color: $navsidebar-sub-color-active;
-                            background-color: $navsidebar-sub-bg-active;
+                            color: var(--navsidebar-sub-color-active);
+                            background: var(--navsidebar-sub-bg-active);
                         }
                     }
                 }
