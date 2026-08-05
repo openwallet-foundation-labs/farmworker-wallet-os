@@ -10,7 +10,7 @@ makes it easy for any Mendix app to interoperate with open-standard technologies
 * Clone this project
 * Navigate to the project root from a command line Terminal e.g. `cd ~/Workspaces/Github/farmworker-wallet-os`
 * Run `./install.sh`
-* Download [Studio Pro 11.12](https://marketplace.mendix.com/link/studiopro/)
+* Download [Studio Pro 11.12.2](https://marketplace.mendix.com/link/studiopro/)
 * Open `fwos-demo-app.mpr` from Studio Pro
 * Run the project from Studio Pro by clicking Run / Run Locally
 * Create a custom React Native application from Native Template `./resources/nativeTemplate`
@@ -55,7 +55,7 @@ makes it easy for any Mendix app to interoperate with open-standard technologies
     ...
     ```
 ### iOS build configuration for Xcode
-* Install Xcode 16.2
+* Install Xcode 26.3
 * Install iOS dependencies
 * For iOS builds only, Credo-ts (v0.5.13) `cd ~/resources/native_template`
 ** `npm install @mendix/react-native-sqlite-storage`
