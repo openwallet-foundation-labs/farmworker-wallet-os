@@ -95,7 +95,7 @@ export const btnIcon = {
         color: font.colorTitle
     },
     caption: {
-        display: "none"
+        fontSize: 0
     }
 };
 export const btnIconPrimary = merge(btnIcon, {
@@ -143,7 +143,7 @@ export const btnIconGrayRounded = {
         color: contrast.high
     },
     caption: {
-        display: "none"
+        fontSize: 0
     }
 };
 //

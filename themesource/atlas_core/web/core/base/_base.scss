@@ -16,34 +16,28 @@
 
     body {
         min-height: 100%;
-        color: var(--font-color-default);
-        background-color: var(--bg-color);
-        font-family: var(--font-family-base);
-        font-size: var(--font-size-default);
-        font-weight: var(--font-weight-normal);
-        line-height: var(--line-height-base);
+        color: $font-color-default;
+        background-color: $bg-color;
+        font-family: $font-family-base;
+        font-size: $font-size-default;
+        font-weight: $font-weight-normal;
+        line-height: $line-height-base;
     }
 
     a {
         transition: 0.25s;
-        color: var(--link-color);
-        text-decoration: none;
+        color: $link-color;
         -webkit-backface-visibility: hidden;
     }
 
     a:hover {
         text-decoration: underline;
-        color: var(--link-hover-color);
+        color: $link-hover-color;
     }
 
     // Address `outline` inconsistency between Chrome and other browsers.
     a:focus {
-        outline: 0;
-    }
-
-    // Improve accessibility when navigating using the keyboard
-    a:focus-visible {
-        @extend .focus-ring !optional;
+        outline: thin dotted;
     }
 
     // Improve readability when focused and also mouse hovered in all browsers

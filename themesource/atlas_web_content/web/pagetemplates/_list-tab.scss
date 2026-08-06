@@ -1,26 +1,26 @@
 .listtab-tabs.mx-tabcontainer {
-    background: var(--bg-color-secondary);
+    background: $bg-color-secondary;
     .mx-tabcontainer-tabs {
-        background: var(--brand-primary);
+        background: $brand-primary;
         margin-bottom: 0;
         li {
             > a {
-                color: var(--font-color-contrast);
+                color: #fff;
                 opacity: 0.6;
                 &:hover,
                 &:focus {
-                    color: var(--font-color-contrast);
+                    color: #fff;
                 }
             }
             &.active {
                 > a {
                     opacity: 1;
-                    color: var(--font-color-contrast);
-                    border-color: var(--color-base);
+                    color: #fff;
+                    border-color: #fff;
                     &:hover,
                     &:focus {
-                        color: var(--font-color-contrast);
-                        border-color: var(--color-base);
+                        color: #fff;
+                        border-color: #fff;
                     }
                 }
             }

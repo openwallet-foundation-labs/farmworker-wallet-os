@@ -1,3 +1,7 @@
+// Default variables
+@import "../../atlas_core/web/variables";
+@import "../../../theme/web/custom-variables";
+
 // Building blocks
 @import "buildingblocks/alert";
 @import "buildingblocks/breadcrumb";
@@ -5,6 +9,7 @@
 @import "buildingblocks/chat";
 @import "buildingblocks/controlgroup";
 @import "buildingblocks/pageblocks";
+@import "buildingblocks/pageheader";
 @import "buildingblocks/heroheader";
 @import "buildingblocks/formblock";
 @import "buildingblocks/master-detail";

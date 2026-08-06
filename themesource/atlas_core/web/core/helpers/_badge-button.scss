@@ -16,26 +16,26 @@
     .btn-secondary,
     .btn-default {
         .badge {
-            color: var(--btn-default-bg);
-            background-color: var(--btn-primary-bg);
+            color: $btn-default-bg;
+            background-color: $btn-primary-bg;
         }
     }
 
     .btn-success {
         .badge {
-            color: var(--btn-success-bg);
+            color: $btn-success-bg;
         }
     }
 
     .btn-warning {
         .badge {
-            color: var(--btn-warning-bg);
+            color: $btn-warning-bg;
         }
     }
 
     .btn-danger {
         .badge {
-            color: var(--btn-danger-bg);
+            color: $btn-danger-bg;
         }
     }
 
@@ -43,60 +43,60 @@
 
     .btn-bordered.btn-primary {
         .badge {
-            background: var(--btn-primary-bg);
-            color: var(--btn-primary-color);
+            background: $btn-primary-bg;
+            color: $btn-primary-color;
         }
 
         &:hover,
         &:focus {
             .badge {
-                background-color: var(--btn-primary-color);
-                color: var(--btn-primary-bg);
+                background-color: $btn-primary-color;
+                color: $btn-primary-bg;
             }
         }
     }
 
     .btn-bordered.btn-success {
         .badge {
-            background: var(--btn-success-bg);
-            color: var(--btn-success-color);
+            background: $btn-success-bg;
+            color: $btn-success-color;
         }
 
         &:hover,
         &:focus {
             .badge {
-                background-color: var(--btn-success-color);
-                color: var(--btn-success-bg);
+                background-color: $btn-success-color;
+                color: $btn-success-bg;
             }
         }
     }
 
     .btn-bordered.btn-warning {
         .badge {
-            background: var(--btn-warning-bg);
-            color: var(--btn-warning-color);
+            background: $btn-warning-bg;
+            color: $btn-warning-color;
         }
 
         &:hover,
         &:focus {
             .badge {
-                background-color: var(--btn-warning-color);
-                color: var(--btn-warning-bg);
+                background-color: $btn-warning-color;
+                color: $btn-warning-bg;
             }
         }
     }
 
     .btn-bordered.btn-danger {
         .badge {
-            background: var(--btn-danger-bg);
-            color: var(--btn-danger-color);
+            background: $btn-danger-bg;
+            color: $btn-danger-color;
         }
 
         &:hover,
         &:focus {
             .badge {
-                background-color: var(--btn-danger-color);
-                color: var(--btn-danger-bg);
+                background-color: $btn-danger-color;
+                color: $btn-danger-bg;
             }
         }
     }

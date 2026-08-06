@@ -15,8 +15,8 @@
 
     .mx-tabcontainer {
         .mx-tabcontainer-tabs {
-            margin-bottom: var(--spacing-medium);
-            border-color: var(--tabs-border-color);
+            margin-bottom: $spacing-medium;
+            border-color: $tabs-border-color;
             display: flex;
 
             > li {
@@ -26,25 +26,23 @@
             & > li > a {
                 margin-right: 0;
                 transition: all 0.2s ease-in-out;
-                color: var(--tabs-color);
-                font-weight: var(--font-weight-normal);
-                border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
+                color: $tabs-color;
+                font-weight: $font-weight-normal;
+                border-radius: $border-radius-default $border-radius-default 0 0;
 
-                &:hover {
-                    background-color: var(--tabs-bg-hover);
-                }
-                &:focus-visible {
-                    @extend .focus-ring !optional;
+                &:hover,
+                &:focus {
+                    background-color: $tabs-bg-hover;
                 }
             }
 
             & > li.active > a,
             & > li.active > a:hover,
             & > li.active > a:focus {
-                color: var(--tabs-color-active);
-                border: 1px solid var(--tabs-border-color);
-                border-bottom-color: var(--bg-color-secondary);
-                background-color: var(--tabs-bg);
+                color: $tabs-color-active;
+                border: 1px solid $tabs-border-color;
+                border-bottom-color: #fff;
+                background-color: $tabs-bg;
             }
         }
     }
@@ -55,7 +53,7 @@
             margin: 0;
             text-align: center;
             border-style: none;
-            background-color: var(--brand-primary);
+            background-color: $brand-primary;
 
             li {
                 display: table-cell;
@@ -69,13 +67,13 @@
                 a {
                     padding: 16px;
                     text-transform: uppercase;
-                    color: var(--font-color-contrast);
+                    color: #ffffff;
                     border-width: 0 1px 0 0;
                     border-style: solid;
                     border-color: rgba(255, 255, 255, 0.3);
                     border-radius: 0;
                     font-size: 12px;
-                    font-weight: var(--font-weight-normal);
+                    font-weight: $font-weight-normal;
 
                     &:hover,
                     &:focus {
@@ -93,20 +91,20 @@
                     color: #ffffff;
                     border-style: none;
                     border-radius: 0;
-                    background-color: var(--brand-primary-900);
+                    background-color: mix($brand-primary, #000000, 80%);
                 }
             }
         }
     }
 
     .mx-tabcontainer-badge {
-        margin-left: var(--spacing-small);
-        border-radius: var(--font-size-small);
-        background-color: var(--label-primary-bg);
-        color: var(--label-primary-color);
-        font-size: var(--font-size-small);
-        font-weight: var(--font-weight-bold);
+        margin-left: $spacing-small;
+        border-radius: $font-size-small;
+        background-color: $label-primary-bg;
+        color: $label-primary-color;
+        font-size: $font-size-small;
+        font-weight: $font-weight-bold;
         line-height: 1;
-        padding: calc(var(--spacing-small) / 2) var(--spacing-small);
+        padding: $spacing-small/2 $spacing-small;
     }
 }

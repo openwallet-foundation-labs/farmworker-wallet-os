@@ -14,27 +14,27 @@
     ========================================================================== */
 
     .widget-star-rating-full-primary {
-        color: var(--brand-primary);
+        color: $brand-primary;
     }
 
     .widget-star-rating-full-success {
-        color: var(--brand-success);
+        color: $brand-success;
     }
 
     .widget-star-rating-full-info {
-        color: var(--brand-primary-300);
+        color: $brand-info;
     }
 
     .widget-star-rating-full-warning {
-        color: var(--brand-warning);
+        color: $brand-warning;
     }
 
     .widget-star-rating-full-danger {
-        color: var(--brand-danger);
+        color: $brand-danger;
     }
 
     .widget-star-rating-full-inverse {
-        color: var(--brand-primary-600);
+        color: $brand-inverse;
     }
 
     .widget-rating {

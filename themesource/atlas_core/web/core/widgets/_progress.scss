@@ -13,11 +13,11 @@
     ========================================================================== */
 
     .mx-progress {
-        color: var(--font-color-default);
-        background: var(--bg-color-secondary);
+        color: $font-color-default;
+        background: $bg-color-secondary;
 
         .mx-progress-message {
-            color: var(--font-color-default);
+            color: $font-color-default;
         }
 
         .mx-progress-indicator {
@@ -29,7 +29,7 @@
             margin: auto;
             padding: 0;
             border-radius: 0;
-            background: var(--gray-50);
+            background: $gray-lighter;
 
             &:before,
             &:after {
@@ -41,7 +41,7 @@
                 height: 2px;
                 content: "";
                 transform: translate3d(-100%, 0, 0);
-                background: var(--brand-primary);
+                background: $brand-primary;
             }
 
             &::before {
