@@ -16,18 +16,18 @@
     ========================================================================== */
 
     .widget-range-slider-primary {
-        @include slider-color-variant(var(--brand-primary));
+        @include slider-color-variant($brand-primary);
     }
 
     .widget-range-slider-success {
-        @include slider-color-variant(var(--brand-success));
+        @include slider-color-variant($brand-success);
     }
 
     .widget-range-slider-warning {
-        @include slider-color-variant(var(--brand-warning));
+        @include slider-color-variant($brand-warning);
     }
 
     .widget-range-slider-danger {
-        @include slider-color-variant(var(--brand-danger));
+        @include slider-color-variant($brand-danger);
     }
 }

@@ -42,10 +42,17 @@
         }
 
         .rating-item {
+            &:focus:not(:focus-visible) {
+                .rating-image,
+                .rating-icon {
+                    outline: none;
+                }
+            }
+
             &:focus-visible {
                 .rating-image,
                 .rating-icon {
-                    @extend .focus-ring !optional;
+                    outline: 1px solid $brand-primary;
                 }
             }
         }

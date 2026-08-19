@@ -16,41 +16,41 @@
     //== Progress circle and label colors
     .widget-progress-circle-primary {
         .widget-progress-circle-path {
-            stroke: var(--brand-primary);
+            stroke: $brand-primary;
         }
 
         .progressbar-text {
-            color: var(--brand-primary) !important;
+            color: $brand-primary !important;
         }
     }
 
     .widget-progress-circle-success {
         .widget-progress-circle-path {
-            stroke: var(--brand-success);
+            stroke: $brand-success;
         }
 
         .progressbar-text {
-            color: var(--brand-success) !important;
+            color: $brand-success !important;
         }
     }
 
     .widget-progress-circle-warning {
         .widget-progress-circle-path {
-            stroke: var(--brand-warning);
+            stroke: $brand-warning;
         }
 
         .progressbar-text {
-            color: var(--brand-warning) !important;
+            color: $brand-warning !important;
         }
     }
 
     .widget-progress-circle-danger {
         .widget-progress-circle-path {
-            stroke: var(--brand-danger);
+            stroke: $brand-danger;
         }
 
         .progressbar-text {
-            color: var(--brand-danger) !important;
+            color: $brand-danger !important;
         }
     }
 

@@ -13,40 +13,37 @@
     ========================================================================== */
     .modal-dialog {
         .modal-content {
-            border: var(--border-width-default, $border-width-default) solid var(--modal-header-border-color, $modal-header-border-color);
+            border: 1px solid $modal-header-border-color;
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            background-color: var(--bg-color-secondary, $bg-color-secondary);
 
             .modal-header {
                 padding: 15px 20px;
-                border-bottom-color: var(--modal-header-border-color, $modal-header-border-color);
+                border-bottom-color: $modal-header-border-color;
                 border-radius: 0; // Because of the class .mx-window-active in mxui.css
-                background-color: var(--modal-header-bg, $modal-header-bg);
+                background-color: $modal-header-bg;
 
-                h2, h4 {
+                h4 {
                     margin: 0;
-                    color: var(--modal-header-color, $modal-header-color);
+                    color: $modal-header-color;
                     font-size: 16px;
-                    font-weight: var(--font-weight-header, $font-weight-header);
+                    font-weight: $font-weight-bold;
                 }
 
                 .close {
                     margin-top: -3px;
                     opacity: 1;
-                    font-weight: var(--font-weight-normal, $font-weight-normal);
                     /* For IE8 and earlier */
-                    color: var(--modal-header-color, $modal-header-color);
+                    color: $modal-header-color;
                     text-shadow: none;
-                    &:focus {
+                    &:focus-visible {
                         border-radius: 4px;
-                        outline: 2px solid var(--brand-primary, $brand-primary);
+                        outline: 2px solid $brand-primary;
                     }
                 }
             }
 
             .modal-body {
-                background-color: var(--modal-body-bg, $modal-body-bg);
             }
 
             .modal-footer {
@@ -55,7 +52,6 @@
                 margin-top: 0;
                 padding: 20px;
                 border-style: none;
-                background-color: var(--modal-footer-bg, $modal-footer-bg);
             }
         }
     }
@@ -78,8 +74,8 @@
                 justify-content: flex-end;
                 margin: 0;
                 padding: 20px;
-                text-align: var(--dataview-controls-alignment, $dataview-controls-alignment);
-                border-top: 1px solid var(--modal-header-border-color, $modal-header-border-color);
+                text-align: left;
+                border-top: 1px solid $modal-header-border-color;
             }
         }
 
@@ -107,13 +103,13 @@
             input {
                 height: 56px;
                 padding: 12px 12px;
-                border: 1px solid var(--bg-color-secondary, $bg-color-secondary);
-                background: var(--bg-color-secondary, $bg-color-secondary);
+                border: 1px solid #eeeeee;
+                background: #eeeeee;
                 box-shadow: none;
                 font-size: 16px;
 
                 &:focus {
-                    border-color: var(--brand-primary-200, $color-primary-light);
+                    border-color: #66afe9;
                 }
             }
         }
@@ -127,10 +123,10 @@
             font-size: 16px;
         }
 
-        h2, h4 {
+        h4 {
             color: #aaaaaa;
             font-size: 20px;
-            font-weight: var(--font-weight-bold);
+            font-weight: $font-weight-bold;
         }
     }
 }

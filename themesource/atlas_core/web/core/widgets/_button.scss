@@ -24,27 +24,22 @@
         text-align: center;
         vertical-align: middle;
         white-space: nowrap;
-        color: var(--btn-default-color);
-        border: var(--border-width-default) solid var(--btn-default-border-color);
-        border-radius: var(--btn-border-radius);
-        background-color: var(--btn-default-bg);
+        color: $btn-default-color;
+        border: 1px solid $btn-default-border-color;
+        border-radius: $btn-border-radius;
+        background-color: $btn-default-bg;
         background-image: none;
         box-shadow: none;
         text-shadow: none;
-        font-size: var(--btn-font-size);
-        line-height: var(--line-height-base);
+        font-size: $btn-font-size;
+        line-height: $line-height-base;
 
-        &:hover {
-            // border-color: var(--form-input-border-hover-color);
+        &:hover,
+        &:focus,
+        &:active,
+        &:active:focus {
             outline: none;
             box-shadow: none;
-        }
-        &:active {
-            outline: none;
-            box-shadow: none;
-        }
-        &:focus-visible {
-            @extend .focus-ring !optional;
         }
 
         &[aria-disabled] {
@@ -61,20 +56,17 @@
     // Mendix button link
     .mx-link {
         padding: 0;
-        color: var(--link-color);
+        color: $link-color;
 
         &[aria-disabled="true"] {
             cursor: not-allowed;
             pointer-events: none;
             opacity: 0.65;
         }
-        &:focus-visible {
-            @extend .focus-ring !optional;
-        }
     }
 
     .link-back {
-        color: var(--font-color-detail);
+        color: $font-color-detail;
 
         .glyphicon,
         .mx-icon-lined,
@@ -89,7 +81,7 @@
     .mx-link {
         img {
             //height: auto; // MXUI override who set the height on 16px default
-            height: calc(var(--font-size-default) + 4px);
+            height: calc(#{$font-size-default} + 4px);
             margin-right: 4px;
             vertical-align: text-top;
         }

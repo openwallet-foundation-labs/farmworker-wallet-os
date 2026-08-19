@@ -36,4 +36,13 @@
             }
         }
     }
+
+    .language-selector {
+        --font-color-contrast: #{$navtopbar-color-active};
+        margin-bottom: 0;
+        
+        .widget-combobox .widget-combobox-input-container:not(.widget-combobox-input-container-active) .widget-combobox-input {
+            width: inherit;
+        }
+    }
 }

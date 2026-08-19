@@ -6,10 +6,10 @@
 .masterdetail {
     background: #fff;
     .masterdetail-master {
-        border-right: var(--border-default);
+        border-right: 1px solid $border-color-default;
     }
     .masterdetail-detail {
-        padding: var(--spacing-large);
+        padding: $spacing-large;
     }
 }
 
@@ -18,9 +18,9 @@
 .masterdetail-vertical {
     background: #fff;
     .masterdetail-master {
-        border-bottom: var(--border-default);
+        border-bottom: 1px solid $border-color-default;
     }
     .masterdetail-detail {
-        padding: var(--spacing-large);
+        padding: $spacing-large;
     }
 }

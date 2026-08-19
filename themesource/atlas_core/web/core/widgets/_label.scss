@@ -15,7 +15,7 @@
     .label {
         display: inline-block;
         margin: 0;
-        padding: var(--spacing-smaller) var(--spacing-small);
+        padding: $spacing-smaller $spacing-small;
         text-align: center;
         vertical-align: baseline;
         white-space: nowrap;
@@ -25,7 +25,7 @@
         line-height: 1;
 
         .form-control-static {
-            font-weight: var(--font-weight-normal);
+            font-weight: $font-weight-normal;
             all: unset;
         }
     }
