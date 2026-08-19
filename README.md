@@ -35,13 +35,13 @@ require a custom React Native build.
 
 | Module | Purpose | Repository | Marketplace |
 | --- | --- | --- | --- |
-| **Agent_SDK** | Wrapper implementation to [Credo-ts](https://github.com/openwallet-foundation/credo-ts) | _TBD_ | — |
-| **DIDComm_BLE** | Wrapper implementation to [React Native Bluetooth Low Energy SDK for DIDComm](https://github.com/animo/react-native-ble-didcomm) | _TBD_ | — |
-| **DIDComm_MediaSharing** | Wrapper implementation to [Credo's DIDComm Media Sharing protocol capability](https://didcomm.org/media-sharing/1.0/) | _TBD_ | — |
-| **DIDComm_Receipts** | Wrapper implementation to [Credo's DIDComm Receipts protocol capability](https://didcomm.org/receipts/1.0/) | _TBD_ | — |
-| **DIDComm_RPC** | Wrapper implementation to [Credo's DIDComm RPC protocol capability](https://github.com/decentralized-identity/aries-rfcs/tree/main/features/0804-didcomm-rpc) | _TBD_ | — |
-| **DIDComm_Survey** | Wrapper implementation to [Credo's DIDComm Survey protocol capability](https://github.com/Entidad/credo-ts-survey) | _TBD_ | — |
-| **DIDComm_UserProfile** | Wrapper implementation to [Credo's DIDComm User Profile protocol capability](https://didcomm.org/user-profile/1.0/) | _TBD_ | — |
+| **Agent_SDK** | Wrapper implementation to [Credo-ts](https://github.com/openwallet-foundation/credo-ts) | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os)| — |
+| **DIDComm_BLE** | Wrapper implementation to [React Native Bluetooth Low Energy SDK for DIDComm](https://github.com/animo/react-native-ble-didcomm) | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
+| **DIDComm_MediaSharing** | Wrapper implementation to [Credo's DIDComm Media Sharing protocol capability](https://didcomm.org/media-sharing/1.0/) | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
+| **DIDComm_Receipts** | Wrapper implementation to [Credo's DIDComm Receipts protocol capability](https://didcomm.org/receipts/1.0/) | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
+| **DIDComm_RPC** | Wrapper implementation to [Credo's DIDComm RPC protocol capability](https://github.com/decentralized-identity/aries-rfcs/tree/main/features/0804-didcomm-rpc) |[farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
+| **DIDComm_Survey** | Wrapper implementation to [Credo's DIDComm Survey protocol capability](https://github.com/Entidad/credo-ts-survey) | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
+| **DIDComm_UserProfile** | Wrapper implementation to [Credo's DIDComm User Profile protocol capability](https://didcomm.org/user-profile/1.0/) | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os)| — |
 | **KeyManagement** | Manage private keys on web and mobile (iOS and Android) platforms | [farmworker-wallet-os-kms](https://github.com/openwallet-foundation-labs/farmworker-wallet-os-kms) | [Listing](https://marketplace.mendix.com/link/component/302039) |
 
 ### Solution Modules — Cloud Agent
@@ -93,6 +93,7 @@ not appear in the Toolbox — install them as dependencies of your React Native 
 | Package | Purpose | Repository | Marketplace |
 | --- | --- | --- | --- |
 | **react-native-isemulator** | Tests whether an iOS or Android application is running under emulation or on a real device | [react-native-isemulator](https://github.com/Entidad/react-native-isemulator) | — |
+| **credo-ts-survey)** | credo-ts extension module implementing the [DIDComm Survey](https://didcomm.org/survey/1.0/) protocol | [credo-ts-survey](https://github.com/Entidad/credo-ts-survey) | — |
 
 ### Pluggable Widgets — Web
 
@@ -111,7 +112,7 @@ as a starting point, rather than importing them into a production app.
 
 | Solution | Demonstrates | Repository | Marketplace |
 | --- | --- | --- | --- |
-| **Agent_TestHarness** | Core wallet functionality such as creating peer-to-peer DID connections, secure messaging over DID connections, verifiable credential exchange, and DIDComm protocols. Ships as a Mendix module — import it alongside **Agent_SDK** to exercise the native agent. | _TBD_ | — |
+| **Agent_TestHarness** | Core wallet functionality such as creating peer-to-peer DID connections, secure messaging over DID connections, verifiable credential exchange, and DIDComm protocols. Ships as a Mendix module — import it alongside **Agent_SDK** to exercise the native agent. | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
 | **fwos-demo-app** | End-to-end reference wallet combining the modules and widgets above — peer-to-peer DID connections, secure DIDComm messaging, and verifiable credential exchange. Included in this repository as `fwos-demo-app.mpr`; see [Quick Start](#quick-start). | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
 
 ## Embedding the SDK in your own Mendix app
