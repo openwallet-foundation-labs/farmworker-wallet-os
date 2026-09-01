@@ -84,7 +84,6 @@ from the Marketplace, and the widget appears in the Studio Pro Toolbox.
 | **MapLibre Native MarkerView** | Renders MapLibre Native map and marker views on OpenStreetMap-style vector maps inside your native app | [mendix-react-native-maplibre](https://github.com/Entidad/mendix-react-native-maplibre) | [Listing](https://marketplace.mendix.com/link/component/257222) |
 | **Native Twilio Video WebRTC** | Mendix implementation of `@twilio/video-react-native-sdk` | [mendix-react-native-twilio-video-webrtc](https://github.com/Entidad/mendix-react-native-twilio-video-webrtc) | — |
 | **Native OnChange** | Execute nanoflows on widget mount, data change, and widget unmount | [mendix-react-native-onchange](https://github.com/Entidad/mendix-react-native-onchange) | — |
-| **Web Verification Code** | Web widget for entering a one-time verification code | [mendix-react-web-verification-code](https://github.com/Entidad/mendix-react-web-verification-code) | — |
 | **JsonForms Native** | Mendix [JSONForms](https://jsonforms.io/) Render for Native  | [mendix-react-native-jsonforms](https://github.com/Entidad/mendix-react-native-jsonforms) | — |
 
 ### React Native Packages
