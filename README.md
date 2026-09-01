@@ -40,7 +40,7 @@ require a custom React Native build.
 | **DIDComm_MediaSharing** | Wrapper implementation to [Credo's DIDComm Media Sharing protocol capability](https://didcomm.org/media-sharing/1.0/) | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
 | **DIDComm_Receipts** | Wrapper implementation to [Credo's DIDComm Receipts protocol capability](https://didcomm.org/receipts/1.0/) | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
 | **DIDComm_RPC** | Wrapper implementation to [Credo's DIDComm RPC protocol capability](https://github.com/decentralized-identity/aries-rfcs/tree/main/features/0804-didcomm-rpc) |[farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
-| **DIDComm_Survey** | Wrapper implementation to [Credo's DIDComm Survey protocol capability](https://github.com/Entidad/credo-ts-survey) | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
+| **DIDComm_Survey** | Wrapper implementation to [Credo's DIDComm Survey protocol capability](https://github.com/Entidad/credo-ts-survey | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os) | — |
 | **DIDComm_UserProfile** | Wrapper implementation to [Credo's DIDComm User Profile protocol capability](https://didcomm.org/user-profile/1.0/) | [farmworker-wallet-os](https://github.com/openwallet-foundation-labs/farmworker-wallet-os)| — |
 | **KeyManagement** | Manage private keys on web and mobile (iOS and Android) platforms | [farmworker-wallet-os-kms](https://github.com/openwallet-foundation-labs/farmworker-wallet-os-kms) | [Listing](https://marketplace.mendix.com/link/component/302039) |
 
@@ -84,6 +84,7 @@ from the Marketplace, and the widget appears in the Studio Pro Toolbox.
 | **MapLibre Native MarkerView** | Renders MapLibre Native map and marker views on OpenStreetMap-style vector maps inside your native app | [mendix-react-native-maplibre](https://github.com/Entidad/mendix-react-native-maplibre) | [Listing](https://marketplace.mendix.com/link/component/257222) |
 | **Native Twilio Video WebRTC** | Mendix implementation of `@twilio/video-react-native-sdk` | [mendix-react-native-twilio-video-webrtc](https://github.com/Entidad/mendix-react-native-twilio-video-webrtc) | — |
 | **Native OnChange** | Execute nanoflows on widget mount, data change, and widget unmount | [mendix-react-native-onchange](https://github.com/Entidad/mendix-react-native-onchange) | — |
+| **JsonForms Native** | Mendix [JSONForms](https://jsonforms.io/) Render for Native  | [mendix-react-native-jsonforms](https://github.com/Entidad/mendix-react-native-jsonforms) | — |
 
 ### React Native Packages
 
@@ -93,7 +94,7 @@ not appear in the Toolbox — install them as dependencies of your React Native 
 | Package | Purpose | Repository | Marketplace |
 | --- | --- | --- | --- |
 | **react-native-isemulator** | Tests whether an iOS or Android application is running under emulation or on a real device | [react-native-isemulator](https://github.com/Entidad/react-native-isemulator) | — |
-| **credo-ts-survey)** | credo-ts extension module implementing the [DIDComm Survey](https://didcomm.org/survey/1.0/) protocol | [credo-ts-survey](https://github.com/Entidad/credo-ts-survey) | — |
+| **credo-ts-survey** | credo-ts extension module implementing the [DIDComm Survey](https://didcomm.org/survey/1.0/) protocol | [credo-ts-survey](https://github.com/Entidad/credo-ts-survey) | — |
 
 ### Pluggable Widgets — Web
 
@@ -103,6 +104,8 @@ Widgets for responsive web and tablet pages, built with React.
 | --- | --- | --- | --- |
 | **Twilio Video WebRTC (Web)** | Join video calls from a browser | [mendix-web-twilio-video-webrtc](https://github.com/Entidad/mendix-web-twilio-video-webrtc) | — |
 | **Verification Code (Web)** | A segmented code entry field for web pages | [mendix-react-web-verification-code](https://github.com/Entidad/mendix-react-web-verification-code) | — |
+| **JsonForms Web** | Renders a form from a JSON Schema, using [JSONForms](https://jsonforms.io/) | [mendix-react-web-jsonforms](https://github.com/Entidad/mendix-react-web-jsonforms) | — |
+| **International Phone Input**|  Adds a country selector and international phone number formatting to a standard Mendix text box, wrapping [intl-tel-input](https://github.com/jackocnr/intl-tel-input) | [mendix-react-web-internationalphone](https://github.com/Entidad/mendix-react-web-internationalphone) | [Listing](https://marketplace.mendix.com/link/component/305094) |
 | **Easy Image** | Image manipulation — zoom in/out, pan, rotate clockwise/counterclockwise, crop, and download | [react-easy-image](https://github.com/Entidad/react-easy-image) | [Listing](https://marketplace.mendix.com/link/component/221044) |
 
 ### Demo Solutions
