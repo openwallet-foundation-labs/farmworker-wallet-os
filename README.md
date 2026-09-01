@@ -95,7 +95,7 @@ not appear in the Toolbox — install them as dependencies of your React Native 
 | Package | Purpose | Repository | Marketplace |
 | --- | --- | --- | --- |
 | **react-native-isemulator** | Tests whether an iOS or Android application is running under emulation or on a real device | [react-native-isemulator](https://github.com/Entidad/react-native-isemulator) | — |
-| **credo-ts-survey)** | credo-ts extension module implementing the [DIDComm Survey](https://didcomm.org/survey/1.0/) protocol | [credo-ts-survey](https://github.com/Entidad/credo-ts-survey) | — |
+| **credo-ts-survey** | credo-ts extension module implementing the [DIDComm Survey](https://didcomm.org/survey/1.0/) protocol | [credo-ts-survey](https://github.com/Entidad/credo-ts-survey) | — |
 
 ### Pluggable Widgets — Web
 
